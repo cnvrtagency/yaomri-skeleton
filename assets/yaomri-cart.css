@@ -1,0 +1,467 @@
+.yaomri-cart {
+  width: min(1400px, 100%);
+  margin-inline: auto;
+  padding: clamp(2rem, 4vw, 3.5rem) clamp(1rem, 2.2vw, 2rem);
+  color: #111;
+  background: #fff;
+}
+
+.yaomri-cart,
+.yaomri-cart * {
+  box-sizing: border-box;
+}
+
+.yaomri-cart a {
+  color: inherit;
+}
+
+.yaomri-cart__heading {
+  margin: 0 0 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: clamp(1.3rem, 1.8vw, 1.85rem);
+  font-style: italic;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.yaomri-cart__heading-icon {
+  display: inline-flex;
+  width: 1.4em;
+  height: 1.4em;
+}
+
+.yaomri-cart__heading-icon .icon {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.yaomri-cart__shipping-message {
+  border: 1px solid #e8e8e8;
+  background: #fff;
+  padding: 0.75rem 0.95rem;
+  margin: 0 0 1rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.yaomri-cart__shipping-copy {
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.yaomri-cart__shipping-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #ededed;
+}
+
+.yaomri-cart__shipping-bar > span {
+  display: block;
+  width: 34%;
+  height: 100%;
+  background: #111;
+}
+
+.yaomri-cart__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(290px, 390px);
+  gap: clamp(1.2rem, 2vw, 2.1rem);
+  align-items: start;
+}
+
+.yaomri-cart__items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.yaomri-cart__item {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: clamp(0.9rem, 1.5vw, 1.35rem);
+  padding: clamp(0.95rem, 1.6vw, 1.2rem);
+  border: 1px solid #e8e8e8;
+  background: #fff;
+}
+
+.yaomri-cart__item-media {
+  display: block;
+  align-self: start;
+  border: 1px solid #f0f0f0;
+}
+
+.yaomri-cart__item-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.yaomri-cart__item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  min-width: 0;
+}
+
+.yaomri-cart__item-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.1rem;
+  align-items: start;
+}
+
+.yaomri-cart__item-title {
+  display: inline-block;
+  margin: 0 0 0.4rem;
+  font-size: 0.86rem;
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.yaomri-cart__meta,
+.yaomri-cart__meta-list {
+  margin: 0;
+  padding: 0;
+  color: #4b4b4b;
+  font-size: 0.74rem;
+  line-height: 1.4;
+  list-style: none;
+}
+
+.yaomri-cart__meta-list li {
+  display: flex;
+  gap: 0.45rem;
+  align-items: baseline;
+}
+
+.yaomri-cart__meta-key {
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.yaomri-cart__prices {
+  text-align: right;
+  white-space: nowrap;
+  display: grid;
+  gap: 0.2rem;
+  justify-items: end;
+}
+
+.yaomri-cart__price-label,
+.yaomri-cart__line-total-label {
+  margin: 0;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.yaomri-cart__price-compare {
+  display: block;
+  color: #777;
+  font-size: 0.78rem;
+}
+
+.yaomri-cart__price,
+.yaomri-cart__line-price {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.yaomri-cart__discounts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #4b4b4b;
+  font-size: 0.76rem;
+  line-height: 1.4;
+}
+
+.yaomri-cart__discounts li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.yaomri-cart__item-bottom {
+  display: grid;
+  grid-template-columns: auto auto minmax(110px, 1fr);
+  gap: 0.95rem;
+  align-items: center;
+  padding-top: 0.35rem;
+  border-top: 1px solid #efefef;
+}
+
+.yaomri-cart__quantity {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.yaomri-cart__quantity-label {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.yaomri-cart__quantity-input {
+  width: 82px;
+  height: 38px;
+  border: 1px solid #e0e0e0;
+  border-radius: 0;
+  background: #fff;
+  padding: 0.2rem 0.45rem;
+  font: inherit;
+  color: #111;
+}
+
+.yaomri-cart__remove {
+  align-self: center;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #444;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  justify-self: start;
+}
+
+.yaomri-cart__line-total {
+  justify-self: end;
+  text-align: right;
+  display: grid;
+  gap: 0.2rem;
+  justify-items: end;
+}
+
+.yaomri-cart__summary {
+  position: sticky;
+  top: 1.25rem;
+}
+
+.yaomri-cart__summary-card {
+  border: 1px solid #e8e8e8;
+  background: #fff;
+  padding: clamp(1rem, 1.8vw, 1.4rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.yaomri-cart__summary-heading {
+  margin: 0;
+  font-size: 0.88rem;
+  font-style: italic;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.yaomri-cart__summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid #ececec;
+}
+
+.yaomri-cart__summary-note,
+.yaomri-cart__summary-trust {
+  margin: 0;
+  font-size: 0.74rem;
+  color: #4b4b4b;
+}
+
+.yaomri-cart__summary-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.yaomri-cart__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #111;
+  border-radius: 0;
+  padding: 0.72rem 1rem;
+  font: inherit;
+  font-size: 0.74rem;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.yaomri-cart__button--primary {
+  background: #111;
+  color: #fff;
+}
+
+.yaomri-cart__button--secondary {
+  background: #fff;
+  color: #111;
+}
+
+.yaomri-cart__continue {
+  align-self: flex-start;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #444;
+  text-decoration: underline;
+}
+
+.yaomri-cart__empty {
+  border: 1px solid #e8e8e8;
+  background: #fff;
+  padding: clamp(1.8rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.yaomri-cart__empty-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 0.9rem;
+  border: 1px solid #ececec;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yaomri-cart__empty-icon .icon {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
+.yaomri-cart__empty-heading {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.2rem, 1.6vw, 1.6rem);
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.yaomri-cart__empty-text {
+  max-width: 48ch;
+  margin: 0 auto 1.25rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #4b4b4b;
+}
+
+@media screen and (max-width: 989px) {
+  .yaomri-cart {
+    padding: clamp(1.2rem, 3vw, 2rem) clamp(0.9rem, 3vw, 1.25rem);
+  }
+
+  .yaomri-cart__layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .yaomri-cart__summary {
+    position: static;
+  }
+
+  .yaomri-cart__summary-card {
+    margin-top: 0.2rem;
+  }
+}
+
+@media screen and (max-width: 699px) {
+  .yaomri-cart__item {
+    grid-template-columns: 104px minmax(0, 1fr);
+    gap: 0.85rem;
+  }
+
+  .yaomri-cart__item-bottom {
+    grid-template-columns: 1fr auto;
+    row-gap: 0.75rem;
+  }
+
+  .yaomri-cart__quantity {
+    grid-column: 1;
+  }
+
+  .yaomri-cart__remove {
+    grid-column: 2;
+    justify-self: end;
+    align-self: end;
+  }
+
+  .yaomri-cart__line-total {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    text-align: left;
+    justify-items: start;
+    padding-top: 0.3rem;
+    border-top: 1px solid #f1f1f1;
+  }
+
+  .yaomri-cart__button {
+    min-height: 46px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .yaomri-cart__item {
+    grid-template-columns: 1fr;
+  }
+
+  .yaomri-cart__item-media {
+    max-width: 130px;
+    border-width: 0;
+  }
+
+  .yaomri-cart__item-top {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .yaomri-cart__prices,
+  .yaomri-cart__line-total {
+    text-align: left;
+    justify-self: start;
+  }
+
+  .yaomri-cart__item-bottom {
+    grid-template-columns: 1fr;
+    row-gap: 0.6rem;
+  }
+
+  .yaomri-cart__remove {
+    grid-column: auto;
+    justify-self: start;
+  }
+
+  .yaomri-cart__line-total {
+    grid-column: auto;
+  }
+}

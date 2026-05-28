@@ -1,0 +1,178 @@
+{%- liquid
+  assign drawer_menu = menu
+  if drawer_menu == blank
+    assign drawer_menu = linklists['main-menu']
+  endif
+
+  assign drawer_title = section.settings.mobile_menu_label | default: 'Menu'
+  assign region_name = 'United Arab Emirates'
+  assign region_currency_code = 'AED'
+  if localization.country != blank
+    assign region_name = localization.country.name
+    if localization.country.currency != blank and localization.country.currency.iso_code != blank
+      assign region_currency_code = localization.country.currency.iso_code
+    endif
+  endif
+
+  assign instagram_url = settings.social_instagram_link | default: '#'
+-%}
+
+<div id="MobileDrawer" class="mdrawer" data-mdrawer aria-hidden="true">
+  <button class="mdrawer__scrim" type="button" data-mdrawer-close aria-label="Close menu"></button>
+
+  <aside class="mdrawer__panel" role="dialog" aria-modal="true" aria-labelledby="MobileDrawerTitle" tabindex="-1">
+    <header class="mdrawer__header">
+      <button class="mdrawer__icon-btn mdrawer__back" type="button" data-mdrawer-back hidden aria-label="Back">
+        {% render 'icon-yaomri-chevron-left' %}
+      </button>
+      <h2 id="MobileDrawerTitle" class="mdrawer__title" data-mdrawer-title>{{ drawer_title }}</h2>
+      <button class="mdrawer__icon-btn mdrawer__close" type="button" data-mdrawer-close aria-label="Close menu">
+        {% render 'icon-yaomri-close' %}
+      </button>
+    </header>
+
+    <div class="mdrawer__body">
+      <div class="mdrawer__view is-active" data-mdrawer-view="root">
+        {%- if mobile_logo != blank -%}
+          <a class="mdrawer__brand" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+            {{
+              mobile_logo
+              | image_url: width: 320
+              | image_tag:
+                class: 'mdrawer__brand-logo',
+                widths: '120, 160, 220, 320',
+                sizes: '160px',
+                loading: 'lazy',
+                alt: mobile_logo.alt | default: shop.name | escape
+            }}
+          </a>
+        {%- else -%}
+          <a class="mdrawer__brand-text" href="{{ routes.root_url }}">{{ shop.name }}</a>
+        {%- endif -%}
+
+        <form class="mdrawer__search" action="{{ routes.search_url }}" method="get" role="search">
+          <label class="visually-hidden" for="DrawerSearchInput">Search</label>
+          <span class="mdrawer__search-icon" aria-hidden="true">{% render 'icon-yaomri-search' %}</span>
+          <input id="DrawerSearchInput" type="search" name="q" placeholder="Search" autocomplete="off">
+          <input type="hidden" name="options[prefix]" value="last">
+        </form>
+
+        {%- if drawer_menu != blank and drawer_menu.links.size > 0 -%}
+          <nav class="mdrawer__nav" aria-label="Mobile menu">
+            <ul class="mdrawer__nav-list" role="list">
+              {%- for link in drawer_menu.links -%}
+                {%- assign link_sale = false -%}
+                {%- if link.title | downcase contains 'sale' -%}
+                  {%- assign link_sale = true -%}
+                {%- endif -%}
+                <li>
+                  {%- if link.links.size > 0 -%}
+                    {%- assign panel_id = 'panel-' | append: link.handle -%}
+                    <button
+                      class="mdrawer__nav-item{% if link_sale %} is-sale{% endif %}"
+                      type="button"
+                      data-mdrawer-drill
+                      data-target="{{ panel_id }}"
+                      data-title="{{ link.title | escape }}"
+                    >
+                      <span>{{ link.title }}</span>
+                      <span class="mdrawer__chevron" aria-hidden="true">{% render 'icon-yaomri-chevron-right' %}</span>
+                    </button>
+                  {%- else -%}
+                    <a class="mdrawer__nav-item{% if link_sale %} is-sale{% endif %}" href="{{ link.url }}">{{ link.title }}</a>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </nav>
+        {%- endif -%}
+
+        <div class="mdrawer__footer" data-mdrawer-root-only>
+          <div class="mdrawer__utility-links">
+            {%- if shop.customer_accounts_enabled -%}
+              <a href="{{ routes.account_login_url }}">Sign in / Register</a>
+            {%- endif -%}
+            <a href="{{ wishlist_url | default: '/pages/wishlist' }}">Wishlist</a>
+          </div>
+          <p class="mdrawer__shipping">Shipping to {{ region_name }} · {{ region_currency_code }}</p>
+          <a class="mdrawer__instagram" href="{{ instagram_url }}" target="_blank" rel="noopener">
+            Instagram
+          </a>
+        </div>
+      </div>
+
+      {%- if drawer_menu != blank and drawer_menu.links.size > 0 -%}
+        {%- for link in drawer_menu.links -%}
+          {%- if link.links.size > 0 -%}
+            {%- assign panel_id = 'panel-' | append: link.handle -%}
+            <div class="mdrawer__view" data-mdrawer-view="{{ panel_id }}">
+              <nav class="mdrawer__drill-nav" aria-label="{{ link.title | escape }}">
+                <ul class="mdrawer__drill-list" role="list">
+                  {%- for child in link.links -%}
+                    {%- assign parts = child.title | split: '/' -%}
+                    {%- assign group_name = '' -%}
+                    {%- assign item_label = child.title -%}
+                    {%- if parts.size > 1 -%}
+                      {%- assign group_name = parts[0] | strip -%}
+                      {%- assign item_label = parts[1] | strip -%}
+                    {%- endif -%}
+
+                    {%- if group_name != blank -%}
+                      {%- ifchanged group_name -%}
+                        <li class="mdrawer__group">{{ group_name }}</li>
+                      {%- endifchanged -%}
+                    {%- endif -%}
+
+                    {%- assign child_sale = false -%}
+                    {%- if item_label | downcase contains 'sale' -%}
+                      {%- assign child_sale = true -%}
+                    {%- endif -%}
+                    <li>
+                      <a class="mdrawer__drill-item{% if child_sale %} is-sale{% endif %}" href="{{ child.url }}">
+                        {{ item_label }}
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+
+                {%- assign feature_count = 0 -%}
+                {%- for block in section.blocks -%}
+                  {%- if block.type == 'mobile_drawer_feature' and block.settings.parent != blank and block.settings.parent | handleize == link.handle -%}
+                    {%- assign feature_count = feature_count | plus: 1 -%}
+                  {%- endif -%}
+                {%- endfor -%}
+
+                {%- if feature_count > 0 -%}
+                  <div class="mdrawer__features">
+                    {%- for block in section.blocks -%}
+                      {%- if block.type == 'mobile_drawer_feature' and block.settings.parent != blank and block.settings.parent | handleize == link.handle -%}
+                        <a class="mdrawer__feature" href="{{ block.settings.url | default: link.url }}" {{ block.shopify_attributes }}>
+                          {%- if block.settings.image != blank -%}
+                            {{
+                              block.settings.image
+                              | image_url: width: 400
+                              | image_tag:
+                                class: 'mdrawer__feature-image',
+                                widths: '180, 260, 320, 400',
+                                sizes: '48vw',
+                                loading: 'lazy',
+                                alt: block.settings.title | default: block.settings.label | escape
+                            }}
+                          {%- endif -%}
+                          <span class="mdrawer__feature-copy">
+                            {%- if block.settings.label != blank -%}<span class="mdrawer__feature-label">{{ block.settings.label }}</span>{%- endif -%}
+                            {%- if block.settings.title != blank -%}<span class="mdrawer__feature-title">{{ block.settings.title }}</span>{%- endif -%}
+                          </span>
+                        </a>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+              </nav>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </aside>
+</div>

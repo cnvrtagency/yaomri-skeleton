@@ -1,4 +1,6 @@
 {{ 'yaomri-header.css' | asset_url | stylesheet_tag }}
+{{ 'mobile-drawer.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'mobile-drawer.js' | asset_url }}" defer></script>
 
 {%- liquid
   assign raw_layout = section.settings.desktop_layout
@@ -32,7 +34,17 @@
   endunless
 
   assign has_menu = false
-  if section.settings.menu != blank and linklists[section.settings.menu] != blank and linklists[section.settings.menu].links.size > 0
+  assign menu_handle = section.settings.menu
+  if menu_handle == blank
+    assign menu_handle = 'main-menu'
+  endif
+
+  assign navigation_menu = linklists[menu_handle]
+  if navigation_menu == blank and menu_handle != 'main-menu'
+    assign navigation_menu = linklists['main-menu']
+  endif
+
+  if navigation_menu != blank and navigation_menu.links.size > 0
     assign has_menu = true
   endif
 
@@ -136,7 +148,7 @@
   {%- capture nav_markup -%}
     {%- if has_menu -%}
       <nav class="yaomri-header__nav" aria-label="Primary">
-        {%- for link in linklists[section.settings.menu].links -%}
+        {%- for link in navigation_menu.links -%}
           <a class="yaomri-header__nav-link" href="{{ link.url }}">{{ link.title }}</a>
         {%- endfor -%}
       </nav>
@@ -215,21 +227,14 @@
 
   <div class="yaomri-header__mobile">
     <div class="yaomri-header__mobile-left">
-      <details class="yaomri-header__drawer">
-        <summary class="yaomri-header__icon" aria-label="{{ section.settings.mobile_menu_label | escape }}">
-          <span class="yaomri-header__drawer-open">{% render 'icon-yaomri-menu' %}</span>
-          <span class="yaomri-header__drawer-close">{% render 'icon-yaomri-close' %}</span>
-        </summary>
-        {%- if has_menu -%}
-          <div class="yaomri-header__drawer-panel">
-            <nav class="yaomri-header__drawer-nav" aria-label="Mobile">
-              {%- for link in linklists[section.settings.menu].links -%}
-                <a class="yaomri-header__drawer-link" href="{{ link.url }}">{{ link.title }}</a>
-              {%- endfor -%}
-            </nav>
-          </div>
-        {%- endif -%}
-      </details>
+      <button
+        class="yaomri-header__icon"
+        type="button"
+        data-mdrawer-trigger
+        aria-label="Open menu"
+      >
+        {% render 'icon-yaomri-menu' %}
+      </button>
     </div>
 
     <div class="yaomri-header__mobile-center">
@@ -257,6 +262,14 @@
       {%- endif -%}
     </div>
   </div>
+
+  {% render
+    'mobile-drawer',
+    section: section,
+    menu: navigation_menu,
+    wishlist_url: wishlist_url,
+    mobile_logo: mobile_logo
+  %}
 </section>
 
 {% schema %}
@@ -667,6 +680,40 @@
       "id": "mobile_drawer_text",
       "label": "Mobile drawer text",
       "default": "#111111"
+    }
+  ],
+  "max_blocks": 12,
+  "blocks": [
+    {
+      "type": "mobile_drawer_feature",
+      "name": "Mobile drawer feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "parent",
+          "label": "Parent"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        }
+      ]
     }
   ]
 }
