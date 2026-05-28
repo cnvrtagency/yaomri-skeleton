@@ -69,9 +69,21 @@
   assign region_currency = settings.region_currency | default: section.settings.region_currency
   assign region_link = settings.region_link | default: section.settings.region_link
   assign show_region_chip = settings.show_region_chip
+  if show_region_chip == blank
+    assign show_region_chip = section.settings.show_region_chip
+  endif
   assign show_account_icon = settings.show_account_icon
+  if show_account_icon == blank
+    assign show_account_icon = section.settings.show_account_icon
+  endif
   assign show_wishlist_icon = settings.show_wishlist_icon
+  if show_wishlist_icon == blank
+    assign show_wishlist_icon = section.settings.show_wishlist_icon
+  endif
   assign show_cart_icon = settings.show_cart_icon
+  if show_cart_icon == blank
+    assign show_cart_icon = section.settings.show_cart_icon
+  endif
   assign desktop_logo = settings.logo
   assign mobile_logo = settings.mobile_logo | default: settings.logo
   assign desktop_logo_width = settings.desktop_logo_width | default: 180
@@ -83,12 +95,21 @@
   assign header_custom_width = settings.header_custom_width | default: section.settings.header_custom_width | default: 1200
   assign nav_collapse_width = settings.nav_collapse_width | default: section.settings.nav_collapse_width | default: '1100'
   assign show_bottom_border = settings.show_bottom_border
+  if show_bottom_border == blank
+    assign show_bottom_border = section.settings.show_bottom_border
+  endif
+  if show_bottom_border == blank
+    assign show_bottom_border = true
+  endif
   assign enable_sticky = settings.enable_sticky
+  if enable_sticky == blank
+    assign enable_sticky = section.settings.enable_sticky
+  endif
   assign header_background = settings.header_background | default: section.settings.header_background | default: '#ffffff'
   assign header_foreground = settings.header_foreground | default: section.settings.header_foreground | default: '#111111'
   assign header_border = settings.header_border | default: section.settings.header_border | default: '#e8e8e8'
-  assign desktop_side_padding = settings.desktop_side_padding | default: section.settings.desktop_side_padding | default: 24
-  assign mobile_side_padding = settings.mobile_side_padding | default: section.settings.mobile_side_padding | default: 16
+  assign desktop_side_padding = 24
+  assign mobile_side_padding = 16
   assign desktop_header_height = settings.desktop_header_height | default: section.settings.desktop_header_height | default: 82
   assign mobile_header_height = settings.mobile_header_height | default: section.settings.mobile_header_height | default: 74
   assign icon_size = settings.icon_size | default: section.settings.icon_size | default: 24
@@ -108,12 +129,31 @@
   assign region_chip_border = settings.region_chip_border | default: section.settings.region_chip_border | default: '#e8e8e8'
   assign region_chip_text = settings.region_chip_text | default: section.settings.region_chip_text | default: '#111111'
   assign region_chip_height = settings.region_chip_height | default: section.settings.region_chip_height | default: 48
-  assign mega_content_width_css = 'var(--page-width)'
-  if header_width_mode == 'custom'
-    assign mega_content_width_css = header_custom_width | append: 'px'
-  elsif header_width_mode == 'full'
-    assign mega_content_width_css = '100%'
-  endif
+  assign header_shadow = settings.header_shadow | default: 'none'
+  assign header_shadow_value = 'none'
+  case header_shadow
+    when 'subtle'
+      assign header_shadow_value = '0 6px 16px -12px rgba(0, 0, 0, 0.12)'
+    when 'medium'
+      assign header_shadow_value = '0 12px 24px -16px rgba(0, 0, 0, 0.18)'
+    when 'strong'
+      assign header_shadow_value = '0 18px 36px -20px rgba(0, 0, 0, 0.26)'
+    when 'custom'
+      assign shadow_offset_y = settings.header_shadow_offset_y | default: 8
+      assign shadow_blur = settings.header_shadow_blur | default: 24
+      assign shadow_opacity = settings.header_shadow_opacity | default: 10
+      capture header_shadow_custom
+        echo '0 '
+        echo shadow_offset_y
+        echo 'px '
+        echo shadow_blur
+        echo 'px rgb(0 0 0 / '
+        echo shadow_opacity
+        echo '%)'
+      endcapture
+      assign header_shadow_value = header_shadow_custom | strip
+  endcase
+  assign mega_content_width_css = 'var(--ym-panel-max-width, 1200px)'
 -%}
 
 {%- if enable_sticky -%}
@@ -128,13 +168,12 @@
 
 <section
   class="yaomri-header full-width yaomri-header--layout-{{ resolved_layout }} yaomri-header--width-{{ header_width_mode }} yaomri-header--collapse-{{ nav_collapse_width }}{% unless show_bottom_border %} yaomri-header--no-border{% endunless %}"
-  data-header-width-mode="{{ header_width_mode }}"
-  data-header-custom-width="{{ header_custom_width }}"
   data-header-desktop-padding="{{ desktop_side_padding }}"
   style="
     --yh-bg: {{ header_background }};
     --yh-fg: {{ header_foreground }};
     --yh-border: {{ header_border }};
+    --yh-shadow: {{ header_shadow_value }};
     --yh-custom-content-width: {{ header_custom_width }}px;
     --yh-desktop-padding: {{ desktop_side_padding }}px;
     --yh-mobile-padding: {{ mobile_side_padding }}px;
@@ -427,6 +466,7 @@
           "type": "range",
           "id": "dropdown_width",
           "label": "Dropdown panel width",
+          "info": "Controls this dropdown panel box width on desktop only.",
           "min": 180,
           "max": 520,
           "step": 10,
@@ -491,8 +531,12 @@
           "type": "select",
           "id": "submenu_width",
           "label": "Submenu width",
-          "default": "content",
+          "default": "default",
           "options": [
+            {
+              "value": "default",
+              "label": "Use mega panel default"
+            },
             {
               "value": "custom",
               "label": "Custom"
@@ -500,10 +544,6 @@
             {
               "value": "full",
               "label": "Full width"
-            },
-            {
-              "value": "content",
-              "label": "Content width"
             }
           ]
         },
