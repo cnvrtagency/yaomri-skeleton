@@ -11,10 +11,8 @@
   const panelWidth =
     Number(panelRoot?.getAttribute('data-panel-width')) ||
     Number(nav.getAttribute('data-panel-width')) ||
-    1400;
+    1200;
   const header = document.querySelector('.yaomri-header');
-  const headerWidthMode = header?.dataset.headerWidthMode || 'site';
-  const headerCustomWidth = Number(header?.dataset.headerCustomWidth) || panelWidth;
   const headerDesktopPadding = Number(header?.dataset.headerDesktopPadding) || 24;
   let closeTimer = null;
   let activeTrigger = null;
@@ -23,11 +21,7 @@
   if (panelRoot) {
     panelRoot.style.setProperty('--ym-panel-max-width', `${panelWidth}px`);
     panelRoot.style.setProperty('--ym-content-padding', `${headerDesktopPadding}px`);
-    if (headerWidthMode === 'custom') {
-      panelRoot.style.setProperty('--ym-content-max-width', `${Math.min(headerCustomWidth, panelWidth)}px`);
-    } else if (headerWidthMode === 'full') {
-      panelRoot.style.setProperty('--ym-content-max-width', '100%');
-    }
+    panelRoot.style.setProperty('--ym-content-max-width', `${panelWidth}px`);
   }
 
   const getHeaderBottom = () => {
@@ -96,23 +90,6 @@
     const panel = panelRoot.querySelector(`[data-mega-parent="${CSS.escape(target)}"]`);
     if (!panel) return false;
 
-    const widthMode = trigger.getAttribute('data-mega-width-mode') || 'full';
-    const customWidth = Number(trigger.getAttribute('data-mega-custom-width')) || panelWidth;
-    let activeContentWidth = '';
-    if (widthMode === 'content') {
-      if (headerWidthMode === 'custom') {
-        activeContentWidth = `${Math.min(headerCustomWidth, panelWidth)}px`;
-      } else if (headerWidthMode === 'full') {
-        activeContentWidth = '100%';
-      } else {
-        activeContentWidth = 'var(--page-width)';
-      }
-    } else if (widthMode === 'custom') {
-      activeContentWidth = `${Math.min(customWidth, panelWidth)}px`;
-    } else {
-      activeContentWidth = '100%';
-    }
-
     clearCloseTimer();
     updatePanelTop();
     nav.querySelectorAll('.yaomri-mega__item.is-open').forEach((openItem) => {
@@ -121,7 +98,7 @@
     item.classList.add('is-open');
     panelRoot.classList.add('is-open');
     panelRoot.setAttribute('aria-hidden', 'false');
-    panelRoot.style.setProperty('--ym-content-max-width', activeContentWidth);
+    panelRoot.style.setProperty('--ym-content-max-width', `${panelWidth}px`);
     panelRoot.querySelectorAll('[data-mega-panel]').forEach((candidate) => {
       const isActive = candidate === panel;
       candidate.hidden = !isActive;

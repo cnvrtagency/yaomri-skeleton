@@ -11,8 +11,8 @@
   overflow: hidden;
   background: repeating-linear-gradient(
     135deg,
-    #f3f0eb 0 14px,
-    #efece5 14px 28px
+    color-mix(in srgb, var(--color-sand, #f6f4ef) 96%, #000 4%) 0 14px,
+    color-mix(in srgb, var(--color-sand, #f6f4ef) 90%, #000 10%) 14px 28px
   );
 }
 

@@ -5,6 +5,7 @@
   border-bottom: 1px solid var(--yh-border, var(--color-border));
   background: var(--yh-bg, var(--color-background));
   color: var(--yh-fg, var(--color-foreground));
+  box-shadow: var(--yh-shadow, none);
 }
 
 .yaomri-header.yaomri-header--no-border {

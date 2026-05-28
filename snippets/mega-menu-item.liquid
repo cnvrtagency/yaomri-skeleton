@@ -73,8 +73,6 @@
 {%- elsif block.type == 'mega_item' -%}
   {%- liquid
     assign mega_id = block.settings.mega_menu_id | strip
-    assign width_mode = block.settings.submenu_width | default: 'full'
-    assign custom_width = block.settings.custom_width | default: 1200
   -%}
   <li
     class="yaomri-mega__item yaomri-mega__item--mega"
@@ -88,8 +86,6 @@
       {% if item_target == '_blank' %}target="_blank" rel="noopener"{% endif %}
       data-mega-trigger
       data-mega-target="{{ mega_id | escape }}"
-      data-mega-width-mode="{{ width_mode }}"
-      data-mega-custom-width="{{ custom_width }}"
       data-mega-link
     >
       <span>{{ item_title }}</span>

@@ -61,9 +61,30 @@
     "name": "Layout",
     "settings": [
       {
+        "type": "select",
+        "id": "site_width_mode",
+        "label": "Site width mode",
+        "default": "boxed",
+        "options": [
+          {
+            "value": "boxed",
+            "label": "Boxed"
+          },
+          {
+            "value": "full",
+            "label": "Full width"
+          },
+          {
+            "value": "custom",
+            "label": "Custom"
+          }
+        ]
+      },
+      {
         "type": "range",
-        "id": "site_content_width",
-        "label": "Site content width",
+        "id": "custom_site_content_width",
+        "label": "Custom site width",
+        "info": "Only applies when Site width mode is set to Custom.",
         "min": 1000,
         "max": 1800,
         "step": 20,
@@ -134,46 +155,27 @@
       {
         "type": "select",
         "id": "nav_collapse_width",
-        "label": "Desktop nav collapse width",
+        "label": "Desktop to mobile switch width",
+        "info": "Below this width, the desktop header switches to the mobile hamburger layout.",
         "default": "1100",
         "options": [
           {
             "value": "990",
-            "label": "990px"
+            "label": "Compact 990px"
           },
           {
             "value": "1100",
-            "label": "1100px"
+            "label": "Balanced 1100px"
           },
           {
             "value": "1200",
-            "label": "1200px"
+            "label": "Comfortable 1200px"
           },
           {
             "value": "1300",
-            "label": "1300px"
+            "label": "Early 1300px"
           }
         ]
-      },
-      {
-        "type": "range",
-        "id": "desktop_side_padding",
-        "label": "Desktop header side padding",
-        "min": 0,
-        "max": 80,
-        "step": 2,
-        "unit": "px",
-        "default": 24
-      },
-      {
-        "type": "range",
-        "id": "mobile_side_padding",
-        "label": "Mobile header side padding",
-        "min": 8,
-        "max": 40,
-        "step": 2,
-        "unit": "px",
-        "default": 16
       },
       {
         "type": "range",
@@ -238,6 +240,67 @@
         "id": "show_bottom_border",
         "label": "Show bottom border",
         "default": true
+      },
+      {
+        "type": "select",
+        "id": "header_shadow",
+        "label": "Header shadow",
+        "default": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "subtle",
+            "label": "Subtle"
+          },
+          {
+            "value": "medium",
+            "label": "Medium"
+          },
+          {
+            "value": "strong",
+            "label": "Strong"
+          },
+          {
+            "value": "custom",
+            "label": "Custom"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "header_shadow_opacity",
+        "label": "Shadow opacity",
+        "info": "Only applies when Header shadow is set to Custom.",
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "unit": "%",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "header_shadow_offset_y",
+        "label": "Shadow vertical offset",
+        "info": "Only applies when Header shadow is set to Custom.",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 8
+      },
+      {
+        "type": "range",
+        "id": "header_shadow_blur",
+        "label": "Shadow blur",
+        "info": "Only applies when Header shadow is set to Custom.",
+        "min": 0,
+        "max": 80,
+        "step": 1,
+        "unit": "px",
+        "default": 24
       },
       {
         "type": "checkbox",
@@ -453,7 +516,8 @@
         "type": "color",
         "id": "sand_color",
         "default": "#f6f4ef",
-        "label": "Soft background"
+        "label": "Soft background",
+        "info": "Used for gentle surfaces such as search fields and subtle menu backgrounds."
       },
       {
         "type": "color",

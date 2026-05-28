@@ -2,7 +2,7 @@
   <div
     class="yaomri-mega-panels"
     data-mega-panels
-    data-panel-width="{{ section.settings.mega_panel_width | default: 1500 }}"
+    data-panel-width="{{ section.settings.mega_panel_width | default: 1200 }}"
     data-close-delay="{{ section.settings.close_delay | default: 250 }}"
     aria-hidden="true"
   >
@@ -24,11 +24,12 @@
       "type": "range",
       "id": "mega_panel_width",
       "label": "Mega panel content width",
+      "info": "Controls the maximum width of mega menu panels.",
       "min": 1000,
       "max": 1800,
       "step": 20,
       "unit": "px",
-      "default": 1500
+      "default": 1200
     },
     {
       "type": "range",

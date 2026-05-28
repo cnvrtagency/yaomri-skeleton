@@ -33,7 +33,7 @@ html.mdrawer-open body {
   grid-template-rows: auto 1fr;
   background: var(--paper, #fff);
   color: var(--ink, #111);
-  border-right: 1px solid var(--border, #e8e8e8);
+  border-right: 1px solid var(--color-border, #e8e8e8);
   transform: translateX(-100%);
   transition: transform 300ms ease;
 }
@@ -82,7 +82,7 @@ html.mdrawer-open body {
   align-items: center;
   min-height: 3.5rem;
   padding: 0 0.65rem;
-  border-bottom: 1px solid var(--border, #e8e8e8);
+  border-bottom: 1px solid var(--color-border, #e8e8e8);
 }
 
 .mdrawer__header.is-root {
@@ -160,8 +160,8 @@ html.mdrawer-open body {
   grid-template-columns: 1.75rem minmax(0, 1fr);
   align-items: center;
   min-height: 2.75rem;
-  border: 1px solid var(--border, #e8e8e8);
-  background: var(--sand, #f7f7f7);
+  border: 1px solid var(--color-border, #e8e8e8);
+  background: var(--color-sand, #f7f7f7);
   padding-inline: 0.7rem;
 }
 
@@ -201,7 +201,7 @@ html.mdrawer-open body {
   min-height: 2.7rem;
   padding: 0.5rem 0;
   border: 0;
-  border-bottom: 1px solid var(--border, #efefef);
+  border-bottom: 1px solid var(--color-border, #efefef);
   background: transparent;
   color: inherit;
   text-align: left;
@@ -226,7 +226,7 @@ html.mdrawer-open body {
   margin-top: 0.7rem;
   padding: 0.4rem 0 0.2rem;
   font-size: 0.68rem;
-  color: var(--muted, #666);
+  color: var(--color-muted, #666);
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -235,7 +235,7 @@ html.mdrawer-open body {
 .mdrawer__footer {
   margin-top: auto;
   padding-top: 0.8rem;
-  border-top: 1px solid var(--border, #ececec);
+  border-top: 1px solid var(--color-border, #ececec);
   display: grid;
   gap: 0.65rem;
 }
@@ -252,7 +252,7 @@ html.mdrawer-open body {
   font-size: 0.7rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--muted, #666);
+  color: var(--color-muted, #666);
 }
 
 .mdrawer__drill-nav {
