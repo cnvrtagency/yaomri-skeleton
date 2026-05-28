@@ -6,12 +6,6 @@
     assign item_target = '_blank'
   endif
 
-  assign item_title_downcase = item_title | downcase
-  assign sale_class = ''
-  if item_title_downcase contains 'sale'
-    assign sale_class = ' is-sale'
-  endif
-
   assign item_style = ''
   if block.settings.highlight_item and block.settings.highlight_color != blank
     assign item_style = '--ym-link-color:' | append: block.settings.highlight_color | append: ';'
@@ -21,7 +15,7 @@
 -%}
 
 {%- if block.type == 'base_item' -%}
-  <li class="yaomri-mega__item yaomri-mega__item--link{{ sale_class }}" style="{{ item_style }}" {{ block.shopify_attributes }}>
+  <li class="yaomri-mega__item yaomri-mega__item--link" style="{{ item_style }}" {{ block.shopify_attributes }}>
     <a
       class="yaomri-header__nav-link yaomri-mega__top-link"
       href="{{ item_url }}"
@@ -36,6 +30,8 @@
   </li>
 {%- elsif block.type == 'dropdown_item' -%}
   {%- liquid
+    assign dropdown_width = block.settings.dropdown_width | default: 260
+    assign dropdown_style = item_style | append: '--ym-dropdown-width:' | append: dropdown_width | append: 'px;'
     assign dropdown_menu = blank
     if block.settings.menu != blank
       assign dropdown_menu = linklists[block.settings.menu]
@@ -45,8 +41,8 @@
     endif
   -%}
   <li
-    class="yaomri-mega__item yaomri-mega__item--dropdown yaomri-mega__item--{{ block.settings.dropdown_position | default: 'start' }}{{ sale_class }}"
-    style="{{ item_style }}"
+    class="yaomri-mega__item yaomri-mega__item--dropdown yaomri-mega__item--{{ block.settings.dropdown_position | default: 'start' }}"
+    style="{{ dropdown_style }}"
     data-dropdown
     {{ block.shopify_attributes }}
   >
@@ -66,14 +62,7 @@
       <div class="yaomri-mega__dropdown-panel" data-dropdown-panel>
         <ul class="yaomri-mega__dropdown-list" role="list">
           {%- for child in dropdown_menu.links -%}
-            {%- liquid
-              assign child_title_downcase = child.title | downcase
-              assign child_sale_class = ''
-              if child_title_downcase contains 'sale'
-                assign child_sale_class = ' is-sale'
-              endif
-            -%}
-            <li class="yaomri-mega__dropdown-item{{ child_sale_class }}">
+            <li class="yaomri-mega__dropdown-item">
               <a href="{{ child.url }}" data-mega-link>{{ child.title }}</a>
             </li>
           {%- endfor -%}
@@ -88,7 +77,7 @@
     assign custom_width = block.settings.custom_width | default: 1200
   -%}
   <li
-    class="yaomri-mega__item yaomri-mega__item--mega yaomri-mega__item--{{ block.settings.submenu_position | default: 'center' }}{{ sale_class }}"
+    class="yaomri-mega__item yaomri-mega__item--mega yaomri-mega__item--{{ block.settings.submenu_position | default: 'center' }}"
     style="{{ item_style }}"
     data-mega-item
     {{ block.shopify_attributes }}

@@ -17,9 +17,32 @@
         "menu": "",
         "show_payment_icons": true
       }
+    },
+    "mobile-menu": {
+      "type": "mobile-menu",
+      "settings": {
+        "drawer_menu": "",
+        "mobile_menu_label": "Menu",
+        "show_mobile_drawer_search": true,
+        "mobile_drawer_search_placeholder": "Search Ya Omri",
+        "show_mobile_drawer_footer": true,
+        "show_mobile_drawer_sign_in": true,
+        "show_mobile_drawer_wishlist": true,
+        "mobile_drawer_wishlist_link": "",
+        "show_mobile_drawer_shipping": true,
+        "mobile_drawer_shipping_label": "Shipping to",
+        "mobile_drawer_shipping_region": "United Arab Emirates · AED",
+        "show_mobile_drawer_instagram": true,
+        "mobile_drawer_instagram_label": "Follow @yaomri",
+        "mobile_drawer_instagram_url": "",
+        "mobile_drawer_width": 320,
+        "mobile_drawer_background": "#ffffff",
+        "mobile_drawer_text": "#111111"
+      }
     }
   },
   "order": [
-    "footer"
+    "footer",
+    "mobile-menu"
   ]
 }

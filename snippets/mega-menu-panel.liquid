@@ -34,7 +34,7 @@
             {%- liquid
               assign column_width_value = block.settings.column_width | default: '25'
               assign column_width_number = column_width_value | plus: 0
-              if column_width_number <= 0
+              if column_width_number <= 0 or column_width_number > 100
                 assign column_width_number = 25
               endif
               assign column_span = 3
@@ -93,14 +93,7 @@
               {%- if child_menu != blank -%}
                 <ul class="yaomri-mega-panel__links" role="list">
                   {%- for link in child_menu.links -%}
-                    {%- liquid
-                      assign link_title_downcase = link.title | downcase
-                      assign link_sale_class = ''
-                      if link_title_downcase contains 'sale'
-                        assign link_sale_class = ' is-sale'
-                      endif
-                    -%}
-                    <li class="yaomri-mega-panel__link-item{{ link_sale_class }}">
+                    <li class="yaomri-mega-panel__link-item">
                       <a href="{{ link.url }}" data-mega-link>{{ link.title }}</a>
                     </li>
                   {%- endfor -%}
@@ -111,7 +104,7 @@
             {%- liquid
               assign tile_width_value = block.settings.column_width | default: '25'
               assign tile_width_number = tile_width_value | plus: 0
-              if tile_width_number <= 0
+              if tile_width_number <= 0 or tile_width_number > 100
                 assign tile_width_number = 25
               endif
               assign tile_column_span = 3
