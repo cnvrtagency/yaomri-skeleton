@@ -21,7 +21,6 @@
             "link": "",
             "open_new_window": true,
             "mega_menu_id": "1",
-            "submenu_position": "center",
             "submenu_width": "full",
             "custom_width": 1200,
             "highlight_item": false,
@@ -35,14 +34,11 @@
         "mega_item_Ddjj8a"
       ],
       "settings": {
-        "desktop_logo_width": 135,
-        "mobile_logo_width": 115,
         "header_width_mode": "site",
         "header_custom_width": 1500,
         "desktop_layout": "logo_left_nav_center_actions_right",
         "nav_collapse_width": "1100",
         "menu": "bikinis",
-        "close_delay": 250,
         "nav_text_size": 12,
         "nav_gap": 24,
         "desktop_side_padding": 0,
@@ -85,8 +81,7 @@
         "mega_parent_MDwgLM": {
           "type": "mega_parent",
           "settings": {
-            "parent_id": "1",
-            "admin_label": ""
+            "parent_id": "1"
           }
         },
         "linklist_child_PtMW3R": {
@@ -122,12 +117,36 @@
         "linklist_child_GpC6qT"
       ],
       "settings": {
-        "mega_panel_width": 1400
+        "mega_panel_width": 1400,
+        "close_delay": 250
+      }
+    },
+    "mobile-menu": {
+      "type": "mobile-menu",
+      "settings": {
+        "drawer_menu": "",
+        "mobile_menu_label": "Menu",
+        "show_mobile_drawer_search": true,
+        "mobile_drawer_search_placeholder": "Search Ya Omri",
+        "show_mobile_drawer_footer": true,
+        "show_mobile_drawer_sign_in": true,
+        "show_mobile_drawer_wishlist": true,
+        "mobile_drawer_wishlist_link": "",
+        "show_mobile_drawer_shipping": true,
+        "mobile_drawer_shipping_label": "Shipping to",
+        "mobile_drawer_shipping_region": "United Arab Emirates · AED",
+        "show_mobile_drawer_instagram": true,
+        "mobile_drawer_instagram_label": "Follow @yaomri",
+        "mobile_drawer_instagram_url": "",
+        "mobile_drawer_width": 320,
+        "mobile_drawer_background": "#ffffff",
+        "mobile_drawer_text": "#111111"
       }
     }
   },
   "order": [
     "header",
-    "mega-menu"
+    "mega-menu",
+    "mobile-menu"
   ]
 }

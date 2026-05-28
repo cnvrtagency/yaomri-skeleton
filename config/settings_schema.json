@@ -19,6 +19,26 @@
         "type": "image_picker",
         "id": "mobile_logo",
         "label": "Mobile logo"
+      },
+      {
+        "type": "range",
+        "id": "desktop_logo_width",
+        "label": "Desktop logo width",
+        "min": 60,
+        "max": 320,
+        "step": 5,
+        "unit": "px",
+        "default": 180
+      },
+      {
+        "type": "range",
+        "id": "mobile_logo_width",
+        "label": "Mobile logo width",
+        "min": 50,
+        "max": 220,
+        "step": 5,
+        "unit": "px",
+        "default": 140
       }
     ]
   },
@@ -53,7 +73,7 @@
       {
         "type": "range",
         "id": "site_side_padding",
-        "label": "Side padding",
+        "label": "Global side padding",
         "min": 0,
         "max": 100,
         "step": 1,

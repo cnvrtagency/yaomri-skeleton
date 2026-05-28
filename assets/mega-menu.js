@@ -4,7 +4,10 @@
   const panelRoot = document.querySelector('[data-mega-panels]');
   if (!nav) return;
 
-  const closeDelay = Number(nav.getAttribute('data-close-delay')) || 250;
+  const closeDelay =
+    Number(panelRoot?.getAttribute('data-close-delay')) ||
+    Number(nav.getAttribute('data-close-delay')) ||
+    250;
   const panelWidth =
     Number(panelRoot?.getAttribute('data-panel-width')) ||
     Number(nav.getAttribute('data-panel-width')) ||

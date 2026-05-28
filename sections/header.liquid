@@ -69,6 +69,8 @@
   assign region_currency = section.settings.region_currency
   assign desktop_logo = settings.logo
   assign mobile_logo = settings.mobile_logo | default: settings.logo
+  assign desktop_logo_width = settings.desktop_logo_width | default: 180
+  assign mobile_logo_width = settings.mobile_logo_width | default: 140
   assign header_width_mode = section.settings.header_width_mode | default: 'site'
   unless header_width_mode == 'site' or header_width_mode == 'full' or header_width_mode == 'custom'
     assign header_width_mode = 'site'
@@ -93,8 +95,7 @@
 {%- endif -%}
 
 <section
-  class="yaomri-header full-width yaomri-header--layout-{{ resolved_layout }} yaomri-header--width-{{ header_width_mode }} yaomri-header--collapse-{{ section.settings.nav_collapse_width | default: '1100' }}"
-  data-mega-close-delay="{{ section.settings.close_delay | default: 250 }}"
+  class="yaomri-header full-width yaomri-header--layout-{{ resolved_layout }} yaomri-header--width-{{ header_width_mode }} yaomri-header--collapse-{{ section.settings.nav_collapse_width | default: '1100' }}{% unless section.settings.show_bottom_border %} yaomri-header--no-border{% endunless %}"
   data-header-width-mode="{{ header_width_mode }}"
   data-header-custom-width="{{ header_custom_width }}"
   data-header-desktop-padding="{{ section.settings.desktop_side_padding }}"
@@ -107,8 +108,8 @@
     --yh-mobile-padding: {{ section.settings.mobile_side_padding }}px;
     --yh-desktop-height: {{ section.settings.desktop_header_height }}px;
     --yh-mobile-height: {{ section.settings.mobile_header_height }}px;
-    --yh-desktop-logo-width: {{ section.settings.desktop_logo_width }}px;
-    --yh-mobile-logo-width: {{ section.settings.mobile_logo_width }}px;
+    --yh-desktop-logo-width: {{ desktop_logo_width }}px;
+    --yh-mobile-logo-width: {{ mobile_logo_width }}px;
     --yh-icon-size: {{ section.settings.icon_size }}px;
     --yh-icon-button-desktop: {{ section.settings.icon_button_size_desktop }}px;
     --yh-icon-button-mobile: {{ section.settings.icon_button_size_mobile }}px;
@@ -287,30 +288,6 @@
   "settings": [
     {
       "type": "header",
-      "content": "Logo"
-    },
-    {
-      "type": "range",
-      "id": "desktop_logo_width",
-      "label": "Desktop logo width",
-      "min": 60,
-      "max": 320,
-      "step": 5,
-      "unit": "px",
-      "default": 180
-    },
-    {
-      "type": "range",
-      "id": "mobile_logo_width",
-      "label": "Mobile logo width",
-      "min": 50,
-      "max": 220,
-      "step": 5,
-      "unit": "px",
-      "default": 140
-    },
-    {
-      "type": "header",
       "content": "Header layout"
     },
     {
@@ -394,17 +371,8 @@
     {
       "type": "link_list",
       "id": "menu",
-      "label": "Fallback menu"
-    },
-    {
-      "type": "range",
-      "id": "close_delay",
-      "label": "Close delay",
-      "min": 100,
-      "max": 800,
-      "step": 50,
-      "unit": "ms",
-      "default": 250
+      "label": "Desktop fallback menu",
+      "info": "Used when no Header navigation blocks are configured."
     },
     {
       "type": "range",
@@ -475,14 +443,20 @@
     {
       "type": "color",
       "id": "header_foreground",
-      "label": "Header text and icon",
+      "label": "Header text/icon colour",
       "default": "#111111"
     },
     {
       "type": "color",
       "id": "header_border",
-      "label": "Header border",
+      "label": "Header border colour",
       "default": "#e8e8e8"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_border",
+      "label": "Show bottom border",
+      "default": true
     },
     {
       "type": "checkbox",
@@ -507,7 +481,7 @@
     {
       "type": "range",
       "id": "icon_button_size_desktop",
-      "label": "Icon button size desktop",
+      "label": "Desktop icon button size",
       "min": 36,
       "max": 64,
       "step": 2,
@@ -517,7 +491,7 @@
     {
       "type": "range",
       "id": "icon_button_size_mobile",
-      "label": "Icon button size mobile",
+      "label": "Mobile icon button size",
       "min": 34,
       "max": 56,
       "step": 2,
@@ -635,6 +609,7 @@
       "type": "checkbox",
       "id": "show_region_chip",
       "label": "Show region chip",
+      "info": "Display only. Does not change market or currency.",
       "default": true
     },
     {
@@ -646,13 +621,13 @@
     {
       "type": "text",
       "id": "region_label",
-      "label": "Region label",
+      "label": "Region short label",
       "default": "AE"
     },
     {
       "type": "text",
       "id": "region_currency",
-      "label": "Region currency",
+      "label": "Region currency text",
       "default": "AED"
     },
     {
@@ -675,7 +650,7 @@
     {
       "type": "color",
       "id": "region_chip_text",
-      "label": "Region chip text",
+      "label": "Region chip text colour",
       "default": "#111111"
     },
     {
@@ -697,12 +672,13 @@
   "blocks": [
     {
       "type": "base_item",
-      "name": "Base item",
+      "name": "Simple link",
       "settings": [
         {
           "type": "text",
           "id": "title",
           "label": "Heading",
+          "info": "Used for a normal top-level navigation link.",
           "default": "Link"
         },
         {
@@ -743,12 +719,13 @@
     },
     {
       "type": "dropdown_item",
-      "name": "Dropdown item",
+      "name": "Dropdown link",
       "settings": [
         {
           "type": "text",
           "id": "title",
           "label": "Heading",
+          "info": "Used for a top-level navigation link with a compact dropdown menu.",
           "default": "Dropdown"
         },
         {
@@ -824,12 +801,13 @@
     },
     {
       "type": "mega_item",
-      "name": "Mega item",
+      "name": "Mega menu link",
       "settings": [
         {
           "type": "text",
           "id": "title",
           "label": "Heading",
+          "info": "Used for a top-level link that opens a panel from the Mega menu section.",
           "default": "Mega"
         },
         {
@@ -846,28 +824,9 @@
         {
           "type": "text",
           "id": "mega_menu_id",
-          "label": "Mega menu ID",
+          "label": "Opens panel ID",
+          "info": "This must match a Panel ID in the Mega menu section.",
           "default": "1"
-        },
-        {
-          "type": "select",
-          "id": "submenu_position",
-          "label": "Submenu position",
-          "default": "center",
-          "options": [
-            {
-              "value": "start",
-              "label": "Start"
-            },
-            {
-              "value": "center",
-              "label": "Centre"
-            },
-            {
-              "value": "end",
-              "label": "End"
-            }
-          ]
         },
         {
           "type": "select",

@@ -37,7 +37,8 @@
     {
       "type": "link_list",
       "id": "drawer_menu",
-      "label": "Drawer menu"
+      "label": "Mobile drawer menu",
+      "info": "If empty, the theme may use fallback or demo menu behaviour."
     },
     {
       "type": "text",
@@ -60,7 +61,7 @@
     {
       "type": "checkbox",
       "id": "show_mobile_drawer_footer",
-      "label": "Show footer links",
+      "label": "Show drawer footer links",
       "default": true
     },
     {
@@ -93,13 +94,14 @@
     {
       "type": "text",
       "id": "mobile_drawer_shipping_label",
-      "label": "Shipping label",
+      "label": "Shipping text label",
       "default": "Shipping to"
     },
     {
       "type": "text",
       "id": "mobile_drawer_shipping_region",
-      "label": "Shipping region",
+      "label": "Shipping region text",
+      "info": "Display only. Does not change market or currency.",
       "default": "United Arab Emirates · AED"
     },
     {
@@ -117,7 +119,7 @@
     {
       "type": "url",
       "id": "mobile_drawer_instagram_url",
-      "label": "Instagram URL"
+      "label": "Instagram link"
     },
     {
       "type": "range",
@@ -149,7 +151,7 @@
   ],
   "enabled_on": {
     "groups": [
-      "footer"
+      "header"
     ]
   }
 }

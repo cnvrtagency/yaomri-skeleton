@@ -7,6 +7,10 @@
   color: var(--yh-fg, var(--color-foreground));
 }
 
+.yaomri-header.yaomri-header--no-border {
+  border-bottom-color: transparent;
+}
+
 .yaomri-header a {
   color: inherit;
   text-decoration: none;
@@ -257,63 +261,6 @@
   line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;
-}
-
-.yaomri-header__drawer {
-  position: static;
-}
-
-.yaomri-header__drawer summary {
-  list-style: none;
-}
-
-.yaomri-header__drawer summary::-webkit-details-marker {
-  display: none;
-}
-
-.yaomri-header__drawer-close {
-  display: none;
-}
-
-.yaomri-header__drawer[open] .yaomri-header__drawer-open {
-  display: none;
-}
-
-.yaomri-header__drawer[open] .yaomri-header__drawer-close {
-  display: block;
-}
-
-.yaomri-header__drawer-panel {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: min(var(--yh-mobile-drawer-width, 320px), 88vw);
-  border-top: 1px solid var(--yh-border, var(--color-border));
-  border-right: 1px solid var(--yh-border, var(--color-border));
-  border-bottom: 1px solid var(--yh-border, var(--color-border));
-  background: var(--yh-mobile-drawer-bg, #fff);
-  color: var(--yh-mobile-drawer-text, currentColor);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-}
-
-.yaomri-header__drawer-nav {
-  display: flex;
-  flex-direction: column;
-  padding: 1.1rem var(--yh-mobile-padding, 16px);
-}
-
-.yaomri-header__drawer-link {
-  padding-block: 0.9rem;
-  border-bottom: 1px solid var(--yh-border, var(--color-border));
-  font-size: 0.88rem;
-  font-style: italic;
-  font-weight: 800;
-  line-height: 1.1;
-  text-transform: uppercase;
-}
-
-.yaomri-header__drawer-link:last-child {
-  border-bottom: 0;
 }
 
 @media screen and (min-width: 991px) {

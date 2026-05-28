@@ -3,6 +3,7 @@
     class="yaomri-mega-panels"
     data-mega-panels
     data-panel-width="{{ section.settings.mega_panel_width | default: 1500 }}"
+    data-close-delay="{{ section.settings.close_delay | default: 250 }}"
     aria-hidden="true"
   >
     <button class="yaomri-mega-panels__backdrop" type="button" data-mega-close aria-label="Close menu"></button>
@@ -22,46 +23,54 @@
     {
       "type": "range",
       "id": "mega_panel_width",
-      "label": "Mega panel width",
+      "label": "Mega panel content width",
       "min": 1000,
       "max": 1800,
       "step": 20,
       "unit": "px",
       "default": 1500
+    },
+    {
+      "type": "range",
+      "id": "close_delay",
+      "label": "Menu close delay",
+      "min": 100,
+      "max": 800,
+      "step": 50,
+      "unit": "ms",
+      "default": 250
     }
   ],
   "blocks": [
     {
       "type": "mega_parent",
-      "name": "Mega menu parent",
+      "name": "Mega panel",
       "settings": [
         {
           "type": "text",
           "id": "parent_id",
-          "label": "ID",
+          "label": "Panel ID",
+          "info": "A Mega menu link in Header opens this panel when IDs match.",
           "default": "1"
-        },
-        {
-          "type": "text",
-          "id": "admin_label",
-          "label": "Admin label"
         },
         {
           "type": "checkbox",
           "id": "enable_packery",
-          "label": "Enable packery layout",
+          "label": "Flexible column layout",
+          "info": "On: mixed-width blocks flow together. Off: stricter row/grid layout.",
           "default": true
         }
       ]
     },
     {
       "type": "linklist_child",
-      "name": "Linklist child",
+      "name": "Link column",
       "settings": [
         {
           "type": "text",
           "id": "parent_id",
-          "label": "Parent ID",
+          "label": "Attach to panel ID",
+          "info": "This must match a Panel ID from a Mega panel block.",
           "default": "1"
         },
         {
@@ -108,7 +117,7 @@
         {
           "type": "select",
           "id": "column_width",
-          "label": "Column width",
+          "label": "Block width",
           "default": "25",
           "options": [
             { "value": "20", "label": "20%" },
@@ -124,12 +133,13 @@
     },
     {
       "type": "image_tile_child",
-      "name": "Image tile child",
+      "name": "Image tile",
       "settings": [
         {
           "type": "text",
           "id": "parent_id",
-          "label": "Parent ID",
+          "label": "Attach to panel ID",
+          "info": "This must match a Panel ID from a Mega panel block.",
           "default": "1"
         },
         {
@@ -165,7 +175,7 @@
         {
           "type": "select",
           "id": "column_width",
-          "label": "Column width",
+          "label": "Block width",
           "default": "25",
           "options": [
             { "value": "20", "label": "20%" },
