@@ -60,7 +60,7 @@
 {%- endif -%}
 
 <section
-  class="yaomri-header yaomri-header--layout-{{ resolved_layout }}"
+  class="yaomri-header full-width yaomri-header--layout-{{ resolved_layout }} yaomri-header--collapse-{{ section.settings.nav_collapse_width | default: '1100' }}"
   style="
     --yh-bg: {{ section.settings.header_background }};
     --yh-fg: {{ section.settings.header_foreground }};
@@ -72,10 +72,6 @@
     --yh-mobile-height: {{ section.settings.mobile_header_height }}px;
     --yh-desktop-logo-width: {{ section.settings.desktop_logo_width }}px;
     --yh-mobile-logo-width: {{ section.settings.mobile_logo_width }}px;
-    --yh-desktop-logo-max-height: {{ section.settings.desktop_logo_max_height }}px;
-    --yh-mobile-logo-max-height: {{ section.settings.mobile_logo_max_height }}px;
-    --yh-logo-offset-desktop: {{ section.settings.desktop_logo_offset_y }}px;
-    --yh-logo-offset-mobile: {{ section.settings.mobile_logo_offset_y }}px;
     --yh-icon-size: {{ section.settings.icon_size }}px;
     --yh-icon-button-desktop: {{ section.settings.icon_button_size_desktop }}px;
     --yh-icon-button-mobile: {{ section.settings.icon_button_size_mobile }}px;
@@ -292,46 +288,6 @@
       "default": 140
     },
     {
-      "type": "range",
-      "id": "desktop_logo_max_height",
-      "label": "Logo max height desktop",
-      "min": 24,
-      "max": 120,
-      "step": 2,
-      "unit": "px",
-      "default": 70
-    },
-    {
-      "type": "range",
-      "id": "mobile_logo_max_height",
-      "label": "Logo max height mobile",
-      "min": 24,
-      "max": 90,
-      "step": 2,
-      "unit": "px",
-      "default": 58
-    },
-    {
-      "type": "range",
-      "id": "desktop_logo_offset_y",
-      "label": "Desktop logo offset",
-      "min": -20,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "mobile_logo_offset_y",
-      "label": "Mobile logo offset",
-      "min": -20,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 0
-    },
-    {
       "type": "header",
       "content": "Header layout"
     },
@@ -352,6 +308,30 @@
         {
           "value": "logo_center_icons_right_nav_below",
           "label": "Logo centre, icons right, nav below"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "nav_collapse_width",
+      "label": "Desktop nav collapse width",
+      "default": "1100",
+      "options": [
+        {
+          "value": "990",
+          "label": "990px"
+        },
+        {
+          "value": "1100",
+          "label": "1100px"
+        },
+        {
+          "value": "1200",
+          "label": "1200px"
+        },
+        {
+          "value": "1300",
+          "label": "1300px"
         }
       ]
     },
