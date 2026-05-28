@@ -4,6 +4,10 @@
     data-mega-panels
     data-panel-width="{{ section.settings.mega_panel_width | default: 1200 }}"
     data-close-delay="{{ section.settings.close_delay | default: 250 }}"
+    style="
+      --ym-panel-content-width: {{ section.settings.mega_panel_width | default: 1200 }}px;
+      --ym-panel-max-width: {{ section.settings.mega_panel_width | default: 1200 }}px;
+    "
     aria-hidden="true"
   >
     <button class="yaomri-mega-panels__backdrop" type="button" data-mega-close aria-label="Close menu"></button>

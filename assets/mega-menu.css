@@ -138,7 +138,8 @@
 }
 
 .yaomri-mega-panel__inner {
-  width: min(var(--ym-content-max-width, var(--ym-panel-max-width, 1500px)), 100%);
+  width: min(100%, var(--ym-panel-content-width, var(--ym-panel-max-width, 1500px)));
+  max-width: var(--ym-panel-content-width, var(--ym-panel-max-width, 1500px));
   margin-inline: auto;
   padding: 1.5rem max(1rem, var(--ym-content-padding, 24px)) 2rem;
 }

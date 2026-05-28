@@ -346,7 +346,7 @@
         "max": 32,
         "step": 1,
         "unit": "px",
-        "default": 12
+        "default": 0
       },
       {
         "type": "range",
@@ -356,7 +356,7 @@
         "max": 24,
         "step": 1,
         "unit": "px",
-        "default": 8
+        "default": 0
       },
       {
         "type": "checkbox",

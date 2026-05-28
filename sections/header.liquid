@@ -115,8 +115,8 @@
   assign icon_size = settings.icon_size | default: section.settings.icon_size | default: 24
   assign icon_button_size_desktop = settings.icon_button_size_desktop | default: section.settings.icon_button_size_desktop | default: 44
   assign icon_button_size_mobile = settings.icon_button_size_mobile | default: section.settings.icon_button_size_mobile | default: 42
-  assign desktop_icon_gap = settings.desktop_icon_gap | default: section.settings.desktop_icon_gap | default: 12
-  assign mobile_icon_gap = settings.mobile_icon_gap | default: section.settings.mobile_icon_gap | default: 8
+  assign desktop_icon_gap = settings.desktop_icon_gap | default: section.settings.desktop_icon_gap | default: 0
+  assign mobile_icon_gap = settings.mobile_icon_gap | default: section.settings.mobile_icon_gap | default: 0
   assign nav_text_size = settings.nav_text_size | default: section.settings.nav_text_size | default: 12
   assign nav_gap = settings.nav_gap | default: section.settings.nav_gap | default: 24
   assign cart_count_background = settings.cart_count_background | default: section.settings.cart_count_background | default: '#000000'
@@ -153,7 +153,6 @@
       endcapture
       assign header_shadow_value = header_shadow_custom | strip
   endcase
-  assign mega_content_width_css = 'var(--ym-panel-max-width, 1200px)'
 -%}
 
 {%- if enable_sticky -%}
@@ -198,7 +197,6 @@
     --yh-region-border: {{ region_chip_border }};
     --yh-region-text: {{ region_chip_text }};
     --yh-region-height: {{ region_chip_height }}px;
-    --ym-content-max-width: {{ mega_content_width_css }};
   "
   {{ section.shopify_attributes }}
 >

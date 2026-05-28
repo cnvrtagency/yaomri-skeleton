@@ -8,20 +8,30 @@
     Number(panelRoot?.getAttribute('data-close-delay')) ||
     Number(nav.getAttribute('data-close-delay')) ||
     250;
-  const panelWidth =
-    Number(panelRoot?.getAttribute('data-panel-width')) ||
-    Number(nav.getAttribute('data-panel-width')) ||
-    1200;
   const header = document.querySelector('.yaomri-header');
   const headerDesktopPadding = Number(header?.dataset.headerDesktopPadding) || 24;
   let closeTimer = null;
   let activeTrigger = null;
   let activePanel = null;
 
-  if (panelRoot) {
+  const getPanelWidth = () => {
+    const parsedPanelWidth =
+      Number(panelRoot?.getAttribute('data-panel-width')) ||
+      Number(nav.getAttribute('data-panel-width')) ||
+      1200;
+    return parsedPanelWidth > 0 ? parsedPanelWidth : 1200;
+  };
+
+  const syncPanelWidthVars = () => {
+    if (!panelRoot) return;
+    const panelWidth = getPanelWidth();
+    panelRoot.style.setProperty('--ym-panel-content-width', `${panelWidth}px`);
     panelRoot.style.setProperty('--ym-panel-max-width', `${panelWidth}px`);
+  };
+
+  if (panelRoot) {
+    syncPanelWidthVars();
     panelRoot.style.setProperty('--ym-content-padding', `${headerDesktopPadding}px`);
-    panelRoot.style.setProperty('--ym-content-max-width', `${panelWidth}px`);
   }
 
   const getHeaderBottom = () => {
@@ -98,7 +108,7 @@
     item.classList.add('is-open');
     panelRoot.classList.add('is-open');
     panelRoot.setAttribute('aria-hidden', 'false');
-    panelRoot.style.setProperty('--ym-content-max-width', `${panelWidth}px`);
+    syncPanelWidthVars();
     panelRoot.querySelectorAll('[data-mega-panel]').forEach((candidate) => {
       const isActive = candidate === panel;
       candidate.hidden = !isActive;
@@ -195,6 +205,7 @@
 
   const syncForViewport = () => {
     if (desktopQuery.matches) {
+      syncPanelWidthVars();
       updatePanelTop();
       return;
     }
