@@ -1,0 +1,156 @@
+{{ 'mobile-drawer.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'mobile-drawer.js' | asset_url }}" defer></script>
+
+{%- liquid
+  assign drawer_menu = blank
+  assign drawer_menu_handle = section.settings.drawer_menu
+  if drawer_menu_handle != blank
+    assign drawer_menu = linklists[drawer_menu_handle]
+    if drawer_menu != blank and drawer_menu.links.size == 0
+      assign drawer_menu = blank
+    endif
+  endif
+  if drawer_menu == blank
+    assign drawer_menu = linklists['main-menu']
+    if drawer_menu != blank and drawer_menu.links.size == 0
+      assign drawer_menu = blank
+    endif
+  endif
+-%}
+
+{% render
+  'mobile-drawer',
+  section: section,
+  menu: drawer_menu,
+  wishlist_url: '/pages/wishlist'
+%}
+
+{% schema %}
+{
+  "name": "Mobile Menu",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Mobile drawer"
+    },
+    {
+      "type": "link_list",
+      "id": "drawer_menu",
+      "label": "Drawer menu"
+    },
+    {
+      "type": "text",
+      "id": "mobile_menu_label",
+      "label": "Drawer title",
+      "default": "Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_drawer_search",
+      "label": "Show search",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "mobile_drawer_search_placeholder",
+      "label": "Search placeholder",
+      "default": "Search Ya Omri"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_drawer_footer",
+      "label": "Show footer links",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Mobile drawer footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_drawer_sign_in",
+      "label": "Show sign in link",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_drawer_wishlist",
+      "label": "Show wishlist link",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "mobile_drawer_wishlist_link",
+      "label": "Wishlist link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_drawer_shipping",
+      "label": "Show shipping line",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "mobile_drawer_shipping_label",
+      "label": "Shipping label",
+      "default": "Shipping to"
+    },
+    {
+      "type": "text",
+      "id": "mobile_drawer_shipping_region",
+      "label": "Shipping region",
+      "default": "United Arab Emirates · AED"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_drawer_instagram",
+      "label": "Show Instagram link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "mobile_drawer_instagram_label",
+      "label": "Instagram label",
+      "default": "Follow @yaomri"
+    },
+    {
+      "type": "url",
+      "id": "mobile_drawer_instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "range",
+      "id": "mobile_drawer_width",
+      "label": "Mobile drawer width",
+      "min": 240,
+      "max": 420,
+      "step": 10,
+      "unit": "px",
+      "default": 320
+    },
+    {
+      "type": "color",
+      "id": "mobile_drawer_background",
+      "label": "Drawer background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "mobile_drawer_text",
+      "label": "Drawer text",
+      "default": "#111111"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mobile Menu"
+    }
+  ],
+  "enabled_on": {
+    "groups": [
+      "footer"
+    ]
+  }
+}
+{% endschema %}

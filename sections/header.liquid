@@ -1,7 +1,5 @@
 {{ 'yaomri-header.css' | asset_url | stylesheet_tag }}
-{{ 'mobile-drawer.css' | asset_url | stylesheet_tag }}
 {{ 'mega-menu.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'mobile-drawer.js' | asset_url }}" defer></script>
 <script src="{{ 'mega-menu.js' | asset_url }}" defer></script>
 
 {%- liquid
@@ -58,18 +56,6 @@
     endif
   endfor
 
-  assign drawer_menu_handle = section.settings.mobile_drawer_menu
-  if drawer_menu_handle == blank
-    assign drawer_menu_handle = section.settings.menu
-  endif
-  assign drawer_menu = blank
-  if drawer_menu_handle != blank
-    assign drawer_menu = linklists[drawer_menu_handle]
-    if drawer_menu != blank and drawer_menu.links.size == 0
-      assign drawer_menu = blank
-    endif
-  endif
-
   assign show_nav_below = false
   if resolved_layout == 'logo_center_icons_right_nav_below'
     if has_menu or has_nav_blocks
@@ -83,6 +69,17 @@
   assign region_currency = section.settings.region_currency
   assign desktop_logo = settings.logo
   assign mobile_logo = settings.mobile_logo | default: settings.logo
+  assign header_width_mode = section.settings.header_width_mode | default: 'site'
+  unless header_width_mode == 'site' or header_width_mode == 'full' or header_width_mode == 'custom'
+    assign header_width_mode = 'site'
+  endunless
+  assign header_custom_width = section.settings.header_custom_width | default: 1500
+  assign mega_content_width_css = 'var(--page-width)'
+  if header_width_mode == 'custom'
+    assign mega_content_width_css = header_custom_width | append: 'px'
+  elsif header_width_mode == 'full'
+    assign mega_content_width_css = '100%'
+  endif
 -%}
 
 {%- if section.settings.enable_sticky -%}
@@ -96,16 +93,16 @@
 {%- endif -%}
 
 <section
-  class="yaomri-header full-width yaomri-header--layout-{{ resolved_layout }} yaomri-header--collapse-{{ section.settings.nav_collapse_width | default: '1100' }}"
+  class="yaomri-header full-width yaomri-header--layout-{{ resolved_layout }} yaomri-header--width-{{ header_width_mode }} yaomri-header--collapse-{{ section.settings.nav_collapse_width | default: '1100' }}"
   data-mega-close-delay="{{ section.settings.close_delay | default: 250 }}"
-  data-mega-panel-width="{{ section.settings.panel_max_width | default: 1400 }}"
-  data-header-max-width="{{ section.settings.header_max_width }}"
+  data-header-width-mode="{{ header_width_mode }}"
+  data-header-custom-width="{{ header_custom_width }}"
   data-header-desktop-padding="{{ section.settings.desktop_side_padding }}"
   style="
     --yh-bg: {{ section.settings.header_background }};
     --yh-fg: {{ section.settings.header_foreground }};
     --yh-border: {{ section.settings.header_border }};
-    --yh-max-width: {{ section.settings.header_max_width }}px;
+    --yh-custom-content-width: {{ header_custom_width }}px;
     --yh-desktop-padding: {{ section.settings.desktop_side_padding }}px;
     --yh-mobile-padding: {{ section.settings.mobile_side_padding }}px;
     --yh-desktop-height: {{ section.settings.desktop_header_height }}px;
@@ -129,10 +126,7 @@
     --yh-region-border: {{ section.settings.region_chip_border }};
     --yh-region-text: {{ section.settings.region_chip_text }};
     --yh-region-height: {{ section.settings.region_chip_height }}px;
-    --yh-mobile-drawer-width: {{ section.settings.mobile_drawer_width }}px;
-    --yh-mobile-drawer-bg: {{ section.settings.mobile_drawer_background }};
-    --yh-mobile-drawer-text: {{ section.settings.mobile_drawer_text }};
-    --ym-panel-max-width: {{ section.settings.panel_max_width }}px;
+    --ym-content-max-width: {{ mega_content_width_css }};
   "
   {{ section.shopify_attributes }}
 >
@@ -285,13 +279,6 @@
       {%- endif -%}
     </div>
   </div>
-
-  {% render
-    'mobile-drawer',
-    section: section,
-    menu: drawer_menu,
-    wishlist_url: wishlist_url
-  %}
 </section>
 
 {% schema %}
@@ -325,6 +312,36 @@
     {
       "type": "header",
       "content": "Header layout"
+    },
+    {
+      "type": "select",
+      "id": "header_width_mode",
+      "label": "Header content width",
+      "default": "site",
+      "options": [
+        {
+          "value": "site",
+          "label": "Site width"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        },
+        {
+          "value": "custom",
+          "label": "Custom width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "header_custom_width",
+      "label": "Custom header width",
+      "min": 1000,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "default": 1500
     },
     {
       "type": "select",
@@ -381,16 +398,6 @@
     },
     {
       "type": "range",
-      "id": "panel_max_width",
-      "label": "Mega panel content width",
-      "min": 1000,
-      "max": 1800,
-      "step": 20,
-      "unit": "px",
-      "default": 1500
-    },
-    {
-      "type": "range",
       "id": "close_delay",
       "label": "Close delay",
       "min": 100,
@@ -418,16 +425,6 @@
       "step": 2,
       "unit": "px",
       "default": 24
-    },
-    {
-      "type": "range",
-      "id": "header_max_width",
-      "label": "Header max width",
-      "min": 1000,
-      "max": 1800,
-      "step": 20,
-      "unit": "px",
-      "default": 1500
     },
     {
       "type": "range",
@@ -692,118 +689,11 @@
       "default": 48
     },
     {
-      "type": "header",
-      "content": "Mobile menu"
-    },
-    {
-      "type": "link_list",
-      "id": "mobile_drawer_menu",
-      "label": "Drawer menu"
-    },
-    {
-      "type": "text",
-      "id": "mobile_menu_label",
-      "label": "Drawer title",
-      "default": "Menu"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_mobile_drawer_search",
-      "label": "Show search",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "mobile_drawer_search_placeholder",
-      "label": "Search placeholder",
-      "default": "Search Ya Omri"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_mobile_drawer_footer",
-      "label": "Show footer links",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Mobile drawer footer"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_mobile_drawer_sign_in",
-      "label": "Show sign in link",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_mobile_drawer_wishlist",
-      "label": "Show wishlist link",
-      "default": true
-    },
-    {
-      "type": "url",
-      "id": "mobile_drawer_wishlist_link",
-      "label": "Wishlist link"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_mobile_drawer_shipping",
-      "label": "Show shipping line",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "mobile_drawer_shipping_label",
-      "label": "Shipping label",
-      "default": "Shipping to"
-    },
-    {
-      "type": "text",
-      "id": "mobile_drawer_shipping_region",
-      "label": "Shipping region",
-      "default": "United Arab Emirates · AED"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_mobile_drawer_instagram",
-      "label": "Show Instagram link",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "mobile_drawer_instagram_label",
-      "label": "Instagram label",
-      "default": "Follow @yaomri"
-    },
-    {
-      "type": "url",
-      "id": "mobile_drawer_instagram_url",
-      "label": "Instagram URL"
-    },
-    {
-      "type": "range",
-      "id": "mobile_drawer_width",
-      "label": "Mobile drawer width",
-      "min": 240,
-      "max": 420,
-      "step": 10,
-      "unit": "px",
-      "default": 320
-    },
-    {
-      "type": "color",
-      "id": "mobile_drawer_background",
-      "label": "Mobile drawer background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "mobile_drawer_text",
-      "label": "Mobile drawer text",
-      "default": "#111111"
+      "type": "paragraph",
+      "content": "Mobile drawer settings are in the Mobile Menu section."
     }
   ],
-  "max_blocks": 40,
+  "max_blocks": 30,
   "blocks": [
     {
       "type": "base_item",
@@ -898,6 +788,16 @@
           ]
         },
         {
+          "type": "range",
+          "id": "dropdown_width",
+          "label": "Dropdown panel width",
+          "min": 180,
+          "max": 520,
+          "step": 10,
+          "unit": "px",
+          "default": 260
+        },
+        {
           "type": "checkbox",
           "id": "highlight_item",
           "label": "Highlight item",
@@ -973,7 +873,7 @@
           "type": "select",
           "id": "submenu_width",
           "label": "Submenu width",
-          "default": "full",
+          "default": "content",
           "options": [
             {
               "value": "custom",
@@ -1021,38 +921,6 @@
           "id": "label_color",
           "label": "Label colour",
           "default": "#111111"
-        }
-      ]
-    },
-    {
-      "type": "mobile_drawer_feature",
-      "name": "Drawer feature tile",
-      "settings": [
-        {
-          "type": "text",
-          "id": "parent",
-          "label": "Parent menu",
-          "info": "Use the parent menu handle, for example women, new-in, swimwear, resortwear."
-        },
-        {
-          "type": "text",
-          "id": "label",
-          "label": "Eyebrow"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "url",
-          "id": "url",
-          "label": "URL"
         }
       ]
     }

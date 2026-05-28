@@ -13,7 +13,6 @@
   aria-label="Primary"
   data-mega
   data-close-delay="{{ section.settings.close_delay | default: 250 }}"
-  data-panel-width="{{ section.settings.panel_max_width | default: 1400 }}"
 >
   <ul class="yaomri-mega__list" role="list">
     {%- if has_nav_blocks -%}
@@ -24,14 +23,7 @@
       {%- endfor -%}
     {%- elsif fallback_menu != blank and fallback_menu.links.size > 0 -%}
       {%- for link in fallback_menu.links -%}
-        {%- liquid
-          assign link_title_downcase = link.title | downcase
-          assign sale_class = ''
-          if link_title_downcase contains 'sale'
-            assign sale_class = ' is-sale'
-          endif
-        -%}
-        <li class="yaomri-mega__item yaomri-mega__item--link{{ sale_class }}">
+        <li class="yaomri-mega__item yaomri-mega__item--link">
           <a class="yaomri-header__nav-link yaomri-mega__top-link" href="{{ link.url }}">
             <span>{{ link.title }}</span>
           </a>

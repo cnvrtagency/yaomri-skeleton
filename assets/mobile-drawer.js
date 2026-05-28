@@ -3,6 +3,7 @@
   if (!drawer) return;
 
   var panel = drawer.querySelector(".mdrawer__panel");
+  var drawerHeader = drawer.querySelector("[data-mdrawer-header]");
   var titleNode = drawer.querySelector("[data-mdrawer-title]");
   var backButton = drawer.querySelector("[data-mdrawer-back]");
   var closeButtons = drawer.querySelectorAll("[data-mdrawer-close]");
@@ -52,6 +53,12 @@
       } else {
         backButton.hidden = false;
       }
+    }
+
+    if (drawerHeader) {
+      var isRoot = name === "root";
+      drawerHeader.classList.toggle("is-root", isRoot);
+      drawerHeader.classList.toggle("is-drill", !isRoot);
     }
   }
 

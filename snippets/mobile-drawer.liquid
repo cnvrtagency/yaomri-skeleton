@@ -28,7 +28,7 @@
   <button class="mdrawer__scrim" type="button" data-mdrawer-close aria-label="Close menu"></button>
 
   <aside class="mdrawer__panel" role="dialog" aria-modal="true" aria-labelledby="MobileDrawerTitle" tabindex="-1">
-    <header class="mdrawer__header">
+    <header class="mdrawer__header is-root" data-mdrawer-header>
       <button class="mdrawer__icon-btn mdrawer__back" type="button" data-mdrawer-back hidden aria-label="Back">
         {% render 'icon-yaomri-chevron-left' %}
       </button>
@@ -52,18 +52,13 @@
         <nav class="mdrawer__nav" aria-label="Mobile menu">
           <ul class="mdrawer__nav-list" role="list">
             {%- if use_demo_menu -%}
-              {%- assign demo_root_links = 'Women|New In|Swimwear|Resortwear|Best Sellers|Lookbook|Sale' | split: '|' -%}
-              {%- for title in demo_root_links -%}
-                {%- assign demo_sale = false -%}
-                {%- assign title_downcase = title | downcase -%}
-                {%- if title_downcase contains 'sale' -%}
-                  {%- assign demo_sale = true -%}
-                {%- endif -%}
-                {%- assign title_handle = title | handleize -%}
-                <li>
-                  {%- if title == 'Women' or title == 'New In' or title == 'Swimwear' or title == 'Resortwear' -%}
-                    <button
-                      class="mdrawer__nav-item{% if demo_sale %} is-sale{% endif %}"
+            {%- assign demo_root_links = 'Women|New In|Swimwear|Resortwear|Best Sellers|Lookbook|Sale' | split: '|' -%}
+            {%- for title in demo_root_links -%}
+              {%- assign title_handle = title | handleize -%}
+              <li>
+                {%- if title == 'Women' or title == 'New In' or title == 'Swimwear' or title == 'Resortwear' -%}
+                  <button
+                      class="mdrawer__nav-item"
                       type="button"
                       data-mdrawer-drill
                       data-target="panel-{{ title_handle }}"
@@ -74,27 +69,22 @@
                     </button>
                   {%- else -%}
                     {%- if title == 'Best Sellers' -%}
-                      <a class="mdrawer__nav-item{% if demo_sale %} is-sale{% endif %}" href="{{ routes.collections_url }}/best-sellers">{{ title }}</a>
+                      <a class="mdrawer__nav-item" href="{{ routes.collections_url }}/best-sellers">{{ title }}</a>
                     {%- elsif title == 'Lookbook' -%}
-                      <a class="mdrawer__nav-item{% if demo_sale %} is-sale{% endif %}" href="/pages/lookbook">{{ title }}</a>
+                      <a class="mdrawer__nav-item" href="/pages/lookbook">{{ title }}</a>
                     {%- else -%}
-                      <a class="mdrawer__nav-item{% if demo_sale %} is-sale{% endif %}" href="{{ routes.collections_url }}/sale">{{ title }}</a>
+                      <a class="mdrawer__nav-item" href="{{ routes.collections_url }}/sale">{{ title }}</a>
                     {%- endif -%}
                   {%- endif -%}
                 </li>
               {%- endfor -%}
             {%- else -%}
               {%- for link in drawer_menu.links -%}
-                {%- assign link_title_downcase = link.title | downcase -%}
-                {%- assign link_sale = false -%}
-                {%- if link_title_downcase contains 'sale' -%}
-                  {%- assign link_sale = true -%}
-                {%- endif -%}
                 <li>
                   {%- if link.links.size > 0 -%}
                     {%- assign panel_id = 'panel-' | append: link.handle -%}
                     <button
-                      class="mdrawer__nav-item{% if link_sale %} is-sale{% endif %}"
+                      class="mdrawer__nav-item"
                       type="button"
                       data-mdrawer-drill
                       data-target="{{ panel_id }}"
@@ -104,7 +94,7 @@
                       <span class="mdrawer__chevron" aria-hidden="true">{% render 'icon-yaomri-chevron-right' %}</span>
                     </button>
                   {%- else -%}
-                    <a class="mdrawer__nav-item{% if link_sale %} is-sale{% endif %}" href="{{ link.url }}">{{ link.title }}</a>
+                    <a class="mdrawer__nav-item" href="{{ link.url }}">{{ link.title }}</a>
                   {%- endif -%}
                 </li>
               {%- endfor -%}
@@ -152,7 +142,7 @@
                     <li class="mdrawer__group">Just landed</li>
                     <li><a class="mdrawer__drill-item" href="{{ routes.collections_url }}/new-in-swimwear">Swimwear</a></li>
                     <li><a class="mdrawer__drill-item" href="{{ routes.collections_url }}/new-in-resortwear">Resortwear</a></li>
-                    <li><a class="mdrawer__drill-item is-sale" href="{{ routes.collections_url }}/sale">Sale</a></li>
+                    <li><a class="mdrawer__drill-item" href="{{ routes.collections_url }}/sale">Sale</a></li>
                   {%- when 'swimwear' -%}
                     <li class="mdrawer__group">By style</li>
                     <li><a class="mdrawer__drill-item" href="{{ routes.collections_url }}/bikinis">Bikinis</a></li>
@@ -194,54 +184,13 @@
                       {%- assign ungrouped_started = true -%}
                     {%- endif -%}
 
-                    {%- assign child_label_downcase = item_label | downcase -%}
-                    {%- assign child_sale = false -%}
-                    {%- if child_label_downcase contains 'sale' -%}
-                      {%- assign child_sale = true -%}
-                    {%- endif -%}
                     <li>
-                      <a class="mdrawer__drill-item{% if child_sale %} is-sale{% endif %}" href="{{ child.url }}">
+                      <a class="mdrawer__drill-item" href="{{ child.url }}">
                         {{ item_label }}
                       </a>
                     </li>
                   {%- endfor -%}
                 </ul>
-
-                {%- assign feature_count = 0 -%}
-                {%- for block in section.blocks -%}
-                  {%- assign block_parent_handle = block.settings.parent | handleize -%}
-                  {%- if block.type == 'mobile_drawer_feature' and block.settings.parent != blank and block_parent_handle == link.handle -%}
-                    {%- assign feature_count = feature_count | plus: 1 -%}
-                  {%- endif -%}
-                {%- endfor -%}
-
-                {%- if feature_count > 0 -%}
-                  <div class="mdrawer__features">
-                    {%- for block in section.blocks -%}
-                      {%- assign block_parent_handle = block.settings.parent | handleize -%}
-                      {%- if block.type == 'mobile_drawer_feature' and block.settings.parent != blank and block_parent_handle == link.handle -%}
-                        <a class="mdrawer__feature" href="{{ block.settings.url | default: link.url }}" {{ block.shopify_attributes }}>
-                          {%- if block.settings.image != blank -%}
-                            {{
-                              block.settings.image
-                              | image_url: width: 400
-                              | image_tag:
-                                class: 'mdrawer__feature-image',
-                                widths: '180, 260, 320, 400',
-                                sizes: '48vw',
-                                loading: 'lazy',
-                                alt: block.settings.title | default: block.settings.label | escape
-                            }}
-                          {%- endif -%}
-                          <span class="mdrawer__feature-copy">
-                            {%- if block.settings.label != blank -%}<span class="mdrawer__feature-label">{{ block.settings.label }}</span>{%- endif -%}
-                            {%- if block.settings.title != blank -%}<span class="mdrawer__feature-title">{{ block.settings.title }}</span>{%- endif -%}
-                          </span>
-                        </a>
-                      {%- endif -%}
-                    {%- endfor -%}
-                  </div>
-                {%- endif -%}
               </nav>
             </div>
           {%- endif -%}

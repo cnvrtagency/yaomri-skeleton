@@ -1,5 +1,10 @@
 <div class="yaomri-mega-section" data-mega-section>
-  <div class="yaomri-mega-panels" data-mega-panels aria-hidden="true">
+  <div
+    class="yaomri-mega-panels"
+    data-mega-panels
+    data-panel-width="{{ section.settings.mega_panel_width | default: 1500 }}"
+    aria-hidden="true"
+  >
     <button class="yaomri-mega-panels__backdrop" type="button" data-mega-close aria-label="Close menu"></button>
     {%- for block in section.blocks -%}
       {%- if block.type == 'mega_parent' -%}
@@ -13,7 +18,18 @@
 {
   "name": "Mega menu",
   "max_blocks": 50,
-  "settings": [],
+  "settings": [
+    {
+      "type": "range",
+      "id": "mega_panel_width",
+      "label": "Mega panel width",
+      "min": 1000,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "default": 1500
+    }
+  ],
   "blocks": [
     {
       "type": "mega_parent",

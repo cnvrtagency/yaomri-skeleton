@@ -38,32 +38,26 @@
     ]
   },
   {
-    "name": "t:general.layout",
+    "name": "Layout",
     "settings": [
       {
-        "type": "select",
-        "id": "max_page_width",
-        "label": "t:labels.page_width",
-        "options": [
-          {
-            "value": "90rem",
-            "label": "t:options.page_width.narrow"
-          },
-          {
-            "value": "110rem",
-            "label": "t:options.page_width.wide"
-          }
-        ],
-        "default": "90rem"
+        "type": "range",
+        "id": "site_content_width",
+        "label": "Site content width",
+        "min": 1000,
+        "max": 1800,
+        "step": 20,
+        "unit": "px",
+        "default": 1440
       },
       {
         "type": "range",
-        "id": "min_page_margin",
-        "min": 10,
+        "id": "site_side_padding",
+        "label": "Side padding",
+        "min": 0,
         "max": 100,
         "step": 1,
         "unit": "px",
-        "label": "t:labels.page_margin",
         "default": 20
       }
     ]

@@ -37,14 +37,14 @@
       "settings": {
         "desktop_logo_width": 135,
         "mobile_logo_width": 115,
+        "header_width_mode": "site",
+        "header_custom_width": 1500,
         "desktop_layout": "logo_left_nav_center_actions_right",
         "nav_collapse_width": "1100",
         "menu": "bikinis",
-        "panel_max_width": 1400,
         "close_delay": 250,
         "nav_text_size": 12,
         "nav_gap": 24,
-        "header_max_width": 1800,
         "desktop_side_padding": 0,
         "mobile_side_padding": 16,
         "desktop_header_height": 82,
@@ -76,24 +76,7 @@
         "region_chip_background": "#ffffff",
         "region_chip_border": "#e8e8e8",
         "region_chip_text": "#111111",
-        "region_chip_height": 48,
-        "mobile_drawer_menu": "",
-        "mobile_menu_label": "Menu",
-        "show_mobile_drawer_search": true,
-        "mobile_drawer_search_placeholder": "Search Ya Omri",
-        "show_mobile_drawer_footer": true,
-        "show_mobile_drawer_sign_in": true,
-        "show_mobile_drawer_wishlist": true,
-        "mobile_drawer_wishlist_link": "",
-        "show_mobile_drawer_shipping": true,
-        "mobile_drawer_shipping_label": "Shipping to",
-        "mobile_drawer_shipping_region": "United Arab Emirates · AED",
-        "show_mobile_drawer_instagram": true,
-        "mobile_drawer_instagram_label": "Follow @yaomri",
-        "mobile_drawer_instagram_url": "",
-        "mobile_drawer_width": 320,
-        "mobile_drawer_background": "#ffffff",
-        "mobile_drawer_text": "#111111"
+        "region_chip_height": 48
       }
     },
     "mega-menu": {
@@ -116,7 +99,7 @@
             "open_new_window": false,
             "font_size": 13,
             "space_between": 10,
-            "column_width": 220
+            "column_width": "25"
           }
         },
         "linklist_child_GpC6qT": {
@@ -129,7 +112,7 @@
             "open_new_window": false,
             "font_size": 13,
             "space_between": 10,
-            "column_width": 220
+            "column_width": "25"
           }
         }
       },
@@ -138,7 +121,9 @@
         "linklist_child_PtMW3R",
         "linklist_child_GpC6qT"
       ],
-      "settings": {}
+      "settings": {
+        "mega_panel_width": 1400
+      }
     }
   },
   "order": [

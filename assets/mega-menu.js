@@ -5,9 +5,13 @@
   if (!nav) return;
 
   const closeDelay = Number(nav.getAttribute('data-close-delay')) || 250;
-  const panelWidth = Number(nav.getAttribute('data-panel-width')) || 1400;
+  const panelWidth =
+    Number(panelRoot?.getAttribute('data-panel-width')) ||
+    Number(nav.getAttribute('data-panel-width')) ||
+    1400;
   const header = document.querySelector('.yaomri-header');
-  const headerMaxWidth = Number(header?.dataset.headerMaxWidth) || panelWidth;
+  const headerWidthMode = header?.dataset.headerWidthMode || 'site';
+  const headerCustomWidth = Number(header?.dataset.headerCustomWidth) || panelWidth;
   const headerDesktopPadding = Number(header?.dataset.headerDesktopPadding) || 24;
   let closeTimer = null;
   let activeTrigger = null;
@@ -15,8 +19,12 @@
 
   if (panelRoot) {
     panelRoot.style.setProperty('--ym-panel-max-width', `${panelWidth}px`);
-    panelRoot.style.setProperty('--ym-content-max-width', `${Math.min(panelWidth, headerMaxWidth)}px`);
     panelRoot.style.setProperty('--ym-content-padding', `${headerDesktopPadding}px`);
+    if (headerWidthMode === 'custom') {
+      panelRoot.style.setProperty('--ym-content-max-width', `${Math.min(headerCustomWidth, panelWidth)}px`);
+    } else if (headerWidthMode === 'full') {
+      panelRoot.style.setProperty('--ym-content-max-width', '100%');
+    }
   }
 
   const getHeaderBottom = () => {
@@ -87,13 +95,20 @@
 
     const widthMode = trigger.getAttribute('data-mega-width-mode') || 'full';
     const customWidth = Number(trigger.getAttribute('data-mega-custom-width')) || panelWidth;
-    let activeContentWidth = panelWidth;
+    let activeContentWidth = '';
     if (widthMode === 'content') {
-      activeContentWidth = headerMaxWidth;
+      if (headerWidthMode === 'custom') {
+        activeContentWidth = `${Math.min(headerCustomWidth, panelWidth)}px`;
+      } else if (headerWidthMode === 'full') {
+        activeContentWidth = '100%';
+      } else {
+        activeContentWidth = 'var(--page-width)';
+      }
     } else if (widthMode === 'custom') {
-      activeContentWidth = customWidth;
+      activeContentWidth = `${Math.min(customWidth, panelWidth)}px`;
+    } else {
+      activeContentWidth = '100%';
     }
-    const resolvedWidth = Math.min(activeContentWidth, panelWidth, headerMaxWidth);
 
     clearCloseTimer();
     updatePanelTop();
@@ -103,7 +118,7 @@
     item.classList.add('is-open');
     panelRoot.classList.add('is-open');
     panelRoot.setAttribute('aria-hidden', 'false');
-    panelRoot.style.setProperty('--ym-content-max-width', `${resolvedWidth}px`);
+    panelRoot.style.setProperty('--ym-content-max-width', activeContentWidth);
     panelRoot.querySelectorAll('[data-mega-panel]').forEach((candidate) => {
       const isActive = candidate === panel;
       candidate.hidden = !isActive;
