@@ -8,6 +8,21 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_logo",
+        "label": "Mobile logo"
+      }
+    ]
+  },
+  {
     "name": "t:general.typography",
     "settings": [
       {
@@ -65,8 +80,26 @@
       {
         "type": "color",
         "id": "foreground_color",
-        "default": "#333333",
+        "default": "#1a1a1a",
         "label": "t:labels.foreground"
+      },
+      {
+        "type": "color",
+        "id": "sand_color",
+        "default": "#f6f4ef",
+        "label": "Sand"
+      },
+      {
+        "type": "color",
+        "id": "muted_color",
+        "default": "#737373",
+        "label": "Muted text"
+      },
+      {
+        "type": "color",
+        "id": "border_color",
+        "default": "#e8e8e8",
+        "label": "Border"
       },
       {
         "type": "range",
@@ -76,7 +109,7 @@
         "step": 1,
         "unit": "px",
         "label": "t:labels.input_corner_radius",
-        "default": 4
+        "default": 0
       }
     ]
   }
