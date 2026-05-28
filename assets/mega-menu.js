@@ -1,23 +1,41 @@
 (() => {
   const desktopQuery = window.matchMedia('(min-width: 1024px)');
-  const nav = document.querySelector('[data-mega]');
-  const panelRoot = document.querySelector('[data-mega-panels]');
-  if (!nav) return;
-
-  const closeDelay =
-    Number(panelRoot?.getAttribute('data-close-delay')) ||
-    Number(nav.getAttribute('data-close-delay')) ||
-    250;
-  const header = document.querySelector('.yaomri-header');
-  const headerDesktopPadding = Number(header?.dataset.headerDesktopPadding) || 24;
+  const listenerCleanup = [];
+  let nav = null;
+  let panelRoot = null;
+  let header = null;
+  let closeDelay = 250;
   let closeTimer = null;
   let activeTrigger = null;
   let activePanel = null;
 
+  const bind = (target, eventName, handler, options) => {
+    if (!target) return;
+    target.addEventListener(eventName, handler, options);
+    listenerCleanup.push(() => target.removeEventListener(eventName, handler, options));
+  };
+
+  const unbindAll = () => {
+    while (listenerCleanup.length > 0) {
+      const remove = listenerCleanup.pop();
+      if (remove) remove();
+    }
+  };
+
+  const refreshElements = () => {
+    nav = document.querySelector('[data-mega]');
+    panelRoot = document.querySelector('[data-mega-panels]');
+    header = document.querySelector('.yaomri-header');
+    closeDelay =
+      Number(panelRoot?.getAttribute('data-close-delay')) ||
+      Number(nav?.getAttribute('data-close-delay')) ||
+      250;
+  };
+
   const getPanelWidth = () => {
     const parsedPanelWidth =
       Number(panelRoot?.getAttribute('data-panel-width')) ||
-      Number(nav.getAttribute('data-panel-width')) ||
+      Number(nav?.getAttribute('data-panel-width')) ||
       1200;
     return parsedPanelWidth > 0 ? parsedPanelWidth : 1200;
   };
@@ -29,15 +47,16 @@
     panelRoot.style.setProperty('--ym-panel-max-width', `${panelWidth}px`);
   };
 
-  if (panelRoot) {
-    syncPanelWidthVars();
+  const syncPanelPadding = () => {
+    if (!panelRoot) return;
+    const headerDesktopPadding = Number(header?.dataset.headerDesktopPadding) || 24;
     panelRoot.style.setProperty('--ym-content-padding', `${headerDesktopPadding}px`);
-  }
+  };
 
   const getHeaderBottom = () => {
-    const header = document.querySelector('.yaomri-header');
-    if (!header) return 0;
-    const rect = header.getBoundingClientRect();
+    const liveHeader = document.querySelector('.yaomri-header');
+    if (!liveHeader) return 0;
+    const rect = liveHeader.getBoundingClientRect();
     return Math.max(0, rect.bottom);
   };
 
@@ -55,7 +74,7 @@
 
   const closeAll = () => {
     clearCloseTimer();
-    nav.querySelectorAll('.yaomri-mega__item.is-open').forEach((item) => item.classList.remove('is-open'));
+    nav?.querySelectorAll('.yaomri-mega__item.is-open').forEach((item) => item.classList.remove('is-open'));
     if (panelRoot) {
       panelRoot.classList.remove('is-open');
       panelRoot.setAttribute('aria-hidden', 'true');
@@ -74,8 +93,7 @@
   };
 
   const openDropdown = (item) => {
-    if (!desktopQuery.matches) return;
-    if (!item) return;
+    if (!desktopQuery.matches || !nav || !item) return;
     clearCloseTimer();
     nav.querySelectorAll('.yaomri-mega__item.is-open').forEach((openItem) => {
       if (openItem !== item) openItem.classList.remove('is-open');
@@ -94,7 +112,7 @@
   };
 
   const openMega = (trigger, item) => {
-    if (!desktopQuery.matches || !panelRoot || !trigger) return false;
+    if (!desktopQuery.matches || !panelRoot || !trigger || !nav) return false;
     const target = trigger.getAttribute('data-mega-target');
     if (!target) return false;
     const panel = panelRoot.querySelector(`[data-mega-parent="${CSS.escape(target)}"]`);
@@ -102,13 +120,15 @@
 
     clearCloseTimer();
     updatePanelTop();
+    syncPanelWidthVars();
+    syncPanelPadding();
+
     nav.querySelectorAll('.yaomri-mega__item.is-open').forEach((openItem) => {
       if (openItem !== item) openItem.classList.remove('is-open');
     });
     item.classList.add('is-open');
     panelRoot.classList.add('is-open');
     panelRoot.setAttribute('aria-hidden', 'false');
-    syncPanelWidthVars();
     panelRoot.querySelectorAll('[data-mega-panel]').forEach((candidate) => {
       const isActive = candidate === panel;
       candidate.hidden = !isActive;
@@ -119,101 +139,118 @@
     return true;
   };
 
-  nav.addEventListener('mouseenter', clearCloseTimer);
-  nav.addEventListener('mouseleave', scheduleClose);
-  nav.addEventListener('focusin', clearCloseTimer);
-  nav.addEventListener('focusout', () => {
-    window.setTimeout(() => {
-      if (!nav.contains(document.activeElement) && !(panelRoot && panelRoot.contains(document.activeElement))) {
-        scheduleClose();
-      }
-    }, 0);
-  });
-
-  nav.querySelectorAll('[data-dropdown]').forEach((item) => {
-    item.addEventListener('mouseenter', () => openDropdown(item));
-    const trigger = item.querySelector('[data-dropdown-trigger]');
-    if (trigger) {
-      trigger.addEventListener('focus', () => openDropdown(item));
-    }
-  });
-
-  nav.querySelectorAll('[data-mega-trigger]').forEach((trigger) => {
-    const item = trigger.closest('[data-mega-item]');
-    if (!item) return;
-
-    trigger.addEventListener('mouseenter', () => {
-      openMega(trigger, item);
-    });
-
-    trigger.addEventListener('focus', () => {
-      openMega(trigger, item);
-    });
-
-    trigger.addEventListener('click', (event) => {
-      if (!desktopQuery.matches) return;
-      const opened = openMega(trigger, item);
-      if (opened) {
-        event.preventDefault();
-      }
-    });
-  });
-
-  if (panelRoot) {
-    panelRoot.addEventListener('mouseenter', clearCloseTimer);
-    panelRoot.addEventListener('mouseleave', scheduleClose);
-
-    const closeButton = panelRoot.querySelector('[data-mega-close]');
-    if (closeButton) {
-      closeButton.addEventListener('click', closeAll);
-    }
-
-    panelRoot.addEventListener('click', (event) => {
-      const element = event.target;
-      if (!(element instanceof HTMLElement)) return;
-      if (element.closest('[data-mega-link]')) {
-        closeAll();
-      }
-    });
-  }
-
-  document.addEventListener('click', (event) => {
-    if (!desktopQuery.matches) return;
-    const target = event.target;
-    if (!(target instanceof Node)) return;
-    if (nav.contains(target) || (panelRoot && panelRoot.contains(target))) return;
-    closeAll();
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key !== 'Escape') return;
-    closeAll();
-  });
-
-  document.addEventListener('click', (event) => {
-    const target = event.target;
-    if (!(target instanceof HTMLElement)) return;
-    const link = target.closest('[data-mega-link]');
-    if (!link) return;
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'mega_menu_click',
-      label: (link.textContent || '').trim(),
-      url: link.getAttribute('href') || ''
-    });
-  });
-
   const syncForViewport = () => {
     if (desktopQuery.matches) {
       syncPanelWidthVars();
+      syncPanelPadding();
       updatePanelTop();
       return;
     }
     closeAll();
   };
 
-  window.addEventListener('resize', syncForViewport);
-  window.addEventListener('scroll', updatePanelTop, { passive: true });
-  desktopQuery.addEventListener('change', syncForViewport);
-  syncForViewport();
+  const bindInteractions = () => {
+    if (!nav) return;
+
+    bind(nav, 'mouseenter', clearCloseTimer);
+    bind(nav, 'mouseleave', scheduleClose);
+    bind(nav, 'focusin', clearCloseTimer);
+    bind(nav, 'focusout', () => {
+      window.setTimeout(() => {
+        if (!nav) return;
+        if (!nav.contains(document.activeElement) && !(panelRoot && panelRoot.contains(document.activeElement))) {
+          scheduleClose();
+        }
+      }, 0);
+    });
+
+    nav.querySelectorAll('[data-dropdown]').forEach((item) => {
+      bind(item, 'mouseenter', () => openDropdown(item));
+      const trigger = item.querySelector('[data-dropdown-trigger]');
+      if (trigger) {
+        bind(trigger, 'focus', () => openDropdown(item));
+      }
+    });
+
+    nav.querySelectorAll('[data-mega-trigger]').forEach((trigger) => {
+      const item = trigger.closest('[data-mega-item]');
+      if (!item) return;
+      bind(trigger, 'mouseenter', () => openMega(trigger, item));
+      bind(trigger, 'focus', () => openMega(trigger, item));
+      bind(trigger, 'click', (event) => {
+        if (!desktopQuery.matches) return;
+        const opened = openMega(trigger, item);
+        if (opened) event.preventDefault();
+      });
+    });
+
+    if (panelRoot) {
+      bind(panelRoot, 'mouseenter', clearCloseTimer);
+      bind(panelRoot, 'mouseleave', scheduleClose);
+
+      const closeButton = panelRoot.querySelector('[data-mega-close]');
+      if (closeButton) {
+        bind(closeButton, 'click', closeAll);
+      }
+
+      bind(panelRoot, 'click', (event) => {
+        const element = event.target;
+        if (!(element instanceof HTMLElement)) return;
+        if (element.closest('[data-mega-link]')) closeAll();
+      });
+    }
+
+    bind(document, 'click', (event) => {
+      if (!desktopQuery.matches || !nav) return;
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+      if (nav.contains(target) || (panelRoot && panelRoot.contains(target))) return;
+      closeAll();
+    });
+
+    bind(document, 'keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      closeAll();
+    });
+
+    bind(document, 'click', (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+      const link = target.closest('[data-mega-link]');
+      if (!link) return;
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'mega_menu_click',
+        label: (link.textContent || '').trim(),
+        url: link.getAttribute('href') || ''
+      });
+    });
+
+    bind(window, 'resize', syncForViewport);
+    bind(window, 'scroll', updatePanelTop, { passive: true });
+    bind(desktopQuery, 'change', syncForViewport);
+  };
+
+  const mount = () => {
+    unbindAll();
+    clearCloseTimer();
+    refreshElements();
+    if (!nav) return;
+    syncForViewport();
+    bindInteractions();
+  };
+
+  const scheduleMount = () => {
+    window.setTimeout(mount, 0);
+  };
+
+  if (document.readyState === 'loading') {
+    bind(document, 'DOMContentLoaded', mount, { once: true });
+  } else {
+    mount();
+  }
+
+  bind(document, 'shopify:section:load', scheduleMount);
+  bind(document, 'shopify:section:unload', scheduleMount);
+  bind(document, 'shopify:section:reorder', scheduleMount);
 })();
