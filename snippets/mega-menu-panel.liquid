@@ -1,5 +1,9 @@
 {%- liquid
   assign parent_id = parent_block.settings.parent_id | strip
+  assign packery_enabled = true
+  if parent_block.settings.enable_packery == false
+    assign packery_enabled = false
+  endif
   assign has_panel_content = false
   for block in all_blocks
     if block.type == 'linklist_child' or block.type == 'image_tile_child'
@@ -14,20 +18,42 @@
 
 {%- if parent_id != blank and has_panel_content -%}
   <section
-    class="yaomri-mega-panel"
+    class="yaomri-mega-panel{% if packery_enabled %} yaomri-mega-panel--packery{% else %} yaomri-mega-panel--rows{% endif %}"
     data-mega-panel
     data-mega-parent="{{ parent_id | escape }}"
     hidden
     {{ parent_block.shopify_attributes }}
   >
     <div class="yaomri-mega-panel__inner">
-      <div class="yaomri-mega-panel__grid">
+      <div class="yaomri-mega-panel__grid{% if packery_enabled %} yaomri-mega-panel__grid--packery{% else %} yaomri-mega-panel__grid--rows{% endif %}">
         {%- for block in all_blocks -%}
           {%- liquid
             assign child_parent_id = block.settings.parent_id | strip
           -%}
           {%- if child_parent_id == parent_id and block.type == 'linklist_child' -%}
             {%- liquid
+              assign column_width_value = block.settings.column_width | default: '25'
+              assign column_width_number = column_width_value | plus: 0
+              if column_width_number <= 0
+                assign column_width_number = 25
+              endif
+              assign column_span = 3
+              case column_width_number
+                when 20
+                  assign column_span = 2
+                when 25
+                  assign column_span = 3
+                when 33
+                  assign column_span = 4
+                when 50
+                  assign column_span = 6
+                when 66
+                  assign column_span = 8
+                when 75
+                  assign column_span = 9
+                when 100
+                  assign column_span = 12
+              endcase
               assign child_menu = blank
               if block.settings.menu != blank
                 assign child_menu = linklists[block.settings.menu]
@@ -43,7 +69,8 @@
             <div
               class="yaomri-mega-panel__column yaomri-mega-panel__column--links"
               style="
-                --ym-column-width: {{ block.settings.column_width | default: 220 }}px;
+                --ym-column-percent: {{ column_width_number }};
+                --ym-column-span: {{ column_span }};
                 --ym-column-size: {{ block.settings.font_size | default: 13 }}px;
                 --ym-column-gap: {{ block.settings.space_between | default: 10 }}px;
               "
@@ -81,9 +108,36 @@
               {%- endif -%}
             </div>
           {%- elsif child_parent_id == parent_id and block.type == 'image_tile_child' -%}
+            {%- liquid
+              assign tile_width_value = block.settings.column_width | default: '25'
+              assign tile_width_number = tile_width_value | plus: 0
+              if tile_width_number <= 0
+                assign tile_width_number = 25
+              endif
+              assign tile_column_span = 3
+              case tile_width_number
+                when 20
+                  assign tile_column_span = 2
+                when 25
+                  assign tile_column_span = 3
+                when 33
+                  assign tile_column_span = 4
+                when 50
+                  assign tile_column_span = 6
+                when 66
+                  assign tile_column_span = 8
+                when 75
+                  assign tile_column_span = 9
+                when 100
+                  assign tile_column_span = 12
+              endcase
+            -%}
             <article
               class="yaomri-mega-panel__column yaomri-mega-panel__column--tile"
-              style="--ym-column-width: {{ block.settings.column_width | default: 260 }}px;"
+              style="
+                --ym-column-percent: {{ tile_width_number }};
+                --ym-column-span: {{ tile_column_span }};
+              "
               {{ block.shopify_attributes }}
             >
               {%- assign tile_url = block.settings.url | default: '#' -%}

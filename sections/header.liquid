@@ -99,6 +99,8 @@
   class="yaomri-header full-width yaomri-header--layout-{{ resolved_layout }} yaomri-header--collapse-{{ section.settings.nav_collapse_width | default: '1100' }}"
   data-mega-close-delay="{{ section.settings.close_delay | default: 250 }}"
   data-mega-panel-width="{{ section.settings.panel_max_width | default: 1400 }}"
+  data-header-max-width="{{ section.settings.header_max_width }}"
+  data-header-desktop-padding="{{ section.settings.desktop_side_padding }}"
   style="
     --yh-bg: {{ section.settings.header_background }};
     --yh-fg: {{ section.settings.header_foreground }};
@@ -380,12 +382,12 @@
     {
       "type": "range",
       "id": "panel_max_width",
-      "label": "Mega panel max width",
+      "label": "Mega panel content width",
       "min": 1000,
       "max": 1800,
       "step": 20,
       "unit": "px",
-      "default": 1400
+      "default": 1500
     },
     {
       "type": "range",

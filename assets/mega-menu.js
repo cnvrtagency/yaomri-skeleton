@@ -6,12 +6,17 @@
 
   const closeDelay = Number(nav.getAttribute('data-close-delay')) || 250;
   const panelWidth = Number(nav.getAttribute('data-panel-width')) || 1400;
+  const header = document.querySelector('.yaomri-header');
+  const headerMaxWidth = Number(header?.dataset.headerMaxWidth) || panelWidth;
+  const headerDesktopPadding = Number(header?.dataset.headerDesktopPadding) || 24;
   let closeTimer = null;
   let activeTrigger = null;
   let activePanel = null;
 
   if (panelRoot) {
     panelRoot.style.setProperty('--ym-panel-max-width', `${panelWidth}px`);
+    panelRoot.style.setProperty('--ym-content-max-width', `${Math.min(panelWidth, headerMaxWidth)}px`);
+    panelRoot.style.setProperty('--ym-content-padding', `${headerDesktopPadding}px`);
   }
 
   const getHeaderBottom = () => {
@@ -80,6 +85,16 @@
     const panel = panelRoot.querySelector(`[data-mega-parent="${CSS.escape(target)}"]`);
     if (!panel) return false;
 
+    const widthMode = trigger.getAttribute('data-mega-width-mode') || 'full';
+    const customWidth = Number(trigger.getAttribute('data-mega-custom-width')) || panelWidth;
+    let activeContentWidth = panelWidth;
+    if (widthMode === 'content') {
+      activeContentWidth = headerMaxWidth;
+    } else if (widthMode === 'custom') {
+      activeContentWidth = customWidth;
+    }
+    const resolvedWidth = Math.min(activeContentWidth, panelWidth, headerMaxWidth);
+
     clearCloseTimer();
     updatePanelTop();
     nav.querySelectorAll('.yaomri-mega__item.is-open').forEach((openItem) => {
@@ -88,6 +103,7 @@
     item.classList.add('is-open');
     panelRoot.classList.add('is-open');
     panelRoot.setAttribute('aria-hidden', 'false');
+    panelRoot.style.setProperty('--ym-content-max-width', `${resolvedWidth}px`);
     panelRoot.querySelectorAll('[data-mega-panel]').forEach((candidate) => {
       const isActive = candidate === panel;
       candidate.hidden = !isActive;
