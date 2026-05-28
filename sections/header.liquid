@@ -6,25 +6,32 @@
 
   case raw_layout
     when 'search_left_logo_center_actions_right'
-      assign resolved_layout = 'search_left_logo_center_icons_right'
+      assign resolved_layout = 'logo_left_nav_center_actions_right'
+    when 'search_left_logo_center_icons_right'
+      assign resolved_layout = 'logo_left_nav_center_actions_right'
     when 'logo_left_search_center_actions_right'
-      assign resolved_layout = 'logo_left_search_center_icons_right'
+      assign resolved_layout = 'logo_left_nav_center_actions_right'
+    when 'logo_left_search_center_icons_right'
+      assign resolved_layout = 'logo_left_nav_center_actions_right'
     when 'logo_left_search_right'
-      assign resolved_layout = 'logo_left_search_center_icons_right'
+      assign resolved_layout = 'logo_left_nav_center_actions_right'
     when 'logo_center_actions_right'
-      assign resolved_layout = 'search_left_logo_center_icons_right'
+      assign resolved_layout = 'logo_left_nav_center_actions_right'
     when 'logo_left_nav_center_actions_right'
-      assign resolved_layout = 'logo_left_nav_center_search_icons_right'
+      assign resolved_layout = 'logo_left_nav_center_actions_right'
+    when 'logo_left_nav_center_search_icons_right'
+      assign resolved_layout = 'logo_left_nav_center_actions_right'
+    when 'nav_left_logo_center_icons_right'
+      assign resolved_layout = 'nav_left_logo_center_actions_right'
   endcase
+
+  unless resolved_layout == 'logo_left_nav_center_actions_right' or resolved_layout == 'nav_left_logo_center_actions_right'
+    assign resolved_layout = 'logo_left_nav_center_actions_right'
+  endunless
 
   assign has_menu = false
   if section.settings.menu != blank and linklists[section.settings.menu] != blank and linklists[section.settings.menu].links.size > 0
     assign has_menu = true
-  endif
-
-  assign nav_below_desktop = false
-  if has_menu and resolved_layout == 'search_left_logo_center_icons_right' or has_menu and resolved_layout == 'logo_left_search_center_icons_right'
-    assign nav_below_desktop = true
   endif
 
   assign wishlist_url = section.settings.wishlist_link | default: '/pages/wishlist'
@@ -35,8 +42,18 @@
   assign mobile_logo = settings.mobile_logo | default: settings.logo
 -%}
 
+{%- if section.settings.enable_sticky -%}
+  {%- style -%}
+    #shopify-section-{{ section.id }} {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
 <section
-  class="yaomri-header{% if section.settings.enable_sticky %} yaomri-header--sticky{% endif %}{% unless section.settings.show_bottom_border %} yaomri-header--no-border{% endunless %}"
+  class="yaomri-header yaomri-header--layout-{{ resolved_layout }}"
   style="
     --yh-bg: {{ section.settings.header_background }};
     --yh-fg: {{ section.settings.header_foreground }};
@@ -52,10 +69,6 @@
     --yh-mobile-logo-max-height: {{ section.settings.mobile_logo_max_height }}px;
     --yh-logo-offset-desktop: {{ section.settings.desktop_logo_offset_y }}px;
     --yh-logo-offset-mobile: {{ section.settings.mobile_logo_offset_y }}px;
-    --yh-search-width: {{ section.settings.search_width_desktop }}px;
-    --yh-search-height: {{ section.settings.search_height_desktop }}px;
-    --yh-search-bg: {{ section.settings.search_background }};
-    --yh-search-text: {{ section.settings.search_text_color }};
     --yh-icon-size: {{ section.settings.icon_size }}px;
     --yh-icon-button-desktop: {{ section.settings.icon_button_size_desktop }}px;
     --yh-icon-button-mobile: {{ section.settings.icon_button_size_mobile }}px;
@@ -117,34 +130,6 @@
     </a>
   {%- endcapture -%}
 
-  {%- capture search_field_markup -%}
-    {%- if section.settings.show_desktop_search -%}
-      <form class="yaomri-header__search{% if section.settings.search_icon_position == 'right' %} yaomri-header__search--right{% endif %}" action="{{ routes.search_url }}" method="get" role="search">
-        <span class="yaomri-header__search-icon" aria-hidden="true">{% render 'icon-yaomri-search' %}</span>
-        <input
-          class="yaomri-header__search-input"
-          type="search"
-          name="q"
-          value="{{ search.terms | escape }}"
-          placeholder="{{ section.settings.search_placeholder | escape }}"
-          autocorrect="off"
-          autocomplete="off"
-          autocapitalize="off"
-          spellcheck="false"
-        >
-        <input type="hidden" name="options[prefix]" value="last">
-      </form>
-    {%- endif -%}
-  {%- endcapture -%}
-
-  {%- capture compact_search_markup -%}
-    {%- if section.settings.show_desktop_search -%}
-      <a class="yaomri-header__icon" href="{{ routes.search_url }}" aria-label="Search">
-        {% render 'icon-yaomri-search' %}
-      </a>
-    {%- endif -%}
-  {%- endcapture -%}
-
   {%- capture nav_markup -%}
     {%- if has_menu -%}
       <nav class="yaomri-header__nav" aria-label="Primary">
@@ -157,6 +142,10 @@
 
   {%- capture actions_markup -%}
     <div class="yaomri-header__actions">
+      <a class="yaomri-header__icon" href="{{ routes.search_url }}" aria-label="Search">
+        {% render 'icon-yaomri-search' %}
+      </a>
+
       {%- if section.settings.show_region_chip -%}
         {%- capture region_text -%}
           {%- if region_flag != blank -%}<span class="yaomri-header__region-flag">{{ region_flag }}</span>{%- endif -%}
@@ -193,58 +182,27 @@
     </div>
   {%- endcapture -%}
 
-  <div class="yaomri-header__desktop yaomri-header__desktop--{{ resolved_layout }}">
+  <div class="yaomri-header__desktop">
     <div class="yaomri-header__desktop-left">
-      {%- case resolved_layout -%}
-        {%- when 'logo_left_nav_center_search_icons_right' -%}
-          {{ logo_markup }}
-        {%- when 'search_left_logo_center_icons_right' -%}
-          {{ search_field_markup }}
-        {%- when 'logo_left_search_center_icons_right' -%}
-          {{ logo_markup }}
-        {%- when 'nav_left_logo_center_icons_right' -%}
-          {{ nav_markup }}
-      {%- endcase -%}
+      {%- if resolved_layout == 'logo_left_nav_center_actions_right' -%}
+        {{ logo_markup }}
+      {%- else -%}
+        {{ nav_markup }}
+      {%- endif -%}
     </div>
 
     <div class="yaomri-header__desktop-centre">
-      {%- case resolved_layout -%}
-        {%- when 'logo_left_nav_center_search_icons_right' -%}
-          {{ nav_markup }}
-        {%- when 'search_left_logo_center_icons_right' -%}
-          {{ logo_markup }}
-        {%- when 'logo_left_search_center_icons_right' -%}
-          {{ search_field_markup }}
-        {%- when 'nav_left_logo_center_icons_right' -%}
-          {{ logo_markup }}
-      {%- endcase -%}
+      {%- if resolved_layout == 'logo_left_nav_center_actions_right' -%}
+        {{ nav_markup }}
+      {%- else -%}
+        {{ logo_markup }}
+      {%- endif -%}
     </div>
 
     <div class="yaomri-header__desktop-right">
-      {%- case resolved_layout -%}
-        {%- when 'logo_left_nav_center_search_icons_right' -%}
-          <div class="yaomri-header__desktop-right-stack">
-            {{ search_field_markup }}
-            {{ actions_markup }}
-          </div>
-        {%- when 'search_left_logo_center_icons_right' -%}
-          {{ actions_markup }}
-        {%- when 'logo_left_search_center_icons_right' -%}
-          {{ actions_markup }}
-        {%- when 'nav_left_logo_center_icons_right' -%}
-          <div class="yaomri-header__desktop-right-stack">
-            {{ compact_search_markup }}
-            {{ actions_markup }}
-          </div>
-      {%- endcase -%}
+      {{ actions_markup }}
     </div>
   </div>
-
-  {%- if nav_below_desktop -%}
-    <div class="yaomri-header__desktop-nav-row">
-      {{ nav_markup }}
-    </div>
-  {%- endif -%}
 
   <div class="yaomri-header__mobile">
     <div class="yaomri-header__mobile-left">
@@ -270,11 +228,9 @@
     </div>
 
     <div class="yaomri-header__mobile-right">
-      {%- if section.settings.show_mobile_search -%}
-        <a class="yaomri-header__icon" href="{{ routes.search_url }}" aria-label="Search">
-          {% render 'icon-yaomri-search' %}
-        </a>
-      {%- endif -%}
+      <a class="yaomri-header__icon" href="{{ routes.search_url }}" aria-label="Search">
+        {% render 'icon-yaomri-search' %}
+      </a>
 
       {%- if section.settings.show_wishlist_icon -%}
         <a class="yaomri-header__icon yaomri-header__mobile-optional" href="{{ wishlist_url }}" aria-label="Wishlist">
@@ -370,23 +326,15 @@
       "type": "select",
       "id": "desktop_layout",
       "label": "Desktop layout",
-      "default": "logo_left_nav_center_search_icons_right",
+      "default": "logo_left_nav_center_actions_right",
       "options": [
         {
-          "value": "logo_left_nav_center_search_icons_right",
-          "label": "Logo left, nav centre, search and icons right"
+          "value": "logo_left_nav_center_actions_right",
+          "label": "Logo left, nav centre, actions right"
         },
         {
-          "value": "search_left_logo_center_icons_right",
-          "label": "Search left, logo centre"
-        },
-        {
-          "value": "logo_left_search_center_icons_right",
-          "label": "Logo left, search centre"
-        },
-        {
-          "value": "nav_left_logo_center_icons_right",
-          "label": "Logo centre, nav left, icons right"
+          "value": "nav_left_logo_center_actions_right",
+          "label": "Nav left, logo centre, actions right"
         }
       ]
     },
@@ -460,85 +408,9 @@
     },
     {
       "type": "checkbox",
-      "id": "show_bottom_border",
-      "label": "Show bottom border",
-      "default": true
-    },
-    {
-      "type": "checkbox",
       "id": "enable_sticky",
       "label": "Sticky header",
       "default": true
-    },
-    {
-      "type": "header",
-      "content": "Search"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_desktop_search",
-      "label": "Show desktop search",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_mobile_search",
-      "label": "Show mobile search",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "search_placeholder",
-      "label": "Search placeholder",
-      "default": "Search"
-    },
-    {
-      "type": "range",
-      "id": "search_width_desktop",
-      "label": "Search width desktop",
-      "min": 180,
-      "max": 520,
-      "step": 10,
-      "unit": "px",
-      "default": 320
-    },
-    {
-      "type": "range",
-      "id": "search_height_desktop",
-      "label": "Search height desktop",
-      "min": 42,
-      "max": 86,
-      "step": 2,
-      "unit": "px",
-      "default": 58
-    },
-    {
-      "type": "color",
-      "id": "search_background",
-      "label": "Search background",
-      "default": "#f4f4f4"
-    },
-    {
-      "type": "color",
-      "id": "search_text_color",
-      "label": "Search text color",
-      "default": "#111111"
-    },
-    {
-      "type": "select",
-      "id": "search_icon_position",
-      "label": "Search icon position",
-      "default": "left",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ]
     },
     {
       "type": "header",
@@ -761,7 +633,7 @@
       "type": "range",
       "id": "nav_gap",
       "label": "Nav gap",
-      "min": 8,
+      "min": 0,
       "max": 48,
       "step": 2,
       "unit": "px",
