@@ -23,15 +23,22 @@
       assign resolved_layout = 'logo_left_nav_center_actions_right'
     when 'nav_left_logo_center_icons_right'
       assign resolved_layout = 'nav_left_logo_center_actions_right'
+    when 'logo_center_icons_right_nav_below'
+      assign resolved_layout = 'logo_center_icons_right_nav_below'
   endcase
 
-  unless resolved_layout == 'logo_left_nav_center_actions_right' or resolved_layout == 'nav_left_logo_center_actions_right'
+  unless resolved_layout == 'logo_left_nav_center_actions_right' or resolved_layout == 'nav_left_logo_center_actions_right' or resolved_layout == 'logo_center_icons_right_nav_below'
     assign resolved_layout = 'logo_left_nav_center_actions_right'
   endunless
 
   assign has_menu = false
   if section.settings.menu != blank and linklists[section.settings.menu] != blank and linklists[section.settings.menu].links.size > 0
     assign has_menu = true
+  endif
+
+  assign show_nav_below = false
+  if resolved_layout == 'logo_center_icons_right_nav_below' and has_menu
+    assign show_nav_below = true
   endif
 
   assign wishlist_url = section.settings.wishlist_link | default: '/pages/wishlist'
@@ -186,7 +193,7 @@
     <div class="yaomri-header__desktop-left">
       {%- if resolved_layout == 'logo_left_nav_center_actions_right' -%}
         {{ logo_markup }}
-      {%- else -%}
+      {%- elsif resolved_layout == 'nav_left_logo_center_actions_right' -%}
         {{ nav_markup }}
       {%- endif -%}
     </div>
@@ -203,6 +210,12 @@
       {{ actions_markup }}
     </div>
   </div>
+
+  {%- if show_nav_below -%}
+    <div class="yaomri-header__desktop-nav-row">
+      {{ nav_markup }}
+    </div>
+  {%- endif -%}
 
   <div class="yaomri-header__mobile">
     <div class="yaomri-header__mobile-left">
@@ -335,8 +348,41 @@
         {
           "value": "nav_left_logo_center_actions_right",
           "label": "Nav left, logo centre, actions right"
+        },
+        {
+          "value": "logo_center_icons_right_nav_below",
+          "label": "Logo centre, icons right, nav below"
         }
       ]
+    },
+    {
+      "type": "header",
+      "content": "Desktop navigation"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    },
+    {
+      "type": "range",
+      "id": "nav_text_size",
+      "label": "Nav text size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "nav_gap",
+      "label": "Nav gap",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
     },
     {
       "type": "range",
@@ -609,35 +655,6 @@
       "step": 2,
       "unit": "px",
       "default": 48
-    },
-    {
-      "type": "header",
-      "content": "Desktop navigation"
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Menu"
-    },
-    {
-      "type": "range",
-      "id": "nav_text_size",
-      "label": "Nav text size",
-      "min": 10,
-      "max": 18,
-      "step": 1,
-      "unit": "px",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "nav_gap",
-      "label": "Nav gap",
-      "min": 0,
-      "max": 48,
-      "step": 2,
-      "unit": "px",
-      "default": 24
     },
     {
       "type": "header",

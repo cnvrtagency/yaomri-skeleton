@@ -18,6 +18,10 @@
   margin-inline: auto;
 }
 
+.yaomri-header__desktop-nav-row {
+  display: none;
+}
+
 .yaomri-header__desktop {
   display: none;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -41,6 +45,7 @@
 
 .yaomri-header__desktop-centre {
   justify-content: center;
+  overflow: hidden;
 }
 
 .yaomri-header__desktop-right {
@@ -69,6 +74,7 @@
 
 .yaomri-header__mobile-center {
   justify-content: center;
+  padding-inline: clamp(6px, 1.4vw, 14px);
 }
 
 .yaomri-header__mobile-right {
@@ -76,6 +82,15 @@
   gap: var(--yh-mobile-icon-gap, 8px);
   flex-wrap: nowrap;
   min-width: 0;
+  max-width: min(
+    50vw,
+    calc(
+      (var(--yh-icon-button-mobile, 42px) * 3) +
+      (var(--yh-mobile-icon-gap, 8px) * 2) +
+      12px
+    )
+  );
+  overflow: hidden;
 }
 
 .yaomri-header__actions {
@@ -128,6 +143,18 @@
 .yaomri-header__logo-link--mobile {
   max-width: min(var(--yh-mobile-logo-width, 140px), 100%);
   transform: translateY(var(--yh-logo-offset-mobile, 0));
+}
+
+.yaomri-header__mobile-center .yaomri-header__logo-link--mobile {
+  max-width: min(
+    var(--yh-mobile-logo-width, 140px),
+    calc(
+      100vw -
+      (var(--yh-mobile-padding, 16px) * 2) -
+      (var(--yh-icon-button-mobile, 42px) * 2) -
+      64px
+    )
+  );
 }
 
 .yaomri-header__logo-image {
@@ -204,6 +231,9 @@
   justify-content: center;
   gap: var(--yh-nav-gap, 24px);
   min-width: 0;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
   white-space: nowrap;
 }
 
@@ -213,6 +243,7 @@
   font-weight: 800;
   line-height: 1;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .yaomri-header__drawer {
@@ -303,11 +334,53 @@
   .yaomri-header--layout-nav_left_logo_center_actions_right .yaomri-header__desktop-centre {
     justify-content: center;
   }
+
+  .yaomri-header--layout-logo_center_icons_right_nav_below .yaomri-header__desktop-left {
+    justify-content: flex-start;
+  }
+
+  .yaomri-header--layout-logo_center_icons_right_nav_below .yaomri-header__desktop-centre {
+    justify-content: center;
+  }
+
+  .yaomri-header--layout-logo_center_icons_right_nav_below .yaomri-header__desktop-nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min(var(--yh-max-width, 1500px), 100%);
+    margin-inline: auto;
+    padding: 0.4rem var(--yh-desktop-padding, 24px) 0.8rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .yaomri-header--layout-logo_center_icons_right_nav_below .yaomri-header__desktop-nav-row .yaomri-header__nav {
+    width: max-content;
+    margin-inline: auto;
+  }
+
+  .yaomri-header--layout-logo_center_icons_right_nav_below .yaomri-header__desktop-left .yaomri-header__nav {
+    display: none;
+  }
+
+  .yaomri-header__desktop-centre .yaomri-header__nav {
+    max-width: 100%;
+  }
 }
 
 @media screen and (max-width: 989px) {
   .yaomri-header__desktop {
     display: none;
+  }
+
+  .yaomri-header__desktop-nav-row {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1280px) and (min-width: 990px) {
+  .yaomri-header {
+    --yh-nav-gap: max(10px, calc(var(--yh-nav-gap, 24px) - 8px));
   }
 }
 
