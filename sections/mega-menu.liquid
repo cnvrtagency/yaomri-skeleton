@@ -1,0 +1,162 @@
+<div class="yaomri-mega-section" data-mega-section>
+  <div class="yaomri-mega-panels" data-mega-panels aria-hidden="true">
+    <button class="yaomri-mega-panels__backdrop" type="button" data-mega-close aria-label="Close menu"></button>
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'mega_parent' -%}
+        {% render 'mega-menu-panel', parent_block: block, all_blocks: section.blocks %}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Mega menu",
+  "max_blocks": 50,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "mega_parent",
+      "name": "Mega menu parent",
+      "settings": [
+        {
+          "type": "text",
+          "id": "parent_id",
+          "label": "ID",
+          "default": "1"
+        },
+        {
+          "type": "text",
+          "id": "admin_label",
+          "label": "Admin label"
+        }
+      ]
+    },
+    {
+      "type": "linklist_child",
+      "name": "Linklist child",
+      "settings": [
+        {
+          "type": "text",
+          "id": "parent_id",
+          "label": "Parent ID",
+          "default": "1"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "url",
+          "id": "heading_link",
+          "label": "Heading link"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_window",
+          "label": "Open link in new window",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "label": "Font size",
+          "min": 11,
+          "max": 18,
+          "step": 1,
+          "unit": "px",
+          "default": 13
+        },
+        {
+          "type": "range",
+          "id": "space_between",
+          "label": "Space between menu items",
+          "min": 6,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 10
+        },
+        {
+          "type": "range",
+          "id": "column_width",
+          "label": "Column width",
+          "min": 140,
+          "max": 360,
+          "step": 10,
+          "unit": "px",
+          "default": 220
+        }
+      ]
+    },
+    {
+      "type": "image_tile_child",
+      "name": "Image tile child",
+      "settings": [
+        {
+          "type": "text",
+          "id": "parent_id",
+          "label": "Parent ID",
+          "default": "1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image alt"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "cta",
+          "label": "CTA text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        },
+        {
+          "type": "range",
+          "id": "column_width",
+          "label": "Column width",
+          "min": 160,
+          "max": 420,
+          "step": 10,
+          "unit": "px",
+          "default": 260
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mega menu"
+    }
+  ],
+  "enabled_on": {
+    "groups": [
+      "header"
+    ]
+  }
+}
+{% endschema %}

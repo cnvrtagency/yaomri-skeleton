@@ -1,23 +1,30 @@
 {%- liquid
   assign drawer_menu = menu
-  if drawer_menu == blank
-    assign drawer_menu = linklists['main-menu']
+  assign use_demo_menu = false
+  if drawer_menu == blank or drawer_menu.links.size == 0
+    assign use_demo_menu = true
   endif
 
   assign drawer_title = section.settings.mobile_menu_label | default: 'Menu'
-  assign region_name = 'United Arab Emirates'
-  assign region_currency_code = 'AED'
-  if localization.country != blank
-    assign region_name = localization.country.name
-    if localization.country.currency != blank and localization.country.currency.iso_code != blank
-      assign region_currency_code = localization.country.currency.iso_code
-    endif
-  endif
-
-  assign instagram_url = settings.social_instagram_link | default: '#'
+  assign search_placeholder = section.settings.mobile_drawer_search_placeholder | default: 'Search Ya Omri'
+  assign wishlist_target = section.settings.mobile_drawer_wishlist_link | default: wishlist_url | default: '/pages/wishlist'
+  assign shipping_label = section.settings.mobile_drawer_shipping_label | default: 'Shipping to'
+  assign shipping_region = section.settings.mobile_drawer_shipping_region | default: 'United Arab Emirates · AED'
+  assign instagram_label = section.settings.mobile_drawer_instagram_label | default: 'Follow @yaomri'
+  assign instagram_url = section.settings.mobile_drawer_instagram_url | default: settings.social_instagram_link | default: '#'
 -%}
 
-<div id="MobileDrawer" class="mdrawer" data-mdrawer aria-hidden="true">
+<div
+  id="MobileDrawer"
+  class="mdrawer"
+  data-mdrawer
+  aria-hidden="true"
+  style="
+    --paper: {{ section.settings.mobile_drawer_background }};
+    --ink: {{ section.settings.mobile_drawer_text }};
+    --mdrawer-max-width: {{ section.settings.mobile_drawer_width }}px;
+  "
+>
   <button class="mdrawer__scrim" type="button" data-mdrawer-close aria-label="Close menu"></button>
 
   <aside class="mdrawer__panel" role="dialog" aria-modal="true" aria-labelledby="MobileDrawerTitle" tabindex="-1">
@@ -33,36 +40,54 @@
 
     <div class="mdrawer__body">
       <div class="mdrawer__view is-active" data-mdrawer-view="root">
-        {%- if mobile_logo != blank -%}
-          <a class="mdrawer__brand" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
-            {{
-              mobile_logo
-              | image_url: width: 320
-              | image_tag:
-                class: 'mdrawer__brand-logo',
-                widths: '120, 160, 220, 320',
-                sizes: '160px',
-                loading: 'lazy',
-                alt: mobile_logo.alt | default: shop.name | escape
-            }}
-          </a>
-        {%- else -%}
-          <a class="mdrawer__brand-text" href="{{ routes.root_url }}">{{ shop.name }}</a>
+        {%- if section.settings.show_mobile_drawer_search -%}
+          <form class="mdrawer__search" action="{{ routes.search_url }}" method="get" role="search">
+            <label class="visually-hidden" for="DrawerSearchInput">Search</label>
+            <span class="mdrawer__search-icon" aria-hidden="true">{% render 'icon-yaomri-search' %}</span>
+            <input id="DrawerSearchInput" type="search" name="q" placeholder="{{ search_placeholder | escape }}" autocomplete="off">
+            <input type="hidden" name="options[prefix]" value="last">
+          </form>
         {%- endif -%}
 
-        <form class="mdrawer__search" action="{{ routes.search_url }}" method="get" role="search">
-          <label class="visually-hidden" for="DrawerSearchInput">Search</label>
-          <span class="mdrawer__search-icon" aria-hidden="true">{% render 'icon-yaomri-search' %}</span>
-          <input id="DrawerSearchInput" type="search" name="q" placeholder="Search" autocomplete="off">
-          <input type="hidden" name="options[prefix]" value="last">
-        </form>
-
-        {%- if drawer_menu != blank and drawer_menu.links.size > 0 -%}
-          <nav class="mdrawer__nav" aria-label="Mobile menu">
-            <ul class="mdrawer__nav-list" role="list">
+        <nav class="mdrawer__nav" aria-label="Mobile menu">
+          <ul class="mdrawer__nav-list" role="list">
+            {%- if use_demo_menu -%}
+              {%- assign demo_root_links = 'Women|New In|Swimwear|Resortwear|Best Sellers|Lookbook|Sale' | split: '|' -%}
+              {%- for title in demo_root_links -%}
+                {%- assign demo_sale = false -%}
+                {%- assign title_downcase = title | downcase -%}
+                {%- if title_downcase contains 'sale' -%}
+                  {%- assign demo_sale = true -%}
+                {%- endif -%}
+                {%- assign title_handle = title | handleize -%}
+                <li>
+                  {%- if title == 'Women' or title == 'New In' or title == 'Swimwear' or title == 'Resortwear' -%}
+                    <button
+                      class="mdrawer__nav-item{% if demo_sale %} is-sale{% endif %}"
+                      type="button"
+                      data-mdrawer-drill
+                      data-target="panel-{{ title_handle }}"
+                      data-title="{{ title | escape }}"
+                    >
+                      <span>{{ title }}</span>
+                      <span class="mdrawer__chevron" aria-hidden="true">{% render 'icon-yaomri-chevron-right' %}</span>
+                    </button>
+                  {%- else -%}
+                    {%- if title == 'Best Sellers' -%}
+                      <a class="mdrawer__nav-item{% if demo_sale %} is-sale{% endif %}" href="{{ routes.collections_url }}/best-sellers">{{ title }}</a>
+                    {%- elsif title == 'Lookbook' -%}
+                      <a class="mdrawer__nav-item{% if demo_sale %} is-sale{% endif %}" href="/pages/lookbook">{{ title }}</a>
+                    {%- else -%}
+                      <a class="mdrawer__nav-item{% if demo_sale %} is-sale{% endif %}" href="{{ routes.collections_url }}/sale">{{ title }}</a>
+                    {%- endif -%}
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            {%- else -%}
               {%- for link in drawer_menu.links -%}
+                {%- assign link_title_downcase = link.title | downcase -%}
                 {%- assign link_sale = false -%}
-                {%- if link.title | downcase contains 'sale' -%}
+                {%- if link_title_downcase contains 'sale' -%}
                   {%- assign link_sale = true -%}
                 {%- endif -%}
                 <li>
@@ -83,31 +108,74 @@
                   {%- endif -%}
                 </li>
               {%- endfor -%}
-            </ul>
-          </nav>
-        {%- endif -%}
-
-        <div class="mdrawer__footer" data-mdrawer-root-only>
-          <div class="mdrawer__utility-links">
-            {%- if shop.customer_accounts_enabled -%}
-              <a href="{{ routes.account_login_url }}">Sign in / Register</a>
             {%- endif -%}
-            <a href="{{ wishlist_url | default: '/pages/wishlist' }}">Wishlist</a>
+          </ul>
+        </nav>
+
+        {%- if section.settings.show_mobile_drawer_footer -%}
+          <div class="mdrawer__footer" data-mdrawer-root-only>
+            <div class="mdrawer__utility-links">
+              {%- if section.settings.show_mobile_drawer_sign_in and shop.customer_accounts_enabled -%}
+                <a href="{{ routes.account_login_url }}">Sign in / Register</a>
+              {%- endif -%}
+              {%- if section.settings.show_mobile_drawer_wishlist -%}
+                <a href="{{ wishlist_target }}">Wishlist</a>
+              {%- endif -%}
+            </div>
+
+            {%- if section.settings.show_mobile_drawer_shipping -%}
+              <p class="mdrawer__shipping">{{ shipping_label }} {{ shipping_region }}</p>
+            {%- endif -%}
+
+            {%- if section.settings.show_mobile_drawer_instagram -%}
+              <a class="mdrawer__instagram" href="{{ instagram_url }}" target="_blank" rel="noopener">
+                {{ instagram_label }}
+              </a>
+            {%- endif -%}
           </div>
-          <p class="mdrawer__shipping">Shipping to {{ region_name }} · {{ region_currency_code }}</p>
-          <a class="mdrawer__instagram" href="{{ instagram_url }}" target="_blank" rel="noopener">
-            Instagram
-          </a>
-        </div>
+        {%- endif -%}
       </div>
 
-      {%- if drawer_menu != blank and drawer_menu.links.size > 0 -%}
+      {%- if use_demo_menu -%}
+        {%- assign demo_panels = 'women|new-in|swimwear|resortwear' | split: '|' -%}
+        {%- for panel_handle in demo_panels -%}
+          <div class="mdrawer__view" data-mdrawer-view="panel-{{ panel_handle }}">
+            <nav class="mdrawer__drill-nav" aria-label="{{ panel_handle | replace: '-', ' ' | capitalize }}">
+              <ul class="mdrawer__drill-list" role="list">
+                {%- case panel_handle -%}
+                  {%- when 'women' -%}
+                    <li class="mdrawer__group">Shop</li>
+                    <li><a class="mdrawer__drill-item" href="{{ routes.collections_url }}/women-new-arrivals">New Arrivals</a></li>
+                    <li><a class="mdrawer__drill-item" href="{{ routes.collections_url }}/women-best-sellers">Best Sellers</a></li>
+                    <li><a class="mdrawer__drill-item" href="{{ routes.collections_url }}/women-all">All Women</a></li>
+                  {%- when 'new-in' -%}
+                    <li class="mdrawer__group">Just landed</li>
+                    <li><a class="mdrawer__drill-item" href="{{ routes.collections_url }}/new-in-swimwear">Swimwear</a></li>
+                    <li><a class="mdrawer__drill-item" href="{{ routes.collections_url }}/new-in-resortwear">Resortwear</a></li>
+                    <li><a class="mdrawer__drill-item is-sale" href="{{ routes.collections_url }}/sale">Sale</a></li>
+                  {%- when 'swimwear' -%}
+                    <li class="mdrawer__group">By style</li>
+                    <li><a class="mdrawer__drill-item" href="{{ routes.collections_url }}/bikinis">Bikinis</a></li>
+                    <li><a class="mdrawer__drill-item" href="{{ routes.collections_url }}/one-pieces">One Pieces</a></li>
+                    <li><a class="mdrawer__drill-item" href="{{ routes.collections_url }}/cover-ups">Cover Ups</a></li>
+                  {%- when 'resortwear' -%}
+                    <li class="mdrawer__group">Edit</li>
+                    <li><a class="mdrawer__drill-item" href="{{ routes.collections_url }}/dresses">Dresses</a></li>
+                    <li><a class="mdrawer__drill-item" href="{{ routes.collections_url }}/sets">Sets</a></li>
+                    <li><a class="mdrawer__drill-item" href="{{ routes.collections_url }}/accessories">Accessories</a></li>
+                {%- endcase -%}
+              </ul>
+            </nav>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
         {%- for link in drawer_menu.links -%}
           {%- if link.links.size > 0 -%}
             {%- assign panel_id = 'panel-' | append: link.handle -%}
             <div class="mdrawer__view" data-mdrawer-view="{{ panel_id }}">
               <nav class="mdrawer__drill-nav" aria-label="{{ link.title | escape }}">
                 <ul class="mdrawer__drill-list" role="list">
+                  {%- assign ungrouped_started = false -%}
                   {%- for child in link.links -%}
                     {%- assign parts = child.title | split: '/' -%}
                     {%- assign group_name = '' -%}
@@ -121,10 +189,14 @@
                       {%- ifchanged group_name -%}
                         <li class="mdrawer__group">{{ group_name }}</li>
                       {%- endifchanged -%}
+                    {%- elsif ungrouped_started == false -%}
+                      <li class="mdrawer__group">Shop</li>
+                      {%- assign ungrouped_started = true -%}
                     {%- endif -%}
 
+                    {%- assign child_label_downcase = item_label | downcase -%}
                     {%- assign child_sale = false -%}
-                    {%- if item_label | downcase contains 'sale' -%}
+                    {%- if child_label_downcase contains 'sale' -%}
                       {%- assign child_sale = true -%}
                     {%- endif -%}
                     <li>
@@ -137,7 +209,8 @@
 
                 {%- assign feature_count = 0 -%}
                 {%- for block in section.blocks -%}
-                  {%- if block.type == 'mobile_drawer_feature' and block.settings.parent != blank and block.settings.parent | handleize == link.handle -%}
+                  {%- assign block_parent_handle = block.settings.parent | handleize -%}
+                  {%- if block.type == 'mobile_drawer_feature' and block.settings.parent != blank and block_parent_handle == link.handle -%}
                     {%- assign feature_count = feature_count | plus: 1 -%}
                   {%- endif -%}
                 {%- endfor -%}
@@ -145,7 +218,8 @@
                 {%- if feature_count > 0 -%}
                   <div class="mdrawer__features">
                     {%- for block in section.blocks -%}
-                      {%- if block.type == 'mobile_drawer_feature' and block.settings.parent != blank and block.settings.parent | handleize == link.handle -%}
+                      {%- assign block_parent_handle = block.settings.parent | handleize -%}
+                      {%- if block.type == 'mobile_drawer_feature' and block.settings.parent != blank and block_parent_handle == link.handle -%}
                         <a class="mdrawer__feature" href="{{ block.settings.url | default: link.url }}" {{ block.shopify_attributes }}>
                           {%- if block.settings.image != blank -%}
                             {{

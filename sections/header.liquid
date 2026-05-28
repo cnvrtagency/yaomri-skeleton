@@ -1,6 +1,8 @@
 {{ 'yaomri-header.css' | asset_url | stylesheet_tag }}
 {{ 'mobile-drawer.css' | asset_url | stylesheet_tag }}
+{{ 'mega-menu.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'mobile-drawer.js' | asset_url }}" defer></script>
+<script src="{{ 'mega-menu.js' | asset_url }}" defer></script>
 
 {%- liquid
   assign raw_layout = section.settings.desktop_layout
@@ -34,6 +36,7 @@
   endunless
 
   assign has_menu = false
+  assign has_nav_blocks = false
   assign menu_handle = section.settings.menu
   if menu_handle == blank
     assign menu_handle = 'main-menu'
@@ -48,9 +51,30 @@
     assign has_menu = true
   endif
 
+  for block in section.blocks
+    if block.type == 'base_item' or block.type == 'dropdown_item' or block.type == 'mega_item'
+      assign has_nav_blocks = true
+      break
+    endif
+  endfor
+
+  assign drawer_menu_handle = section.settings.mobile_drawer_menu
+  if drawer_menu_handle == blank
+    assign drawer_menu_handle = section.settings.menu
+  endif
+  assign drawer_menu = blank
+  if drawer_menu_handle != blank
+    assign drawer_menu = linklists[drawer_menu_handle]
+    if drawer_menu != blank and drawer_menu.links.size == 0
+      assign drawer_menu = blank
+    endif
+  endif
+
   assign show_nav_below = false
-  if resolved_layout == 'logo_center_icons_right_nav_below' and has_menu
-    assign show_nav_below = true
+  if resolved_layout == 'logo_center_icons_right_nav_below'
+    if has_menu or has_nav_blocks
+      assign show_nav_below = true
+    endif
   endif
 
   assign wishlist_url = section.settings.wishlist_link | default: '/pages/wishlist'
@@ -73,6 +97,8 @@
 
 <section
   class="yaomri-header full-width yaomri-header--layout-{{ resolved_layout }} yaomri-header--collapse-{{ section.settings.nav_collapse_width | default: '1100' }}"
+  data-mega-close-delay="{{ section.settings.close_delay | default: 250 }}"
+  data-mega-panel-width="{{ section.settings.panel_max_width | default: 1400 }}"
   style="
     --yh-bg: {{ section.settings.header_background }};
     --yh-fg: {{ section.settings.header_foreground }};
@@ -104,6 +130,7 @@
     --yh-mobile-drawer-width: {{ section.settings.mobile_drawer_width }}px;
     --yh-mobile-drawer-bg: {{ section.settings.mobile_drawer_background }};
     --yh-mobile-drawer-text: {{ section.settings.mobile_drawer_text }};
+    --ym-panel-max-width: {{ section.settings.panel_max_width }}px;
   "
   {{ section.shopify_attributes }}
 >
@@ -146,13 +173,7 @@
   {%- endcapture -%}
 
   {%- capture nav_markup -%}
-    {%- if has_menu -%}
-      <nav class="yaomri-header__nav" aria-label="Primary">
-        {%- for link in navigation_menu.links -%}
-          <a class="yaomri-header__nav-link" href="{{ link.url }}">{{ link.title }}</a>
-        {%- endfor -%}
-      </nav>
-    {%- endif -%}
+    {% render 'mega-menu', section: section, fallback_menu: navigation_menu %}
   {%- endcapture -%}
 
   {%- capture actions_markup -%}
@@ -266,9 +287,8 @@
   {% render
     'mobile-drawer',
     section: section,
-    menu: navigation_menu,
-    wishlist_url: wishlist_url,
-    mobile_logo: mobile_logo
+    menu: drawer_menu,
+    wishlist_url: wishlist_url
   %}
 </section>
 
@@ -355,7 +375,27 @@
     {
       "type": "link_list",
       "id": "menu",
-      "label": "Menu"
+      "label": "Fallback menu"
+    },
+    {
+      "type": "range",
+      "id": "panel_max_width",
+      "label": "Mega panel max width",
+      "min": 1000,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "default": 1400
+    },
+    {
+      "type": "range",
+      "id": "close_delay",
+      "label": "Close delay",
+      "min": 100,
+      "max": 800,
+      "step": 50,
+      "unit": "ms",
+      "default": 250
     },
     {
       "type": "range",
@@ -654,10 +694,89 @@
       "content": "Mobile menu"
     },
     {
+      "type": "link_list",
+      "id": "mobile_drawer_menu",
+      "label": "Drawer menu"
+    },
+    {
       "type": "text",
       "id": "mobile_menu_label",
-      "label": "Mobile menu label",
+      "label": "Drawer title",
       "default": "Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_drawer_search",
+      "label": "Show search",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "mobile_drawer_search_placeholder",
+      "label": "Search placeholder",
+      "default": "Search Ya Omri"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_drawer_footer",
+      "label": "Show footer links",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Mobile drawer footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_drawer_sign_in",
+      "label": "Show sign in link",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_drawer_wishlist",
+      "label": "Show wishlist link",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "mobile_drawer_wishlist_link",
+      "label": "Wishlist link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_drawer_shipping",
+      "label": "Show shipping line",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "mobile_drawer_shipping_label",
+      "label": "Shipping label",
+      "default": "Shipping to"
+    },
+    {
+      "type": "text",
+      "id": "mobile_drawer_shipping_region",
+      "label": "Shipping region",
+      "default": "United Arab Emirates · AED"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_drawer_instagram",
+      "label": "Show Instagram link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "mobile_drawer_instagram_label",
+      "label": "Instagram label",
+      "default": "Follow @yaomri"
+    },
+    {
+      "type": "url",
+      "id": "mobile_drawer_instagram_url",
+      "label": "Instagram URL"
     },
     {
       "type": "range",
@@ -682,21 +801,241 @@
       "default": "#111111"
     }
   ],
-  "max_blocks": 12,
+  "max_blocks": 40,
   "blocks": [
     {
+      "type": "base_item",
+      "name": "Base item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Link"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_window",
+          "label": "Open in new window",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "highlight_item",
+          "label": "Highlight item",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "highlight_color",
+          "label": "Highlight colour",
+          "default": "#c0392b"
+        },
+        {
+          "type": "text",
+          "id": "label_text",
+          "label": "Label text"
+        },
+        {
+          "type": "color",
+          "id": "label_color",
+          "label": "Label colour",
+          "default": "#111111"
+        }
+      ]
+    },
+    {
+      "type": "dropdown_item",
+      "name": "Dropdown item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Dropdown"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_window",
+          "label": "Open in new window",
+          "default": false
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        },
+        {
+          "type": "select",
+          "id": "dropdown_position",
+          "label": "Dropdown position",
+          "default": "start",
+          "options": [
+            {
+              "value": "start",
+              "label": "Start"
+            },
+            {
+              "value": "center",
+              "label": "Centre"
+            },
+            {
+              "value": "end",
+              "label": "End"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "highlight_item",
+          "label": "Highlight item",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "highlight_color",
+          "label": "Highlight colour",
+          "default": "#c0392b"
+        },
+        {
+          "type": "text",
+          "id": "label_text",
+          "label": "Label text"
+        },
+        {
+          "type": "color",
+          "id": "label_color",
+          "label": "Label colour",
+          "default": "#111111"
+        }
+      ]
+    },
+    {
+      "type": "mega_item",
+      "name": "Mega item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Mega"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_window",
+          "label": "Open in new window",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "mega_menu_id",
+          "label": "Mega menu ID",
+          "default": "1"
+        },
+        {
+          "type": "select",
+          "id": "submenu_position",
+          "label": "Submenu position",
+          "default": "center",
+          "options": [
+            {
+              "value": "start",
+              "label": "Start"
+            },
+            {
+              "value": "center",
+              "label": "Centre"
+            },
+            {
+              "value": "end",
+              "label": "End"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "submenu_width",
+          "label": "Submenu width",
+          "default": "full",
+          "options": [
+            {
+              "value": "custom",
+              "label": "Custom"
+            },
+            {
+              "value": "full",
+              "label": "Full width"
+            },
+            {
+              "value": "content",
+              "label": "Content width"
+            }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "custom_width",
+          "label": "Custom width",
+          "min": 640,
+          "max": 1800,
+          "step": 20,
+          "unit": "px",
+          "default": 1200
+        },
+        {
+          "type": "checkbox",
+          "id": "highlight_item",
+          "label": "Highlight item",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "highlight_color",
+          "label": "Highlight colour",
+          "default": "#c0392b"
+        },
+        {
+          "type": "text",
+          "id": "label_text",
+          "label": "Label text"
+        },
+        {
+          "type": "color",
+          "id": "label_color",
+          "label": "Label colour",
+          "default": "#111111"
+        }
+      ]
+    },
+    {
       "type": "mobile_drawer_feature",
-      "name": "Mobile drawer feature",
+      "name": "Drawer feature tile",
       "settings": [
         {
           "type": "text",
           "id": "parent",
-          "label": "Parent"
+          "label": "Parent menu",
+          "info": "Use the parent menu handle, for example women, new-in, swimwear, resortwear."
         },
         {
           "type": "text",
           "id": "label",
-          "label": "Label"
+          "label": "Eyebrow"
         },
         {
           "type": "text",

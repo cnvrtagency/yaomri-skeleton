@@ -1,0 +1,121 @@
+{%- liquid
+  assign parent_id = parent_block.settings.parent_id | strip
+  assign has_panel_content = false
+  for block in all_blocks
+    if block.type == 'linklist_child' or block.type == 'image_tile_child'
+      assign child_parent_id = block.settings.parent_id | strip
+      if child_parent_id == parent_id and child_parent_id != blank
+        assign has_panel_content = true
+        break
+      endif
+    endif
+  endfor
+-%}
+
+{%- if parent_id != blank and has_panel_content -%}
+  <section
+    class="yaomri-mega-panel"
+    data-mega-panel
+    data-mega-parent="{{ parent_id | escape }}"
+    hidden
+    {{ parent_block.shopify_attributes }}
+  >
+    <div class="yaomri-mega-panel__inner">
+      <div class="yaomri-mega-panel__grid">
+        {%- for block in all_blocks -%}
+          {%- liquid
+            assign child_parent_id = block.settings.parent_id | strip
+          -%}
+          {%- if child_parent_id == parent_id and block.type == 'linklist_child' -%}
+            {%- liquid
+              assign child_menu = blank
+              if block.settings.menu != blank
+                assign child_menu = linklists[block.settings.menu]
+                if child_menu != blank and child_menu.links.size == 0
+                  assign child_menu = blank
+                endif
+              endif
+              assign heading_target = '_self'
+              if block.settings.open_new_window
+                assign heading_target = '_blank'
+              endif
+            -%}
+            <div
+              class="yaomri-mega-panel__column yaomri-mega-panel__column--links"
+              style="
+                --ym-column-width: {{ block.settings.column_width | default: 220 }}px;
+                --ym-column-size: {{ block.settings.font_size | default: 13 }}px;
+                --ym-column-gap: {{ block.settings.space_between | default: 10 }}px;
+              "
+              {{ block.shopify_attributes }}
+            >
+              {%- if block.settings.heading != blank -%}
+                {%- if block.settings.heading_link != blank -%}
+                  <a
+                    class="yaomri-mega-panel__heading-link"
+                    href="{{ block.settings.heading_link }}"
+                    {% if heading_target == '_blank' %}target="_blank" rel="noopener"{% endif %}
+                    data-mega-link
+                  >
+                    {{ block.settings.heading }}
+                  </a>
+                {%- else -%}
+                  <p class="yaomri-mega-panel__heading">{{ block.settings.heading }}</p>
+                {%- endif -%}
+              {%- endif -%}
+              {%- if child_menu != blank -%}
+                <ul class="yaomri-mega-panel__links" role="list">
+                  {%- for link in child_menu.links -%}
+                    {%- liquid
+                      assign link_title_downcase = link.title | downcase
+                      assign link_sale_class = ''
+                      if link_title_downcase contains 'sale'
+                        assign link_sale_class = ' is-sale'
+                      endif
+                    -%}
+                    <li class="yaomri-mega-panel__link-item{{ link_sale_class }}">
+                      <a href="{{ link.url }}" data-mega-link>{{ link.title }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </div>
+          {%- elsif child_parent_id == parent_id and block.type == 'image_tile_child' -%}
+            <article
+              class="yaomri-mega-panel__column yaomri-mega-panel__column--tile"
+              style="--ym-column-width: {{ block.settings.column_width | default: 260 }}px;"
+              {{ block.shopify_attributes }}
+            >
+              {%- assign tile_url = block.settings.url | default: '#' -%}
+              <a class="yaomri-mega-panel__tile-link" href="{{ tile_url }}" data-mega-link>
+                {%- if block.settings.image != blank -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 700
+                    | image_tag:
+                      class: 'yaomri-mega-panel__tile-image',
+                      widths: '180,240,320,420,540,700',
+                      sizes: '(min-width: 1024px) 240px, 100vw',
+                      loading: 'lazy',
+                      alt: block.settings.image_alt | default: block.settings.title
+                  }}
+                {%- endif -%}
+                <span class="yaomri-mega-panel__tile-body">
+                  {%- if block.settings.eyebrow != blank -%}
+                    <span class="yaomri-mega-panel__tile-eyebrow">{{ block.settings.eyebrow }}</span>
+                  {%- endif -%}
+                  {%- if block.settings.title != blank -%}
+                    <span class="yaomri-mega-panel__tile-title">{{ block.settings.title }}</span>
+                  {%- endif -%}
+                  {%- if block.settings.cta != blank -%}
+                    <span class="yaomri-mega-panel__tile-cta">{{ block.settings.cta }}</span>
+                  {%- endif -%}
+                </span>
+              </a>
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}

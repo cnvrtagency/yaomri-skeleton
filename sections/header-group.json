@@ -16,12 +16,11 @@
       "settings": {
         "desktop_logo_width": 135,
         "mobile_logo_width": 115,
-        "desktop_logo_max_height": 62,
-        "mobile_logo_max_height": 74,
-        "desktop_logo_offset_y": 0,
-        "mobile_logo_offset_y": 0,
         "desktop_layout": "logo_left_nav_center_actions_right",
+        "nav_collapse_width": "1100",
         "menu": "bikinis",
+        "panel_max_width": 1400,
+        "close_delay": 250,
         "nav_text_size": 12,
         "nav_gap": 24,
         "header_max_width": 1800,
@@ -62,9 +61,14 @@
         "mobile_drawer_background": "#ffffff",
         "mobile_drawer_text": "#111111"
       }
+    },
+    "mega-menu": {
+      "type": "mega-menu",
+      "settings": {}
     }
   },
   "order": [
-    "header"
+    "header",
+    "mega-menu"
   ]
 }

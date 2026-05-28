@@ -1,0 +1,233 @@
+.yaomri-mega {
+  position: relative;
+  overflow: visible;
+}
+
+.yaomri-mega__list {
+  display: flex;
+  align-items: center;
+  gap: var(--yh-nav-gap, 24px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  white-space: nowrap;
+}
+
+.yaomri-mega__item {
+  position: relative;
+}
+
+.yaomri-mega__top-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--ym-link-color, inherit);
+}
+
+.yaomri-mega__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.1rem;
+  padding: 0.12rem 0.38rem;
+  border: 1px solid currentColor;
+  color: var(--ym-label-color, currentColor);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.yaomri-mega__item.is-sale > .yaomri-mega__top-link,
+.yaomri-mega__dropdown-item.is-sale > a,
+.yaomri-mega-panel__link-item.is-sale > a {
+  color: #c0392b;
+}
+
+.yaomri-mega__dropdown-panel {
+  position: absolute;
+  z-index: 70;
+  top: calc(100% + 0.9rem);
+  min-width: 220px;
+  border: 1px solid #e8e8e8;
+  background: #fff;
+  box-shadow: 0 18px 34px rgba(10, 10, 10, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+}
+
+.yaomri-mega__item--start .yaomri-mega__dropdown-panel {
+  left: 0;
+}
+
+.yaomri-mega__item--center .yaomri-mega__dropdown-panel {
+  left: 50%;
+  transform: translate(-50%, 6px);
+}
+
+.yaomri-mega__item--end .yaomri-mega__dropdown-panel {
+  right: 0;
+}
+
+.yaomri-mega__item.is-open .yaomri-mega__dropdown-panel,
+.yaomri-mega__item:focus-within .yaomri-mega__dropdown-panel,
+.yaomri-mega__item:hover .yaomri-mega__dropdown-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.yaomri-mega__dropdown-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.65rem 0;
+}
+
+.yaomri-mega__dropdown-item a {
+  display: block;
+  padding: 0.62rem 1rem;
+  font-size: 0.76rem;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.yaomri-mega-section {
+  position: static;
+}
+
+.yaomri-mega-panels {
+  position: fixed;
+  inset: var(--ym-panel-top, 0px) 0 auto 0;
+  z-index: 59;
+  pointer-events: none;
+}
+
+.yaomri-mega-panels.is-open {
+  pointer-events: auto;
+}
+
+.yaomri-mega-panels__backdrop {
+  position: fixed;
+  inset: 0;
+  border: 0;
+  background: rgba(12, 12, 12, 0.34);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.yaomri-mega-panels.is-open .yaomri-mega-panels__backdrop {
+  opacity: 1;
+}
+
+.yaomri-mega-panel {
+  position: relative;
+  z-index: 1;
+  width: min(100vw, var(--ym-panel-max-width, 1400px));
+  margin-inline: auto;
+  border-top: 1px solid #e8e8e8;
+  border-inline: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
+  background: #fff;
+  box-shadow: 0 26px 44px rgba(10, 10, 10, 0.08);
+}
+
+.yaomri-mega-panel__inner {
+  padding: 1.5rem 2rem 2rem;
+}
+
+.yaomri-mega-panel__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem 1.6rem;
+}
+
+.yaomri-mega-panel__column {
+  min-width: 0;
+  width: min(100%, var(--ym-column-width, 220px));
+}
+
+.yaomri-mega-panel__heading,
+.yaomri-mega-panel__heading-link {
+  display: inline-block;
+  margin: 0 0 0.7rem;
+  color: #111;
+  font-size: 0.74rem;
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.yaomri-mega-panel__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ym-column-gap, 10px);
+}
+
+.yaomri-mega-panel__links a {
+  color: #111;
+  font-size: var(--ym-column-size, 13px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.yaomri-mega-panel__tile-link {
+  display: block;
+  color: #111;
+}
+
+.yaomri-mega-panel__tile-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.yaomri-mega-panel__tile-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  padding-top: 0.72rem;
+}
+
+.yaomri-mega-panel__tile-eyebrow {
+  color: #666;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.yaomri-mega-panel__tile-title {
+  font-size: 0.84rem;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.yaomri-mega-panel__tile-cta {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 0.16rem;
+}
+
+@media (max-width: 1023px) {
+  .yaomri-mega,
+  .yaomri-mega-section {
+    display: none !important;
+  }
+}

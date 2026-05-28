@@ -1,0 +1,42 @@
+{%- liquid
+  assign has_nav_blocks = false
+  for block in section.blocks
+    if block.type == 'base_item' or block.type == 'dropdown_item' or block.type == 'mega_item'
+      assign has_nav_blocks = true
+      break
+    endif
+  endfor
+-%}
+
+<nav
+  class="yaomri-header__nav yaomri-mega"
+  aria-label="Primary"
+  data-mega
+  data-close-delay="{{ section.settings.close_delay | default: 250 }}"
+  data-panel-width="{{ section.settings.panel_max_width | default: 1400 }}"
+>
+  <ul class="yaomri-mega__list" role="list">
+    {%- if has_nav_blocks -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'base_item' or block.type == 'dropdown_item' or block.type == 'mega_item' -%}
+          {% render 'mega-menu-item', block: block %}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- elsif fallback_menu != blank and fallback_menu.links.size > 0 -%}
+      {%- for link in fallback_menu.links -%}
+        {%- liquid
+          assign link_title_downcase = link.title | downcase
+          assign sale_class = ''
+          if link_title_downcase contains 'sale'
+            assign sale_class = ' is-sale'
+          endif
+        -%}
+        <li class="yaomri-mega__item yaomri-mega__item--link{{ sale_class }}">
+          <a class="yaomri-header__nav-link yaomri-mega__top-link" href="{{ link.url }}">
+            <span>{{ link.title }}</span>
+          </a>
+        </li>
+      {%- endfor -%}
+    {%- endif -%}
+  </ul>
+</nav>

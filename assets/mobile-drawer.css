@@ -28,7 +28,7 @@ html.mdrawer-open body {
   left: 0;
   top: 0;
   bottom: 0;
-  width: min(88vw, 24rem);
+  width: min(88vw, var(--mdrawer-max-width, 24rem));
   display: grid;
   grid-template-rows: auto 1fr;
   background: var(--paper, #fff);
@@ -118,7 +118,7 @@ html.mdrawer-open body {
   position: absolute;
   inset: 0;
   display: grid;
-  grid-template-rows: auto auto 1fr auto;
+  grid-template-rows: auto 1fr auto;
   gap: 0.9rem;
   padding: 0.95rem 1rem 1rem;
   background: var(--paper, #fff);
@@ -133,27 +133,6 @@ html.mdrawer-open body {
   transform: translateX(0);
   opacity: 1;
   pointer-events: auto;
-}
-
-.mdrawer__brand {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
-  max-width: 11.5rem;
-}
-
-.mdrawer__brand-logo {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.mdrawer__brand-text {
-  font-size: 0.9rem;
-  font-style: italic;
-  font-weight: 800;
-  text-transform: uppercase;
 }
 
 .mdrawer__search {
@@ -279,7 +258,7 @@ html.mdrawer-open body {
 }
 
 .mdrawer__footer {
-  margin-top: 0.7rem;
+  margin-top: auto;
   padding-top: 0.8rem;
   border-top: 1px solid var(--border, #ececec);
   display: grid;
@@ -299,6 +278,22 @@ html.mdrawer-open body {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--muted, #666);
+}
+
+.mdrawer__drill-nav {
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
+  min-height: 100%;
+}
+
+.mdrawer__body::after {
+  content: '';
+  position: sticky;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: env(safe-area-inset-bottom, 0px);
 }
 
 @media (prefers-reduced-motion: reduce) {

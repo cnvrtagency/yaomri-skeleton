@@ -1,0 +1,112 @@
+{%- liquid
+  assign item_title = block.settings.title | default: block.settings.heading
+  assign item_url = block.settings.link | default: '#'
+  assign item_target = '_self'
+  if block.settings.open_new_window
+    assign item_target = '_blank'
+  endif
+
+  assign item_title_downcase = item_title | downcase
+  assign sale_class = ''
+  if item_title_downcase contains 'sale'
+    assign sale_class = ' is-sale'
+  endif
+
+  assign item_style = ''
+  if block.settings.highlight_item and block.settings.highlight_color != blank
+    assign item_style = '--ym-link-color:' | append: block.settings.highlight_color | append: ';'
+  endif
+
+  assign item_label = block.settings.label_text
+-%}
+
+{%- if block.type == 'base_item' -%}
+  <li class="yaomri-mega__item yaomri-mega__item--link{{ sale_class }}" style="{{ item_style }}" {{ block.shopify_attributes }}>
+    <a
+      class="yaomri-header__nav-link yaomri-mega__top-link"
+      href="{{ item_url }}"
+      {% if item_target == '_blank' %}target="_blank" rel="noopener"{% endif %}
+      data-mega-link
+    >
+      <span>{{ item_title }}</span>
+      {%- if item_label != blank -%}
+        <span class="yaomri-mega__label" style="--ym-label-color: {{ block.settings.label_color }};">{{ item_label }}</span>
+      {%- endif -%}
+    </a>
+  </li>
+{%- elsif block.type == 'dropdown_item' -%}
+  {%- liquid
+    assign dropdown_menu = blank
+    if block.settings.menu != blank
+      assign dropdown_menu = linklists[block.settings.menu]
+      if dropdown_menu != blank and dropdown_menu.links.size == 0
+        assign dropdown_menu = blank
+      endif
+    endif
+  -%}
+  <li
+    class="yaomri-mega__item yaomri-mega__item--dropdown yaomri-mega__item--{{ block.settings.dropdown_position | default: 'start' }}{{ sale_class }}"
+    style="{{ item_style }}"
+    data-dropdown
+    {{ block.shopify_attributes }}
+  >
+    <a
+      class="yaomri-header__nav-link yaomri-mega__top-link"
+      href="{{ item_url }}"
+      {% if item_target == '_blank' %}target="_blank" rel="noopener"{% endif %}
+      data-dropdown-trigger
+      data-mega-link
+    >
+      <span>{{ item_title }}</span>
+      {%- if item_label != blank -%}
+        <span class="yaomri-mega__label" style="--ym-label-color: {{ block.settings.label_color }};">{{ item_label }}</span>
+      {%- endif -%}
+    </a>
+    {%- if dropdown_menu != blank -%}
+      <div class="yaomri-mega__dropdown-panel" data-dropdown-panel>
+        <ul class="yaomri-mega__dropdown-list" role="list">
+          {%- for child in dropdown_menu.links -%}
+            {%- liquid
+              assign child_title_downcase = child.title | downcase
+              assign child_sale_class = ''
+              if child_title_downcase contains 'sale'
+                assign child_sale_class = ' is-sale'
+              endif
+            -%}
+            <li class="yaomri-mega__dropdown-item{{ child_sale_class }}">
+              <a href="{{ child.url }}" data-mega-link>{{ child.title }}</a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+  </li>
+{%- elsif block.type == 'mega_item' -%}
+  {%- liquid
+    assign mega_id = block.settings.mega_menu_id | strip
+    assign width_mode = block.settings.submenu_width | default: 'full'
+    assign custom_width = block.settings.custom_width | default: 1200
+  -%}
+  <li
+    class="yaomri-mega__item yaomri-mega__item--mega yaomri-mega__item--{{ block.settings.submenu_position | default: 'center' }}{{ sale_class }}"
+    style="{{ item_style }}"
+    data-mega-item
+    {{ block.shopify_attributes }}
+  >
+    <a
+      class="yaomri-header__nav-link yaomri-mega__top-link"
+      href="{{ item_url }}"
+      {% if item_target == '_blank' %}target="_blank" rel="noopener"{% endif %}
+      data-mega-trigger
+      data-mega-target="{{ mega_id | escape }}"
+      data-mega-width-mode="{{ width_mode }}"
+      data-mega-custom-width="{{ custom_width }}"
+      data-mega-link
+    >
+      <span>{{ item_title }}</span>
+      {%- if item_label != blank -%}
+        <span class="yaomri-mega__label" style="--ym-label-color: {{ block.settings.label_color }};">{{ item_label }}</span>
+      {%- endif -%}
+    </a>
+  </li>
+{%- endif -%}
