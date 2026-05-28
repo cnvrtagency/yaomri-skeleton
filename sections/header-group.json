@@ -13,6 +13,27 @@
   "sections": {
     "header": {
       "type": "header",
+      "blocks": {
+        "mega_item_Ddjj8a": {
+          "type": "mega_item",
+          "settings": {
+            "title": "Swimwear",
+            "link": "",
+            "open_new_window": true,
+            "mega_menu_id": "1",
+            "submenu_position": "center",
+            "submenu_width": "full",
+            "custom_width": 1200,
+            "highlight_item": false,
+            "highlight_color": "#c0392b",
+            "label_text": "",
+            "label_color": "#111111"
+          }
+        }
+      },
+      "block_order": [
+        "mega_item_Ddjj8a"
+      ],
       "settings": {
         "desktop_logo_width": 135,
         "mobile_logo_width": 115,
@@ -56,7 +77,20 @@
         "region_chip_border": "#e8e8e8",
         "region_chip_text": "#111111",
         "region_chip_height": 48,
+        "mobile_drawer_menu": "",
         "mobile_menu_label": "Menu",
+        "show_mobile_drawer_search": true,
+        "mobile_drawer_search_placeholder": "Search Ya Omri",
+        "show_mobile_drawer_footer": true,
+        "show_mobile_drawer_sign_in": true,
+        "show_mobile_drawer_wishlist": true,
+        "mobile_drawer_wishlist_link": "",
+        "show_mobile_drawer_shipping": true,
+        "mobile_drawer_shipping_label": "Shipping to",
+        "mobile_drawer_shipping_region": "United Arab Emirates · AED",
+        "show_mobile_drawer_instagram": true,
+        "mobile_drawer_instagram_label": "Follow @yaomri",
+        "mobile_drawer_instagram_url": "",
         "mobile_drawer_width": 320,
         "mobile_drawer_background": "#ffffff",
         "mobile_drawer_text": "#111111"
@@ -64,6 +98,46 @@
     },
     "mega-menu": {
       "type": "mega-menu",
+      "blocks": {
+        "mega_parent_MDwgLM": {
+          "type": "mega_parent",
+          "settings": {
+            "parent_id": "1",
+            "admin_label": ""
+          }
+        },
+        "linklist_child_PtMW3R": {
+          "type": "linklist_child",
+          "settings": {
+            "parent_id": "1",
+            "heading": "Bikinis",
+            "heading_link": "",
+            "menu": "bikinis",
+            "open_new_window": false,
+            "font_size": 13,
+            "space_between": 10,
+            "column_width": 220
+          }
+        },
+        "linklist_child_GpC6qT": {
+          "type": "linklist_child",
+          "settings": {
+            "parent_id": "1",
+            "heading": "Swimsuits",
+            "heading_link": "",
+            "menu": "swimsuits",
+            "open_new_window": false,
+            "font_size": 13,
+            "space_between": 10,
+            "column_width": 220
+          }
+        }
+      },
+      "block_order": [
+        "mega_parent_MDwgLM",
+        "linklist_child_PtMW3R",
+        "linklist_child_GpC6qT"
+      ],
       "settings": {}
     }
   },
