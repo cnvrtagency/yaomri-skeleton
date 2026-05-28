@@ -3,7 +3,7 @@
 <script src="{{ 'mega-menu.js' | asset_url }}" defer></script>
 
 {%- liquid
-  assign raw_layout = section.settings.desktop_layout
+  assign raw_layout = settings.desktop_layout | default: section.settings.desktop_layout | default: 'logo_left_nav_center_actions_right'
   assign resolved_layout = raw_layout
 
   case raw_layout
@@ -35,7 +35,7 @@
 
   assign has_menu = false
   assign has_nav_blocks = false
-  assign menu_handle = section.settings.menu
+  assign menu_handle = settings.header_menu | default: section.settings.menu
   if menu_handle == blank
     assign menu_handle = 'main-menu'
   endif
@@ -63,19 +63,51 @@
     endif
   endif
 
-  assign wishlist_url = section.settings.wishlist_link | default: '/pages/wishlist'
-  assign region_label = section.settings.region_label | default: section.settings.country_label
-  assign region_flag = section.settings.region_flag
-  assign region_currency = section.settings.region_currency
+  assign wishlist_url = settings.wishlist_link | default: section.settings.wishlist_link | default: '/pages/wishlist'
+  assign region_label = settings.region_label | default: section.settings.region_label | default: section.settings.country_label
+  assign region_flag = settings.region_flag | default: section.settings.region_flag
+  assign region_currency = settings.region_currency | default: section.settings.region_currency
+  assign region_link = settings.region_link | default: section.settings.region_link
+  assign show_region_chip = settings.show_region_chip
+  assign show_account_icon = settings.show_account_icon
+  assign show_wishlist_icon = settings.show_wishlist_icon
+  assign show_cart_icon = settings.show_cart_icon
   assign desktop_logo = settings.logo
   assign mobile_logo = settings.mobile_logo | default: settings.logo
   assign desktop_logo_width = settings.desktop_logo_width | default: 180
   assign mobile_logo_width = settings.mobile_logo_width | default: 140
-  assign header_width_mode = section.settings.header_width_mode | default: 'site'
+  assign header_width_mode = settings.header_width_mode | default: section.settings.header_width_mode | default: 'site'
   unless header_width_mode == 'site' or header_width_mode == 'full' or header_width_mode == 'custom'
     assign header_width_mode = 'site'
   endunless
-  assign header_custom_width = section.settings.header_custom_width | default: 1500
+  assign header_custom_width = settings.header_custom_width | default: section.settings.header_custom_width | default: 1200
+  assign nav_collapse_width = settings.nav_collapse_width | default: section.settings.nav_collapse_width | default: '1100'
+  assign show_bottom_border = settings.show_bottom_border
+  assign enable_sticky = settings.enable_sticky
+  assign header_background = settings.header_background | default: section.settings.header_background | default: '#ffffff'
+  assign header_foreground = settings.header_foreground | default: section.settings.header_foreground | default: '#111111'
+  assign header_border = settings.header_border | default: section.settings.header_border | default: '#e8e8e8'
+  assign desktop_side_padding = settings.desktop_side_padding | default: section.settings.desktop_side_padding | default: 24
+  assign mobile_side_padding = settings.mobile_side_padding | default: section.settings.mobile_side_padding | default: 16
+  assign desktop_header_height = settings.desktop_header_height | default: section.settings.desktop_header_height | default: 82
+  assign mobile_header_height = settings.mobile_header_height | default: section.settings.mobile_header_height | default: 74
+  assign icon_size = settings.icon_size | default: section.settings.icon_size | default: 24
+  assign icon_button_size_desktop = settings.icon_button_size_desktop | default: section.settings.icon_button_size_desktop | default: 44
+  assign icon_button_size_mobile = settings.icon_button_size_mobile | default: section.settings.icon_button_size_mobile | default: 42
+  assign desktop_icon_gap = settings.desktop_icon_gap | default: section.settings.desktop_icon_gap | default: 12
+  assign mobile_icon_gap = settings.mobile_icon_gap | default: section.settings.mobile_icon_gap | default: 8
+  assign nav_text_size = settings.nav_text_size | default: section.settings.nav_text_size | default: 12
+  assign nav_gap = settings.nav_gap | default: section.settings.nav_gap | default: 24
+  assign cart_count_background = settings.cart_count_background | default: section.settings.cart_count_background | default: '#000000'
+  assign cart_count_text = settings.cart_count_text | default: section.settings.cart_count_text | default: '#ffffff'
+  assign cart_count_size = settings.cart_count_size | default: section.settings.cart_count_size | default: 18
+  assign cart_count_text_size = settings.cart_count_text_size | default: section.settings.cart_count_text_size | default: 10
+  assign cart_count_offset_x = settings.cart_count_offset_x | default: section.settings.cart_count_offset_x | default: 4
+  assign cart_count_offset_y = settings.cart_count_offset_y | default: section.settings.cart_count_offset_y | default: 5
+  assign region_chip_background = settings.region_chip_background | default: section.settings.region_chip_background | default: '#ffffff'
+  assign region_chip_border = settings.region_chip_border | default: section.settings.region_chip_border | default: '#e8e8e8'
+  assign region_chip_text = settings.region_chip_text | default: section.settings.region_chip_text | default: '#111111'
+  assign region_chip_height = settings.region_chip_height | default: section.settings.region_chip_height | default: 48
   assign mega_content_width_css = 'var(--page-width)'
   if header_width_mode == 'custom'
     assign mega_content_width_css = header_custom_width | append: 'px'
@@ -84,7 +116,7 @@
   endif
 -%}
 
-{%- if section.settings.enable_sticky -%}
+{%- if enable_sticky -%}
   {%- style -%}
     #shopify-section-{{ section.id }} {
       position: sticky;
@@ -95,38 +127,38 @@
 {%- endif -%}
 
 <section
-  class="yaomri-header full-width yaomri-header--layout-{{ resolved_layout }} yaomri-header--width-{{ header_width_mode }} yaomri-header--collapse-{{ section.settings.nav_collapse_width | default: '1100' }}{% unless section.settings.show_bottom_border %} yaomri-header--no-border{% endunless %}"
+  class="yaomri-header full-width yaomri-header--layout-{{ resolved_layout }} yaomri-header--width-{{ header_width_mode }} yaomri-header--collapse-{{ nav_collapse_width }}{% unless show_bottom_border %} yaomri-header--no-border{% endunless %}"
   data-header-width-mode="{{ header_width_mode }}"
   data-header-custom-width="{{ header_custom_width }}"
-  data-header-desktop-padding="{{ section.settings.desktop_side_padding }}"
+  data-header-desktop-padding="{{ desktop_side_padding }}"
   style="
-    --yh-bg: {{ section.settings.header_background }};
-    --yh-fg: {{ section.settings.header_foreground }};
-    --yh-border: {{ section.settings.header_border }};
+    --yh-bg: {{ header_background }};
+    --yh-fg: {{ header_foreground }};
+    --yh-border: {{ header_border }};
     --yh-custom-content-width: {{ header_custom_width }}px;
-    --yh-desktop-padding: {{ section.settings.desktop_side_padding }}px;
-    --yh-mobile-padding: {{ section.settings.mobile_side_padding }}px;
-    --yh-desktop-height: {{ section.settings.desktop_header_height }}px;
-    --yh-mobile-height: {{ section.settings.mobile_header_height }}px;
+    --yh-desktop-padding: {{ desktop_side_padding }}px;
+    --yh-mobile-padding: {{ mobile_side_padding }}px;
+    --yh-desktop-height: {{ desktop_header_height }}px;
+    --yh-mobile-height: {{ mobile_header_height }}px;
     --yh-desktop-logo-width: {{ desktop_logo_width }}px;
     --yh-mobile-logo-width: {{ mobile_logo_width }}px;
-    --yh-icon-size: {{ section.settings.icon_size }}px;
-    --yh-icon-button-desktop: {{ section.settings.icon_button_size_desktop }}px;
-    --yh-icon-button-mobile: {{ section.settings.icon_button_size_mobile }}px;
-    --yh-desktop-icon-gap: {{ section.settings.desktop_icon_gap }}px;
-    --yh-mobile-icon-gap: {{ section.settings.mobile_icon_gap }}px;
-    --yh-nav-size: {{ section.settings.nav_text_size }}px;
-    --yh-nav-gap: {{ section.settings.nav_gap }}px;
-    --yh-cart-count-bg: {{ section.settings.cart_count_background }};
-    --yh-cart-count-text: {{ section.settings.cart_count_text }};
-    --yh-cart-count-size: {{ section.settings.cart_count_size }}px;
-    --yh-cart-count-font-size: {{ section.settings.cart_count_text_size }}px;
-    --yh-cart-count-offset-x: {{ section.settings.cart_count_offset_x }}px;
-    --yh-cart-count-offset-y: {{ section.settings.cart_count_offset_y }}px;
-    --yh-region-bg: {{ section.settings.region_chip_background }};
-    --yh-region-border: {{ section.settings.region_chip_border }};
-    --yh-region-text: {{ section.settings.region_chip_text }};
-    --yh-region-height: {{ section.settings.region_chip_height }}px;
+    --yh-icon-size: {{ icon_size }}px;
+    --yh-icon-button-desktop: {{ icon_button_size_desktop }}px;
+    --yh-icon-button-mobile: {{ icon_button_size_mobile }}px;
+    --yh-desktop-icon-gap: {{ desktop_icon_gap }}px;
+    --yh-mobile-icon-gap: {{ mobile_icon_gap }}px;
+    --yh-nav-size: {{ nav_text_size }}px;
+    --yh-nav-gap: {{ nav_gap }}px;
+    --yh-cart-count-bg: {{ cart_count_background }};
+    --yh-cart-count-text: {{ cart_count_text }};
+    --yh-cart-count-size: {{ cart_count_size }}px;
+    --yh-cart-count-font-size: {{ cart_count_text_size }}px;
+    --yh-cart-count-offset-x: {{ cart_count_offset_x }}px;
+    --yh-cart-count-offset-y: {{ cart_count_offset_y }}px;
+    --yh-region-bg: {{ region_chip_background }};
+    --yh-region-border: {{ region_chip_border }};
+    --yh-region-text: {{ region_chip_text }};
+    --yh-region-height: {{ region_chip_height }}px;
     --ym-content-max-width: {{ mega_content_width_css }};
   "
   {{ section.shopify_attributes }}
@@ -179,32 +211,32 @@
         {% render 'icon-yaomri-search' %}
       </a>
 
-      {%- if section.settings.show_region_chip -%}
+      {%- if show_region_chip -%}
         {%- capture region_text -%}
           {%- if region_flag != blank -%}<span class="yaomri-header__region-flag">{{ region_flag }}</span>{%- endif -%}
           {%- if region_label != blank -%}<span>{{ region_label }}</span>{%- endif -%}
           {%- if region_currency != blank -%}<span>/ {{ region_currency }}</span>{%- endif -%}
         {%- endcapture -%}
-        {%- if section.settings.region_link != blank -%}
-          <a class="yaomri-header__region" href="{{ section.settings.region_link }}">{{ region_text }}</a>
+        {%- if region_link != blank -%}
+          <a class="yaomri-header__region" href="{{ region_link }}">{{ region_text }}</a>
         {%- else -%}
           <span class="yaomri-header__region">{{ region_text }}</span>
         {%- endif -%}
       {%- endif -%}
 
-      {%- if section.settings.show_account_icon and shop.customer_accounts_enabled -%}
+      {%- if show_account_icon and shop.customer_accounts_enabled -%}
         <a class="yaomri-header__icon" href="{{ routes.account_url }}" aria-label="Account">
           {% render 'icon-yaomri-account' %}
         </a>
       {%- endif -%}
 
-      {%- if section.settings.show_wishlist_icon -%}
+      {%- if show_wishlist_icon -%}
         <a class="yaomri-header__icon" href="{{ wishlist_url }}" aria-label="Wishlist">
           {% render 'icon-yaomri-heart' %}
         </a>
       {%- endif -%}
 
-      {%- if section.settings.show_cart_icon -%}
+      {%- if show_cart_icon -%}
         <a class="yaomri-header__icon yaomri-header__cart" href="{{ routes.cart_url }}" aria-label="Cart">
           {% render 'icon-yaomri-cart' %}
           {%- if cart.item_count > 0 -%}
@@ -264,13 +296,13 @@
         {% render 'icon-yaomri-search' %}
       </a>
 
-      {%- if section.settings.show_wishlist_icon -%}
+      {%- if show_wishlist_icon -%}
         <a class="yaomri-header__icon yaomri-header__mobile-optional" href="{{ wishlist_url }}" aria-label="Wishlist">
           {% render 'icon-yaomri-heart' %}
         </a>
       {%- endif -%}
 
-      {%- if section.settings.show_cart_icon -%}
+      {%- if show_cart_icon -%}
         <a class="yaomri-header__icon yaomri-header__cart" href="{{ routes.cart_url }}" aria-label="Cart">
           {% render 'icon-yaomri-cart' %}
           {%- if cart.item_count > 0 -%}
@@ -287,381 +319,8 @@
   "name": "Ya Omri header",
   "settings": [
     {
-      "type": "header",
-      "content": "Header layout"
-    },
-    {
-      "type": "select",
-      "id": "header_width_mode",
-      "label": "Header content width",
-      "default": "site",
-      "options": [
-        {
-          "value": "site",
-          "label": "Site width"
-        },
-        {
-          "value": "full",
-          "label": "Full width"
-        },
-        {
-          "value": "custom",
-          "label": "Custom width"
-        }
-      ]
-    },
-    {
-      "type": "range",
-      "id": "header_custom_width",
-      "label": "Custom header width",
-      "min": 1000,
-      "max": 1800,
-      "step": 20,
-      "unit": "px",
-      "default": 1500
-    },
-    {
-      "type": "select",
-      "id": "desktop_layout",
-      "label": "Desktop layout",
-      "default": "logo_left_nav_center_actions_right",
-      "options": [
-        {
-          "value": "logo_left_nav_center_actions_right",
-          "label": "Logo left, nav centre, actions right"
-        },
-        {
-          "value": "nav_left_logo_center_actions_right",
-          "label": "Nav left, logo centre, actions right"
-        },
-        {
-          "value": "logo_center_icons_right_nav_below",
-          "label": "Logo centre, icons right, nav below"
-        }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "nav_collapse_width",
-      "label": "Desktop nav collapse width",
-      "default": "1100",
-      "options": [
-        {
-          "value": "990",
-          "label": "990px"
-        },
-        {
-          "value": "1100",
-          "label": "1100px"
-        },
-        {
-          "value": "1200",
-          "label": "1200px"
-        },
-        {
-          "value": "1300",
-          "label": "1300px"
-        }
-      ]
-    },
-    {
-      "type": "header",
-      "content": "Desktop navigation"
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Desktop fallback menu",
-      "info": "Used when no Header navigation blocks are configured."
-    },
-    {
-      "type": "range",
-      "id": "nav_text_size",
-      "label": "Nav text size",
-      "min": 10,
-      "max": 18,
-      "step": 1,
-      "unit": "px",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "nav_gap",
-      "label": "Nav gap",
-      "min": 0,
-      "max": 48,
-      "step": 2,
-      "unit": "px",
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "desktop_side_padding",
-      "label": "Desktop side padding",
-      "min": 0,
-      "max": 80,
-      "step": 2,
-      "unit": "px",
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "mobile_side_padding",
-      "label": "Mobile side padding",
-      "min": 8,
-      "max": 40,
-      "step": 2,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "desktop_header_height",
-      "label": "Desktop header height",
-      "min": 56,
-      "max": 130,
-      "step": 2,
-      "unit": "px",
-      "default": 82
-    },
-    {
-      "type": "range",
-      "id": "mobile_header_height",
-      "label": "Mobile header height",
-      "min": 52,
-      "max": 110,
-      "step": 2,
-      "unit": "px",
-      "default": 74
-    },
-    {
-      "type": "color",
-      "id": "header_background",
-      "label": "Header background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "header_foreground",
-      "label": "Header text/icon colour",
-      "default": "#111111"
-    },
-    {
-      "type": "color",
-      "id": "header_border",
-      "label": "Header border colour",
-      "default": "#e8e8e8"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_bottom_border",
-      "label": "Show bottom border",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_sticky",
-      "label": "Sticky header",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Icons"
-    },
-    {
-      "type": "range",
-      "id": "icon_size",
-      "label": "Icon size",
-      "min": 18,
-      "max": 34,
-      "step": 1,
-      "unit": "px",
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "icon_button_size_desktop",
-      "label": "Desktop icon button size",
-      "min": 36,
-      "max": 64,
-      "step": 2,
-      "unit": "px",
-      "default": 44
-    },
-    {
-      "type": "range",
-      "id": "icon_button_size_mobile",
-      "label": "Mobile icon button size",
-      "min": 34,
-      "max": 56,
-      "step": 2,
-      "unit": "px",
-      "default": 42
-    },
-    {
-      "type": "range",
-      "id": "desktop_icon_gap",
-      "label": "Desktop icon gap",
-      "min": 0,
-      "max": 32,
-      "step": 1,
-      "unit": "px",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "mobile_icon_gap",
-      "label": "Mobile icon gap",
-      "min": 0,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 8
-    },
-    {
-      "type": "checkbox",
-      "id": "show_account_icon",
-      "label": "Show account icon",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_cart_icon",
-      "label": "Show cart icon",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Wishlist"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_wishlist_icon",
-      "label": "Show wishlist icon",
-      "default": true
-    },
-    {
-      "type": "url",
-      "id": "wishlist_link",
-      "label": "Wishlist link"
-    },
-    {
-      "type": "header",
-      "content": "Cart count"
-    },
-    {
-      "type": "color",
-      "id": "cart_count_background",
-      "label": "Cart count background",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "cart_count_text",
-      "label": "Cart count text",
-      "default": "#ffffff"
-    },
-    {
-      "type": "range",
-      "id": "cart_count_size",
-      "label": "Cart count size",
-      "min": 14,
-      "max": 26,
-      "step": 1,
-      "unit": "px",
-      "default": 18
-    },
-    {
-      "type": "range",
-      "id": "cart_count_text_size",
-      "label": "Cart count text size",
-      "min": 9,
-      "max": 14,
-      "step": 1,
-      "unit": "px",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "cart_count_offset_x",
-      "label": "Cart count horizontal offset",
-      "min": -12,
-      "max": 12,
-      "step": 1,
-      "unit": "px",
-      "default": 4
-    },
-    {
-      "type": "range",
-      "id": "cart_count_offset_y",
-      "label": "Cart count vertical offset",
-      "min": -12,
-      "max": 12,
-      "step": 1,
-      "unit": "px",
-      "default": -4
-    },
-    {
-      "type": "header",
-      "content": "Region chip"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_region_chip",
-      "label": "Show region chip",
-      "info": "Display only. Does not change market or currency.",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "region_flag",
-      "label": "Region flag",
-      "default": "🇦🇪"
-    },
-    {
-      "type": "text",
-      "id": "region_label",
-      "label": "Region short label",
-      "default": "AE"
-    },
-    {
-      "type": "text",
-      "id": "region_currency",
-      "label": "Region currency text",
-      "default": "AED"
-    },
-    {
-      "type": "url",
-      "id": "region_link",
-      "label": "Region link"
-    },
-    {
-      "type": "color",
-      "id": "region_chip_background",
-      "label": "Region chip background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "region_chip_border",
-      "label": "Region chip border",
-      "default": "#e8e8e8"
-    },
-    {
-      "type": "color",
-      "id": "region_chip_text",
-      "label": "Region chip text colour",
-      "default": "#111111"
-    },
-    {
-      "type": "range",
-      "id": "region_chip_height",
-      "label": "Region chip height",
-      "min": 34,
-      "max": 64,
-      "step": 2,
-      "unit": "px",
-      "default": 48
+      "type": "paragraph",
+      "content": "Header style settings are managed in Theme settings > Header."
     },
     {
       "type": "paragraph",
@@ -852,6 +511,7 @@
           "type": "range",
           "id": "custom_width",
           "label": "Custom width",
+          "info": "Only applies when Submenu width is set to Custom.",
           "min": 640,
           "max": 1800,
           "step": 20,
