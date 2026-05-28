@@ -129,7 +129,7 @@
 .yaomri-mega-panel {
   position: relative;
   z-index: 1;
-  width: 100vw;
+  width: 100%;
   margin: 0;
   border-top: 1px solid #e8e8e8;
   border-bottom: 1px solid #e8e8e8;
