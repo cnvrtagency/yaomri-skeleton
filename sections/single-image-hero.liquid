@@ -12,7 +12,7 @@
   assign mobile_vertical = section.settings.mobile_content_vertical | default: 'center'
   assign mobile_text_alignment = section.settings.mobile_text_alignment | default: 'center'
   assign content_width_mode = section.settings.content_width | default: 'site'
-  assign custom_content_width = section.settings.custom_content_width | default: 1200
+  assign custom_content_width = section.settings.custom_content_width | default: 720
   assign overlay_color = section.settings.overlay_color | default: '#000000'
   assign overlay_opacity = section.settings.overlay_opacity | default: 20 | divided_by: 100.0
   assign border_color = section.settings.border_color | default: '#e8e8e8'
@@ -169,12 +169,55 @@
                 {%- if block.settings.text != blank -%}
                   {%- liquid
                     assign text_style = ''
+                    if block.settings.font_size_desktop != blank
+                      capture text_style
+                        echo text_style
+                        echo '--ysh-eyebrow-font-size-desktop: '
+                        echo block.settings.font_size_desktop
+                        echo 'px;'
+                      endcapture
+                    endif
+                    if block.settings.font_size_mobile != blank
+                      capture text_style
+                        echo text_style
+                        echo '--ysh-eyebrow-font-size-mobile: '
+                        echo block.settings.font_size_mobile
+                        echo 'px;'
+                      endcapture
+                    endif
+                    if block.settings.font_weight != blank
+                      capture text_style
+                        echo text_style
+                        echo '--ysh-eyebrow-font-weight: '
+                        echo block.settings.font_weight
+                        echo ';'
+                      endcapture
+                    endif
+                    if block.settings.letter_spacing != blank
+                      capture text_style
+                        echo text_style
+                        echo '--ysh-eyebrow-letter-spacing: '
+                        echo block.settings.letter_spacing
+                        echo 'px;'
+                      endcapture
+                    endif
                     if block.settings.color != blank
                       capture text_style
                         echo text_style
                         echo '--ysh-block-text-color: '
                         echo block.settings.color
                         echo ';'
+                      endcapture
+                    endif
+                    if block.settings.uppercase == true
+                      capture text_style
+                        echo text_style
+                        echo '--ysh-eyebrow-uppercase: uppercase;'
+                      endcapture
+                    else
+                      capture text_style
+                        echo text_style
+                        echo '--ysh-eyebrow-uppercase: none;'
                       endcapture
                     endif
                     capture text_style
@@ -186,7 +229,7 @@
                   -%}
                   <div
                     class="yaomri-single-hero__block yaomri-single-hero__eyebrow-block"
-                    style="{{ text_style }} --ysh-eyebrow-letter-spacing: {{ block.settings.letter_spacing }};"
+                    style="{{ text_style }}"
                     {{ block.shopify_attributes }}
                   >
                     <p class="yaomri-single-hero__eyebrow">{{ block.settings.text }}</p>
@@ -197,6 +240,54 @@
                 {%- if block.settings.heading != blank -%}
                   {%- liquid
                     assign heading_style = ''
+                    if block.settings.font_size_desktop != blank
+                      capture heading_style
+                        echo heading_style
+                        echo '--ysh-heading-font-size-desktop: '
+                        echo block.settings.font_size_desktop
+                        echo 'px;'
+                      endcapture
+                    endif
+                    if block.settings.font_size_mobile != blank
+                      capture heading_style
+                        echo heading_style
+                        echo '--ysh-heading-font-size-mobile: '
+                        echo block.settings.font_size_mobile
+                        echo 'px;'
+                      endcapture
+                    endif
+                    if block.settings.font_weight != blank
+                      capture heading_style
+                        echo heading_style
+                        echo '--ysh-heading-font-weight: '
+                        echo block.settings.font_weight
+                        echo ';'
+                      endcapture
+                    endif
+                    if block.settings.line_height_desktop != blank
+                      capture heading_style
+                        echo heading_style
+                        echo '--ysh-heading-line-height-desktop: '
+                        echo block.settings.line_height_desktop
+                        echo '%;'
+                      endcapture
+                    endif
+                    if block.settings.line_height_mobile != blank
+                      capture heading_style
+                        echo heading_style
+                        echo '--ysh-heading-line-height-mobile: '
+                        echo block.settings.line_height_mobile
+                        echo '%;'
+                      endcapture
+                    endif
+                    if block.settings.letter_spacing != blank
+                      capture heading_style
+                        echo heading_style
+                        echo '--ysh-heading-letter-spacing: '
+                        echo block.settings.letter_spacing
+                        echo 'px;'
+                      endcapture
+                    endif
                     if block.settings.color != blank
                       capture heading_style
                         echo heading_style
@@ -221,7 +312,7 @@
                     endcapture
                   -%}
                   <div
-                    class="yaomri-single-hero__block yaomri-single-hero__heading-block yaomri-single-hero__heading-block--{{ block.settings.size }}"
+                    class="yaomri-single-hero__block yaomri-single-hero__heading-block"
                     style="{{ heading_style }}"
                     {{ block.shopify_attributes }}
                   >
@@ -237,6 +328,46 @@
                 {%- if block.settings.text != blank -%}
                   {%- liquid
                     assign paragraph_style = ''
+                    if block.settings.font_size_desktop != blank
+                      capture paragraph_style
+                        echo paragraph_style
+                        echo '--ysh-paragraph-font-size-desktop: '
+                        echo block.settings.font_size_desktop
+                        echo 'px;'
+                      endcapture
+                    endif
+                    if block.settings.font_size_mobile != blank
+                      capture paragraph_style
+                        echo paragraph_style
+                        echo '--ysh-paragraph-font-size-mobile: '
+                        echo block.settings.font_size_mobile
+                        echo 'px;'
+                      endcapture
+                    endif
+                    if block.settings.font_weight != blank
+                      capture paragraph_style
+                        echo paragraph_style
+                        echo '--ysh-paragraph-font-weight: '
+                        echo block.settings.font_weight
+                        echo ';'
+                      endcapture
+                    endif
+                    if block.settings.line_height_desktop != blank
+                      capture paragraph_style
+                        echo paragraph_style
+                        echo '--ysh-paragraph-line-height-desktop: '
+                        echo block.settings.line_height_desktop
+                        echo '%;'
+                      endcapture
+                    endif
+                    if block.settings.line_height_mobile != blank
+                      capture paragraph_style
+                        echo paragraph_style
+                        echo '--ysh-paragraph-line-height-mobile: '
+                        echo block.settings.line_height_mobile
+                        echo '%;'
+                      endcapture
+                    endif
                     if block.settings.color != blank
                       capture paragraph_style
                         echo paragraph_style
@@ -261,7 +392,7 @@
                     endcapture
                   -%}
                   <div
-                    class="yaomri-single-hero__block yaomri-single-hero__paragraph-block yaomri-single-hero__paragraph-block--{{ block.settings.size }}"
+                    class="yaomri-single-hero__block yaomri-single-hero__paragraph-block"
                     style="{{ paragraph_style }}"
                     {{ block.shopify_attributes }}
                   >
@@ -576,7 +707,7 @@
       "max": 1800,
       "step": 20,
       "unit": "px",
-      "default": 1200,
+      "default": 720,
       "info": "Only applies when Content width is Custom width."
     },
     {
@@ -856,6 +987,54 @@
           "default": "NEW SEASON"
         },
         {
+          "type": "range",
+          "id": "font_size_desktop",
+          "label": "Font size desktop",
+          "min": 10,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "font_size_mobile",
+          "label": "Font size mobile",
+          "min": 10,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 11
+        },
+        {
+          "type": "select",
+          "id": "font_weight",
+          "label": "Font weight",
+          "default": "700",
+          "options": [
+            {
+              "value": "400",
+              "label": "Regular"
+            },
+            {
+              "value": "500",
+              "label": "Medium"
+            },
+            {
+              "value": "600",
+              "label": "Semibold"
+            },
+            {
+              "value": "700",
+              "label": "Bold"
+            },
+            {
+              "value": "800",
+              "label": "Extra bold"
+            }
+          ]
+        },
+        {
           "type": "color",
           "id": "color",
           "label": "Colour override"
@@ -867,8 +1046,15 @@
           "min": 0,
           "max": 20,
           "step": 1,
-          "unit": "%",
-          "default": 8
+          "unit": "px",
+          "default": 1,
+          "info": "Tip: 1–2px is usually enough."
+        },
+        {
+          "type": "checkbox",
+          "id": "uppercase",
+          "label": "Uppercase",
+          "default": true
         },
         {
           "type": "range",
@@ -909,28 +1095,84 @@
           ]
         },
         {
+          "type": "range",
+          "id": "font_size_desktop",
+          "label": "Font size desktop",
+          "min": 24,
+          "max": 160,
+          "step": 2,
+          "unit": "px",
+          "default": 72
+        },
+        {
+          "type": "range",
+          "id": "font_size_mobile",
+          "label": "Font size mobile",
+          "min": 24,
+          "max": 120,
+          "step": 2,
+          "unit": "px",
+          "default": 42
+        },
+        {
           "type": "select",
-          "id": "size",
-          "label": "Size",
-          "default": "large",
+          "id": "font_weight",
+          "label": "Font weight",
+          "default": "800",
           "options": [
             {
-              "value": "small",
-              "label": "Small"
+              "value": "400",
+              "label": "Regular"
             },
             {
-              "value": "medium",
+              "value": "500",
               "label": "Medium"
             },
             {
-              "value": "large",
-              "label": "Large"
+              "value": "600",
+              "label": "Semibold"
             },
             {
-              "value": "extra-large",
-              "label": "Extra large"
+              "value": "700",
+              "label": "Bold"
+            },
+            {
+              "value": "800",
+              "label": "Extra bold"
             }
           ]
+        },
+        {
+          "type": "range",
+          "id": "line_height_desktop",
+          "label": "Line height desktop",
+          "min": 90,
+          "max": 180,
+          "step": 5,
+          "unit": "%",
+          "default": 105,
+          "info": "Line-height in percent."
+        },
+        {
+          "type": "range",
+          "id": "line_height_mobile",
+          "label": "Line height mobile",
+          "min": 90,
+          "max": 180,
+          "step": 5,
+          "unit": "%",
+          "default": 115,
+          "info": "Line-height in percent."
+        },
+        {
+          "type": "range",
+          "id": "letter_spacing",
+          "label": "Letter spacing",
+          "min": 0,
+          "max": 8,
+          "step": 1,
+          "unit": "px",
+          "default": 0
         },
         {
           "type": "color",
@@ -971,24 +1213,70 @@
           "default": "<p>Elegant silhouettes, refined details and statement swimwear designed for poolside days, beach clubs and golden-hour getaways.</p>"
         },
         {
+          "type": "range",
+          "id": "font_size_desktop",
+          "label": "Font size desktop",
+          "min": 12,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 18
+        },
+        {
+          "type": "range",
+          "id": "font_size_mobile",
+          "label": "Font size mobile",
+          "min": 12,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
           "type": "select",
-          "id": "size",
-          "label": "Size",
-          "default": "medium",
+          "id": "font_weight",
+          "label": "Font weight",
+          "default": "400",
           "options": [
             {
-              "value": "small",
-              "label": "Small"
+              "value": "400",
+              "label": "Regular"
             },
             {
-              "value": "medium",
+              "value": "500",
               "label": "Medium"
             },
             {
-              "value": "large",
-              "label": "Large"
+              "value": "600",
+              "label": "Semibold"
+            },
+            {
+              "value": "700",
+              "label": "Bold"
             }
           ]
+        },
+        {
+          "type": "range",
+          "id": "line_height_desktop",
+          "label": "Line height desktop",
+          "min": 120,
+          "max": 220,
+          "step": 5,
+          "unit": "%",
+          "default": 150,
+          "info": "Line-height in percent."
+        },
+        {
+          "type": "range",
+          "id": "line_height_mobile",
+          "label": "Line height mobile",
+          "min": 120,
+          "max": 220,
+          "step": 5,
+          "unit": "%",
+          "default": 160,
+          "info": "Line-height in percent."
         },
         {
           "type": "color",
@@ -1294,7 +1582,12 @@
           "type": "heading",
           "settings": {
             "heading": "Swimwear made for sun-drenched escapes",
-            "size": "large",
+            "font_size_desktop": 72,
+            "font_size_mobile": 42,
+            "font_weight": "800",
+            "line_height_desktop": 105,
+            "line_height_mobile": 115,
+            "letter_spacing": 0,
             "heading_tag": "h1",
             "margin_bottom": 0
           }
@@ -1303,7 +1596,11 @@
           "type": "paragraph",
           "settings": {
             "text": "<p>Elegant silhouettes, refined details and statement swimwear designed for poolside days, beach clubs and golden-hour getaways.</p>",
-            "size": "medium",
+            "font_size_desktop": 18,
+            "font_size_mobile": 16,
+            "font_weight": "400",
+            "line_height_desktop": 150,
+            "line_height_mobile": 160,
             "max_width": 520,
             "margin_bottom": 0
           }

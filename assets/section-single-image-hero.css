@@ -111,52 +111,31 @@
 
 .yaomri-single-hero__eyebrow {
   margin: 0;
-  font-size: 0.72rem;
+  font-size: var(--ysh-eyebrow-font-size-desktop, 0.72rem);
   font-style: italic;
-  font-weight: 800;
-  letter-spacing: calc(var(--ysh-eyebrow-letter-spacing, 8) * 0.01em);
+  font-weight: var(--ysh-eyebrow-font-weight, 800);
+  letter-spacing: var(--ysh-eyebrow-letter-spacing, 0);
   line-height: 1;
-  text-transform: uppercase;
+  text-transform: var(--ysh-eyebrow-uppercase, none);
 }
 
 .yaomri-single-hero__heading {
-  max-width: 11ch;
   margin: 0;
+  font-size: var(--ysh-heading-font-size-desktop, 4.5rem);
   font-style: italic;
-  font-weight: 800;
-  letter-spacing: 0;
-  line-height: 0.88;
-  text-transform: uppercase;
-}
-
-.yaomri-single-hero__heading-block--small .yaomri-single-hero__heading {
-  font-size: clamp(1.9rem, 4vw, 3.2rem);
-}
-
-.yaomri-single-hero__heading-block--medium .yaomri-single-hero__heading {
-  font-size: clamp(2.2rem, 5vw, 4.5rem);
-}
-
-.yaomri-single-hero__heading-block--large .yaomri-single-hero__heading {
-  font-size: clamp(2.4rem, 7vw, 6.5rem);
-}
-
-.yaomri-single-hero__heading-block--extra-large .yaomri-single-hero__heading {
-  font-size: clamp(3rem, 8.5vw, 8rem);
+  font-weight: var(--ysh-heading-font-weight, 800);
+  letter-spacing: var(--ysh-heading-letter-spacing, 0);
+  line-height: var(--ysh-heading-line-height-desktop, 1.05);
+  max-width: var(--ysh-block-max-width, 100%);
+  text-wrap: balance;
 }
 
 .yaomri-single-hero__text {
-  max-width: 34rem;
-  font-size: clamp(0.9rem, 1.4vw, 1.08rem);
-  line-height: 1.45;
-}
-
-.yaomri-single-hero__paragraph-block--small .yaomri-single-hero__text {
-  font-size: 0.86rem;
-}
-
-.yaomri-single-hero__paragraph-block--large .yaomri-single-hero__text {
-  font-size: clamp(1rem, 1.7vw, 1.24rem);
+  max-width: var(--ysh-block-max-width, 100%);
+  font-size: var(--ysh-paragraph-font-size-desktop, 1.125rem);
+  font-weight: var(--ysh-paragraph-font-weight, 400);
+  line-height: var(--ysh-paragraph-line-height-desktop, 1.5);
+  text-wrap: pretty;
 }
 
 .yaomri-single-hero__text > * {
@@ -356,18 +335,18 @@
     width: 100%;
   }
 
+  .yaomri-single-hero__eyebrow {
+    font-size: var(--ysh-eyebrow-font-size-mobile, 0.68rem);
+  }
+
   .yaomri-single-hero__heading {
-    max-width: 11ch;
+    font-size: var(--ysh-heading-font-size-mobile, 3rem);
+    line-height: var(--ysh-heading-line-height-mobile, 1.15);
   }
 
-  .yaomri-single-hero__heading-block--small .yaomri-single-hero__heading {
-    font-size: clamp(1.8rem, 10vw, 3rem);
-  }
-
-  .yaomri-single-hero__heading-block--medium .yaomri-single-hero__heading,
-  .yaomri-single-hero__heading-block--large .yaomri-single-hero__heading,
-  .yaomri-single-hero__heading-block--extra-large .yaomri-single-hero__heading {
-    font-size: clamp(2.4rem, 15vw, 4.5rem);
+  .yaomri-single-hero__text {
+    font-size: var(--ysh-paragraph-font-size-mobile, 1rem);
+    line-height: var(--ysh-paragraph-line-height-mobile, 1.6);
   }
 
   .yaomri-single-hero__pin {

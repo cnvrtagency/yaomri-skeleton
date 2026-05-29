@@ -25,7 +25,7 @@
         "mobile_content_vertical": "center",
         "mobile_text_alignment": "center",
         "content_width": "site",
-        "custom_content_width": 1200,
+        "custom_content_width": 720,
         "content_gap": 12,
         "content_padding": 0,
         "overlay_color": "#000000",
@@ -61,7 +61,6 @@
           "settings": {
             "heading": "Swimwear made for sun-drenched escapes",
             "heading_tag": "h1",
-            "size": "large",
             "max_width": 0,
             "margin_bottom": 0
           }
@@ -70,7 +69,6 @@
           "type": "paragraph",
           "settings": {
             "text": "<p>Elegant silhouettes, refined details and statement swimwear designed for poolside days, beach clubs and golden-hour getaways.</p>",
-            "size": "medium",
             "max_width": 520,
             "margin_bottom": 0
           }
