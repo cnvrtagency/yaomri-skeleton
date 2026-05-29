@@ -138,6 +138,7 @@ Current implementation:
 - `sections/header-group.json` has no stale removed header settings from the previous header schema.
 - Header code still defensively falls back to Layout A if old saved data contains an unsupported layout value.
 - Manual region chip fields were removed. The header now uses Shopify localization for the country selector and renders it only when multiple countries are available.
+- Country selector flags were removed from the header. The selector uses uppercase text in the header button and normal-case native options.
 
 Judgement:
 - Header ownership is now clear enough for launch: global Theme settings own header style, and Header section blocks own desktop navigation items.

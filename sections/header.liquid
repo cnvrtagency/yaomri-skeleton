@@ -24,7 +24,6 @@
   unless country_selector_style == 'compact' or country_selector_style == 'full'
     assign country_selector_style = 'full'
   endunless
-  assign country_selector_show_flag = settings.country_selector_show_flag
   assign country_selector_show_currency = settings.country_selector_show_currency
   capture country_selector_class
     echo 'yaomri-header__country-selector yaomri-header__country-selector--'
@@ -82,21 +81,11 @@
     assign country_selector_text = 'currentColor'
   endif
   assign country_selector_height = settings.country_selector_height | default: 48
-  capture current_country_flag
-    if country_selector_show_flag and localization.country != blank
-      render 'country-flag', iso_code: localization.country.iso_code
-    endif
-  endcapture
-  assign current_country_flag = current_country_flag | strip
   assign current_country_name = localization.country.name
   if current_country_name == blank
     assign current_country_name = localization.country.iso_code
   endif
   capture current_country_label
-    if current_country_flag != blank
-      echo current_country_flag
-      echo ' '
-    endif
     if country_selector_style == 'full'
       echo current_country_name
     else
@@ -223,10 +212,6 @@
 
   {%- capture actions_markup -%}
     <div class="yaomri-header__actions">
-      <a class="yaomri-header__icon" href="{{ routes.search_url }}" aria-label="Search">
-        {% render 'icon-yaomri-search' %}
-      </a>
-
       {%- if show_country_selector and localization.available_countries.size > 1 -%}
         {%- form 'localization', id: 'HeaderCountryForm', class: country_selector_class -%}
           <span class="yaomri-header__country-current" aria-hidden="true">
@@ -240,15 +225,8 @@
             onchange="this.form.submit()"
           >
             {%- for country in localization.available_countries -%}
-              {%- capture country_flag -%}
-                {%- if country_selector_show_flag -%}
-                  {%- render 'country-flag', iso_code: country.iso_code -%}
-                {%- endif -%}
-              {%- endcapture -%}
-              {%- assign country_flag = country_flag | strip -%}
               {%- assign option_country_name = country.name | default: country.iso_code -%}
               {%- capture country_label -%}
-                {%- if country_flag != blank -%}{{ country_flag }} {% endif -%}
                 {%- if country_selector_style == 'full' -%}
                   {{- option_country_name -}}
                 {%- else -%}
@@ -266,6 +244,10 @@
           </select>
         {%- endform -%}
       {%- endif -%}
+
+      <a class="yaomri-header__icon" href="{{ routes.search_url }}" aria-label="Search">
+        {% render 'icon-yaomri-search' %}
+      </a>
 
       {%- if show_account_icon and shop.customer_accounts_enabled -%}
         <a class="yaomri-header__icon" href="{{ routes.account_url }}" aria-label="Account">

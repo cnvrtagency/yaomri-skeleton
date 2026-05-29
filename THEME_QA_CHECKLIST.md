@@ -63,12 +63,15 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Cart count style changes bubble background, text, size, and offset.
 - Country selector renders only when more than one Shopify country is available.
 - Country selector submits `country_code` through a Shopify localization form.
-- Country selector visibly shows flag plus country code/name, not a visible "Country/region" label.
-- AE displays as `🇦🇪 AE` in compact mode or `🇦🇪 United Arab Emirates` in full mode.
-- Full mode is the default and country names render naturally, for example `Canada`, not `CANADA`.
-- Compact mode still renders stable flag plus ISO code, for example `🇨🇦 CA`.
+- Country selector visibly shows country code/name, not a visible "Country/region" label.
+- No flags render in the header country selector.
+- AE displays as `AE` in compact mode or `UNITED ARAB EMIRATES` in full mode.
+- Full mode is the default and the styled header button is uppercase.
+- Native dropdown option labels render in normal case, for example `Canada`, not `CANADA`.
+- Compact mode renders stable ISO code, for example `CA`.
 - Selector country list comes from Shopify `localization.available_countries`; the theme does not hardcode or limit the list.
 - Country selector style, height, and optional colours do not break header actions.
+- Desktop action order is country selector, search, account, wishlist, cart.
 - Manual region/shipping labels are not present in Header settings.
 - Account icon respects Shopify customer-account availability.
 - Wishlist icon uses the configured or fallback URL.
