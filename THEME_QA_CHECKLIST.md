@@ -107,6 +107,26 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Desktop fallback menu appears only when no Header navigation blocks exist.
 - The merchant workflow is documented: Header blocks own curated desktop nav.
 
+## Announcement Bar
+
+- Announcement Bar section appears above Header in `sections/header-group.json`.
+- Static mode renders the first non-empty announcement item.
+- Carousel mode rotates announcements one at a time.
+- Carousel autoplay pauses on hover and focus.
+- Carousel arrows appear only when enabled.
+- Carousel dots appear only when enabled.
+- Marquee mode scrolls continuously without visible gaps.
+- Marquee pause on hover works when enabled.
+- Marquee respects `prefers-reduced-motion`.
+- Announcement links are keyboard accessible.
+- Announcement item with no link renders plain text.
+- Empty announcement blocks are not rendered.
+- Hide on mobile works per block.
+- Hide on desktop works per block.
+- Desktop/mobile typography settings apply.
+- Announcement bar works with Full/Site/Custom bar width modes.
+- Announcement bar remains in normal flow above transparent header and does not break hero overlay behavior.
+
 ## Mega Menu
 
 - Panel width `400px` visibly changes the white mega panel box.

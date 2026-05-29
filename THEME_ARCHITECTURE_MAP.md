@@ -100,6 +100,33 @@ Judgement:
 
 ## Header System
 
+### Announcement Bar Section
+
+Owned by `sections/announcement-bar.liquid`.
+
+Owns:
+- Announcement strip content above the header.
+- Display mode: static, carousel, marquee.
+- Bar-local width, colours, border, spacing, and typography.
+- Announcement item blocks (text, link, visibility toggles).
+
+Must not own:
+- Header layout, icons, logo, or country selector.
+- Mega menu or mobile drawer behavior.
+- Global typography tokens.
+
+Must not be duplicated elsewhere:
+- Announcement mode controls.
+- Announcement item content blocks.
+
+Current implementation:
+- The section is now independent and inserted above Header in `sections/header-group.json`.
+- It remains in normal flow above the header.
+- Transparent header behavior is preserved: the header still overlays hero while the announcement bar remains a normal strip.
+
+Judgement:
+- This ownership is launch-correct. Do not bury announcement settings inside Header.
+
 ### Theme Settings > Header
 
 Owned by `config/settings_schema.json` under `Header`.
