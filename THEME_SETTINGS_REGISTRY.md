@@ -215,6 +215,44 @@ Status values:
 
 ## Single Image Hero Blocks
 
+### Single Image Hero Phase 1 Typography (Implemented)
+
+| Old ID | New ID | Block | Notes |
+|---|---|---|---|
+| `font_size_desktop` | `eyebrow_size_desktop` | Eyebrow | Backward-compatible Liquid fallback kept. |
+| `font_size_mobile` | `eyebrow_size_mobile` | Eyebrow | Backward-compatible Liquid fallback kept. |
+| `font_weight` | `eyebrow_weight` | Eyebrow | Backward-compatible Liquid fallback kept. |
+| `letter_spacing` | `eyebrow_letter_spacing` | Eyebrow | Backward-compatible Liquid fallback kept. |
+| `uppercase` | `eyebrow_text_transform` | Eyebrow | Expanded to None/Uppercase/Lowercase/Capitalize. |
+| `color` | `eyebrow_colour` | Eyebrow | Backward-compatible Liquid fallback kept. |
+| `margin_bottom` | `eyebrow_margin_bottom` | Eyebrow | Backward-compatible Liquid fallback kept. |
+| n/a | `eyebrow_line_height` | Eyebrow | New control. |
+| n/a | `eyebrow_max_width` | Eyebrow | New control. |
+| `heading` | `heading_text` | Heading | Backward-compatible Liquid fallback kept. |
+| `font_size_desktop` | `heading_size_desktop` | Heading | Backward-compatible Liquid fallback kept. |
+| `font_size_mobile` | `heading_size_mobile` | Heading | Backward-compatible Liquid fallback kept. |
+| `font_weight` | `heading_weight` | Heading | Backward-compatible Liquid fallback kept. |
+| `line_height_desktop` | `heading_line_height_desktop` | Heading | Backward-compatible Liquid fallback kept. |
+| `line_height_mobile` | `heading_line_height_mobile` | Heading | Backward-compatible Liquid fallback kept. |
+| `letter_spacing` | `heading_letter_spacing` | Heading | Backward-compatible Liquid fallback kept. |
+| `max_width` | `heading_max_width` | Heading | Backward-compatible Liquid fallback kept. |
+| `color` | `heading_colour` | Heading | Backward-compatible Liquid fallback kept. |
+| `margin_bottom` | `heading_margin_bottom` | Heading | Backward-compatible Liquid fallback kept. |
+| n/a | `heading_text_transform` | Heading | New control. |
+| `font_size_desktop` | `text_size_desktop` | Paragraph | Backward-compatible Liquid fallback kept. |
+| `font_size_mobile` | `text_size_mobile` | Paragraph | Backward-compatible Liquid fallback kept. |
+| `font_weight` | `text_weight` | Paragraph | Backward-compatible Liquid fallback kept. |
+| `line_height_desktop` | `text_line_height_desktop` | Paragraph | Backward-compatible Liquid fallback kept. |
+| `line_height_mobile` | `text_line_height_mobile` | Paragraph | Backward-compatible Liquid fallback kept. |
+| `max_width` | `text_max_width` | Paragraph | Backward-compatible Liquid fallback kept. |
+| `color` | `text_colour` | Paragraph | Backward-compatible Liquid fallback kept. |
+| `margin_bottom` | `text_margin_bottom` | Paragraph | Backward-compatible Liquid fallback kept. |
+| n/a | `text_letter_spacing` | Paragraph | New control. |
+| n/a | `button_size` | Button + Two buttons | New typography control. |
+| n/a | `button_weight` | Button + Two buttons | New typography control. |
+| n/a | `button_letter_spacing` | Button + Two buttons | New typography control (`0.01em` units). |
+| n/a | `button_text_transform` | Button + Two buttons | New typography control. |
+
 | Setting ID | Current label | Location | Type | Default | Owner | What it controls | Where it is used | CSS variable | Status | Suggested label | Suggested help text | Notes/conflicts |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | text | Text | Single Image Hero block: Eyebrow | text | NEW SEASON | Single Image Hero content block | Eyebrow text | `sections/single-image-hero.liquid` | none | keep | Text | Leave blank to hide this block. | Replaces generic Text block type selector. |

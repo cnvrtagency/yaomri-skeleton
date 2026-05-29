@@ -168,62 +168,91 @@
               {%- when 'eyebrow' -%}
                 {%- if block.settings.text != blank -%}
                   {%- liquid
+                    assign eyebrow_size_desktop = block.settings.eyebrow_size_desktop | default: block.settings.font_size_desktop | default: 12
+                    assign eyebrow_size_mobile = block.settings.eyebrow_size_mobile | default: block.settings.font_size_mobile | default: 11
+                    assign eyebrow_weight = block.settings.eyebrow_weight | default: block.settings.font_weight | default: '700'
+                    assign eyebrow_line_height = block.settings.eyebrow_line_height | default: 100
+                    assign eyebrow_letter_spacing = block.settings.eyebrow_letter_spacing | default: block.settings.letter_spacing | default: 1
+                    assign eyebrow_text_transform = block.settings.eyebrow_text_transform | default: 'uppercase'
+                    if eyebrow_text_transform == blank
+                      if block.settings.uppercase == false
+                        assign eyebrow_text_transform = 'none'
+                      else
+                        assign eyebrow_text_transform = 'uppercase'
+                      endif
+                    endif
+                    assign eyebrow_max_width = block.settings.eyebrow_max_width | default: 0
+                    assign eyebrow_color = block.settings.eyebrow_colour | default: block.settings.color
+                    assign eyebrow_margin_bottom = block.settings.eyebrow_margin_bottom | default: block.settings.margin_bottom | default: 0
                     assign text_style = ''
-                    if block.settings.font_size_desktop != blank
+                    if eyebrow_size_desktop != blank
                       capture text_style
                         echo text_style
-                        echo '--ysh-eyebrow-font-size-desktop: '
-                        echo block.settings.font_size_desktop
+                        echo '--ysh-eyebrow-size-desktop: '
+                        echo eyebrow_size_desktop
                         echo 'px;'
                       endcapture
                     endif
-                    if block.settings.font_size_mobile != blank
+                    if eyebrow_size_mobile != blank
                       capture text_style
                         echo text_style
-                        echo '--ysh-eyebrow-font-size-mobile: '
-                        echo block.settings.font_size_mobile
+                        echo '--ysh-eyebrow-size-mobile: '
+                        echo eyebrow_size_mobile
                         echo 'px;'
                       endcapture
                     endif
-                    if block.settings.font_weight != blank
+                    if eyebrow_weight != blank
                       capture text_style
                         echo text_style
-                        echo '--ysh-eyebrow-font-weight: '
-                        echo block.settings.font_weight
+                        echo '--ysh-eyebrow-weight: '
+                        echo eyebrow_weight
                         echo ';'
                       endcapture
                     endif
-                    if block.settings.letter_spacing != blank
+                    if eyebrow_line_height != blank
+                      capture text_style
+                        echo text_style
+                        echo '--ysh-eyebrow-line-height: '
+                        echo eyebrow_line_height
+                        echo '%;'
+                      endcapture
+                    endif
+                    if eyebrow_letter_spacing != blank
                       capture text_style
                         echo text_style
                         echo '--ysh-eyebrow-letter-spacing: '
-                        echo block.settings.letter_spacing
+                        echo eyebrow_letter_spacing
                         echo 'px;'
                       endcapture
                     endif
-                    if block.settings.color != blank
+                    if eyebrow_text_transform != blank
                       capture text_style
                         echo text_style
-                        echo '--ysh-block-text-color: '
-                        echo block.settings.color
+                        echo '--ysh-eyebrow-transform: '
+                        echo eyebrow_text_transform
                         echo ';'
                       endcapture
                     endif
-                    if block.settings.uppercase == true
+                    if eyebrow_max_width > 0
                       capture text_style
                         echo text_style
-                        echo '--ysh-eyebrow-uppercase: uppercase;'
+                        echo '--ysh-eyebrow-max-width: '
+                        echo eyebrow_max_width
+                        echo 'px;'
                       endcapture
-                    else
+                    endif
+                    if eyebrow_color != blank
                       capture text_style
                         echo text_style
-                        echo '--ysh-eyebrow-uppercase: none;'
+                        echo '--ysh-block-text-color: '
+                        echo eyebrow_color
+                        echo ';'
                       endcapture
                     endif
                     capture text_style
                       echo text_style
                       echo '--ysh-block-margin-bottom: '
-                      echo block.settings.margin_bottom
+                      echo eyebrow_margin_bottom
                       echo 'px;'
                     endcapture
                   -%}
@@ -237,77 +266,98 @@
                 {%- endif -%}
 
               {%- when 'heading' -%}
-                {%- if block.settings.heading != blank -%}
+                {%- liquid
+                  assign heading_text = block.settings.heading_text | default: block.settings.heading
+                -%}
+                {%- if heading_text != blank -%}
                   {%- liquid
+                    assign heading_size_desktop = block.settings.heading_size_desktop | default: block.settings.font_size_desktop | default: 72
+                    assign heading_size_mobile = block.settings.heading_size_mobile | default: block.settings.font_size_mobile | default: 42
+                    assign heading_weight = block.settings.heading_weight | default: block.settings.font_weight | default: '800'
+                    assign heading_line_height_desktop = block.settings.heading_line_height_desktop | default: block.settings.line_height_desktop | default: 105
+                    assign heading_line_height_mobile = block.settings.heading_line_height_mobile | default: block.settings.line_height_mobile | default: 115
+                    assign heading_letter_spacing = block.settings.heading_letter_spacing | default: block.settings.letter_spacing | default: 0
+                    assign heading_text_transform = block.settings.heading_text_transform | default: 'none'
+                    assign heading_max_width = block.settings.heading_max_width | default: block.settings.max_width | default: 0
+                    assign heading_colour = block.settings.heading_colour | default: block.settings.color
+                    assign heading_margin_bottom = block.settings.heading_margin_bottom | default: block.settings.margin_bottom | default: 0
                     assign heading_style = ''
-                    if block.settings.font_size_desktop != blank
+                    if heading_size_desktop != blank
                       capture heading_style
                         echo heading_style
-                        echo '--ysh-heading-font-size-desktop: '
-                        echo block.settings.font_size_desktop
+                        echo '--ysh-heading-size-desktop: '
+                        echo heading_size_desktop
                         echo 'px;'
                       endcapture
                     endif
-                    if block.settings.font_size_mobile != blank
+                    if heading_size_mobile != blank
                       capture heading_style
                         echo heading_style
-                        echo '--ysh-heading-font-size-mobile: '
-                        echo block.settings.font_size_mobile
+                        echo '--ysh-heading-size-mobile: '
+                        echo heading_size_mobile
                         echo 'px;'
                       endcapture
                     endif
-                    if block.settings.font_weight != blank
+                    if heading_weight != blank
                       capture heading_style
                         echo heading_style
-                        echo '--ysh-heading-font-weight: '
-                        echo block.settings.font_weight
+                        echo '--ysh-heading-weight: '
+                        echo heading_weight
                         echo ';'
                       endcapture
                     endif
-                    if block.settings.line_height_desktop != blank
+                    if heading_line_height_desktop != blank
                       capture heading_style
                         echo heading_style
                         echo '--ysh-heading-line-height-desktop: '
-                        echo block.settings.line_height_desktop
+                        echo heading_line_height_desktop
                         echo '%;'
                       endcapture
                     endif
-                    if block.settings.line_height_mobile != blank
+                    if heading_line_height_mobile != blank
                       capture heading_style
                         echo heading_style
                         echo '--ysh-heading-line-height-mobile: '
-                        echo block.settings.line_height_mobile
+                        echo heading_line_height_mobile
                         echo '%;'
                       endcapture
                     endif
-                    if block.settings.letter_spacing != blank
+                    if heading_letter_spacing != blank
                       capture heading_style
                         echo heading_style
                         echo '--ysh-heading-letter-spacing: '
-                        echo block.settings.letter_spacing
+                        echo heading_letter_spacing
                         echo 'px;'
                       endcapture
                     endif
-                    if block.settings.color != blank
+                    if heading_text_transform != blank
                       capture heading_style
                         echo heading_style
-                        echo '--ysh-block-text-color: '
-                        echo block.settings.color
+                        echo '--ysh-heading-transform: '
+                        echo heading_text_transform
                         echo ';'
                       endcapture
                     endif
-                    if block.settings.max_width > 0
+                    if heading_colour != blank
                       capture heading_style
                         echo heading_style
-                        echo '--ysh-block-max-width: '
-                        echo block.settings.max_width
+                        echo '--ysh-block-text-color: '
+                        echo heading_colour
+                        echo ';'
+                      endcapture
+                    endif
+                    if heading_max_width > 0
+                      capture heading_style
+                        echo heading_style
+                        echo '--ysh-heading-max-width: '
+                        echo heading_max_width
                         echo 'px;'
                       endcapture
                     endif
                     capture heading_style
                       echo heading_style
                       echo '--ysh-block-margin-bottom: '
-                      echo block.settings.margin_bottom
+                      echo heading_margin_bottom
                       echo 'px;'
                     endcapture
                   -%}
@@ -317,9 +367,9 @@
                     {{ block.shopify_attributes }}
                   >
                     {%- if block.settings.heading_tag == 'h2' -%}
-                      <h2 class="yaomri-single-hero__heading">{{ block.settings.heading }}</h2>
+                      <h2 class="yaomri-single-hero__heading">{{ heading_text }}</h2>
                     {%- else -%}
-                      <h1 class="yaomri-single-hero__heading">{{ block.settings.heading }}</h1>
+                      <h1 class="yaomri-single-hero__heading">{{ heading_text }}</h1>
                     {%- endif -%}
                   </div>
                 {%- endif -%}
@@ -327,67 +377,84 @@
               {%- when 'paragraph' -%}
                 {%- if block.settings.text != blank -%}
                   {%- liquid
+                    assign text_size_desktop = block.settings.text_size_desktop | default: block.settings.font_size_desktop | default: 18
+                    assign text_size_mobile = block.settings.text_size_mobile | default: block.settings.font_size_mobile | default: 16
+                    assign text_weight = block.settings.text_weight | default: block.settings.font_weight | default: '400'
+                    assign text_line_height_desktop = block.settings.text_line_height_desktop | default: block.settings.line_height_desktop | default: 150
+                    assign text_line_height_mobile = block.settings.text_line_height_mobile | default: block.settings.line_height_mobile | default: 160
+                    assign text_letter_spacing = block.settings.text_letter_spacing | default: block.settings.letter_spacing | default: 0
+                    assign text_max_width = block.settings.text_max_width | default: block.settings.max_width | default: 0
+                    assign text_colour = block.settings.text_colour | default: block.settings.color
+                    assign text_margin_bottom = block.settings.text_margin_bottom | default: block.settings.margin_bottom | default: 0
                     assign paragraph_style = ''
-                    if block.settings.font_size_desktop != blank
+                    if text_size_desktop != blank
                       capture paragraph_style
                         echo paragraph_style
-                        echo '--ysh-paragraph-font-size-desktop: '
-                        echo block.settings.font_size_desktop
+                        echo '--ysh-text-size-desktop: '
+                        echo text_size_desktop
                         echo 'px;'
                       endcapture
                     endif
-                    if block.settings.font_size_mobile != blank
+                    if text_size_mobile != blank
                       capture paragraph_style
                         echo paragraph_style
-                        echo '--ysh-paragraph-font-size-mobile: '
-                        echo block.settings.font_size_mobile
+                        echo '--ysh-text-size-mobile: '
+                        echo text_size_mobile
                         echo 'px;'
                       endcapture
                     endif
-                    if block.settings.font_weight != blank
+                    if text_weight != blank
                       capture paragraph_style
                         echo paragraph_style
-                        echo '--ysh-paragraph-font-weight: '
-                        echo block.settings.font_weight
+                        echo '--ysh-text-weight: '
+                        echo text_weight
                         echo ';'
                       endcapture
                     endif
-                    if block.settings.line_height_desktop != blank
+                    if text_line_height_desktop != blank
                       capture paragraph_style
                         echo paragraph_style
-                        echo '--ysh-paragraph-line-height-desktop: '
-                        echo block.settings.line_height_desktop
+                        echo '--ysh-text-line-height-desktop: '
+                        echo text_line_height_desktop
                         echo '%;'
                       endcapture
                     endif
-                    if block.settings.line_height_mobile != blank
+                    if text_line_height_mobile != blank
                       capture paragraph_style
                         echo paragraph_style
-                        echo '--ysh-paragraph-line-height-mobile: '
-                        echo block.settings.line_height_mobile
+                        echo '--ysh-text-line-height-mobile: '
+                        echo text_line_height_mobile
                         echo '%;'
                       endcapture
                     endif
-                    if block.settings.color != blank
+                    if text_letter_spacing != blank
+                      capture paragraph_style
+                        echo paragraph_style
+                        echo '--ysh-text-letter-spacing: '
+                        echo text_letter_spacing
+                        echo 'px;'
+                      endcapture
+                    endif
+                    if text_colour != blank
                       capture paragraph_style
                         echo paragraph_style
                         echo '--ysh-block-text-color: '
-                        echo block.settings.color
+                        echo text_colour
                         echo ';'
                       endcapture
                     endif
-                    if block.settings.max_width > 0
+                    if text_max_width > 0
                       capture paragraph_style
                         echo paragraph_style
-                        echo '--ysh-block-max-width: '
-                        echo block.settings.max_width
+                        echo '--ysh-text-max-width: '
+                        echo text_max_width
                         echo 'px;'
                       endcapture
                     endif
                     capture paragraph_style
                       echo paragraph_style
                       echo '--ysh-block-margin-bottom: '
-                      echo block.settings.margin_bottom
+                      echo text_margin_bottom
                       echo 'px;'
                     endcapture
                   -%}
@@ -402,9 +469,22 @@
 
               {%- when 'button' -%}
                 {%- if block.settings.label != blank and block.settings.link != blank -%}
+                  {%- liquid
+                    assign button_size = block.settings.button_size | default: 13
+                    assign button_weight = block.settings.button_weight | default: '700'
+                    assign button_letter_spacing_raw = block.settings.button_letter_spacing | default: 6
+                    assign button_letter_spacing = button_letter_spacing_raw | times: 0.01
+                    assign button_text_transform = block.settings.button_text_transform | default: 'uppercase'
+                  -%}
                   <div
                     class="yaomri-single-hero__block yaomri-single-hero__button-block"
-                    style="--ysh-block-margin-top: {{ block.settings.margin_top }}px;"
+                    style="
+                      --ysh-block-margin-top: {{ block.settings.margin_top }}px;
+                      --ysh-button-size: {{ button_size }}px;
+                      --ysh-button-weight: {{ button_weight }};
+                      --ysh-button-letter-spacing: {{ button_letter_spacing }}em;
+                      --ysh-button-transform: {{ button_text_transform }};
+                    "
                     {{ block.shopify_attributes }}
                   >
                     <a
@@ -421,6 +501,11 @@
                 {%- liquid
                   assign has_primary = false
                   assign has_secondary = false
+                  assign button_size = block.settings.button_size | default: 13
+                  assign button_weight = block.settings.button_weight | default: '700'
+                  assign button_letter_spacing_raw = block.settings.button_letter_spacing | default: 6
+                  assign button_letter_spacing = button_letter_spacing_raw | times: 0.01
+                  assign button_text_transform = block.settings.button_text_transform | default: 'uppercase'
                   if block.settings.primary_label != blank and block.settings.primary_link != blank
                     assign has_primary = true
                   endif
@@ -431,7 +516,13 @@
                 {%- if has_primary or has_secondary -%}
                   <div
                     class="yaomri-single-hero__block yaomri-single-hero__buttons{% if block.settings.stack_on_mobile %} yaomri-single-hero__buttons--stack-mobile{% endif %}"
-                    style="--ysh-block-margin-top: {{ block.settings.margin_top }}px;"
+                    style="
+                      --ysh-block-margin-top: {{ block.settings.margin_top }}px;
+                      --ysh-button-size: {{ button_size }}px;
+                      --ysh-button-weight: {{ button_weight }};
+                      --ysh-button-letter-spacing: {{ button_letter_spacing }}em;
+                      --ysh-button-transform: {{ button_text_transform }};
+                    "
                     {{ block.shopify_attributes }}
                   >
                     {%- if has_primary -%}
@@ -988,28 +1079,28 @@
         },
         {
           "type": "range",
-          "id": "font_size_desktop",
-          "label": "Font size desktop",
+          "id": "eyebrow_size_desktop",
+          "label": "Eyebrow size - desktop",
           "min": 10,
-          "max": 40,
+          "max": 24,
           "step": 1,
           "unit": "px",
           "default": 12
         },
         {
           "type": "range",
-          "id": "font_size_mobile",
-          "label": "Font size mobile",
+          "id": "eyebrow_size_mobile",
+          "label": "Eyebrow size - mobile",
           "min": 10,
-          "max": 40,
+          "max": 20,
           "step": 1,
           "unit": "px",
           "default": 11
         },
         {
           "type": "select",
-          "id": "font_weight",
-          "label": "Font weight",
+          "id": "eyebrow_weight",
+          "label": "Eyebrow weight",
           "default": "700",
           "options": [
             {
@@ -1035,31 +1126,58 @@
           ]
         },
         {
-          "type": "color",
-          "id": "color",
-          "label": "Colour override"
+          "type": "range",
+          "id": "eyebrow_line_height",
+          "label": "Eyebrow line height",
+          "min": 80,
+          "max": 220,
+          "step": 5,
+          "unit": "%",
+          "default": 100
         },
         {
           "type": "range",
-          "id": "letter_spacing",
-          "label": "Letter spacing",
-          "min": 0,
-          "max": 20,
+          "id": "eyebrow_letter_spacing",
+          "label": "Eyebrow letter spacing",
+          "min": -8,
+          "max": 24,
           "step": 1,
           "unit": "px",
           "default": 1,
           "info": "Tip: 1–2px is usually enough."
         },
         {
-          "type": "checkbox",
-          "id": "uppercase",
-          "label": "Uppercase",
-          "default": true
+          "type": "select",
+          "id": "eyebrow_text_transform",
+          "label": "Eyebrow text transform",
+          "default": "uppercase",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "uppercase", "label": "Uppercase" },
+            { "value": "lowercase", "label": "Lowercase" },
+            { "value": "capitalize", "label": "Capitalize" }
+          ]
         },
         {
           "type": "range",
-          "id": "margin_bottom",
-          "label": "Margin bottom",
+          "id": "eyebrow_max_width",
+          "label": "Eyebrow max width",
+          "min": 0,
+          "max": 1100,
+          "step": 10,
+          "unit": "px",
+          "default": 0,
+          "info": "Set to 0 to use the content area width."
+        },
+        {
+          "type": "color",
+          "id": "eyebrow_colour",
+          "label": "Eyebrow colour override"
+        },
+        {
+          "type": "range",
+          "id": "eyebrow_margin_bottom",
+          "label": "Eyebrow margin bottom",
           "min": 0,
           "max": 64,
           "step": 2,
@@ -1074,7 +1192,7 @@
       "settings": [
         {
           "type": "text",
-          "id": "heading",
+          "id": "heading_text",
           "label": "Heading text",
           "default": "Swimwear made for sun-drenched escapes"
         },
@@ -1096,28 +1214,28 @@
         },
         {
           "type": "range",
-          "id": "font_size_desktop",
-          "label": "Font size desktop",
-          "min": 24,
-          "max": 160,
-          "step": 2,
+          "id": "heading_size_desktop",
+          "label": "Heading size - desktop",
+          "min": 20,
+          "max": 110,
+          "step": 1,
           "unit": "px",
           "default": 72
         },
         {
           "type": "range",
-          "id": "font_size_mobile",
-          "label": "Font size mobile",
-          "min": 24,
-          "max": 120,
-          "step": 2,
+          "id": "heading_size_mobile",
+          "label": "Heading size - mobile",
+          "min": 18,
+          "max": 64,
+          "step": 1,
           "unit": "px",
           "default": 42
         },
         {
           "type": "select",
-          "id": "font_weight",
-          "label": "Font weight",
+          "id": "heading_weight",
+          "label": "Heading weight",
           "default": "800",
           "options": [
             {
@@ -1144,7 +1262,7 @@
         },
         {
           "type": "range",
-          "id": "line_height_desktop",
+          "id": "heading_line_height_desktop",
           "label": "Line height desktop",
           "min": 90,
           "max": 180,
@@ -1155,7 +1273,7 @@
         },
         {
           "type": "range",
-          "id": "line_height_mobile",
+          "id": "heading_line_height_mobile",
           "label": "Line height mobile",
           "min": 90,
           "max": 180,
@@ -1166,34 +1284,46 @@
         },
         {
           "type": "range",
-          "id": "letter_spacing",
-          "label": "Letter spacing",
-          "min": 0,
-          "max": 8,
+          "id": "heading_letter_spacing",
+          "label": "Heading letter spacing",
+          "min": -8,
+          "max": 24,
           "step": 1,
           "unit": "px",
           "default": 0
         },
         {
+          "type": "select",
+          "id": "heading_text_transform",
+          "label": "Heading text transform",
+          "default": "none",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "uppercase", "label": "Uppercase" },
+            { "value": "lowercase", "label": "Lowercase" },
+            { "value": "capitalize", "label": "Capitalize" }
+          ]
+        },
+        {
           "type": "color",
-          "id": "color",
-          "label": "Colour override"
+          "id": "heading_colour",
+          "label": "Heading colour override"
         },
         {
           "type": "range",
-          "id": "max_width",
+          "id": "heading_max_width",
           "label": "Max width",
           "min": 0,
-          "max": 900,
-          "step": 20,
+          "max": 1100,
+          "step": 10,
           "unit": "px",
           "default": 0,
           "info": "Set to 0 to use the content area width."
         },
         {
           "type": "range",
-          "id": "margin_bottom",
-          "label": "Margin bottom",
+          "id": "heading_margin_bottom",
+          "label": "Heading margin bottom",
           "min": 0,
           "max": 64,
           "step": 2,
@@ -1214,28 +1344,28 @@
         },
         {
           "type": "range",
-          "id": "font_size_desktop",
-          "label": "Font size desktop",
+          "id": "text_size_desktop",
+          "label": "Text size - desktop",
           "min": 12,
-          "max": 40,
+          "max": 32,
           "step": 1,
           "unit": "px",
           "default": 18
         },
         {
           "type": "range",
-          "id": "font_size_mobile",
-          "label": "Font size mobile",
+          "id": "text_size_mobile",
+          "label": "Text size - mobile",
           "min": 12,
-          "max": 40,
+          "max": 24,
           "step": 1,
           "unit": "px",
           "default": 16
         },
         {
           "type": "select",
-          "id": "font_weight",
-          "label": "Font weight",
+          "id": "text_weight",
+          "label": "Text weight",
           "default": "400",
           "options": [
             {
@@ -1258,7 +1388,7 @@
         },
         {
           "type": "range",
-          "id": "line_height_desktop",
+          "id": "text_line_height_desktop",
           "label": "Line height desktop",
           "min": 120,
           "max": 220,
@@ -1269,7 +1399,7 @@
         },
         {
           "type": "range",
-          "id": "line_height_mobile",
+          "id": "text_line_height_mobile",
           "label": "Line height mobile",
           "min": 120,
           "max": 220,
@@ -1279,25 +1409,35 @@
           "info": "Line-height in percent."
         },
         {
+          "type": "range",
+          "id": "text_letter_spacing",
+          "label": "Text letter spacing",
+          "min": -8,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
           "type": "color",
-          "id": "color",
-          "label": "Colour override"
+          "id": "text_colour",
+          "label": "Text colour override"
         },
         {
           "type": "range",
-          "id": "max_width",
+          "id": "text_max_width",
           "label": "Max width",
           "min": 0,
-          "max": 900,
-          "step": 20,
+          "max": 1100,
+          "step": 10,
           "unit": "px",
           "default": 0,
           "info": "Set to 0 to use the content area width."
         },
         {
           "type": "range",
-          "id": "margin_bottom",
-          "label": "Margin bottom",
+          "id": "text_margin_bottom",
+          "label": "Text margin bottom",
           "min": 0,
           "max": 64,
           "step": 2,
@@ -1351,6 +1491,51 @@
           "id": "full_width_mobile",
           "label": "Full width on mobile",
           "default": false
+        },
+        {
+          "type": "range",
+          "id": "button_size",
+          "label": "Button text size",
+          "min": 10,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 13
+        },
+        {
+          "type": "select",
+          "id": "button_weight",
+          "label": "Button text weight",
+          "default": "700",
+          "options": [
+            { "value": "400", "label": "Regular" },
+            { "value": "500", "label": "Medium" },
+            { "value": "600", "label": "Semibold" },
+            { "value": "700", "label": "Bold" },
+            { "value": "800", "label": "Extra bold" }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "button_letter_spacing",
+          "label": "Button letter spacing",
+          "min": -8,
+          "max": 24,
+          "step": 1,
+          "unit": "0.01em",
+          "default": 6
+        },
+        {
+          "type": "select",
+          "id": "button_text_transform",
+          "label": "Button text transform",
+          "default": "uppercase",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "uppercase", "label": "Uppercase" },
+            { "value": "lowercase", "label": "Lowercase" },
+            { "value": "capitalize", "label": "Capitalize" }
+          ]
         },
         {
           "type": "range",
@@ -1433,6 +1618,51 @@
           "id": "stack_on_mobile",
           "label": "Stack on mobile",
           "default": true
+        },
+        {
+          "type": "range",
+          "id": "button_size",
+          "label": "Button text size",
+          "min": 10,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 13
+        },
+        {
+          "type": "select",
+          "id": "button_weight",
+          "label": "Button text weight",
+          "default": "700",
+          "options": [
+            { "value": "400", "label": "Regular" },
+            { "value": "500", "label": "Medium" },
+            { "value": "600", "label": "Semibold" },
+            { "value": "700", "label": "Bold" },
+            { "value": "800", "label": "Extra bold" }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "button_letter_spacing",
+          "label": "Button letter spacing",
+          "min": -8,
+          "max": 24,
+          "step": 1,
+          "unit": "0.01em",
+          "default": 6
+        },
+        {
+          "type": "select",
+          "id": "button_text_transform",
+          "label": "Button text transform",
+          "default": "uppercase",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "uppercase", "label": "Uppercase" },
+            { "value": "lowercase", "label": "Lowercase" },
+            { "value": "capitalize", "label": "Capitalize" }
+          ]
         },
         {
           "type": "range",
@@ -1575,34 +1805,34 @@
           "type": "eyebrow",
           "settings": {
             "text": "NEW SEASON",
-            "margin_bottom": 0
+            "eyebrow_margin_bottom": 0
           }
         },
         {
           "type": "heading",
           "settings": {
-            "heading": "Swimwear made for sun-drenched escapes",
-            "font_size_desktop": 72,
-            "font_size_mobile": 42,
-            "font_weight": "800",
-            "line_height_desktop": 105,
-            "line_height_mobile": 115,
-            "letter_spacing": 0,
+            "heading_text": "Swimwear made for sun-drenched escapes",
+            "heading_size_desktop": 72,
+            "heading_size_mobile": 42,
+            "heading_weight": "800",
+            "heading_line_height_desktop": 105,
+            "heading_line_height_mobile": 115,
+            "heading_letter_spacing": 0,
             "heading_tag": "h1",
-            "margin_bottom": 0
+            "heading_margin_bottom": 0
           }
         },
         {
           "type": "paragraph",
           "settings": {
             "text": "<p>Elegant silhouettes, refined details and statement swimwear designed for poolside days, beach clubs and golden-hour getaways.</p>",
-            "font_size_desktop": 18,
-            "font_size_mobile": 16,
-            "font_weight": "400",
-            "line_height_desktop": 150,
-            "line_height_mobile": 160,
-            "max_width": 520,
-            "margin_bottom": 0
+            "text_size_desktop": 18,
+            "text_size_mobile": 16,
+            "text_weight": "400",
+            "text_line_height_desktop": 150,
+            "text_line_height_mobile": 160,
+            "text_max_width": 520,
+            "text_margin_bottom": 0
           }
         },
         {

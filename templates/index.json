@@ -52,25 +52,25 @@
           "type": "eyebrow",
           "settings": {
             "text": "NEW SEASON",
-            "letter_spacing": 8,
-            "margin_bottom": 0
+            "eyebrow_letter_spacing": 8,
+            "eyebrow_margin_bottom": 0
           }
         },
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Swimwear made for sun-drenched escapes",
+            "heading_text": "Swimwear made for sun-drenched escapes",
             "heading_tag": "h1",
-            "max_width": 0,
-            "margin_bottom": 0
+            "heading_max_width": 0,
+            "heading_margin_bottom": 0
           }
         },
         "paragraph": {
           "type": "paragraph",
           "settings": {
             "text": "<p>Elegant silhouettes, refined details and statement swimwear designed for poolside days, beach clubs and golden-hour getaways.</p>",
-            "max_width": 520,
-            "margin_bottom": 0
+            "text_max_width": 520,
+            "text_margin_bottom": 0
           }
         },
         "button_group": {

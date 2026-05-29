@@ -439,3 +439,11 @@ Rule:
 4. Replace hardcoded mega/menu/cart/mobile text styles with token-driven defaults plus optional overrides.
 5. Keep old IDs temporarily readable to avoid breaking existing merchant JSON.
 
+## Implementation status note
+
+`Single Image Hero typography Phase 1` has now been implemented after this audit:
+
+1. Typography IDs were standardized for eyebrow, heading, paragraph, and button/button-group blocks.
+2. Backward-compatible Liquid fallbacks for old setting IDs were added.
+3. New controls were added for eyebrow line-height/max width/transform, heading transform, paragraph letter spacing, and button typography.
+4. This is intentionally scoped to Single Image Hero only; global tokens and other sections remain deferred.
