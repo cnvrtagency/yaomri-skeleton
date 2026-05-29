@@ -280,13 +280,13 @@ Judgement:
 
 ## Homepage
 
-Owned by `templates/index.json`, `sections/hero.liquid`, and `assets/section-hero.css`.
+Owned by `templates/index.json`, `sections/single-image-hero.liquid`, `sections/three-card-hero.liquid`, `assets/section-single-image-hero.css`, and `assets/section-three-card-hero.css`.
 
 Owns:
 - Homepage section order.
-- Hero content and imagery.
-- Hero layout mode: single image or 3-card.
-- Hero-only width, height, overlay, border, colour, spacing, and card settings.
+- Single Image Hero content and imagery.
+- 3-Card Hero card blocks.
+- Hero-only width, height, overlay, border, colour, and spacing settings.
 
 Must not own:
 - Global page width tokens.
@@ -295,17 +295,20 @@ Must not own:
 - Footer/social settings.
 
 Must not be duplicated elsewhere:
-- Hero spacing controls should stay in the Hero section, because this section intentionally needs flush-by-default editorial control.
-- Hero card content should stay in Hero card blocks, not global theme settings.
+- Hero spacing controls should stay in the relevant Hero section, because these sections intentionally need flush-by-default editorial control.
+- 3-Card Hero content should stay in Hero card blocks, not global theme settings.
 
 Current implementation:
 - Homepage no longer uses Skeleton Hello World.
-- `sections/hero.liquid` is the first real homepage section.
-- `assets/section-hero.css` scopes styles under `.yaomri-hero`.
+- `templates/index.json` uses `single-image-hero` as the first launch-ready homepage section.
+- The old combined layout-switch `sections/hero.liquid` has been removed.
+- `sections/single-image-hero.liquid` owns overlay-text single image hero content.
+- `sections/three-card-hero.liquid` owns the 3-card editorial hero and its card blocks.
+- Styles are scoped under `.yaomri-single-hero` and `.yaomri-three-hero`.
 
 Judgement:
-- Keep Hero as one section with layout modes rather than separate single-image and card sections. This is easier for merchants and avoids duplicate settings.
-- Padding defaults to `0` and margin defaults to `0` so the hero starts flush by default.
+- Keep Single Image Hero and 3-Card Hero separate. Shopify does not hide irrelevant settings in a layout-switch section, so separate sections are clearer for merchants.
+- Padding defaults to `0` and margin defaults to `0` so hero sections start flush by default.
 
 ## Footer
 
@@ -361,7 +364,7 @@ Recommendation:
 - `sections/header-group.json` contains no known stale settings from the previous header schema.
 - `snippets/css-variables.liquid` no longer references legacy `settings.site_content_width`.
 - `snippets/mobile-drawer.liquid` no longer references missing `settings.social_instagram_link`.
-- Homepage still uses `hello-world`, which the spec says must be replaced before launch.
+- Homepage no longer uses `hello-world`; it now starts with Single Image Hero.
 - Footer remains default Skeleton quality.
 
 ## Current Launch Readiness By Area
@@ -374,7 +377,7 @@ Recommendation:
 | Mobile menu | Needs cleanup | Demo fallback removed; drawer still needs full visual QA. |
 | Cart page fallback | Half-built | Works as fallback, but not clearly documented and uses client-only recalculation before submit. |
 | Cart drawer | Not started | Required by requested launch plan, not present. |
-| Homepage | Not started | Still Skeleton Hello World. |
+| Homepage | Half-built | Hello World is removed and Single Image Hero is active; remaining homepage launch sections still need to be built. |
 | Product page | Not started | Still default Skeleton unless separately changed. |
 | Collection page | Not started | Still default Skeleton unless separately changed. |
 | Search | Half-built | Basic search page exists; no Ya Omri QA pass. |

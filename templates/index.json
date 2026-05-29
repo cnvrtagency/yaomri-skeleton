@@ -9,10 +9,9 @@
  */
 {
   "sections": {
-    "hero": {
-      "type": "hero",
+    "single_image_hero": {
+      "type": "single-image-hero",
       "settings": {
-        "hero_layout": "single",
         "section_width": "full",
         "custom_section_width": 1440,
         "section_height_desktop": 680,
@@ -22,7 +21,6 @@
         "overlay_color": "#000000",
         "overlay_opacity": 20,
         "show_border": false,
-        "show_inner_border": false,
         "section_background": "#ffffff",
         "padding_top_desktop": 0,
         "padding_bottom_desktop": 0,
@@ -48,6 +46,6 @@
     }
   },
   "order": [
-    "hero"
+    "single_image_hero"
   ]
 }

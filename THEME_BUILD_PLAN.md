@@ -14,7 +14,7 @@ Do not build speculative storefront features before the launch-critical surfaces
 | Mobile menu | Needs cleanup | Drawer is built and demo fallback is removed; full visual QA still needed. |
 | Cart page fallback | Half-built | Usable page fallback, but it is not positioned clearly as fallback-only. |
 | Cart drawer | Not started | Required for a polished launch if cart drawer is in scope. |
-| Homepage | Half-built | Hello World has been replaced with a configurable Hero; remaining homepage sections are still needed. |
+| Homepage | Half-built | Hello World has been replaced with Single Image Hero; 3-Card Hero is available, but remaining homepage sections are still needed. |
 | Product page | Not started | Still default Skeleton unless separately changed. |
 | Collection page | Not started | Still default Skeleton unless separately changed. |
 | Search | Half-built | Basic search exists; no Ya Omri QA pass. |
@@ -108,7 +108,7 @@ Objective:
 
 Tasks:
 - Done: replace `templates/index.json` Hello World.
-- Done: build a clean Hero section as the homepage shell.
+- Done: split the old combined Hero into Single Image Hero and 3-Card Hero so merchants do not see irrelevant layout settings.
 - Add core launch sections in this order:
   1. Brand strip.
   2. Promo banner.
@@ -236,7 +236,7 @@ Do not get distracted by:
 - Dropdown width changes the visible dropdown box.
 - Mobile drawer has no fake/demo menu links.
 - Cart path works from header icon through checkout.
-- Homepage is not Hello World.
+- Homepage is not Hello World and does not use the old combined `hero` section.
 - Product path works from collection to add-to-cart.
 - Search form works from header and mobile drawer.
 - No horizontal overflow at target widths.
@@ -277,7 +277,7 @@ Do not get distracted by:
 5. Rename cart static shipping labels so they do not imply dynamic logic.
 6. Mark cart page as fallback-only in settings/help documentation.
 7. Replace Skeleton footer labels and styling.
-8. Done: replace homepage Hello World with Hero.
+8. Done: replace homepage Hello World with Single Image Hero and add a separate 3-Card Hero section.
 9. Audit product page.
 10. Audit collection page.
 
@@ -433,17 +433,18 @@ Likely files affected:
 Risk level:
 - High if building drawer; low if polishing fallback only.
 
-### 5. Replace Homepage Hello World
+### 5. Finish Homepage Shell
 
 Objective:
-- Build the launch homepage shell and core homepage sections.
+- Build the remaining launch homepage sections around the new Hero sections.
 
 Why it comes now:
-- Home is currently the most visible launch blocker after global navigation.
+- Home is still the most visible launch blocker after global navigation, even though Hello World is removed.
 
 Success looks like:
-- `templates/index.json` no longer points to Hello World.
-- Homepage has brand strip, promo banner, hero, product carousel/grid, and footer/social coverage.
+- `templates/index.json` starts with Single Image Hero.
+- The old combined `hero` section is not active.
+- Homepage has brand strip, promo banner, product carousel/grid, and footer/social coverage.
 
 What not to get distracted by:
 - Complex CMS.
@@ -463,7 +464,7 @@ Risk level:
 1. Clean settings and navigation ownership immediately.
 2. Freeze header/mega/mobile drawer except bug fixes.
 3. Decide cart drawer scope by Day 3. If behind, polish cart page fallback and defer drawer.
-4. Replace Hello World with a minimal but brand-ready homepage.
+4. Build the remaining homepage shell around the new Single Image Hero.
 5. Make product and collection usable, not perfect.
 6. Polish footer and search enough to avoid Skeleton feel.
 7. Push unpublished, configure editor, pull settings, inspect diffs, QA, then publish.

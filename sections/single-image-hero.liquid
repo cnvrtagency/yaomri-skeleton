@@ -1,0 +1,469 @@
+{{ 'section-single-image-hero.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign width_mode = section.settings.section_width | default: 'full'
+  assign custom_width = section.settings.custom_section_width | default: 1440
+  assign content_alignment = section.settings.content_alignment | default: 'left'
+  assign text_color = section.settings.text_color | default: '#ffffff'
+  assign overlay_color = section.settings.overlay_color | default: '#000000'
+  assign overlay_opacity = section.settings.overlay_opacity | default: 20 | divided_by: 100.0
+  assign section_background = section.settings.section_background | default: 'var(--color-background)'
+
+  assign content_justify = 'start'
+  assign content_margin = '0 auto 0 0'
+  assign text_align = 'left'
+  if content_alignment == 'center'
+    assign content_justify = 'center'
+    assign content_margin = '0 auto'
+    assign text_align = 'center'
+  elsif content_alignment == 'right'
+    assign content_justify = 'end'
+    assign content_margin = '0 0 0 auto'
+    assign text_align = 'right'
+  endif
+
+  assign section_width_value = 'var(--page-width)'
+  if width_mode == 'full'
+    assign section_width_value = 'none'
+  elsif width_mode == 'custom'
+    capture section_width_value
+      echo custom_width
+      echo 'px'
+    endcapture
+  endif
+
+  assign has_primary_button = false
+  assign has_secondary_button = false
+  if section.settings.primary_button_label != blank and section.settings.primary_button_link != blank
+    assign has_primary_button = true
+  endif
+  if section.settings.secondary_button_label != blank and section.settings.secondary_button_link != blank
+    assign has_secondary_button = true
+  endif
+-%}
+
+<section
+  class="yaomri-single-hero yaomri-single-hero--width-{{ width_mode }}{% if section.settings.show_border %} yaomri-single-hero--border{% endif %} full-width"
+  style="
+    --ysh-section-width: {{ section_width_value }};
+    --ysh-section-bg: {{ section_background }};
+    --ysh-text: {{ text_color }};
+    --ysh-overlay-color: {{ overlay_color }};
+    --ysh-overlay-opacity: {{ overlay_opacity }};
+    --ysh-content-justify: {{ content_justify }};
+    --ysh-content-margin: {{ content_margin }};
+    --ysh-text-align: {{ text_align }};
+    --ysh-height-desktop: {{ section.settings.section_height_desktop }}px;
+    --ysh-height-mobile: {{ section.settings.section_height_mobile }}px;
+    --ysh-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --ysh-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --ysh-padding-left-desktop: {{ section.settings.padding_left_desktop }}px;
+    --ysh-padding-right-desktop: {{ section.settings.padding_right_desktop }}px;
+    --ysh-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --ysh-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --ysh-padding-left-mobile: {{ section.settings.padding_left_mobile }}px;
+    --ysh-padding-right-mobile: {{ section.settings.padding_right_mobile }}px;
+    --ysh-margin-top-desktop: {{ section.settings.margin_top_desktop }}px;
+    --ysh-margin-bottom-desktop: {{ section.settings.margin_bottom_desktop }}px;
+    --ysh-margin-top-mobile: {{ section.settings.margin_top_mobile }}px;
+    --ysh-margin-bottom-mobile: {{ section.settings.margin_bottom_mobile }}px;
+  "
+  {{ section.shopify_attributes }}
+>
+  <div class="yaomri-single-hero__frame">
+    <div class="yaomri-single-hero__stage" style="--ysh-image-position: {{ section.settings.image_position }};">
+      <div class="yaomri-single-hero__media">
+        {%- if section.settings.desktop_image != blank -%}
+          {%- assign image_class = 'yaomri-single-hero__image' -%}
+          {%- if section.settings.mobile_image != blank -%}
+            {%- assign image_class = image_class | append: ' yaomri-single-hero__image--has-mobile' -%}
+          {%- endif -%}
+          {{
+            section.settings.desktop_image
+            | image_url: width: 2400
+            | image_tag:
+              class: image_class,
+              widths: '720, 960, 1200, 1600, 2000, 2400',
+              sizes: '100vw',
+              loading: 'eager',
+              alt: section.settings.desktop_image.alt | default: section.settings.heading | escape
+          }}
+        {%- else -%}
+          <div class="yaomri-single-hero__placeholder" data-label="Add hero image"></div>
+        {%- endif -%}
+
+        {%- if section.settings.mobile_image != blank -%}
+          {{
+            section.settings.mobile_image
+            | image_url: width: 1200
+            | image_tag:
+              class: 'yaomri-single-hero__image yaomri-single-hero__mobile-image',
+              widths: '360, 540, 720, 900, 1200',
+              sizes: '100vw',
+              loading: 'eager',
+              alt: section.settings.mobile_image.alt | default: section.settings.heading | escape
+          }}
+        {%- endif -%}
+      </div>
+
+      <div class="yaomri-single-hero__overlay"></div>
+
+      <div class="yaomri-single-hero__content">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="yaomri-single-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h1 class="yaomri-single-hero__heading">{{ section.settings.heading }}</h1>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="yaomri-single-hero__text">{{ section.settings.text }}</div>
+        {%- endif -%}
+        {%- if has_primary_button or has_secondary_button -%}
+          <div class="yaomri-single-hero__buttons">
+            {%- if has_primary_button -%}
+              <a class="yaomri-single-hero__button yaomri-single-hero__button--primary" href="{{ section.settings.primary_button_link }}">
+                <span>{{ section.settings.primary_button_label }}</span>
+              </a>
+            {%- endif -%}
+            {%- if has_secondary_button -%}
+              <a class="yaomri-single-hero__button yaomri-single-hero__button--secondary" href="{{ section.settings.secondary_button_link }}">
+                {{ section.settings.secondary_button_label }}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Single Image Hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Section width",
+      "default": "full",
+      "options": [
+        {
+          "value": "site",
+          "label": "Site width"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "custom_section_width",
+      "label": "Custom section width",
+      "min": 720,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "default": 1440
+    },
+    {
+      "type": "range",
+      "id": "section_height_desktop",
+      "label": "Desktop hero height",
+      "min": 360,
+      "max": 900,
+      "step": 20,
+      "unit": "px",
+      "default": 680
+    },
+    {
+      "type": "range",
+      "id": "section_height_mobile",
+      "label": "Mobile hero height",
+      "min": 360,
+      "max": 760,
+      "step": 20,
+      "unit": "px",
+      "default": 560
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "label": "Show outer border",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image",
+      "info": "Optional. Replaces the desktop image on mobile."
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "default": "center center",
+      "options": [
+        {
+          "value": "center center",
+          "label": "Centre"
+        },
+        {
+          "value": "center top",
+          "label": "Top"
+        },
+        {
+          "value": "center bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "left center",
+          "label": "Left"
+        },
+        {
+          "value": "right center",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Image overlay colour",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Image overlay opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Centre"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Hero text colour",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "New season"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Swimwear with intention"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Sharp silhouettes, clean lines and effortless pieces for sun-led days.</p>"
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Primary button label",
+      "default": "Shop new arrivals"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Secondary button label"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "header",
+      "content": "Advanced spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding top desktop",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding bottom desktop",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_left_desktop",
+      "label": "Padding left desktop",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right_desktop",
+      "label": "Padding right desktop",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mobile",
+      "label": "Padding left mobile",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mobile",
+      "label": "Padding right mobile",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "label": "Margin top desktop",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "label": "Margin bottom desktop",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "label": "Margin top mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "label": "Margin bottom mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Single Image Hero"
+    }
+  ]
+}
+{% endschema %}

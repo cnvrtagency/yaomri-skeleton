@@ -170,20 +170,27 @@ Use this before publishing and after any architecture-level change. Passing auto
 ## Homepage
 
 - `templates/index.json` no longer uses Skeleton Hello World before launch.
-- Hero section appears in the theme editor.
-- Hero single-image layout renders on desktop and mobile.
-- Hero 3-card layout renders on desktop and mobile.
-- Hero mobile image overrides desktop image when provided.
-- Hero cards stack cleanly on mobile.
-- Hero buttons render only when labels and links are set.
-- Hero overlay colour and opacity affect readability.
-- Hero section width modes work: Site width, Full width, Custom.
-- Hero custom section width applies only in Custom mode.
-- Hero padding and margin controls default to `0`.
-- Hero desktop padding/margin controls apply on desktop.
-- Hero mobile padding/margin controls override desktop spacing on mobile.
-- Hero empty/placeholder state is clean and has no broken links.
-- Hero text remains accessible HTML, not image-only copy.
+- `templates/index.json` uses `single-image-hero`, not the old combined `hero` section.
+- Single Image Hero appears in the theme editor.
+- 3-Card Hero appears in the theme editor.
+- Single Image Hero renders on desktop and mobile.
+- Single Image Hero mobile image overrides desktop image when provided.
+- Single Image Hero buttons render only when labels and links are set.
+- Single Image Hero overlay colour and opacity affect readability.
+- Single Image Hero width modes work: Site width, Full width, Custom.
+- 3-Card Hero renders one, two, or three cards cleanly.
+- 3-Card Hero no-block placeholder state is polished and not clickable.
+- 3-Card Hero cards are equal height on desktop.
+- 3-Card Hero cards stack cleanly on mobile.
+- 3-Card Hero card mobile image overrides desktop image when provided.
+- 3-Card Hero card link label renders only when label and link are set.
+- 3-Card Hero shared overlay colour and opacity affect card readability.
+- Both Hero custom section width controls apply only in Custom mode.
+- Both Hero padding and margin controls default to `0`.
+- Both Hero desktop padding/margin controls apply on desktop.
+- Both Hero mobile padding/margin controls override desktop spacing on mobile.
+- Both Hero empty/placeholder states are clean and have no broken links.
+- Both Hero sections keep text as accessible HTML, not image-only copy.
 - Brand strip section is present or intentionally deferred.
 - Promo banner section is present or intentionally deferred.
 - Product carousel is present or replaced by a launch-safe product grid.
