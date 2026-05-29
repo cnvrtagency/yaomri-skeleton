@@ -278,6 +278,35 @@ Judgement:
 - Keep cart page as fallback.
 - Build cart drawer only after header/mobile navigation is stable.
 
+## Homepage
+
+Owned by `templates/index.json`, `sections/hero.liquid`, and `assets/section-hero.css`.
+
+Owns:
+- Homepage section order.
+- Hero content and imagery.
+- Hero layout mode: single image or 3-card.
+- Hero-only width, height, overlay, border, colour, spacing, and card settings.
+
+Must not own:
+- Global page width tokens.
+- Header layout or header spacing.
+- Product card architecture.
+- Footer/social settings.
+
+Must not be duplicated elsewhere:
+- Hero spacing controls should stay in the Hero section, because this section intentionally needs flush-by-default editorial control.
+- Hero card content should stay in Hero card blocks, not global theme settings.
+
+Current implementation:
+- Homepage no longer uses Skeleton Hello World.
+- `sections/hero.liquid` is the first real homepage section.
+- `assets/section-hero.css` scopes styles under `.yaomri-hero`.
+
+Judgement:
+- Keep Hero as one section with layout modes rather than separate single-image and card sections. This is easier for merchants and avoids duplicate settings.
+- Padding defaults to `0` and margin defaults to `0` so the hero starts flush by default.
+
 ## Footer
 
 Owned by `sections/footer.liquid`.

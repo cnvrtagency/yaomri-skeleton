@@ -170,10 +170,22 @@ Use this before publishing and after any architecture-level change. Passing auto
 ## Homepage
 
 - `templates/index.json` no longer uses Skeleton Hello World before launch.
-- Homepage shell is present.
+- Hero section appears in the theme editor.
+- Hero single-image layout renders on desktop and mobile.
+- Hero 3-card layout renders on desktop and mobile.
+- Hero mobile image overrides desktop image when provided.
+- Hero cards stack cleanly on mobile.
+- Hero buttons render only when labels and links are set.
+- Hero overlay colour and opacity affect readability.
+- Hero section width modes work: Site width, Full width, Custom.
+- Hero custom section width applies only in Custom mode.
+- Hero padding and margin controls default to `0`.
+- Hero desktop padding/margin controls apply on desktop.
+- Hero mobile padding/margin controls override desktop spacing on mobile.
+- Hero empty/placeholder state is clean and has no broken links.
+- Hero text remains accessible HTML, not image-only copy.
 - Brand strip section is present or intentionally deferred.
 - Promo banner section is present or intentionally deferred.
-- Fresh hero is present.
 - Product carousel is present or replaced by a launch-safe product grid.
 - Footer/social layer is present or covered by footer.
 - No placeholder/demo text ships.

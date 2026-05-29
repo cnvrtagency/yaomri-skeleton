@@ -1,0 +1,702 @@
+{{ 'section-hero.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign hero_layout = section.settings.hero_layout | default: 'single'
+  assign width_mode = section.settings.section_width | default: 'full'
+  assign custom_width = section.settings.custom_section_width | default: 1440
+  assign content_alignment = section.settings.content_alignment | default: 'left'
+  assign text_color = section.settings.text_color | default: '#ffffff'
+  assign overlay_color = section.settings.overlay_color | default: '#000000'
+  assign overlay_opacity = section.settings.overlay_opacity | default: 20 | divided_by: 100.0
+  assign section_background = section.settings.section_background | default: 'var(--color-background)'
+  assign content_box_background = section.settings.content_box_background
+  if content_box_background == blank
+    assign content_box_background = 'transparent'
+  endif
+
+  assign content_justify = 'start'
+  assign content_margin = '0 auto 0 0'
+  assign text_align = 'left'
+  if content_alignment == 'center'
+    assign content_justify = 'center'
+    assign content_margin = '0 auto'
+    assign text_align = 'center'
+  elsif content_alignment == 'right'
+    assign content_justify = 'end'
+    assign content_margin = '0 0 0 auto'
+    assign text_align = 'right'
+  endif
+
+  assign section_width_value = 'var(--page-width)'
+  if width_mode == 'full'
+    assign section_width_value = 'none'
+  elsif width_mode == 'custom'
+    capture section_width_value
+      echo custom_width
+      echo 'px'
+    endcapture
+  endif
+-%}
+
+<section
+  class="yaomri-hero yaomri-hero--{{ hero_layout }} yaomri-hero--width-{{ width_mode }}{% if section.settings.show_border %} yaomri-hero--border{% endif %}{% if section.settings.show_inner_border %} yaomri-hero--inner-border{% endif %} full-width"
+  style="
+    --yh-section-width: {{ section_width_value }};
+    --yh-section-bg: {{ section_background }};
+    --yh-text: {{ text_color }};
+    --yh-overlay-color: {{ overlay_color }};
+    --yh-overlay-opacity: {{ overlay_opacity }};
+    --yh-content-box-bg: {{ content_box_background }};
+    --yh-content-justify: {{ content_justify }};
+    --yh-content-margin: {{ content_margin }};
+    --yh-text-align: {{ text_align }};
+    --yh-height-desktop: {{ section.settings.section_height_desktop }}px;
+    --yh-height-mobile: {{ section.settings.section_height_mobile }}px;
+    --yh-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --yh-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --yh-padding-left-desktop: {{ section.settings.padding_left_desktop }}px;
+    --yh-padding-right-desktop: {{ section.settings.padding_right_desktop }}px;
+    --yh-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --yh-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --yh-padding-left-mobile: {{ section.settings.padding_left_mobile }}px;
+    --yh-padding-right-mobile: {{ section.settings.padding_right_mobile }}px;
+    --yh-margin-top-desktop: {{ section.settings.margin_top_desktop }}px;
+    --yh-margin-bottom-desktop: {{ section.settings.margin_bottom_desktop }}px;
+    --yh-margin-top-mobile: {{ section.settings.margin_top_mobile }}px;
+    --yh-margin-bottom-mobile: {{ section.settings.margin_bottom_mobile }}px;
+  "
+  {{ section.shopify_attributes }}
+>
+  <div class="yaomri-hero__frame">
+    {%- if hero_layout == 'cards' -%}
+      {%- liquid
+        assign card_count = section.blocks.size
+        if card_count == 0 or card_count > 3
+          assign card_count = 3
+        endif
+      -%}
+      <div class="yaomri-hero__cards yaomri-hero__cards--count-{{ card_count }}">
+        {%- assign rendered_cards = 0 -%}
+        {%- for block in section.blocks limit: 3 -%}
+          {%- if block.type == 'hero_card' -%}
+            {%- assign rendered_cards = rendered_cards | plus: 1 -%}
+            {%- liquid
+              assign card_text = block.settings.text_color | default: '#ffffff'
+              assign card_overlay_opacity = block.settings.overlay_opacity | default: 20 | divided_by: 100.0
+              assign card_position = block.settings.image_position | default: 'center center'
+              assign card_tag = 'div'
+              if block.settings.link != blank
+                assign card_tag = 'a'
+              endif
+            -%}
+            <{{ card_tag }}
+              class="yaomri-hero-card{% if block.settings.link != blank %} yaomri-hero-card__link{% endif %}"
+              {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %}
+              style="
+                --yh-card-text: {{ card_text }};
+                --yh-overlay-opacity: {{ card_overlay_opacity }};
+                --yh-image-position: {{ card_position }};
+              "
+              {{ block.shopify_attributes }}
+            >
+              <div class="yaomri-hero-card__media">
+                {%- if block.settings.image != blank -%}
+                  {%- assign card_image_class = 'yaomri-hero-card__image' -%}
+                  {%- if block.settings.mobile_image != blank -%}
+                    {%- assign card_image_class = card_image_class | append: ' yaomri-hero-card__image--has-mobile' -%}
+                  {%- endif -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 1400
+                    | image_tag:
+                      class: card_image_class,
+                      widths: '360, 540, 720, 960, 1200, 1400',
+                      sizes: '(min-width: 750px) 33vw, 100vw',
+                      loading: 'lazy',
+                      alt: block.settings.image.alt | default: block.settings.heading | escape
+                  }}
+                {%- else -%}
+                  <div class="yaomri-hero__placeholder" data-label="Add image"></div>
+                {%- endif -%}
+                {%- if block.settings.mobile_image != blank -%}
+                  {{
+                    block.settings.mobile_image
+                    | image_url: width: 900
+                    | image_tag:
+                      class: 'yaomri-hero-card__image yaomri-hero-card__mobile-image',
+                      widths: '360, 540, 720, 900',
+                      sizes: '100vw',
+                      loading: 'lazy',
+                      alt: block.settings.mobile_image.alt | default: block.settings.heading | escape
+                  }}
+                {%- endif -%}
+              </div>
+              <div class="yaomri-hero-card__overlay"></div>
+              <div class="yaomri-hero-card__content">
+                {%- if block.settings.eyebrow != blank -%}
+                  <p class="yaomri-hero-card__eyebrow">{{ block.settings.eyebrow }}</p>
+                {%- endif -%}
+                {%- if block.settings.heading != blank -%}
+                  <h2 class="yaomri-hero-card__heading">{{ block.settings.heading }}</h2>
+                {%- endif -%}
+                {%- if block.settings.text != blank -%}
+                  <div class="yaomri-hero-card__text">{{ block.settings.text }}</div>
+                {%- endif -%}
+                {%- if block.settings.button_label != blank and block.settings.link != blank -%}
+                  <div class="yaomri-hero-card__buttons">
+                    <span class="yaomri-hero-card__button"><span>{{ block.settings.button_label }}</span></span>
+                  </div>
+                {%- endif -%}
+              </div>
+            </{{ card_tag }}>
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if rendered_cards == 0 -%}
+          {%- for index in (1..3) -%}
+            <div class="yaomri-hero-card" style="--yh-card-text: #111111; --yh-overlay-opacity: 0;">
+              <div class="yaomri-hero__placeholder" data-label="Hero card {{ index }}"></div>
+              <div class="yaomri-hero-card__content">
+                <p class="yaomri-hero-card__eyebrow">Edit card {{ index }}</p>
+                <h2 class="yaomri-hero-card__heading">Swim Edit</h2>
+                <div class="yaomri-hero-card__text">Add imagery and copy in the theme editor.</div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    {%- else -%}
+      <div class="yaomri-hero__stage" style="--yh-image-position: {{ section.settings.image_position }};">
+        <div class="yaomri-hero__media">
+          {%- if section.settings.desktop_image != blank -%}
+            {%- assign image_class = 'yaomri-hero__image' -%}
+            {%- if section.settings.mobile_image != blank -%}
+              {%- assign image_class = image_class | append: ' yaomri-hero__image--has-mobile' -%}
+            {%- endif -%}
+            {{
+              section.settings.desktop_image
+              | image_url: width: 2400
+              | image_tag:
+                class: image_class,
+                widths: '720, 960, 1200, 1600, 2000, 2400',
+                sizes: '100vw',
+                loading: 'eager',
+                alt: section.settings.desktop_image.alt | default: section.settings.heading | escape
+            }}
+          {%- else -%}
+            <div class="yaomri-hero__placeholder" data-label="Add hero image"></div>
+          {%- endif -%}
+
+          {%- if section.settings.mobile_image != blank -%}
+            {{
+              section.settings.mobile_image
+              | image_url: width: 1200
+              | image_tag:
+                class: 'yaomri-hero__image yaomri-hero__mobile-image',
+                widths: '360, 540, 720, 900, 1200',
+                sizes: '100vw',
+                loading: 'eager',
+                alt: section.settings.mobile_image.alt | default: section.settings.heading | escape
+            }}
+          {%- endif -%}
+        </div>
+        <div class="yaomri-hero__overlay"></div>
+        <div class="yaomri-hero__content">
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="yaomri-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+          {%- endif -%}
+          {%- if section.settings.heading != blank -%}
+            <h1 class="yaomri-hero__heading">{{ section.settings.heading }}</h1>
+          {%- endif -%}
+          {%- if section.settings.text != blank -%}
+            <div class="yaomri-hero__text">{{ section.settings.text }}</div>
+          {%- endif -%}
+          {%- if section.settings.primary_button_label != blank or section.settings.secondary_button_label != blank -%}
+            <div class="yaomri-hero__buttons">
+              {%- if section.settings.primary_button_label != blank and section.settings.primary_button_link != blank -%}
+                <a class="yaomri-hero__button yaomri-hero__button--primary" href="{{ section.settings.primary_button_link }}">
+                  <span>{{ section.settings.primary_button_label }}</span>
+                </a>
+              {%- endif -%}
+              {%- if section.settings.secondary_button_label != blank and section.settings.secondary_button_link != blank -%}
+                <a class="yaomri-hero__button yaomri-hero__button--secondary" href="{{ section.settings.secondary_button_link }}">
+                  {{ section.settings.secondary_button_label }}
+                </a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "select",
+      "id": "hero_layout",
+      "label": "Hero layout",
+      "default": "single",
+      "options": [
+        {
+          "value": "single",
+          "label": "Single image"
+        },
+        {
+          "value": "cards",
+          "label": "3-card"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Section width",
+      "default": "full",
+      "options": [
+        {
+          "value": "site",
+          "label": "Site width"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "custom_section_width",
+      "label": "Custom section width",
+      "min": 720,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "default": 1440
+    },
+    {
+      "type": "range",
+      "id": "section_height_desktop",
+      "label": "Section height desktop",
+      "min": 360,
+      "max": 900,
+      "step": 20,
+      "unit": "px",
+      "default": 680
+    },
+    {
+      "type": "range",
+      "id": "section_height_mobile",
+      "label": "Section height mobile",
+      "min": 360,
+      "max": 760,
+      "step": 20,
+      "unit": "px",
+      "default": 560
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Centre"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text colour",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay colour",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "label": "Show border",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_inner_border",
+      "label": "Show inner border",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "content_box_background",
+      "label": "Content box background"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding top desktop",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding bottom desktop",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_left_desktop",
+      "label": "Padding left desktop",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right_desktop",
+      "label": "Padding right desktop",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mobile",
+      "label": "Padding left mobile",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mobile",
+      "label": "Padding right mobile",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "label": "Margin top desktop",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "label": "Margin bottom desktop",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "label": "Margin top mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "label": "Margin bottom mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "New season"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Swimwear with intention"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Sharp silhouettes, clean lines and effortless pieces for sun-led days.</p>"
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Primary button label",
+      "default": "Shop new arrivals"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Secondary button label"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "header",
+      "content": "Single image"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "default": "center center",
+      "options": [
+        {
+          "value": "center center",
+          "label": "Centre"
+        },
+        {
+          "value": "center top",
+          "label": "Top"
+        },
+        {
+          "value": "center bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "left center",
+          "label": "Left"
+        },
+        {
+          "value": "right center",
+          "label": "Right"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hero_card",
+      "name": "Hero card",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow",
+          "default": "Edit"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Swim"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Image position",
+          "default": "center center",
+          "options": [
+            {
+              "value": "center center",
+              "label": "Centre"
+            },
+            {
+              "value": "center top",
+              "label": "Top"
+            },
+            {
+              "value": "center bottom",
+              "label": "Bottom"
+            },
+            {
+              "value": "left center",
+              "label": "Left"
+            },
+            {
+              "value": "right center",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text colour",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "Overlay opacity",
+          "min": 0,
+          "max": 80,
+          "step": 5,
+          "unit": "%",
+          "default": 20
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "blocks": [
+        {
+          "type": "hero_card",
+          "settings": {
+            "eyebrow": "01",
+            "heading": "Bikinis"
+          }
+        },
+        {
+          "type": "hero_card",
+          "settings": {
+            "eyebrow": "02",
+            "heading": "Swimsuits"
+          }
+        },
+        {
+          "type": "hero_card",
+          "settings": {
+            "eyebrow": "03",
+            "heading": "Resort"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

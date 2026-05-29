@@ -9,12 +9,45 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "hello-world",
-      "settings": {}
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "hero_layout": "single",
+        "section_width": "full",
+        "custom_section_width": 1440,
+        "section_height_desktop": 680,
+        "section_height_mobile": 560,
+        "content_alignment": "left",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 20,
+        "show_border": false,
+        "show_inner_border": false,
+        "section_background": "#ffffff",
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0,
+        "padding_left_desktop": 0,
+        "padding_right_desktop": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "padding_left_mobile": 0,
+        "padding_right_mobile": 0,
+        "margin_top_desktop": 0,
+        "margin_bottom_desktop": 0,
+        "margin_top_mobile": 0,
+        "margin_bottom_mobile": 0,
+        "eyebrow": "New season",
+        "heading": "Swimwear with intention",
+        "text": "<p>Sharp silhouettes, clean lines and effortless pieces for sun-led days.</p>",
+        "primary_button_label": "Shop new arrivals",
+        "primary_button_link": "",
+        "secondary_button_label": "",
+        "secondary_button_link": "",
+        "image_position": "center center"
+      }
     }
   },
   "order": [
-    "main"
+    "hero"
   ]
 }

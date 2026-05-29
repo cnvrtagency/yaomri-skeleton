@@ -14,7 +14,7 @@ Do not build speculative storefront features before the launch-critical surfaces
 | Mobile menu | Needs cleanup | Drawer is built and demo fallback is removed; full visual QA still needed. |
 | Cart page fallback | Half-built | Usable page fallback, but it is not positioned clearly as fallback-only. |
 | Cart drawer | Not started | Required for a polished launch if cart drawer is in scope. |
-| Homepage | Not started | Still Skeleton Hello World. |
+| Homepage | Half-built | Hello World has been replaced with a configurable Hero; remaining homepage sections are still needed. |
 | Product page | Not started | Still default Skeleton unless separately changed. |
 | Collection page | Not started | Still default Skeleton unless separately changed. |
 | Search | Half-built | Basic search exists; no Ya Omri QA pass. |
@@ -107,14 +107,13 @@ Objective:
 - Make the storefront first impression launchable.
 
 Tasks:
-- Replace `templates/index.json` Hello World.
-- Build a clean homepage shell.
+- Done: replace `templates/index.json` Hello World.
+- Done: build a clean Hero section as the homepage shell.
 - Add core launch sections in this order:
   1. Brand strip.
   2. Promo banner.
-  3. Fresh hero.
-  4. Product carousel or launch-safe product grid.
-  5. Footer/social layer if not already handled by footer.
+  3. Product carousel or launch-safe product grid.
+  4. Footer/social layer if not already handled by footer.
 - Avoid demo copy and fake links.
 
 Success looks like:
@@ -278,13 +277,13 @@ Do not get distracted by:
 5. Rename cart static shipping labels so they do not imply dynamic logic.
 6. Mark cart page as fallback-only in settings/help documentation.
 7. Replace Skeleton footer labels and styling.
-8. Replace homepage Hello World.
+8. Done: replace homepage Hello World with Hero.
 9. Audit product page.
 10. Audit collection page.
 
 ## Top 10 Launch Blockers
 
-1. Homepage still uses Skeleton Hello World.
+1. Homepage still needs remaining launch sections after Hero.
 2. Product page not audited.
 3. Collection page not audited.
 4. Header, mega, and mobile drawer still need final visual QA after cleanup.
