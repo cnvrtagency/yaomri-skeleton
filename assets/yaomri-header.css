@@ -129,7 +129,7 @@
   font-weight: 800;
   line-height: 1;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: none;
   white-space: nowrap;
   flex: 0 0 auto;
   min-width: 0;
@@ -150,7 +150,7 @@
 }
 
 .yaomri-header__country-selector--compact {
-  width: 5.9rem;
+  width: 5.75rem;
 }
 
 .yaomri-header__country-selector--compact.yaomri-header__country-selector--currency {
@@ -158,8 +158,11 @@
 }
 
 .yaomri-header__country-selector--full {
-  width: auto;
-  max-width: min(18rem, 24vw);
+  width: clamp(9.5rem, 17vw, 14.75rem);
+}
+
+.yaomri-header__country-selector--full.yaomri-header__country-selector--currency {
+  width: clamp(11.75rem, 19vw, 17rem);
 }
 
 .yaomri-header__country-current {
@@ -190,7 +193,7 @@
   color: inherit;
   font: inherit;
   letter-spacing: inherit;
-  text-transform: inherit;
+  text-transform: none;
   cursor: pointer;
   outline: none;
   opacity: 0;

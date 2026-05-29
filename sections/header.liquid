@@ -20,9 +20,9 @@
 
   assign wishlist_url = settings.wishlist_link | default: '/pages/wishlist'
   assign show_country_selector = settings.show_country_selector
-  assign country_selector_style = settings.country_selector_style | default: 'compact'
+  assign country_selector_style = settings.country_selector_style | default: 'full'
   unless country_selector_style == 'compact' or country_selector_style == 'full'
-    assign country_selector_style = 'compact'
+    assign country_selector_style = 'full'
   endunless
   assign country_selector_show_flag = settings.country_selector_show_flag
   assign country_selector_show_currency = settings.country_selector_show_currency
@@ -82,42 +82,15 @@
     assign country_selector_text = 'currentColor'
   endif
   assign country_selector_height = settings.country_selector_height | default: 48
-  assign current_country_flag = ''
-  if country_selector_show_flag and localization.country != blank
-    case localization.country.iso_code
-      when 'AE'
-        assign current_country_flag = '🇦🇪'
-      when 'GB'
-        assign current_country_flag = '🇬🇧'
-      when 'US'
-        assign current_country_flag = '🇺🇸'
-      when 'CA'
-        assign current_country_flag = '🇨🇦'
-      when 'AU'
-        assign current_country_flag = '🇦🇺'
-      when 'DE'
-        assign current_country_flag = '🇩🇪'
-      when 'FR'
-        assign current_country_flag = '🇫🇷'
-      when 'ES'
-        assign current_country_flag = '🇪🇸'
-      when 'IT'
-        assign current_country_flag = '🇮🇹'
-      when 'NL'
-        assign current_country_flag = '🇳🇱'
-      when 'IE'
-        assign current_country_flag = '🇮🇪'
-      when 'SA'
-        assign current_country_flag = '🇸🇦'
-      when 'QA'
-        assign current_country_flag = '🇶🇦'
-      when 'KW'
-        assign current_country_flag = '🇰🇼'
-      when 'BH'
-        assign current_country_flag = '🇧🇭'
-      when 'OM'
-        assign current_country_flag = '🇴🇲'
-    endcase
+  capture current_country_flag
+    if country_selector_show_flag and localization.country != blank
+      render 'country-flag', iso_code: localization.country.iso_code
+    endif
+  endcapture
+  assign current_country_flag = current_country_flag | strip
+  assign current_country_name = localization.country.name
+  if current_country_name == blank
+    assign current_country_name = localization.country.iso_code
   endif
   capture current_country_label
     if current_country_flag != blank
@@ -125,7 +98,7 @@
       echo ' '
     endif
     if country_selector_style == 'full'
-      echo localization.country.name
+      echo current_country_name
     else
       echo localization.country.iso_code
     endif
@@ -267,49 +240,17 @@
             onchange="this.form.submit()"
           >
             {%- for country in localization.available_countries -%}
-              {%- liquid
-                assign country_flag = ''
-                if country_selector_show_flag
-                  case country.iso_code
-                    when 'AE'
-                      assign country_flag = '🇦🇪'
-                    when 'GB'
-                      assign country_flag = '🇬🇧'
-                    when 'US'
-                      assign country_flag = '🇺🇸'
-                    when 'CA'
-                      assign country_flag = '🇨🇦'
-                    when 'AU'
-                      assign country_flag = '🇦🇺'
-                    when 'DE'
-                      assign country_flag = '🇩🇪'
-                    when 'FR'
-                      assign country_flag = '🇫🇷'
-                    when 'ES'
-                      assign country_flag = '🇪🇸'
-                    when 'IT'
-                      assign country_flag = '🇮🇹'
-                    when 'NL'
-                      assign country_flag = '🇳🇱'
-                    when 'IE'
-                      assign country_flag = '🇮🇪'
-                    when 'SA'
-                      assign country_flag = '🇸🇦'
-                    when 'QA'
-                      assign country_flag = '🇶🇦'
-                    when 'KW'
-                      assign country_flag = '🇰🇼'
-                    when 'BH'
-                      assign country_flag = '🇧🇭'
-                    when 'OM'
-                      assign country_flag = '🇴🇲'
-                  endcase
-                endif
-              -%}
+              {%- capture country_flag -%}
+                {%- if country_selector_show_flag -%}
+                  {%- render 'country-flag', iso_code: country.iso_code -%}
+                {%- endif -%}
+              {%- endcapture -%}
+              {%- assign country_flag = country_flag | strip -%}
+              {%- assign option_country_name = country.name | default: country.iso_code -%}
               {%- capture country_label -%}
                 {%- if country_flag != blank -%}{{ country_flag }} {% endif -%}
                 {%- if country_selector_style == 'full' -%}
-                  {{- country.name -}}
+                  {{- option_country_name -}}
                 {%- else -%}
                   {{- country.iso_code -}}
                 {%- endif -%}

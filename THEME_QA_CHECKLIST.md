@@ -65,6 +65,9 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Country selector submits `country_code` through a Shopify localization form.
 - Country selector visibly shows flag plus country code/name, not a visible "Country/region" label.
 - AE displays as `🇦🇪 AE` in compact mode or `🇦🇪 United Arab Emirates` in full mode.
+- Full mode is the default and country names render naturally, for example `Canada`, not `CANADA`.
+- Compact mode still renders stable flag plus ISO code, for example `🇨🇦 CA`.
+- Selector country list comes from Shopify `localization.available_countries`; the theme does not hardcode or limit the list.
 - Country selector style, height, and optional colours do not break header actions.
 - Manual region/shipping labels are not present in Header settings.
 - Account icon respects Shopify customer-account availability.

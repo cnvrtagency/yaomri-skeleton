@@ -445,7 +445,7 @@
         "type": "select",
         "id": "country_selector_style",
         "label": "Country selector style",
-        "default": "compact",
+        "default": "full",
         "options": [
           {
             "value": "compact",
