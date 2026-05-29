@@ -21,6 +21,20 @@
   box-shadow: none;
 }
 
+.yaomri-header--transparent-active:not(.is-scrolled) {
+  --ym-link-color: currentColor;
+  --yh-country-bg: transparent;
+  --yh-country-border: var(--yh-transparent-border, transparent);
+  --yh-country-text: var(--yh-transparent-text, #fff);
+}
+
+.yaomri-header--transparent-active:not(.is-scrolled) .yaomri-header__nav-link,
+.yaomri-header--transparent-active:not(.is-scrolled) .yaomri-header__shop-name,
+.yaomri-header--transparent-active:not(.is-scrolled) .yaomri-header__icon,
+.yaomri-header--transparent-active:not(.is-scrolled) .yaomri-header__country-selector {
+  color: inherit;
+}
+
 .yaomri-header--transparent-active.yaomri-header--sticky-enabled {
   position: fixed;
 }
@@ -374,14 +388,17 @@
 @media screen and (min-width: 991px) {
   .yaomri-header--width-site .yaomri-header__desktop {
     max-width: min(var(--page-width, 90rem), 100%);
+    padding-inline: 0;
   }
 
   .yaomri-header--width-custom .yaomri-header__desktop {
     max-width: min(var(--yh-custom-content-width, 1500px), 100%);
+    padding-inline: 0;
   }
 
   .yaomri-header--width-full .yaomri-header__desktop {
     max-width: none;
+    padding-inline: var(--yh-desktop-padding, 24px);
   }
 
   .yaomri-header__desktop {
