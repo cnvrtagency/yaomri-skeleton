@@ -98,20 +98,32 @@
 }
 
 .yaomri-single-hero__block {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
 }
 
 .yaomri-single-hero__eyebrow-block,
 .yaomri-single-hero__heading-block,
 .yaomri-single-hero__paragraph-block {
-  max-width: var(--ysh-block-max-width, 100%);
   margin-bottom: var(--ysh-block-margin-bottom, 0);
   color: var(--ysh-block-text-color, inherit);
 }
 
+.yaomri-single-hero__eyebrow-block {
+  max-width: var(--ysh-eyebrow-max-width, 100%);
+}
+
+.yaomri-single-hero__heading-block {
+  max-width: var(--ysh-heading-max-width, 100%);
+}
+
+.yaomri-single-hero__paragraph-block {
+  max-width: var(--ysh-text-max-width, 100%);
+}
+
 .yaomri-single-hero__eyebrow {
   margin: 0;
-  max-width: var(--ysh-eyebrow-max-width, 100%);
+  max-width: 100%;
   font-size: var(--ysh-eyebrow-size-desktop, 0.72rem);
   font-style: italic;
   font-weight: var(--ysh-eyebrow-weight, 800);
@@ -128,21 +140,23 @@
   letter-spacing: var(--ysh-heading-letter-spacing, 0);
   line-height: var(--ysh-heading-line-height-desktop, 1.05);
   text-transform: var(--ysh-heading-transform, none);
-  max-width: var(--ysh-heading-max-width, 100%);
+  max-width: 100%;
   text-wrap: balance;
 }
 
 .yaomri-single-hero__text {
-  max-width: var(--ysh-text-max-width, 100%);
+  max-width: 100%;
   font-size: var(--ysh-text-size-desktop, 1.125rem);
   font-weight: var(--ysh-text-weight, 400);
   line-height: var(--ysh-text-line-height-desktop, 1.5);
   letter-spacing: var(--ysh-text-letter-spacing, 0);
   text-wrap: pretty;
+  text-align: inherit;
 }
 
 .yaomri-single-hero__text > * {
   margin-block: 0;
+  text-align: inherit;
 }
 
 .yaomri-single-hero__button-block,
