@@ -81,8 +81,8 @@
             "margin_bottom": 0
           }
         },
-        "buttons": {
-          "type": "buttons",
+        "button_group": {
+          "type": "button_group",
           "settings": {
             "primary_label": "Shop the Collection",
             "primary_link": "/collections/all",
@@ -99,7 +99,7 @@
         "eyebrow",
         "heading",
         "paragraph",
-        "buttons"
+        "button_group"
       ]
     }
   },

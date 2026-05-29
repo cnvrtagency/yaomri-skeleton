@@ -217,7 +217,7 @@
                   </div>
                 {%- endif -%}
 
-              {%- when 'buttons' -%}
+              {%- when 'button_group' -%}
                 {%- liquid
                   assign has_primary = false
                   assign has_secondary = false
@@ -920,7 +920,7 @@
       ]
     },
     {
-      "type": "buttons",
+      "type": "button_group",
       "name": "Two buttons",
       "settings": [
         {
@@ -1154,7 +1154,7 @@
           }
         },
         {
-          "type": "buttons",
+          "type": "button_group",
           "settings": {
             "primary_label": "Shop the Collection",
             "primary_link": "shopify://collections/all",
