@@ -139,7 +139,7 @@
             "label": "Country / region"
           }
         },
-        "social_instagram": {
+        "social_link_instagram": {
           "type": "social_link",
           "settings": {
             "label": "Follow @yaomri",
@@ -152,7 +152,7 @@
         "footer_link_account",
         "footer_link_wishlist",
         "country_selector",
-        "social_instagram"
+        "social_link_instagram"
       ],
       "settings": {
         "drawer_menu": "",
