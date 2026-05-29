@@ -24,8 +24,8 @@
         "mobile_content_horizontal": "center",
         "mobile_content_vertical": "center",
         "mobile_text_alignment": "center",
-        "content_max_width_desktop": 580,
-        "content_max_width_mobile": 360,
+        "content_width": "site",
+        "custom_content_width": 1200,
         "content_gap": 12,
         "content_padding": 0,
         "overlay_color": "#000000",
@@ -49,34 +49,28 @@
       },
       "blocks": {
         "eyebrow": {
-          "type": "text",
+          "type": "eyebrow",
           "settings": {
-            "text_type": "eyebrow",
-            "text_content": "<p>NEW SEASON</p>",
-            "heading_tag": "h1",
-            "heading_size": "large",
-            "max_width": 0,
+            "text": "NEW SEASON",
+            "letter_spacing": 8,
             "margin_bottom": 0
           }
         },
         "heading": {
-          "type": "text",
+          "type": "heading",
           "settings": {
-            "text_type": "heading",
-            "text_content": "<p>Swimwear made for sun-drenched escapes</p>",
+            "heading": "Swimwear made for sun-drenched escapes",
             "heading_tag": "h1",
-            "heading_size": "large",
+            "size": "large",
             "max_width": 0,
             "margin_bottom": 0
           }
         },
         "paragraph": {
-          "type": "text",
+          "type": "paragraph",
           "settings": {
-            "text_type": "paragraph",
-            "text_content": "<p>Elegant silhouettes, refined details and statement swimwear designed for poolside days, beach clubs and golden-hour getaways.</p>",
-            "heading_tag": "h1",
-            "heading_size": "large",
+            "text": "<p>Elegant silhouettes, refined details and statement swimwear designed for poolside days, beach clubs and golden-hour getaways.</p>",
+            "size": "medium",
             "max_width": 520,
             "margin_bottom": 0
           }

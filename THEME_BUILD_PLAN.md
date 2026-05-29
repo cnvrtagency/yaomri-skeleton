@@ -109,7 +109,7 @@ Objective:
 Tasks:
 - Done: replace `templates/index.json` Hello World.
 - Done: split the old combined Hero into Single Image Hero and 3-Card Hero so merchants do not see irrelevant layout settings.
-- Done: make Single Image Hero content block-based for flexible text, buttons, custom markup, and image pins.
+- Done: make Single Image Hero content block-based with separate Eyebrow, Heading, Paragraph, buttons, custom markup, and image pins.
 - Add core launch sections in this order:
   1. Brand strip.
   2. Promo banner.

@@ -304,7 +304,8 @@ Current implementation:
 - Homepage no longer uses Skeleton Hello World.
 - `templates/index.json` uses `single-image-hero` as the first launch-ready homepage section.
 - The old combined layout-switch `sections/hero.liquid` has been removed.
-- `sections/single-image-hero.liquid` owns overlay-text single image hero content through blocks: Text, Button, Two buttons, Custom HTML, Custom Liquid, and Image pin.
+- `sections/single-image-hero.liquid` owns overlay-text single image hero content through blocks: Eyebrow, Heading, Paragraph, Button, Two buttons, Custom HTML, Custom Liquid, and Image pin.
+- Single Image Hero has separate Section width and Content width controls. Section width owns the overall hero frame; Content width owns the text/button content area inside the hero.
 - Single Image Hero separates desktop/mobile content block position from desktop/mobile text alignment and supports desktop/mobile height modes.
 - `sections/three-card-hero.liquid` owns the 3-card editorial hero and its card blocks.
 - Styles are scoped under `.yaomri-single-hero` and `.yaomri-three-hero`.

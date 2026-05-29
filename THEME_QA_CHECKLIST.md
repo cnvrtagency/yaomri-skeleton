@@ -187,7 +187,12 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Single Image Hero mobile content horizontal position overrides desktop on mobile.
 - Single Image Hero mobile content vertical position overrides desktop on mobile.
 - Single Image Hero desktop/mobile text alignment changes text/buttons inside the content block.
-- Single Image Hero Text block renders eyebrow, heading, and paragraph styles.
+- Single Image Hero content width works: Site width, Full width, Custom width.
+- Single Image Hero content width defaults to Site width and does not start full-bleed by default.
+- Single Image Hero Eyebrow block renders and hides when blank.
+- Single Image Hero Heading block renders H1/H2, size presets, max width, and hides when blank.
+- Single Image Hero Paragraph block renders rich text, size presets, max width, and hides when blank.
+- Single Image Hero generic Text block is not active in homepage JSON.
 - Single Image Hero Button block renders only when label and link are set.
 - Single Image Hero Two buttons block renders only valid buttons and never empty wrappers.
 - Single Image Hero Custom HTML block renders inside the content stack.
