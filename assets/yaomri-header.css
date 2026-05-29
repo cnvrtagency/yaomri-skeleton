@@ -119,8 +119,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.38rem;
   height: var(--yh-country-height, 48px);
   box-sizing: border-box;
+  padding-inline: 0.56rem;
   border: 1px solid var(--yh-country-border, var(--color-border));
   background: var(--yh-country-bg, var(--color-background));
   color: var(--yh-country-text, currentColor);
@@ -141,7 +143,6 @@
   display: block;
   width: 0.4rem;
   height: 0.4rem;
-  margin-left: 0.32rem;
   border-right: 1.5px solid currentColor;
   border-bottom: 1.5px solid currentColor;
   transform: translateY(-0.12rem) rotate(45deg);
@@ -150,7 +151,7 @@
 }
 
 .yaomri-header__country-selector--compact {
-  width: 3.9rem;
+  width: 4.1rem;
 }
 
 .yaomri-header__country-selector--compact.yaomri-header__country-selector--currency {
@@ -168,8 +169,7 @@
 .yaomri-header__country-current {
   display: block;
   min-width: 0;
-  max-width: 100%;
-  padding-left: 0.48rem;
+  max-width: calc(100% - 0.78rem);
   overflow: hidden;
   text-overflow: clip;
   text-transform: uppercase;
