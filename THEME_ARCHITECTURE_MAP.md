@@ -303,6 +303,7 @@ Current implementation:
 - `templates/index.json` uses `single-image-hero` as the first launch-ready homepage section.
 - The old combined layout-switch `sections/hero.liquid` has been removed.
 - `sections/single-image-hero.liquid` owns overlay-text single image hero content.
+- Single Image Hero now separates content block position from text alignment and supports desktop/mobile height modes.
 - `sections/three-card-hero.liquid` owns the 3-card editorial hero and its card blocks.
 - Styles are scoped under `.yaomri-single-hero` and `.yaomri-three-hero`.
 

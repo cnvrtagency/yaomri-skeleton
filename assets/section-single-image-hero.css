@@ -28,27 +28,39 @@
 
 .yaomri-single-hero__stage {
   position: relative;
-  min-height: var(--ysh-height-desktop, 680px);
+  display: grid;
+  min-height: 360px;
   overflow: hidden;
   background: var(--color-sand, #f6f4ef);
 }
 
+.yaomri-single-hero--desktop-height-custom .yaomri-single-hero__stage {
+  min-height: var(--ysh-height-desktop, 680px);
+}
+
 .yaomri-single-hero--border .yaomri-single-hero__stage {
-  border: 1px solid var(--color-border, #e8e8e8);
+  border: 1px solid var(--ysh-border-color, var(--color-border, #e8e8e8));
 }
 
 .yaomri-single-hero__media,
 .yaomri-single-hero__placeholder {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
 }
 
 .yaomri-single-hero__image {
   width: 100%;
-  height: 100%;
   display: block;
   object-fit: cover;
   object-position: var(--ysh-image-position, center center);
+}
+
+.yaomri-single-hero--desktop-height-custom .yaomri-single-hero__media,
+.yaomri-single-hero--desktop-height-custom .yaomri-single-hero__placeholder {
+  min-height: var(--ysh-height-desktop, 680px);
+}
+
+.yaomri-single-hero--desktop-height-custom .yaomri-single-hero__image {
+  height: 100%;
 }
 
 .yaomri-single-hero__mobile-image {
@@ -56,8 +68,7 @@
 }
 
 .yaomri-single-hero__overlay {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
   background: var(--ysh-overlay-color, #000);
   opacity: var(--ysh-overlay-opacity, 0);
   pointer-events: none;
@@ -67,14 +78,19 @@
   position: relative;
   z-index: 1;
   display: grid;
+  grid-area: 1 / 1;
   align-content: center;
-  justify-items: var(--ysh-content-justify, start);
-  min-height: var(--ysh-height-desktop, 680px);
+  justify-self: var(--ysh-content-justify, start);
+  justify-items: var(--ysh-text-justify, start);
+  align-self: stretch;
   width: min(36rem, 92%);
   padding: clamp(1.5rem, 3vw, 3rem);
-  margin-inline: var(--ysh-content-margin, 0 auto);
   color: var(--ysh-text, #fff);
   text-align: var(--ysh-text-align, left);
+}
+
+.yaomri-single-hero--desktop-height-custom .yaomri-single-hero__content {
+  min-height: var(--ysh-height-desktop, 680px);
 }
 
 .yaomri-single-hero__eyebrow {
@@ -174,9 +190,26 @@
       var(--ysh-padding-left-mobile, 0);
   }
 
-  .yaomri-single-hero__stage,
-  .yaomri-single-hero__content {
+  .yaomri-single-hero--mobile-height-custom .yaomri-single-hero__stage,
+  .yaomri-single-hero--mobile-height-custom .yaomri-single-hero__media,
+  .yaomri-single-hero--mobile-height-custom .yaomri-single-hero__placeholder,
+  .yaomri-single-hero--mobile-height-custom .yaomri-single-hero__content {
     min-height: var(--ysh-height-mobile, 560px);
+  }
+
+  .yaomri-single-hero--mobile-height-custom .yaomri-single-hero__image {
+    height: 100%;
+  }
+
+  .yaomri-single-hero--mobile-height-adapt .yaomri-single-hero__stage,
+  .yaomri-single-hero--mobile-height-adapt .yaomri-single-hero__media,
+  .yaomri-single-hero--mobile-height-adapt .yaomri-single-hero__placeholder,
+  .yaomri-single-hero--mobile-height-adapt .yaomri-single-hero__content {
+    min-height: 360px;
+  }
+
+  .yaomri-single-hero--mobile-height-adapt .yaomri-single-hero__image {
+    height: auto;
   }
 
   .yaomri-single-hero__image--has-mobile {

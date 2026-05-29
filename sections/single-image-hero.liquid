@@ -3,23 +3,31 @@
 {%- liquid
   assign width_mode = section.settings.section_width | default: 'full'
   assign custom_width = section.settings.custom_section_width | default: 1440
-  assign content_alignment = section.settings.content_alignment | default: 'left'
+  assign desktop_height_mode = section.settings.desktop_height_mode | default: 'custom'
+  assign mobile_height_mode = section.settings.mobile_height_mode | default: 'custom'
+  assign content_position = section.settings.content_position | default: 'left'
+  assign text_alignment = section.settings.text_alignment | default: 'left'
   assign text_color = section.settings.text_color | default: '#ffffff'
   assign overlay_color = section.settings.overlay_color | default: '#000000'
   assign overlay_opacity = section.settings.overlay_opacity | default: 20 | divided_by: 100.0
+  assign border_color = section.settings.border_color | default: '#e8e8e8'
   assign section_background = section.settings.section_background | default: 'var(--color-background)'
 
   assign content_justify = 'start'
-  assign content_margin = '0 auto 0 0'
-  assign text_align = 'left'
-  if content_alignment == 'center'
+  if content_position == 'center'
     assign content_justify = 'center'
-    assign content_margin = '0 auto'
-    assign text_align = 'center'
-  elsif content_alignment == 'right'
+  elsif content_position == 'right'
     assign content_justify = 'end'
-    assign content_margin = '0 0 0 auto'
+  endif
+
+  assign text_align = 'left'
+  assign text_justify = 'start'
+  if text_alignment == 'center'
+    assign text_align = 'center'
+    assign text_justify = 'center'
+  elsif text_alignment == 'right'
     assign text_align = 'right'
+    assign text_justify = 'end'
   endif
 
   assign section_width_value = 'var(--page-width)'
@@ -43,18 +51,19 @@
 -%}
 
 <section
-  class="yaomri-single-hero yaomri-single-hero--width-{{ width_mode }}{% if section.settings.show_border %} yaomri-single-hero--border{% endif %} full-width"
+  class="yaomri-single-hero yaomri-single-hero--width-{{ width_mode }} yaomri-single-hero--desktop-height-{{ desktop_height_mode }} yaomri-single-hero--mobile-height-{{ mobile_height_mode }}{% if section.settings.show_border %} yaomri-single-hero--border{% endif %} full-width"
   style="
     --ysh-section-width: {{ section_width_value }};
     --ysh-section-bg: {{ section_background }};
     --ysh-text: {{ text_color }};
+    --ysh-border-color: {{ border_color }};
     --ysh-overlay-color: {{ overlay_color }};
     --ysh-overlay-opacity: {{ overlay_opacity }};
     --ysh-content-justify: {{ content_justify }};
-    --ysh-content-margin: {{ content_margin }};
     --ysh-text-align: {{ text_align }};
-    --ysh-height-desktop: {{ section.settings.section_height_desktop }}px;
-    --ysh-height-mobile: {{ section.settings.section_height_mobile }}px;
+    --ysh-text-justify: {{ text_justify }};
+    --ysh-height-desktop: {{ section.settings.desktop_custom_height }}px;
+    --ysh-height-mobile: {{ section.settings.mobile_custom_height }}px;
     --ysh-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
     --ysh-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
     --ysh-padding-left-desktop: {{ section.settings.padding_left_desktop }}px;
@@ -176,30 +185,70 @@
       "default": 1440
     },
     {
+      "type": "select",
+      "id": "desktop_height_mode",
+      "label": "Desktop height mode",
+      "default": "custom",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "custom",
+          "label": "Custom height"
+        }
+      ]
+    },
+    {
       "type": "range",
-      "id": "section_height_desktop",
-      "label": "Desktop hero height",
+      "id": "desktop_custom_height",
+      "label": "Desktop custom height",
       "min": 360,
       "max": 900,
       "step": 20,
       "unit": "px",
-      "default": 680
+      "default": 680,
+      "info": "Only applies when Desktop height mode is Custom height."
+    },
+    {
+      "type": "select",
+      "id": "mobile_height_mode",
+      "label": "Mobile height mode",
+      "default": "custom",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "custom",
+          "label": "Custom height"
+        }
+      ]
     },
     {
       "type": "range",
-      "id": "section_height_mobile",
-      "label": "Mobile hero height",
+      "id": "mobile_custom_height",
+      "label": "Mobile custom height",
       "min": 360,
       "max": 760,
       "step": 20,
       "unit": "px",
-      "default": 560
+      "default": 560,
+      "info": "Only applies when Mobile height mode is Custom height."
     },
     {
       "type": "checkbox",
       "id": "show_border",
       "label": "Show outer border",
       "default": false
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border colour",
+      "default": "#e8e8e8"
     },
     {
       "type": "color",
@@ -272,8 +321,28 @@
     },
     {
       "type": "select",
-      "id": "content_alignment",
-      "label": "Content alignment",
+      "id": "content_position",
+      "label": "Content position",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Centre"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
       "default": "left",
       "options": [
         {

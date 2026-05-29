@@ -177,6 +177,13 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Single Image Hero mobile image overrides desktop image when provided.
 - Single Image Hero buttons render only when labels and links are set.
 - Single Image Hero overlay colour and opacity affect readability.
+- Single Image Hero outer border renders only when enabled.
+- Single Image Hero border colour changes the visible outer border.
+- Single Image Hero desktop height mode works: Adapt to image and Custom height.
+- Single Image Hero mobile height mode works: Adapt to image and Custom height.
+- Single Image Hero custom height sliders only affect their matching Custom height modes.
+- Single Image Hero content position moves the content block left, centre, and right.
+- Single Image Hero text alignment changes text/buttons inside the content block.
 - Single Image Hero width modes work: Site width, Full width, Custom.
 - 3-Card Hero renders one, two, or three cards cleanly.
 - 3-Card Hero no-block placeholder state is polished and not clickable.
