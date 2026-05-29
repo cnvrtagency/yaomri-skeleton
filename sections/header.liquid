@@ -24,6 +24,11 @@
   unless country_selector_style == 'compact' or country_selector_style == 'full'
     assign country_selector_style = 'compact'
   endunless
+  capture country_selector_class
+    echo 'yaomri-header__country-selector yaomri-header__country-selector--'
+    echo country_selector_style
+  endcapture
+  assign country_selector_class = country_selector_class | strip
   assign show_account_icon = settings.show_account_icon
   assign show_wishlist_icon = settings.show_wishlist_icon
   assign show_cart_icon = settings.show_cart_icon
@@ -192,7 +197,7 @@
       </a>
 
       {%- if show_country_selector and localization.available_countries.size > 1 -%}
-        {%- form 'localization', id: 'HeaderCountryForm', class: 'yaomri-header__country-selector yaomri-header__country-selector--' | append: country_selector_style -%}
+        {%- form 'localization', id: 'HeaderCountryForm', class: country_selector_class -%}
           <label class="visually-hidden" for="HeaderCountrySelector">Country/region</label>
           <select
             id="HeaderCountrySelector"
