@@ -1,6 +1,6 @@
 {%- liquid
   assign parent_id = parent_block.settings.parent_id | strip
-  assign panel_content_width_value = panel_content_width | default: 1200
+  assign panel_width_value = panel_width | default: 1200
   assign packery_enabled = true
   if parent_block.settings.enable_packery == false
     assign packery_enabled = false
@@ -22,13 +22,11 @@
     class="yaomri-mega-panel{% if packery_enabled %} yaomri-mega-panel--packery{% else %} yaomri-mega-panel--rows{% endif %}"
     data-mega-panel
     data-mega-parent="{{ parent_id | escape }}"
+    style="--ym-panel-width: {{ panel_width_value }}px;"
     hidden
     {{ parent_block.shopify_attributes }}
   >
-    <div
-      class="yaomri-mega-panel__inner"
-      style="--ym-panel-content-width: {{ panel_content_width_value }}px;"
-    >
+    <div class="yaomri-mega-panel__inner">
       <div class="yaomri-mega-panel__grid{% if packery_enabled %} yaomri-mega-panel__grid--packery{% else %} yaomri-mega-panel__grid--rows{% endif %}">
         {%- for block in all_blocks -%}
           {%- liquid

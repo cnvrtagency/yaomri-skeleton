@@ -43,8 +43,7 @@
   const syncPanelWidthVars = () => {
     if (!panelRoot) return;
     const panelWidth = getPanelWidth();
-    panelRoot.style.setProperty('--ym-panel-content-width', `${panelWidth}px`);
-    panelRoot.style.setProperty('--ym-panel-max-width', `${panelWidth}px`);
+    panelRoot.style.setProperty('--ym-panel-width', `${panelWidth}px`);
   };
 
   const syncPanelPadding = () => {

@@ -5,15 +5,14 @@
     data-panel-width="{{ section.settings.mega_panel_width | default: 1200 }}"
     data-close-delay="{{ section.settings.close_delay | default: 250 }}"
     style="
-      --ym-panel-content-width: {{ section.settings.mega_panel_width | default: 1200 }}px;
-      --ym-panel-max-width: {{ section.settings.mega_panel_width | default: 1200 }}px;
+      --ym-panel-width: {{ section.settings.mega_panel_width | default: 1200 }}px;
     "
     aria-hidden="true"
   >
     <button class="yaomri-mega-panels__backdrop" type="button" data-mega-close aria-label="Close menu"></button>
     {%- for block in section.blocks -%}
       {%- if block.type == 'mega_parent' -%}
-        {% render 'mega-menu-panel', parent_block: block, all_blocks: section.blocks, panel_content_width: section.settings.mega_panel_width %}
+        {% render 'mega-menu-panel', parent_block: block, all_blocks: section.blocks, panel_width: section.settings.mega_panel_width %}
       {%- endif -%}
     {%- endfor -%}
   </div>
@@ -27,8 +26,8 @@
     {
       "type": "range",
       "id": "mega_panel_width",
-      "label": "Mega panel content width",
-      "info": "Controls the visible inner content width. Values larger than the viewport are clamped.",
+      "label": "Mega panel width",
+      "info": "Controls the visible mega menu panel width on desktop.",
       "min": 400,
       "max": 1800,
       "step": 20,
