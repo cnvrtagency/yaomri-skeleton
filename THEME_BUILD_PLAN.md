@@ -61,6 +61,7 @@ Objective:
 Tasks:
 - Run the full Header, Mega Menu, and Mobile Menu QA checklist.
 - Verify width behavior for header, dropdown, mega panel, and mobile drawer.
+- Validate transparent header modes (Off, Homepage only, All pages) and scroll-to-solid behavior.
 - Done: remove demo mobile drawer fallback.
 - Improve merchant labels for Header blocks and Mega Menu IDs.
 - Confirm no default browser-blue links.

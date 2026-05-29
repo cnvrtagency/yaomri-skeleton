@@ -20,6 +20,8 @@ Owned by `config/settings_schema.json` under `Brand`.
 Owns:
 - `logo`
 - `mobile_logo`
+- `transparent_logo`
+- `transparent_mobile_logo`
 - `desktop_logo_width`
 - `mobile_logo_width`
 
@@ -115,6 +117,7 @@ Owns:
 - Wishlist link.
 - Cart count style.
 - Country selector visibility, style, and local styling.
+- Transparent header mode and transparent/sold-after-scroll colour behavior.
 
 Must not own:
 - Individual navigation item content.

@@ -6,6 +6,34 @@
   background: var(--yh-bg, var(--color-background));
   color: var(--yh-fg, var(--color-foreground));
   box-shadow: var(--yh-shadow, none);
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.yaomri-header--transparent-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 70;
+  border-bottom-color: var(--yh-transparent-border, transparent);
+  background: rgb(0 0 0 / var(--yh-transparent-bg-opacity, 0));
+  color: var(--yh-transparent-text, #fff);
+  box-shadow: none;
+}
+
+.yaomri-header--transparent-active.yaomri-header--sticky-enabled {
+  position: fixed;
+}
+
+.yaomri-header--transparent-active.is-scrolled {
+  border-bottom-color: var(--yh-border, var(--color-border));
+  background: var(--yh-solid-after-scroll-bg, var(--yh-bg, var(--color-background)));
+  color: var(--yh-solid-after-scroll-text, var(--yh-fg, var(--color-foreground)));
+  box-shadow: var(--yh-shadow, none);
+}
+
+.yaomri-header--transparent-active:not(.is-scrolled).yaomri-header--no-border {
+  border-bottom-color: transparent;
 }
 
 .yaomri-header.yaomri-header--no-border {
@@ -215,6 +243,7 @@
   line-height: 0;
   min-width: 0;
   max-width: min(var(--yh-desktop-logo-width, 180px), 100%);
+  position: relative;
 }
 
 .yaomri-header__logo-link--mobile {
@@ -241,6 +270,22 @@
   max-width: 100%;
   max-height: calc(var(--yh-desktop-height, 82px) - 12px);
   object-fit: contain;
+  transition: opacity 180ms ease;
+}
+
+.yaomri-header__logo-image--transparent {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.yaomri-header--transparent-active:not(.is-scrolled) .yaomri-header__logo-image--transparent {
+  opacity: 1;
+}
+
+.yaomri-header--transparent-active:not(.is-scrolled) .yaomri-header__logo-link .yaomri-header__logo-image:not(.yaomri-header__logo-image--transparent) {
+  opacity: 0;
 }
 
 .yaomri-header__logo-link--mobile .yaomri-header__logo-image {

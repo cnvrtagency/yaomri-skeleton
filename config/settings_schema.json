@@ -21,6 +21,16 @@
         "label": "Mobile logo"
       },
       {
+        "type": "image_picker",
+        "id": "transparent_logo",
+        "label": "Transparent logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "transparent_mobile_logo",
+        "label": "Transparent mobile logo"
+      },
+      {
         "type": "range",
         "id": "desktop_logo_width",
         "label": "Desktop logo width",
@@ -304,6 +314,84 @@
         "id": "enable_sticky",
         "label": "Sticky header",
         "default": true
+      },
+      {
+        "type": "select",
+        "id": "transparent_header_mode",
+        "label": "Transparent header",
+        "default": "homepage",
+        "options": [
+          {
+            "value": "off",
+            "label": "Off"
+          },
+          {
+            "value": "homepage",
+            "label": "Homepage only"
+          },
+          {
+            "value": "all",
+            "label": "All pages"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "transparent_header_colour_scheme",
+        "label": "Transparent header colour scheme",
+        "default": "light",
+        "options": [
+          {
+            "value": "light",
+            "label": "Light text"
+          },
+          {
+            "value": "dark",
+            "label": "Dark text"
+          },
+          {
+            "value": "custom",
+            "label": "Custom"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "id": "transparent_header_text_colour",
+        "label": "Transparent header text/icon colour",
+        "default": "#ffffff"
+      },
+      {
+        "type": "range",
+        "id": "transparent_header_background_opacity",
+        "label": "Transparent header background opacity",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "default": 0
+      },
+      {
+        "type": "color",
+        "id": "transparent_header_border_colour",
+        "label": "Transparent header border colour",
+        "default": "#00000000"
+      },
+      {
+        "type": "checkbox",
+        "id": "transparent_header_solid_after_scroll",
+        "label": "Use solid header after scroll",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "transparent_header_solid_background",
+        "label": "Solid header background after scroll"
+      },
+      {
+        "type": "color",
+        "id": "transparent_header_solid_text_colour",
+        "label": "Solid header text/icon colour after scroll"
       },
       {
         "type": "range",

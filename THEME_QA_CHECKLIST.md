@@ -55,6 +55,16 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Custom header width only affects custom mode.
 - Desktop and mobile header heights visibly change their respective headers.
 - Sticky header works and does not cover content unexpectedly.
+- Transparent header mode Off keeps normal header behavior.
+- Transparent header mode Homepage only applies on the homepage (`request.page_type = index`) only.
+- Transparent header mode All pages applies on all page types.
+- Transparent header overlays the first section without pushing page content down.
+- Transparent logo and transparent mobile logo swap correctly in transparent state and fall back correctly when blank.
+- Transparent header colour scheme Light/Dark/Custom resolves expected icon/link/logo visibility.
+- Transparent header background opacity applies only in transparent state.
+- Transparent state suppresses normal border/shadow and uses transparent border colour when configured.
+- Use solid header after scroll toggles to solid state after a small scroll threshold.
+- Solid/scrolled state restores normal border/shadow behavior and uses solid-after-scroll colours.
 - Bottom border can be shown/hidden.
 - Shadow presets work: none, subtle, medium, strong.
 - Custom shadow controls work only when custom shadow is selected.
@@ -71,6 +81,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Compact mode renders stable ISO code, for example `CA`.
 - Selector country list comes from Shopify `localization.available_countries`; the theme does not hardcode or limit the list.
 - Country selector style, height, and optional colours do not break header actions.
+- Transparent header mobile layout remains stable (menu, logo, search/wishlist/cart) and readable.
 - Desktop action order is country selector, search, account, wishlist, cart.
 - Manual region/shipping labels are not present in Header settings.
 - Account icon respects Shopify customer-account availability.
@@ -122,6 +133,8 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Hover leave closes after the configured delay.
 - Clicking a mega menu link closes the menu.
 - No mobile interference below the desktop breakpoint.
+- Mega menu and dropdown panels remain readable when triggered from transparent header state.
+- Theme editor preview remains stable when sections reload with transparent header mode enabled.
 - No default blue browser links.
 
 ## Mobile Menu

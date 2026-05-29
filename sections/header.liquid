@@ -1,6 +1,7 @@
 {{ 'yaomri-header.css' | asset_url | stylesheet_tag }}
 {{ 'mega-menu.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'mega-menu.js' | asset_url }}" defer></script>
+<script src="{{ 'yaomri-header-state.js' | asset_url }}" defer></script>
 
 {%- liquid
   assign resolved_layout = settings.desktop_layout | default: 'logo_left_nav_center_actions_right'
@@ -38,6 +39,11 @@
   assign show_cart_icon = settings.show_cart_icon
   assign desktop_logo = settings.logo
   assign mobile_logo = settings.mobile_logo | default: settings.logo
+  assign transparent_logo = settings.transparent_logo | default: settings.logo
+  assign transparent_mobile_logo = settings.transparent_mobile_logo
+  if transparent_mobile_logo == blank
+    assign transparent_mobile_logo = settings.transparent_logo | default: mobile_logo
+  endif
   assign desktop_logo_width = settings.desktop_logo_width | default: 180
   assign mobile_logo_width = settings.mobile_logo_width | default: 140
   assign header_width_mode = settings.header_width_mode | default: 'site'
@@ -81,6 +87,38 @@
     assign country_selector_text = 'currentColor'
   endif
   assign country_selector_height = settings.country_selector_height | default: 48
+  assign transparent_header_mode = settings.transparent_header_mode | default: 'homepage'
+  unless transparent_header_mode == 'off' or transparent_header_mode == 'homepage' or transparent_header_mode == 'all'
+    assign transparent_header_mode = 'homepage'
+  endunless
+  assign transparent_header_active = false
+  if transparent_header_mode == 'all'
+    assign transparent_header_active = true
+  elsif transparent_header_mode == 'homepage' and request.page_type == 'index'
+    assign transparent_header_active = true
+  endif
+  assign transparent_header_colour_scheme = settings.transparent_header_colour_scheme | default: 'light'
+  unless transparent_header_colour_scheme == 'light' or transparent_header_colour_scheme == 'dark' or transparent_header_colour_scheme == 'custom'
+    assign transparent_header_colour_scheme = 'light'
+  endunless
+  assign transparent_header_text_colour = settings.transparent_header_text_colour | default: '#ffffff'
+  assign transparent_header_resolved_text = transparent_header_text_colour
+  if transparent_header_colour_scheme == 'light'
+    assign transparent_header_resolved_text = '#ffffff'
+  elsif transparent_header_colour_scheme == 'dark'
+    assign transparent_header_resolved_text = '#111111'
+  endif
+  assign transparent_header_bg_opacity = settings.transparent_header_background_opacity | default: 0 | divided_by: 100.0
+  assign transparent_header_border = settings.transparent_header_border_colour | default: '#00000000'
+  assign transparent_header_solid_after_scroll = settings.transparent_header_solid_after_scroll
+  assign transparent_header_solid_background = settings.transparent_header_solid_background
+  if transparent_header_solid_background == blank
+    assign transparent_header_solid_background = header_background
+  endif
+  assign transparent_header_solid_text = settings.transparent_header_solid_text_colour
+  if transparent_header_solid_text == blank
+    assign transparent_header_solid_text = header_foreground
+  endif
   assign current_country_name = localization.country.name
   if current_country_name == blank
     assign current_country_name = localization.country.iso_code
@@ -123,7 +161,7 @@
   endcase
 -%}
 
-{%- if enable_sticky -%}
+{%- if enable_sticky and transparent_header_active == false -%}
   {%- style -%}
     #shopify-section-{{ section.id }} {
       position: sticky;
@@ -134,7 +172,10 @@
 {%- endif -%}
 
 <section
-  class="yaomri-header full-width yaomri-header--layout-{{ resolved_layout }} yaomri-header--width-{{ header_width_mode }} yaomri-header--collapse-{{ nav_collapse_width }}{% unless show_bottom_border %} yaomri-header--no-border{% endunless %}"
+  class="yaomri-header full-width yaomri-header--layout-{{ resolved_layout }} yaomri-header--width-{{ header_width_mode }} yaomri-header--collapse-{{ nav_collapse_width }}{% unless show_bottom_border %} yaomri-header--no-border{% endunless %}{% if transparent_header_active %} yaomri-header--transparent-active{% endif %}{% if enable_sticky %} yaomri-header--sticky-enabled{% endif %}"
+  data-transparent-mode="{{ transparent_header_mode }}"
+  data-transparent-active="{% if transparent_header_active %}true{% else %}false{% endif %}"
+  data-transparent-solid-after-scroll="{% if transparent_header_solid_after_scroll %}true{% else %}false{% endif %}"
   data-header-desktop-padding="{{ header_desktop_padding }}"
   style="
     --yh-bg: {{ header_background }};
@@ -165,6 +206,11 @@
     --yh-country-border: {{ country_selector_border }};
     --yh-country-text: {{ country_selector_text }};
     --yh-country-height: {{ country_selector_height }}px;
+    --yh-transparent-text: {{ transparent_header_resolved_text }};
+    --yh-transparent-bg-opacity: {{ transparent_header_bg_opacity }};
+    --yh-transparent-border: {{ transparent_header_border }};
+    --yh-solid-after-scroll-bg: {{ transparent_header_solid_background }};
+    --yh-solid-after-scroll-text: {{ transparent_header_solid_text }};
   "
   {{ section.shopify_attributes }}
 >
@@ -181,6 +227,18 @@
             loading: 'eager',
             alt: desktop_logo.alt | default: shop.name | escape
         }}
+        {%- if transparent_logo != blank -%}
+          {{
+            transparent_logo
+            | image_url: width: 800
+            | image_tag:
+              class: 'yaomri-header__logo-image yaomri-header__logo-image--transparent',
+              widths: '120, 160, 200, 240, 300, 360, 420, 520, 680, 800',
+              sizes: '(min-width: 990px) var(--yh-desktop-logo-width), var(--yh-mobile-logo-width)',
+              loading: 'eager',
+              alt: transparent_logo.alt | default: shop.name | escape
+          }}
+        {%- endif -%}
       {%- else -%}
         <span class="yaomri-header__shop-name">{{ shop.name }}</span>
       {%- endif -%}
@@ -200,6 +258,18 @@
             loading: 'eager',
             alt: mobile_logo.alt | default: shop.name | escape
         }}
+        {%- if transparent_mobile_logo != blank -%}
+          {{
+            transparent_mobile_logo
+            | image_url: width: 640
+            | image_tag:
+              class: 'yaomri-header__logo-image yaomri-header__logo-image--transparent',
+              widths: '100, 140, 180, 220, 280, 360, 480, 640',
+              sizes: '(max-width: 989px) var(--yh-mobile-logo-width), var(--yh-desktop-logo-width)',
+              loading: 'eager',
+              alt: transparent_mobile_logo.alt | default: shop.name | escape
+          }}
+        {%- endif -%}
       {%- else -%}
         <span class="yaomri-header__shop-name">{{ shop.name }}</span>
       {%- endif -%}
