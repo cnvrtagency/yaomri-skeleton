@@ -123,15 +123,16 @@
   if current_country_name == blank
     assign current_country_name = localization.country.iso_code
   endif
+  assign current_country_currency = localization.country.currency.iso_code
   capture current_country_label
     if country_selector_style == 'full'
       echo current_country_name
     else
       echo localization.country.iso_code
     endif
-    if country_selector_show_currency
+    if country_selector_show_currency and current_country_currency != blank
       echo ' / '
-      echo localization.country.currency.iso_code
+      echo current_country_currency
     endif
   endcapture
   assign current_country_label = current_country_label | strip
@@ -202,9 +203,12 @@
     --yh-cart-count-font-size: {{ cart_count_text_size }}px;
     --yh-cart-count-offset-x: {{ cart_count_offset_x }}px;
     --yh-cart-count-offset-y: {{ cart_count_offset_y }}px;
-    --yh-country-bg: {{ country_selector_background }};
-    --yh-country-border: {{ country_selector_border }};
-    --yh-country-text: {{ country_selector_text }};
+    --yh-country-bg-normal: {{ country_selector_background }};
+    --yh-country-border-normal: {{ country_selector_border }};
+    --yh-country-text-normal: {{ country_selector_text }};
+    --yh-country-bg: var(--yh-country-bg-normal);
+    --yh-country-border: var(--yh-country-border-normal);
+    --yh-country-text: var(--yh-country-text-normal);
     --yh-country-height: {{ country_selector_height }}px;
     --yh-transparent-text: {{ transparent_header_resolved_text }};
     --yh-transparent-bg-opacity: {{ transparent_header_bg_opacity }};
@@ -296,13 +300,14 @@
           >
             {%- for country in localization.available_countries -%}
               {%- assign option_country_name = country.name | default: country.iso_code -%}
+              {%- assign option_currency_code = country.currency.iso_code -%}
               {%- capture country_label -%}
                 {%- if country_selector_style == 'full' -%}
                   {{- option_country_name -}}
                 {%- else -%}
                   {{- country.iso_code -}}
                 {%- endif -%}
-                {%- if country_selector_show_currency -%} / {{ country.currency.iso_code }}{%- endif -%}
+                {%- if country_selector_show_currency and option_currency_code != blank -%} / {{ option_currency_code }}{%- endif -%}
               {%- endcapture -%}
               <option
                 value="{{ country.iso_code }}"

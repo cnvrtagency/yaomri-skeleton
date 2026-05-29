@@ -44,6 +44,9 @@
   background: var(--yh-solid-after-scroll-bg, var(--yh-bg, var(--color-background)));
   color: var(--yh-solid-after-scroll-text, var(--yh-fg, var(--color-foreground)));
   box-shadow: var(--yh-shadow, none);
+  --yh-country-bg: var(--yh-country-bg-normal, var(--color-background));
+  --yh-country-border: var(--yh-country-border-normal, var(--color-border));
+  --yh-country-text: var(--yh-country-text-normal, currentColor);
 }
 
 .yaomri-header--transparent-active:not(.is-scrolled).yaomri-header--no-border {

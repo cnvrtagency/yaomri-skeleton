@@ -79,6 +79,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Full mode is the default and the styled header button is uppercase.
 - Native dropdown option labels render in normal case, for example `Canada`, not `CANADA`.
 - Compact mode renders stable ISO code, for example `CA`.
+- When `Show currency code` is enabled, currency uses Shopify localization data and does not render a broken trailing slash when currency data is unavailable.
 - Selector country list comes from Shopify `localization.available_countries`; the theme does not hardcode or limit the list.
 - Country selector style, height, and optional colours do not break header actions.
 - Transparent header mobile layout remains stable (menu, logo, search/wishlist/cart) and readable.
