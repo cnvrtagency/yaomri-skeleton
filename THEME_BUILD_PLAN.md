@@ -8,10 +8,10 @@ Do not build speculative storefront features before the launch-critical surfaces
 
 | Area | Status | Why |
 |---|---|---|
-| Global settings | Needs cleanup | Useful base, but legacy fallbacks and label issues remain. |
-| Header | Needs cleanup | Built, but third layout conflicts with the spec and stale editor JSON exists. |
+| Global settings | Needs cleanup | Useful base; major stale width/social fallbacks are now removed. |
+| Header | Needs cleanup | Spec conflict is fixed; visual QA still needs to pass. |
 | Desktop mega menu | Needs cleanup | Visible width ownership is fixed, but panel ID workflow is fragile. |
-| Mobile menu | Needs cleanup | Drawer is built, but demo fallback and missing social fallback need cleanup. |
+| Mobile menu | Needs cleanup | Drawer is built and demo fallback is removed; full visual QA still needed. |
 | Cart page fallback | Half-built | Usable page fallback, but it is not positioned clearly as fallback-only. |
 | Cart drawer | Not started | Required for a polished launch if cart drawer is in scope. |
 | Homepage | Not started | Still Skeleton Hello World. |
@@ -29,12 +29,12 @@ Objective:
 - Clean up settings/editor ownership before any more storefront features.
 
 Tasks:
-- Remove unsupported `desktop_layout` option `logo_center_icons_right_nav_below`.
-- Remove legacy header layout mapping for search-field layouts after confirming no active editor data needs it.
-- Remove stale Header section fallbacks from `sections/header.liquid`.
-- Clean stale `sections/header-group.json` keys after pulling/confirming editor state.
-- Remove `settings.site_content_width` fallback from `snippets/css-variables.liquid`.
-- Remove or deliberately add `settings.social_instagram_link`; recommendation is remove for launch.
+- Done: remove unsupported `desktop_layout` option `logo_center_icons_right_nav_below`.
+- Done: remove legacy header layout mapping for search-field layouts.
+- Done: remove stale Header section fallbacks from `sections/header.liquid`.
+- Done: confirm `sections/header-group.json` has no known stale removed Header keys.
+- Done: remove `settings.site_content_width` fallback from `snippets/css-variables.liquid`.
+- Done: remove `settings.social_instagram_link` fallback from the mobile drawer.
 - Finalize navigation source rules:
   - Header blocks own curated desktop nav.
   - Header fallback menu is only fallback.
@@ -61,7 +61,7 @@ Objective:
 Tasks:
 - Run the full Header, Mega Menu, and Mobile Menu QA checklist.
 - Verify width behavior for header, dropdown, mega panel, and mobile drawer.
-- Remove demo mobile drawer fallback before publish.
+- Done: remove demo mobile drawer fallback.
 - Improve merchant labels for Header blocks and Mega Menu IDs.
 - Confirm no default browser-blue links.
 - Confirm no mobile interference from desktop mega menu.
@@ -270,25 +270,25 @@ Do not get distracted by:
 
 ## Top 10 Cleanup Actions
 
-1. Remove unsupported third desktop layout.
-2. Remove legacy search-layout compatibility from header after editor data is clean.
-3. Clean stale `sections/header-group.json` keys.
-4. Remove `settings.site_content_width` fallback.
-5. Remove `settings.social_instagram_link` fallback or add a real social setting later.
-6. Remove mobile drawer demo menu fallback before publish.
-7. Rename merchant-facing labels in Header blocks from "Heading" to "Navigation label".
-8. Rename Mega Menu ID labels to make matching workflow explicit.
-9. Rename cart static shipping labels so they do not imply dynamic logic.
-10. Mark cart page as fallback-only in settings/help documentation.
+1. Run full visual QA for the cleaned two-layout header.
+2. Document the desktop/mobile navigation workflow for merchants.
+3. Replace ID-based mega matching later if Shopify schema allows a safer workflow.
+4. Decide whether `Hover close delay` should stay exposed.
+5. Rename cart static shipping labels so they do not imply dynamic logic.
+6. Mark cart page as fallback-only in settings/help documentation.
+7. Replace Skeleton footer labels and styling.
+8. Replace homepage Hello World.
+9. Audit product page.
+10. Audit collection page.
 
 ## Top 10 Launch Blockers
 
 1. Homepage still uses Skeleton Hello World.
 2. Product page not audited.
 3. Collection page not audited.
-4. Header layout schema conflicts with the build spec.
-5. Stale editor-saved header settings exist in `header-group.json`.
-6. Mobile drawer can generate demo navigation if no menu is configured.
+4. Header, mega, and mobile drawer still need final visual QA after cleanup.
+5. Desktop/mobile navigation source model requires merchant explanation.
+6. Cart drawer is not started if drawer UX is required for launch.
 7. Cart drawer is not started if drawer UX is required for launch.
 8. Footer is still default Skeleton quality.
 9. Desktop/mobile navigation source model requires merchant explanation.
@@ -296,7 +296,7 @@ Do not get distracted by:
 
 ## Top 10 Settings Or Labels To Rename
 
-1. `desktop_layout`: keep label, remove unsupported option.
+1. `desktop_layout`: done, unsupported option removed.
 2. `site_width_mode`: "Page width".
 3. `custom_site_content_width`: "Custom page width".
 4. `nav_text_size`: "Desktop navigation text size".
@@ -309,16 +309,16 @@ Do not get distracted by:
 
 ## Top 10 Settings To Remove Or Merge
 
-1. Remove `logo_center_icons_right_nav_below`.
-2. Remove stale `submenu_width`.
-3. Remove stale `custom_width`.
-4. Remove stale Header section `menu`.
-5. Remove stale `desktop_side_padding`.
-6. Remove stale `mobile_side_padding`.
-7. Remove legacy `country_label` fallback.
-8. Remove legacy `site_content_width` fallback.
-9. Remove missing `social_instagram_link` fallback.
-10. Defer or remove `close_delay` for launch.
+1. Done: remove `logo_center_icons_right_nav_below`.
+2. Done: remove stale `submenu_width`.
+3. Done: remove stale `custom_width`.
+4. Done: remove stale Header section `menu`.
+5. Done: remove stale `desktop_side_padding`.
+6. Done: remove stale `mobile_side_padding`.
+7. Done: remove legacy `country_label` fallback.
+8. Done: remove legacy `site_content_width` fallback.
+9. Done: remove missing `social_instagram_link` fallback.
+10. Decide whether to defer or remove `Hover close delay` before publish.
 
 ## Next 5 Codex Tasks In Exact Order
 

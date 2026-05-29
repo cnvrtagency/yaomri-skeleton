@@ -3,39 +3,12 @@
 <script src="{{ 'mega-menu.js' | asset_url }}" defer></script>
 
 {%- liquid
-  assign raw_layout = settings.desktop_layout | default: section.settings.desktop_layout | default: 'logo_left_nav_center_actions_right'
-  assign resolved_layout = raw_layout
-
-  case raw_layout
-    when 'search_left_logo_center_actions_right'
-      assign resolved_layout = 'logo_left_nav_center_actions_right'
-    when 'search_left_logo_center_icons_right'
-      assign resolved_layout = 'logo_left_nav_center_actions_right'
-    when 'logo_left_search_center_actions_right'
-      assign resolved_layout = 'logo_left_nav_center_actions_right'
-    when 'logo_left_search_center_icons_right'
-      assign resolved_layout = 'logo_left_nav_center_actions_right'
-    when 'logo_left_search_right'
-      assign resolved_layout = 'logo_left_nav_center_actions_right'
-    when 'logo_center_actions_right'
-      assign resolved_layout = 'logo_left_nav_center_actions_right'
-    when 'logo_left_nav_center_actions_right'
-      assign resolved_layout = 'logo_left_nav_center_actions_right'
-    when 'logo_left_nav_center_search_icons_right'
-      assign resolved_layout = 'logo_left_nav_center_actions_right'
-    when 'nav_left_logo_center_icons_right'
-      assign resolved_layout = 'nav_left_logo_center_actions_right'
-    when 'logo_center_icons_right_nav_below'
-      assign resolved_layout = 'logo_center_icons_right_nav_below'
-  endcase
-
-  unless resolved_layout == 'logo_left_nav_center_actions_right' or resolved_layout == 'nav_left_logo_center_actions_right' or resolved_layout == 'logo_center_icons_right_nav_below'
+  assign resolved_layout = settings.desktop_layout | default: 'logo_left_nav_center_actions_right'
+  unless resolved_layout == 'logo_left_nav_center_actions_right' or resolved_layout == 'nav_left_logo_center_actions_right'
     assign resolved_layout = 'logo_left_nav_center_actions_right'
   endunless
 
-  assign has_menu = false
-  assign has_nav_blocks = false
-  assign menu_handle = settings.header_menu | default: section.settings.menu
+  assign menu_handle = settings.header_menu
   if menu_handle == blank
     assign menu_handle = 'main-menu'
   endif
@@ -45,90 +18,51 @@
     assign navigation_menu = linklists['main-menu']
   endif
 
-  if navigation_menu != blank and navigation_menu.links.size > 0
-    assign has_menu = true
-  endif
-
-  for block in section.blocks
-    if block.type == 'base_item' or block.type == 'dropdown_item' or block.type == 'mega_item'
-      assign has_nav_blocks = true
-      break
-    endif
-  endfor
-
-  assign show_nav_below = false
-  if resolved_layout == 'logo_center_icons_right_nav_below'
-    if has_menu or has_nav_blocks
-      assign show_nav_below = true
-    endif
-  endif
-
-  assign wishlist_url = settings.wishlist_link | default: section.settings.wishlist_link | default: '/pages/wishlist'
-  assign region_label = settings.region_label | default: section.settings.region_label | default: section.settings.country_label
-  assign region_flag = settings.region_flag | default: section.settings.region_flag
-  assign region_currency = settings.region_currency | default: section.settings.region_currency
-  assign region_link = settings.region_link | default: section.settings.region_link
+  assign wishlist_url = settings.wishlist_link | default: '/pages/wishlist'
+  assign region_label = settings.region_label
+  assign region_flag = settings.region_flag
+  assign region_currency = settings.region_currency
+  assign region_link = settings.region_link
   assign show_region_chip = settings.show_region_chip
-  if show_region_chip == blank
-    assign show_region_chip = section.settings.show_region_chip
-  endif
   assign show_account_icon = settings.show_account_icon
-  if show_account_icon == blank
-    assign show_account_icon = section.settings.show_account_icon
-  endif
   assign show_wishlist_icon = settings.show_wishlist_icon
-  if show_wishlist_icon == blank
-    assign show_wishlist_icon = section.settings.show_wishlist_icon
-  endif
   assign show_cart_icon = settings.show_cart_icon
-  if show_cart_icon == blank
-    assign show_cart_icon = section.settings.show_cart_icon
-  endif
   assign desktop_logo = settings.logo
   assign mobile_logo = settings.mobile_logo | default: settings.logo
   assign desktop_logo_width = settings.desktop_logo_width | default: 180
   assign mobile_logo_width = settings.mobile_logo_width | default: 140
-  assign header_width_mode = settings.header_width_mode | default: section.settings.header_width_mode | default: 'site'
+  assign header_width_mode = settings.header_width_mode | default: 'site'
   unless header_width_mode == 'site' or header_width_mode == 'full' or header_width_mode == 'custom'
     assign header_width_mode = 'site'
   endunless
-  assign header_custom_width = settings.header_custom_width | default: section.settings.header_custom_width | default: 1200
-  assign nav_collapse_width = settings.nav_collapse_width | default: section.settings.nav_collapse_width | default: '1100'
+  assign header_custom_width = settings.header_custom_width | default: 1200
+  assign nav_collapse_width = settings.nav_collapse_width | default: '1100'
   assign show_bottom_border = settings.show_bottom_border
-  if show_bottom_border == blank
-    assign show_bottom_border = section.settings.show_bottom_border
-  endif
-  if show_bottom_border == blank
-    assign show_bottom_border = true
-  endif
   assign enable_sticky = settings.enable_sticky
-  if enable_sticky == blank
-    assign enable_sticky = section.settings.enable_sticky
-  endif
-  assign header_background = settings.header_background | default: section.settings.header_background | default: '#ffffff'
-  assign header_foreground = settings.header_foreground | default: section.settings.header_foreground | default: '#111111'
-  assign header_border = settings.header_border | default: section.settings.header_border | default: '#e8e8e8'
-  assign desktop_side_padding = 24
-  assign mobile_side_padding = 16
-  assign desktop_header_height = settings.desktop_header_height | default: section.settings.desktop_header_height | default: 82
-  assign mobile_header_height = settings.mobile_header_height | default: section.settings.mobile_header_height | default: 74
-  assign icon_size = settings.icon_size | default: section.settings.icon_size | default: 24
-  assign icon_button_size_desktop = settings.icon_button_size_desktop | default: section.settings.icon_button_size_desktop | default: 44
-  assign icon_button_size_mobile = settings.icon_button_size_mobile | default: section.settings.icon_button_size_mobile | default: 42
-  assign desktop_icon_gap = settings.desktop_icon_gap | default: section.settings.desktop_icon_gap | default: 0
-  assign mobile_icon_gap = settings.mobile_icon_gap | default: section.settings.mobile_icon_gap | default: 0
-  assign nav_text_size = settings.nav_text_size | default: section.settings.nav_text_size | default: 12
-  assign nav_gap = settings.nav_gap | default: section.settings.nav_gap | default: 24
-  assign cart_count_background = settings.cart_count_background | default: section.settings.cart_count_background | default: '#000000'
-  assign cart_count_text = settings.cart_count_text | default: section.settings.cart_count_text | default: '#ffffff'
-  assign cart_count_size = settings.cart_count_size | default: section.settings.cart_count_size | default: 18
-  assign cart_count_text_size = settings.cart_count_text_size | default: section.settings.cart_count_text_size | default: 10
-  assign cart_count_offset_x = settings.cart_count_offset_x | default: section.settings.cart_count_offset_x | default: 4
-  assign cart_count_offset_y = settings.cart_count_offset_y | default: section.settings.cart_count_offset_y | default: 5
-  assign region_chip_background = settings.region_chip_background | default: section.settings.region_chip_background | default: '#ffffff'
-  assign region_chip_border = settings.region_chip_border | default: section.settings.region_chip_border | default: '#e8e8e8'
-  assign region_chip_text = settings.region_chip_text | default: section.settings.region_chip_text | default: '#111111'
-  assign region_chip_height = settings.region_chip_height | default: section.settings.region_chip_height | default: 48
+  assign header_background = settings.header_background | default: '#ffffff'
+  assign header_foreground = settings.header_foreground | default: '#111111'
+  assign header_border = settings.header_border | default: '#e8e8e8'
+  assign header_desktop_padding = 24
+  assign header_mobile_padding = 16
+  assign desktop_header_height = settings.desktop_header_height | default: 82
+  assign mobile_header_height = settings.mobile_header_height | default: 74
+  assign icon_size = settings.icon_size | default: 24
+  assign icon_button_size_desktop = settings.icon_button_size_desktop | default: 44
+  assign icon_button_size_mobile = settings.icon_button_size_mobile | default: 42
+  assign desktop_icon_gap = settings.desktop_icon_gap | default: 0
+  assign mobile_icon_gap = settings.mobile_icon_gap | default: 0
+  assign nav_text_size = settings.nav_text_size | default: 12
+  assign nav_gap = settings.nav_gap | default: 24
+  assign cart_count_background = settings.cart_count_background | default: '#000000'
+  assign cart_count_text = settings.cart_count_text | default: '#ffffff'
+  assign cart_count_size = settings.cart_count_size | default: 18
+  assign cart_count_text_size = settings.cart_count_text_size | default: 10
+  assign cart_count_offset_x = settings.cart_count_offset_x | default: 4
+  assign cart_count_offset_y = settings.cart_count_offset_y | default: 5
+  assign region_chip_background = settings.region_chip_background | default: '#ffffff'
+  assign region_chip_border = settings.region_chip_border | default: '#e8e8e8'
+  assign region_chip_text = settings.region_chip_text | default: '#111111'
+  assign region_chip_height = settings.region_chip_height | default: 48
   assign header_shadow = settings.header_shadow | default: 'none'
   assign header_shadow_value = 'none'
   case header_shadow
@@ -167,15 +101,15 @@
 
 <section
   class="yaomri-header full-width yaomri-header--layout-{{ resolved_layout }} yaomri-header--width-{{ header_width_mode }} yaomri-header--collapse-{{ nav_collapse_width }}{% unless show_bottom_border %} yaomri-header--no-border{% endunless %}"
-  data-header-desktop-padding="{{ desktop_side_padding }}"
+  data-header-desktop-padding="{{ header_desktop_padding }}"
   style="
     --yh-bg: {{ header_background }};
     --yh-fg: {{ header_foreground }};
     --yh-border: {{ header_border }};
     --yh-shadow: {{ header_shadow_value }};
     --yh-custom-content-width: {{ header_custom_width }}px;
-    --yh-desktop-padding: {{ desktop_side_padding }}px;
-    --yh-mobile-padding: {{ mobile_side_padding }}px;
+    --yh-desktop-padding: {{ header_desktop_padding }}px;
+    --yh-mobile-padding: {{ header_mobile_padding }}px;
     --yh-desktop-height: {{ desktop_header_height }}px;
     --yh-mobile-height: {{ mobile_header_height }}px;
     --yh-desktop-logo-width: {{ desktop_logo_width }}px;
@@ -306,12 +240,6 @@
     </div>
   </div>
 
-  {%- if show_nav_below -%}
-    <div class="yaomri-header__desktop-nav-row">
-      {{ nav_markup }}
-    </div>
-  {%- endif -%}
-
   <div class="yaomri-header__mobile">
     <div class="yaomri-header__mobile-left">
       <button
@@ -373,7 +301,7 @@
         {
           "type": "text",
           "id": "title",
-          "label": "Heading",
+          "label": "Navigation label",
           "info": "Used for a normal top-level navigation link.",
           "default": "Link"
         },
@@ -385,7 +313,7 @@
         {
           "type": "checkbox",
           "id": "open_new_window",
-          "label": "Open in new window",
+          "label": "Open in new tab",
           "default": false
         },
         {
@@ -403,12 +331,12 @@
         {
           "type": "text",
           "id": "label_text",
-          "label": "Label text"
+          "label": "Badge text"
         },
         {
           "type": "color",
           "id": "label_color",
-          "label": "Label colour",
+          "label": "Badge colour",
           "default": "#111111"
         }
       ]
@@ -420,7 +348,7 @@
         {
           "type": "text",
           "id": "title",
-          "label": "Heading",
+          "label": "Navigation label",
           "info": "Used for a top-level navigation link with a compact dropdown menu.",
           "default": "Dropdown"
         },
@@ -432,13 +360,13 @@
         {
           "type": "checkbox",
           "id": "open_new_window",
-          "label": "Open in new window",
+          "label": "Open in new tab",
           "default": false
         },
         {
           "type": "link_list",
           "id": "menu",
-          "label": "Menu"
+          "label": "Dropdown menu"
         },
         {
           "type": "select",
@@ -486,12 +414,12 @@
         {
           "type": "text",
           "id": "label_text",
-          "label": "Label text"
+          "label": "Badge text"
         },
         {
           "type": "color",
           "id": "label_color",
-          "label": "Label colour",
+          "label": "Badge colour",
           "default": "#111111"
         }
       ]
@@ -503,25 +431,26 @@
         {
           "type": "text",
           "id": "title",
-          "label": "Heading",
+          "label": "Navigation label",
           "info": "Used for a top-level link that opens a panel from the Mega menu section.",
           "default": "Mega"
         },
         {
           "type": "url",
           "id": "link",
-          "label": "Link"
+          "label": "Fallback link",
+          "info": "Used if the mega panel cannot open."
         },
         {
           "type": "checkbox",
           "id": "open_new_window",
-          "label": "Open in new window",
+          "label": "Open fallback link in new tab",
           "default": false
         },
         {
           "type": "text",
           "id": "mega_menu_id",
-          "label": "Opens panel ID",
+          "label": "Mega panel ID to open",
           "info": "This must match a Panel ID in the Mega menu section.",
           "default": "1"
         },
@@ -540,12 +469,12 @@
         {
           "type": "text",
           "id": "label_text",
-          "label": "Label text"
+          "label": "Badge text"
         },
         {
           "type": "color",
           "id": "label_color",
-          "label": "Label colour",
+          "label": "Badge colour",
           "default": "#111111"
         }
       ]

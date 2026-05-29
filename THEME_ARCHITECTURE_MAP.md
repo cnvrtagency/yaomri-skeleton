@@ -62,7 +62,7 @@ Must not be duplicated elsewhere:
 Current implementation:
 - `site_width_mode` and `custom_site_content_width` control `--page-width`.
 - `header_width_mode` and `header_custom_width` are separate header-specific settings, which is acceptable if clearly labelled.
-- `snippets/css-variables.liquid` still references legacy `settings.site_content_width` as a fallback. That setting is not in the current schema and should be removed from Liquid in a cleanup pass.
+- Legacy `settings.site_content_width` fallback has been removed. `custom_site_content_width` is the only custom page width setting.
 
 Judgement:
 - Keep both site width and header width, but label them clearly. The merchant must understand that site width is page content and header width is header row content.
@@ -133,13 +133,13 @@ Must not be duplicated elsewhere:
 
 Current implementation:
 - The intended global header settings are in `config/settings_schema.json`.
-- `sections/header.liquid` also contains fallback reads from removed section settings such as `section.settings.menu`, `section.settings.desktop_layout`, `section.settings.country_label`, and other section-level copies. These are legacy compatibility paths and should be removed once stale `header-group.json` is cleaned.
-- `sections/header-group.json` contains stale removed settings: `menu`, `desktop_side_padding`, `mobile_side_padding`, `submenu_width`, and `custom_width`. This is confusing and should be cleaned by editor save/pull discipline or a deliberate JSON cleanup.
-- The current global `desktop_layout` still includes `logo_center_icons_right_nav_below`, but the build spec allows exactly two desktop layouts. This is a spec conflict and should be removed before launch.
-- Header code still maps old search-field layout values to supported layouts. This is protective, but it also keeps forbidden layouts alive conceptually.
+- `desktop_layout` now exposes only the two build-spec layouts.
+- `sections/header.liquid` no longer reads removed section-level header styling settings.
+- `sections/header-group.json` has no stale removed header settings from the previous header schema.
+- Header code still defensively falls back to Layout A if old saved data contains an unsupported layout value.
 
 Judgement:
-- Header ownership is mostly clear at the schema level, but the implementation still carries legacy compatibility code and stale editor JSON. Clean this before more feature work.
+- Header ownership is now clear enough for launch: global Theme settings own header style, and Header section blocks own desktop navigation items.
 - Keep navigation blocks in the Header section. Do not move them to global theme settings.
 
 ### Header Section
@@ -166,7 +166,7 @@ Must not be duplicated elsewhere:
 
 Current implementation:
 - The section schema correctly limits settings to two informational paragraphs and nav blocks.
-- The Liquid still reads old section settings for fallback. This does not break the storefront, but it undermines the clean ownership model.
+- The Liquid no longer reads old section settings for header style fallback.
 - Navigation sources are mixed: header blocks take priority, then `header_menu`, then `main-menu`. This is convenient but confusing for merchants.
 
 Judgement:
@@ -233,12 +233,12 @@ Must not be duplicated elsewhere:
 Current implementation:
 - Putting Mobile Menu in the Header group makes sense. It is part of header navigation behavior even though it is a separate section.
 - Mobile menu currently has its own menu picker, while desktop header has `header_menu` and header blocks. This is a deliberate split, but it requires merchant guidance.
-- If `drawer_menu` is blank, the implementation falls back to `main-menu`, then demo menu behavior. Demo menu fallback is risky for launch because it can create fake links in a live store.
-- Mobile drawer uses `settings.social_instagram_link` as a fallback, but no such setting exists in the current global schema. That fallback should be removed or the global social setting should be deliberately added later.
+- If `drawer_menu` is blank, the implementation falls back to `main-menu` only. Demo menu behavior has been removed.
+- Mobile drawer Instagram now uses the section URL setting only, with `#` as the final empty fallback. It no longer references a missing global social setting.
 
 Judgement:
 - Keep Mobile Menu in the Header group.
-- Remove demo menu fallback before launch. Blank navigation should fail cleanly, not invent storefront links.
+- Blank navigation should fail cleanly, not invent storefront links.
 
 ## Cart
 
@@ -307,26 +307,24 @@ Desktop navigation:
 Mobile navigation:
 - Primary source: Mobile Menu section `drawer_menu`.
 - Fallback source: `main-menu`.
-- Risky fallback: demo menu.
 
 Conflict:
 - Desktop and mobile navigation do not share one obvious source of truth.
 - This can be acceptable for a fashion storefront where desktop mega navigation differs from mobile drilldown, but the editor workflow must be documented.
-- The current demo fallback is too risky for launch.
+- The former demo fallback has been removed.
 
 Recommendation:
 - Keep desktop curated through Header blocks.
 - Keep mobile through Mobile Menu section.
 - Require merchant setup for both before publish.
-- Remove demo menu fallback.
 
 ## Spec Conflicts And Cleanup Needed
 
-- `desktop_layout` currently exposes a third option, `logo_center_icons_right_nav_below`, while the build spec allows exactly two desktop layouts.
-- `sections/header.liquid` still contains mappings for search-field layouts the spec says to avoid.
-- `sections/header-group.json` contains stale settings no longer in the Header section schema.
-- `snippets/css-variables.liquid` references legacy `settings.site_content_width`, not in schema.
-- `snippets/mobile-drawer.liquid` references `settings.social_instagram_link`, not in schema.
+- No current desktop header layout schema conflict remains; `desktop_layout` exposes the two build-spec layouts only.
+- `sections/header.liquid` no longer contains mappings for retired search-field layouts.
+- `sections/header-group.json` contains no known stale settings from the previous header schema.
+- `snippets/css-variables.liquid` no longer references legacy `settings.site_content_width`.
+- `snippets/mobile-drawer.liquid` no longer references missing `settings.social_instagram_link`.
 - Homepage still uses `hello-world`, which the spec says must be replaced before launch.
 - Footer remains default Skeleton quality.
 
@@ -334,10 +332,10 @@ Recommendation:
 
 | Area | Status | Reason |
 |---|---|---|
-| Global settings | Needs cleanup | Useful foundation, but fallback legacy references remain. |
-| Header | Needs cleanup | Mostly built, but layout option conflicts with spec and stale JSON exists. |
+| Global settings | Needs cleanup | Useful foundation; remaining cleanup is mostly broader labels/token polish. |
+| Header | Needs cleanup | Spec conflict is fixed; visual QA still needs to pass. |
 | Desktop mega menu | Needs cleanup | Width ownership fixed, but ID workflow is fragile. |
-| Mobile menu | Needs cleanup | Functional model, but demo fallback is launch-risky. |
+| Mobile menu | Needs cleanup | Demo fallback removed; drawer still needs full visual QA. |
 | Cart page fallback | Half-built | Works as fallback, but not clearly documented and uses client-only recalculation before submit. |
 | Cart drawer | Not started | Required by requested launch plan, not present. |
 | Homepage | Not started | Still Skeleton Hello World. |

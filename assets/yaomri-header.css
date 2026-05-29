@@ -23,10 +23,6 @@
   margin-inline: auto;
 }
 
-.yaomri-header__desktop-nav-row {
-  display: none;
-}
-
 .yaomri-header__desktop {
   display: none;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -265,18 +261,15 @@
 }
 
 @media screen and (min-width: 991px) {
-  .yaomri-header--width-site .yaomri-header__desktop,
-  .yaomri-header--width-site .yaomri-header__desktop-nav-row {
+  .yaomri-header--width-site .yaomri-header__desktop {
     max-width: min(var(--page-width, 90rem), 100%);
   }
 
-  .yaomri-header--width-custom .yaomri-header__desktop,
-  .yaomri-header--width-custom .yaomri-header__desktop-nav-row {
+  .yaomri-header--width-custom .yaomri-header__desktop {
     max-width: min(var(--yh-custom-content-width, 1500px), 100%);
   }
 
-  .yaomri-header--width-full .yaomri-header__desktop,
-  .yaomri-header--width-full .yaomri-header__desktop-nav-row {
+  .yaomri-header--width-full .yaomri-header__desktop {
     max-width: none;
   }
 
@@ -311,34 +304,6 @@
     justify-content: center;
   }
 
-  .yaomri-header--layout-logo_center_icons_right_nav_below .yaomri-header__desktop-left {
-    justify-content: flex-start;
-  }
-
-  .yaomri-header--layout-logo_center_icons_right_nav_below .yaomri-header__desktop-centre {
-    justify-content: center;
-  }
-
-  .yaomri-header--layout-logo_center_icons_right_nav_below .yaomri-header__desktop-nav-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-inline: auto;
-    padding: 0.4rem var(--yh-desktop-padding, 24px) 0.8rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-  }
-
-  .yaomri-header--layout-logo_center_icons_right_nav_below .yaomri-header__desktop-nav-row .yaomri-header__nav {
-    width: max-content;
-    margin-inline: auto;
-  }
-
-  .yaomri-header--layout-logo_center_icons_right_nav_below .yaomri-header__desktop-left .yaomri-header__nav {
-    display: none;
-  }
-
   .yaomri-header__desktop-centre .yaomri-header__nav {
     max-width: 100%;
   }
@@ -348,25 +313,10 @@
   .yaomri-header__desktop {
     display: none;
   }
-
-  .yaomri-header__desktop-nav-row {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 1101px) {
-  .yaomri-header--collapse-1100 .yaomri-header__desktop {
-    display: grid;
-  }
-
-  .yaomri-header--collapse-1100 .yaomri-header__mobile {
-    display: none;
-  }
 }
 
 @media screen and (max-width: 1100px) {
-  .yaomri-header--collapse-1100 .yaomri-header__desktop,
-  .yaomri-header--collapse-1100 .yaomri-header__desktop-nav-row {
+  .yaomri-header--collapse-1100 .yaomri-header__desktop {
     display: none;
   }
 
@@ -386,8 +336,7 @@
 }
 
 @media screen and (max-width: 1200px) {
-  .yaomri-header--collapse-1200 .yaomri-header__desktop,
-  .yaomri-header--collapse-1200 .yaomri-header__desktop-nav-row {
+  .yaomri-header--collapse-1200 .yaomri-header__desktop {
     display: none;
   }
 
@@ -407,8 +356,7 @@
 }
 
 @media screen and (max-width: 1300px) {
-  .yaomri-header--collapse-1300 .yaomri-header__desktop,
-  .yaomri-header--collapse-1300 .yaomri-header__desktop-nav-row {
+  .yaomri-header--collapse-1300 .yaomri-header__desktop {
     display: none;
   }
 

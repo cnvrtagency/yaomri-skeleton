@@ -37,7 +37,8 @@
     {
       "type": "range",
       "id": "close_delay",
-      "label": "Menu close delay",
+      "label": "Hover close delay",
+      "info": "Time before the mega menu closes after the cursor leaves.",
       "min": 100,
       "max": 800,
       "step": 50,
@@ -54,14 +55,14 @@
           "type": "text",
           "id": "parent_id",
           "label": "Panel ID",
-          "info": "A Mega menu link in Header opens this panel when IDs match.",
+          "info": "Must match the Mega panel ID to open in a Header mega menu link.",
           "default": "1"
         },
         {
           "type": "checkbox",
           "id": "enable_packery",
-          "label": "Flexible column layout",
-          "info": "On: mixed-width blocks flow together. Off: stricter row/grid layout.",
+          "label": "Flexible layout",
+          "info": "On: mixed-width blocks flow together. Off: blocks stay in stricter rows.",
           "default": true
         }
       ]
@@ -73,7 +74,7 @@
         {
           "type": "text",
           "id": "parent_id",
-          "label": "Attach to panel ID",
+          "label": "Show in panel ID",
           "info": "This must match a Panel ID from a Mega panel block.",
           "default": "1"
         },
@@ -90,18 +91,18 @@
         {
           "type": "link_list",
           "id": "menu",
-          "label": "Menu"
+          "label": "Link column menu"
         },
         {
           "type": "checkbox",
           "id": "open_new_window",
-          "label": "Open link in new window",
+          "label": "Open heading link in new tab",
           "default": false
         },
         {
           "type": "range",
           "id": "font_size",
-          "label": "Font size",
+          "label": "Link text size",
           "min": 11,
           "max": 18,
           "step": 1,
@@ -111,7 +112,7 @@
         {
           "type": "range",
           "id": "space_between",
-          "label": "Space between menu items",
+          "label": "Link spacing",
           "min": 6,
           "max": 24,
           "step": 1,
@@ -121,7 +122,7 @@
         {
           "type": "select",
           "id": "column_width",
-          "label": "Block width",
+          "label": "Column width",
           "default": "25",
           "options": [
             { "value": "20", "label": "20%" },
@@ -142,7 +143,7 @@
         {
           "type": "text",
           "id": "parent_id",
-          "label": "Attach to panel ID",
+          "label": "Show in panel ID",
           "info": "This must match a Panel ID from a Mega panel block.",
           "default": "1"
         },
@@ -154,12 +155,12 @@
         {
           "type": "text",
           "id": "image_alt",
-          "label": "Image alt"
+          "label": "Image alt text"
         },
         {
           "type": "text",
           "id": "eyebrow",
-          "label": "Eyebrow"
+          "label": "Small label"
         },
         {
           "type": "text",
@@ -169,7 +170,7 @@
         {
           "type": "text",
           "id": "cta",
-          "label": "CTA text"
+          "label": "Button text"
         },
         {
           "type": "url",
@@ -179,7 +180,7 @@
         {
           "type": "select",
           "id": "column_width",
-          "label": "Block width",
+          "label": "Tile width",
           "default": "25",
           "options": [
             { "value": "20", "label": "20%" },

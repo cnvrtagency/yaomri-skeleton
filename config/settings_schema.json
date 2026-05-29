@@ -109,17 +109,14 @@
           {
             "value": "nav_left_logo_center_actions_right",
             "label": "Nav left, logo centre, actions right"
-          },
-          {
-            "value": "logo_center_icons_right_nav_below",
-            "label": "Logo centre, icons right, nav below"
           }
         ]
       },
       {
         "type": "link_list",
         "id": "header_menu",
-        "label": "Desktop fallback menu"
+        "label": "Fallback desktop menu",
+        "info": "Used only when the Header section has no navigation blocks."
       },
       {
         "type": "select",
@@ -144,8 +141,8 @@
       {
         "type": "range",
         "id": "header_custom_width",
-        "label": "Custom header width",
-        "info": "Only applies when width mode is set to Custom width.",
+        "label": "Custom header content width",
+        "info": "Only applies when Header content width is set to Custom width.",
         "min": 1000,
         "max": 1800,
         "step": 20,
@@ -155,7 +152,7 @@
       {
         "type": "select",
         "id": "nav_collapse_width",
-        "label": "Desktop to mobile switch width",
+        "label": "Mobile menu breakpoint",
         "info": "Below this width, the desktop header switches to the mobile hamburger layout.",
         "default": "1100",
         "options": [
@@ -200,7 +197,7 @@
       {
         "type": "range",
         "id": "nav_text_size",
-        "label": "Nav text size",
+        "label": "Desktop navigation text size",
         "min": 10,
         "max": 18,
         "step": 1,
@@ -210,7 +207,7 @@
       {
         "type": "range",
         "id": "nav_gap",
-        "label": "Nav gap",
+        "label": "Desktop navigation spacing",
         "min": 0,
         "max": 48,
         "step": 2,
@@ -238,7 +235,7 @@
       {
         "type": "checkbox",
         "id": "show_bottom_border",
-        "label": "Show bottom border",
+        "label": "Show header bottom border",
         "default": true
       },
       {
@@ -321,7 +318,7 @@
       {
         "type": "range",
         "id": "icon_button_size_desktop",
-        "label": "Desktop icon button size",
+        "label": "Desktop icon tap area",
         "min": 36,
         "max": 64,
         "step": 2,
@@ -331,7 +328,7 @@
       {
         "type": "range",
         "id": "icon_button_size_mobile",
-        "label": "Mobile icon button size",
+        "label": "Mobile icon tap area",
         "min": 34,
         "max": 56,
         "step": 2,
@@ -341,7 +338,7 @@
       {
         "type": "range",
         "id": "desktop_icon_gap",
-        "label": "Desktop icon gap",
+        "label": "Desktop icon spacing",
         "min": 0,
         "max": 32,
         "step": 1,
@@ -351,7 +348,7 @@
       {
         "type": "range",
         "id": "mobile_icon_gap",
-        "label": "Mobile icon gap",
+        "label": "Mobile icon spacing",
         "min": 0,
         "max": 24,
         "step": 1,
@@ -416,7 +413,7 @@
       {
         "type": "range",
         "id": "cart_count_offset_x",
-        "label": "Cart count horizontal offset",
+        "label": "Cart count position X",
         "min": -12,
         "max": 12,
         "step": 1,
@@ -426,7 +423,7 @@
       {
         "type": "range",
         "id": "cart_count_offset_y",
-        "label": "Cart count vertical offset",
+        "label": "Cart count position Y",
         "min": -12,
         "max": 12,
         "step": 1,
@@ -436,32 +433,36 @@
       {
         "type": "checkbox",
         "id": "show_region_chip",
-        "label": "Show region chip",
-        "info": "Display only. Does not change market or currency.",
+        "label": "Show shipping region chip",
+        "info": "Display only. Does not change market, currency, or localization.",
         "default": true
       },
       {
         "type": "text",
         "id": "region_flag",
-        "label": "Region flag",
+        "label": "Region chip flag",
+        "info": "Display only. Does not change market, currency, or localization.",
         "default": "🇦🇪"
       },
       {
         "type": "text",
         "id": "region_label",
-        "label": "Region short label",
+        "label": "Region chip country label",
+        "info": "Display only. Does not change market, currency, or localization.",
         "default": "AE"
       },
       {
         "type": "text",
         "id": "region_currency",
-        "label": "Region currency text",
+        "label": "Region chip currency label",
+        "info": "Display only. Does not change market, currency, or localization.",
         "default": "AED"
       },
       {
         "type": "url",
         "id": "region_link",
-        "label": "Region link"
+        "label": "Region chip link",
+        "info": "Optional. Display only; this does not switch market or currency."
       },
       {
         "type": "color",

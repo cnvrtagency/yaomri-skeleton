@@ -137,7 +137,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Mobile drawer width affects the visible drawer only.
 - Mobile drawer colours affect drawer only.
 - No duplicate drawer exists in DOM.
-- Demo menu fallback is removed or explicitly disabled before publish.
+- No demo mobile navigation appears when the drawer menu is blank.
 
 ## Cart
 

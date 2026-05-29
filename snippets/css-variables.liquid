@@ -12,8 +12,6 @@
     elsif site_width_mode == 'custom'
       if settings.custom_site_content_width != blank
         assign resolved_page_width = settings.custom_site_content_width | append: 'px'
-      elsif settings.site_content_width != blank
-        assign resolved_page_width = settings.site_content_width | append: 'px'
       else
         assign resolved_page_width = '1200px'
       endif
