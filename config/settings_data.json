@@ -10,6 +10,9 @@
 {
   "current": {
     "logo": "shopify://shop_images/ya-omri-logo.svg",
+    "country_selector_background": "#ffffff",
+    "country_selector_border": "#683030",
+    "country_selector_text": "#000000",
     "content_for_index": []
   }
 }

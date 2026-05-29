@@ -84,7 +84,7 @@
         "button_group"
       ],
       "settings": {
-        "section_width": "site",
+        "section_width": "full",
         "custom_section_width": 1120,
         "desktop_height_mode": "custom",
         "desktop_custom_height": 680,
