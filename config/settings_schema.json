@@ -458,6 +458,18 @@
         ]
       },
       {
+        "type": "checkbox",
+        "id": "country_selector_show_flag",
+        "label": "Show flag",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "country_selector_show_currency",
+        "label": "Show currency code",
+        "default": false
+      },
+      {
         "type": "color",
         "id": "country_selector_background",
         "label": "Country selector background"

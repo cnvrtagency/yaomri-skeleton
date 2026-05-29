@@ -24,6 +24,8 @@
   unless country_selector_style == 'compact' or country_selector_style == 'full'
     assign country_selector_style = 'compact'
   endunless
+  assign country_selector_show_flag = settings.country_selector_show_flag
+  assign country_selector_show_currency = settings.country_selector_show_currency
   capture country_selector_class
     echo 'yaomri-header__country-selector yaomri-header__country-selector--'
     echo country_selector_style
@@ -207,11 +209,59 @@
             onchange="this.form.submit()"
           >
             {%- for country in localization.available_countries -%}
+              {%- liquid
+                assign country_flag = ''
+                if country_selector_show_flag
+                  case country.iso_code
+                    when 'AE'
+                      assign country_flag = '🇦🇪'
+                    when 'GB'
+                      assign country_flag = '🇬🇧'
+                    when 'US'
+                      assign country_flag = '🇺🇸'
+                    when 'CA'
+                      assign country_flag = '🇨🇦'
+                    when 'AU'
+                      assign country_flag = '🇦🇺'
+                    when 'DE'
+                      assign country_flag = '🇩🇪'
+                    when 'FR'
+                      assign country_flag = '🇫🇷'
+                    when 'ES'
+                      assign country_flag = '🇪🇸'
+                    when 'IT'
+                      assign country_flag = '🇮🇹'
+                    when 'NL'
+                      assign country_flag = '🇳🇱'
+                    when 'IE'
+                      assign country_flag = '🇮🇪'
+                    when 'SA'
+                      assign country_flag = '🇸🇦'
+                    when 'QA'
+                      assign country_flag = '🇶🇦'
+                    when 'KW'
+                      assign country_flag = '🇰🇼'
+                    when 'BH'
+                      assign country_flag = '🇧🇭'
+                    when 'OM'
+                      assign country_flag = '🇴🇲'
+                  endcase
+                endif
+              -%}
+              {%- capture country_label -%}
+                {%- if country_flag != blank -%}{{ country_flag }} {% endif -%}
+                {%- if country_selector_style == 'full' -%}
+                  {{- country.name -}}
+                {%- else -%}
+                  {{- country.iso_code -}}
+                {%- endif -%}
+                {%- if country_selector_show_currency -%} / {{ country.currency.iso_code }}{%- endif -%}
+              {%- endcapture -%}
               <option
                 value="{{ country.iso_code }}"
                 {%- if country.iso_code == localization.country.iso_code -%} selected{%- endif -%}
               >
-                {{ country.name }} ({{ country.currency.iso_code }}{% if country.currency.symbol != blank %} {{ country.currency.symbol }}{% endif %})
+                {{ country_label | strip }}
               </option>
             {%- endfor -%}
           </select>

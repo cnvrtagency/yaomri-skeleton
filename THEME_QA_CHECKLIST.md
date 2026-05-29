@@ -63,6 +63,8 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Cart count style changes bubble background, text, size, and offset.
 - Country selector renders only when more than one Shopify country is available.
 - Country selector submits `country_code` through a Shopify localization form.
+- Country selector visibly shows flag plus country code/name, not a visible "Country/region" label.
+- AE displays as `🇦🇪 AE` in compact mode or `🇦🇪 United Arab Emirates` in full mode.
 - Country selector style, height, and optional colours do not break header actions.
 - Manual region/shipping labels are not present in Header settings.
 - Account icon respects Shopify customer-account availability.
