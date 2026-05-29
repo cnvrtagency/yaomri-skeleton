@@ -11,49 +11,20 @@
   "sections": {
     "single_image_hero": {
       "type": "single-image-hero",
-      "settings": {
-        "section_width": "full",
-        "custom_section_width": 1440,
-        "desktop_height_mode": "custom",
-        "desktop_custom_height": 680,
-        "mobile_height_mode": "custom",
-        "mobile_custom_height": 560,
-        "desktop_content_horizontal": "left",
-        "desktop_content_vertical": "center",
-        "desktop_text_alignment": "left",
-        "mobile_content_horizontal": "center",
-        "mobile_content_vertical": "center",
-        "mobile_text_alignment": "center",
-        "content_width": "site",
-        "custom_content_width": 720,
-        "content_gap": 12,
-        "content_padding": 0,
-        "overlay_color": "#000000",
-        "overlay_opacity": 20,
-        "show_border": false,
-        "border_color": "#e8e8e8",
-        "section_background": "#ffffff",
-        "padding_top_desktop": 0,
-        "padding_bottom_desktop": 0,
-        "padding_left_desktop": 0,
-        "padding_right_desktop": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0,
-        "padding_left_mobile": 0,
-        "padding_right_mobile": 0,
-        "margin_top_desktop": 0,
-        "margin_bottom_desktop": 0,
-        "margin_top_mobile": 0,
-        "margin_bottom_mobile": 0,
-        "image_position": "center center"
-      },
       "blocks": {
         "eyebrow": {
           "type": "eyebrow",
           "settings": {
             "text": "NEW SEASON",
-            "eyebrow_letter_spacing": 8,
-            "eyebrow_margin_bottom": 0
+            "eyebrow_size_desktop": 12,
+            "eyebrow_size_mobile": 11,
+            "eyebrow_weight": "500",
+            "eyebrow_line_height": 100,
+            "eyebrow_letter_spacing": 6,
+            "eyebrow_text_transform": "uppercase",
+            "eyebrow_max_width": 0,
+            "eyebrow_colour": "#ffffff",
+            "eyebrow_margin_bottom": 2
           }
         },
         "heading": {
@@ -61,6 +32,14 @@
           "settings": {
             "heading_text": "Swimwear made for sun-drenched escapes",
             "heading_tag": "h1",
+            "heading_size_desktop": 61,
+            "heading_size_mobile": 34,
+            "heading_weight": "800",
+            "heading_line_height_desktop": 105,
+            "heading_line_height_mobile": 105,
+            "heading_letter_spacing": 0,
+            "heading_text_transform": "uppercase",
+            "heading_colour": "",
             "heading_max_width": 0,
             "heading_margin_bottom": 0
           }
@@ -69,7 +48,14 @@
           "type": "paragraph",
           "settings": {
             "text": "<p>Elegant silhouettes, refined details and statement swimwear designed for poolside days, beach clubs and golden-hour getaways.</p>",
-            "text_max_width": 520,
+            "text_size_desktop": 18,
+            "text_size_mobile": 14,
+            "text_weight": "400",
+            "text_line_height_desktop": 150,
+            "text_line_height_mobile": 140,
+            "text_letter_spacing": 0,
+            "text_colour": "",
+            "text_max_width": 700,
             "text_margin_bottom": 0
           }
         },
@@ -83,7 +69,11 @@
             "primary_style": "primary",
             "secondary_style": "secondary",
             "stack_on_mobile": true,
-            "margin_top": 8
+            "button_size": 12,
+            "button_weight": "700",
+            "button_letter_spacing": 9,
+            "button_text_transform": "uppercase",
+            "margin_top": 14
           }
         }
       },
@@ -92,7 +82,43 @@
         "heading",
         "paragraph",
         "button_group"
-      ]
+      ],
+      "settings": {
+        "section_width": "site",
+        "custom_section_width": 1120,
+        "desktop_height_mode": "custom",
+        "desktop_custom_height": 680,
+        "mobile_height_mode": "custom",
+        "mobile_custom_height": 560,
+        "show_border": false,
+        "border_color": "#e8e8e8",
+        "section_background": "#ffffff",
+        "image_position": "center center",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30,
+        "content_width": "site",
+        "custom_content_width": 680,
+        "desktop_content_horizontal": "center",
+        "desktop_content_vertical": "center",
+        "desktop_text_alignment": "left",
+        "mobile_content_horizontal": "center",
+        "mobile_content_vertical": "center",
+        "mobile_text_alignment": "center",
+        "content_gap": 10,
+        "content_padding": 0,
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0,
+        "padding_left_desktop": 0,
+        "padding_right_desktop": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "padding_left_mobile": 0,
+        "padding_right_mobile": 0,
+        "margin_top_desktop": 0,
+        "margin_bottom_desktop": 0,
+        "margin_top_mobile": 0,
+        "margin_bottom_mobile": 0
+      }
     }
   },
   "order": [
