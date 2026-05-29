@@ -284,7 +284,7 @@ Owned by `templates/index.json`, `sections/single-image-hero.liquid`, `sections/
 
 Owns:
 - Homepage section order.
-- Single Image Hero content and imagery.
+- Single Image Hero imagery, positioning, and content blocks.
 - 3-Card Hero card blocks.
 - Hero-only width, height, overlay, border, colour, and spacing settings.
 
@@ -296,14 +296,16 @@ Must not own:
 
 Must not be duplicated elsewhere:
 - Hero spacing controls should stay in the relevant Hero section, because these sections intentionally need flush-by-default editorial control.
+- Single Image Hero text/buttons/custom markup should stay in content blocks, not section-level fixed content settings.
+- Single Image Hero image pins should stay in Image pin blocks, not global theme settings.
 - 3-Card Hero content should stay in Hero card blocks, not global theme settings.
 
 Current implementation:
 - Homepage no longer uses Skeleton Hello World.
 - `templates/index.json` uses `single-image-hero` as the first launch-ready homepage section.
 - The old combined layout-switch `sections/hero.liquid` has been removed.
-- `sections/single-image-hero.liquid` owns overlay-text single image hero content.
-- Single Image Hero now separates content block position from text alignment and supports desktop/mobile height modes.
+- `sections/single-image-hero.liquid` owns overlay-text single image hero content through blocks: Text, Button, Two buttons, Custom HTML, Custom Liquid, and Image pin.
+- Single Image Hero separates desktop/mobile content block position from desktop/mobile text alignment and supports desktop/mobile height modes.
 - `sections/three-card-hero.liquid` owns the 3-card editorial hero and its card blocks.
 - Styles are scoped under `.yaomri-single-hero` and `.yaomri-three-hero`.
 

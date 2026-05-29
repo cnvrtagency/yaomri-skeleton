@@ -5,29 +5,63 @@
   assign custom_width = section.settings.custom_section_width | default: 1440
   assign desktop_height_mode = section.settings.desktop_height_mode | default: 'custom'
   assign mobile_height_mode = section.settings.mobile_height_mode | default: 'custom'
-  assign content_position = section.settings.content_position | default: 'left'
-  assign text_alignment = section.settings.text_alignment | default: 'left'
-  assign text_color = section.settings.text_color | default: '#ffffff'
+  assign desktop_horizontal = section.settings.desktop_content_horizontal | default: 'left'
+  assign desktop_vertical = section.settings.desktop_content_vertical | default: 'center'
+  assign desktop_text_alignment = section.settings.desktop_text_alignment | default: 'left'
+  assign mobile_horizontal = section.settings.mobile_content_horizontal | default: 'center'
+  assign mobile_vertical = section.settings.mobile_content_vertical | default: 'center'
+  assign mobile_text_alignment = section.settings.mobile_text_alignment | default: 'center'
   assign overlay_color = section.settings.overlay_color | default: '#000000'
   assign overlay_opacity = section.settings.overlay_opacity | default: 20 | divided_by: 100.0
   assign border_color = section.settings.border_color | default: '#e8e8e8'
   assign section_background = section.settings.section_background | default: 'var(--color-background)'
 
-  assign content_justify = 'start'
-  if content_position == 'center'
-    assign content_justify = 'center'
-  elsif content_position == 'right'
-    assign content_justify = 'end'
+  assign desktop_justify = 'start'
+  if desktop_horizontal == 'center'
+    assign desktop_justify = 'center'
+  elsif desktop_horizontal == 'right'
+    assign desktop_justify = 'end'
   endif
 
-  assign text_align = 'left'
-  assign text_justify = 'start'
-  if text_alignment == 'center'
-    assign text_align = 'center'
-    assign text_justify = 'center'
-  elsif text_alignment == 'right'
-    assign text_align = 'right'
-    assign text_justify = 'end'
+  assign desktop_align = 'center'
+  if desktop_vertical == 'top'
+    assign desktop_align = 'start'
+  elsif desktop_vertical == 'bottom'
+    assign desktop_align = 'end'
+  endif
+
+  assign desktop_text = 'left'
+  assign desktop_item_justify = 'start'
+  if desktop_text_alignment == 'center'
+    assign desktop_text = 'center'
+    assign desktop_item_justify = 'center'
+  elsif desktop_text_alignment == 'right'
+    assign desktop_text = 'right'
+    assign desktop_item_justify = 'end'
+  endif
+
+  assign mobile_justify = 'center'
+  if mobile_horizontal == 'left'
+    assign mobile_justify = 'start'
+  elsif mobile_horizontal == 'right'
+    assign mobile_justify = 'end'
+  endif
+
+  assign mobile_align = 'center'
+  if mobile_vertical == 'top'
+    assign mobile_align = 'start'
+  elsif mobile_vertical == 'bottom'
+    assign mobile_align = 'end'
+  endif
+
+  assign mobile_text = 'center'
+  assign mobile_item_justify = 'center'
+  if mobile_text_alignment == 'left'
+    assign mobile_text = 'left'
+    assign mobile_item_justify = 'start'
+  elsif mobile_text_alignment == 'right'
+    assign mobile_text = 'right'
+    assign mobile_item_justify = 'end'
   endif
 
   assign section_width_value = 'var(--page-width)'
@@ -39,15 +73,6 @@
       echo 'px'
     endcapture
   endif
-
-  assign has_primary_button = false
-  assign has_secondary_button = false
-  if section.settings.primary_button_label != blank and section.settings.primary_button_link != blank
-    assign has_primary_button = true
-  endif
-  if section.settings.secondary_button_label != blank and section.settings.secondary_button_link != blank
-    assign has_secondary_button = true
-  endif
 -%}
 
 <section
@@ -55,13 +80,21 @@
   style="
     --ysh-section-width: {{ section_width_value }};
     --ysh-section-bg: {{ section_background }};
-    --ysh-text: {{ text_color }};
     --ysh-border-color: {{ border_color }};
     --ysh-overlay-color: {{ overlay_color }};
     --ysh-overlay-opacity: {{ overlay_opacity }};
-    --ysh-content-justify: {{ content_justify }};
-    --ysh-text-align: {{ text_align }};
-    --ysh-text-justify: {{ text_justify }};
+    --ysh-desktop-justify: {{ desktop_justify }};
+    --ysh-desktop-align: {{ desktop_align }};
+    --ysh-desktop-text-align: {{ desktop_text }};
+    --ysh-desktop-item-justify: {{ desktop_item_justify }};
+    --ysh-mobile-justify: {{ mobile_justify }};
+    --ysh-mobile-align: {{ mobile_align }};
+    --ysh-mobile-text-align: {{ mobile_text }};
+    --ysh-mobile-item-justify: {{ mobile_item_justify }};
+    --ysh-content-max-width-desktop: {{ section.settings.content_max_width_desktop }}px;
+    --ysh-content-max-width-mobile: {{ section.settings.content_max_width_mobile }}px;
+    --ysh-content-gap: {{ section.settings.content_gap }}px;
+    --ysh-content-padding: {{ section.settings.content_padding }}px;
     --ysh-height-desktop: {{ section.settings.desktop_custom_height }}px;
     --ysh-height-mobile: {{ section.settings.mobile_custom_height }}px;
     --ysh-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
@@ -95,7 +128,7 @@
               widths: '720, 960, 1200, 1600, 2000, 2400',
               sizes: '100vw',
               loading: 'eager',
-              alt: section.settings.desktop_image.alt | default: section.settings.heading | escape
+              alt: section.settings.desktop_image.alt | default: shop.name | escape
           }}
         {%- else -%}
           <div class="yaomri-single-hero__placeholder" data-label="Add hero image"></div>
@@ -110,7 +143,7 @@
               widths: '360, 540, 720, 900, 1200',
               sizes: '100vw',
               loading: 'eager',
-              alt: section.settings.mobile_image.alt | default: section.settings.heading | escape
+              alt: section.settings.mobile_image.alt | default: shop.name | escape
           }}
         {%- endif -%}
       </div>
@@ -118,30 +151,156 @@
       <div class="yaomri-single-hero__overlay"></div>
 
       <div class="yaomri-single-hero__content">
-        {%- if section.settings.eyebrow != blank -%}
-          <p class="yaomri-single-hero__eyebrow">{{ section.settings.eyebrow }}</p>
-        {%- endif -%}
-        {%- if section.settings.heading != blank -%}
-          <h1 class="yaomri-single-hero__heading">{{ section.settings.heading }}</h1>
-        {%- endif -%}
-        {%- if section.settings.text != blank -%}
-          <div class="yaomri-single-hero__text">{{ section.settings.text }}</div>
-        {%- endif -%}
-        {%- if has_primary_button or has_secondary_button -%}
-          <div class="yaomri-single-hero__buttons">
-            {%- if has_primary_button -%}
-              <a class="yaomri-single-hero__button yaomri-single-hero__button--primary" href="{{ section.settings.primary_button_link }}">
-                <span>{{ section.settings.primary_button_label }}</span>
-              </a>
-            {%- endif -%}
-            {%- if has_secondary_button -%}
-              <a class="yaomri-single-hero__button yaomri-single-hero__button--secondary" href="{{ section.settings.secondary_button_link }}">
-                {{ section.settings.secondary_button_label }}
-              </a>
-            {%- endif -%}
-          </div>
-        {%- endif -%}
+        <div class="yaomri-single-hero__content-stack">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'text' -%}
+                {%- if block.settings.text_content != blank -%}
+                  {%- liquid
+                    assign text_style = ''
+                    if block.settings.text_color != blank
+                      capture text_style
+                        echo text_style
+                        echo '--ysh-block-text-color: '
+                        echo block.settings.text_color
+                        echo ';'
+                      endcapture
+                    endif
+                    if block.settings.max_width > 0
+                      capture text_style
+                        echo text_style
+                        echo '--ysh-block-max-width: '
+                        echo block.settings.max_width
+                        echo 'px;'
+                      endcapture
+                    endif
+                    capture text_style
+                      echo text_style
+                      echo '--ysh-block-margin-bottom: '
+                      echo block.settings.margin_bottom
+                      echo 'px;'
+                    endcapture
+                  -%}
+                  <div
+                    class="yaomri-single-hero__block yaomri-single-hero__text-block yaomri-single-hero__text-block--{{ block.settings.text_type }}{% if block.settings.text_type == 'heading' %} yaomri-single-hero__text-block--heading-{{ block.settings.heading_size }}{% endif %}"
+                    style="{{ text_style }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    {%- if block.settings.text_type == 'eyebrow' -%}
+                      <p class="yaomri-single-hero__eyebrow">{{ block.settings.text_content | strip_html }}</p>
+                    {%- elsif block.settings.text_type == 'heading' -%}
+                      {%- if block.settings.heading_tag == 'h2' -%}
+                        <h2 class="yaomri-single-hero__heading">{{ block.settings.text_content | strip_html }}</h2>
+                      {%- else -%}
+                        <h1 class="yaomri-single-hero__heading">{{ block.settings.text_content | strip_html }}</h1>
+                      {%- endif -%}
+                    {%- else -%}
+                      <div class="yaomri-single-hero__text">{{ block.settings.text_content }}</div>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+
+              {%- when 'button' -%}
+                {%- if block.settings.label != blank and block.settings.link != blank -%}
+                  <div
+                    class="yaomri-single-hero__block yaomri-single-hero__button-block"
+                    style="--ysh-block-margin-top: {{ block.settings.margin_top }}px;"
+                    {{ block.shopify_attributes }}
+                  >
+                    <a
+                      class="yaomri-single-hero__button yaomri-single-hero__button--{{ block.settings.style }}{% if block.settings.full_width_mobile %} yaomri-single-hero__button--mobile-full{% endif %}"
+                      href="{{ block.settings.link }}"
+                      {% if block.settings.open_new_window %}target="_blank" rel="noopener noreferrer"{% endif %}
+                    >
+                      <span>{{ block.settings.label }}</span>
+                    </a>
+                  </div>
+                {%- endif -%}
+
+              {%- when 'two_buttons' -%}
+                {%- liquid
+                  assign has_primary = false
+                  assign has_secondary = false
+                  if block.settings.primary_label != blank and block.settings.primary_link != blank
+                    assign has_primary = true
+                  endif
+                  if block.settings.secondary_label != blank and block.settings.secondary_link != blank
+                    assign has_secondary = true
+                  endif
+                -%}
+                {%- if has_primary or has_secondary -%}
+                  <div
+                    class="yaomri-single-hero__block yaomri-single-hero__buttons{% if block.settings.stack_on_mobile %} yaomri-single-hero__buttons--stack-mobile{% endif %}"
+                    style="--ysh-block-margin-top: {{ block.settings.margin_top }}px;"
+                    {{ block.shopify_attributes }}
+                  >
+                    {%- if has_primary -%}
+                      <a class="yaomri-single-hero__button yaomri-single-hero__button--{{ block.settings.primary_style }}" href="{{ block.settings.primary_link }}">
+                        <span>{{ block.settings.primary_label }}</span>
+                      </a>
+                    {%- endif -%}
+                    {%- if has_secondary -%}
+                      <a class="yaomri-single-hero__button yaomri-single-hero__button--{{ block.settings.secondary_style }}" href="{{ block.settings.secondary_link }}">
+                        <span>{{ block.settings.secondary_label }}</span>
+                      </a>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+
+              {%- when 'custom_html' -%}
+                {%- if block.settings.html != blank -%}
+                  <div class="yaomri-single-hero__block yaomri-single-hero__custom-html" {{ block.shopify_attributes }}>
+                    {{ block.settings.html }}
+                  </div>
+                {%- endif -%}
+
+              {%- when 'custom_liquid' -%}
+                {%- if block.settings.liquid != blank -%}
+                  <div class="yaomri-single-hero__block yaomri-single-hero__custom-liquid" {{ block.shopify_attributes }}>
+                    {{ block.settings.liquid }}
+                  </div>
+                {%- endif -%}
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
       </div>
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'image_pin' -%}
+          {%- liquid
+            assign pin_label = block.settings.pin_label
+            assign pin_accessible_label = pin_label
+            if pin_accessible_label == blank
+              assign pin_accessible_label = 'Hero image pin'
+            endif
+            assign pin_tag = 'div'
+            if block.settings.link != blank
+              assign pin_tag = 'a'
+            endif
+          -%}
+          <{{ pin_tag }}
+            class="yaomri-single-hero__pin yaomri-single-hero__pin--{{ block.settings.pin_style }}{% unless block.settings.show_on_mobile %} yaomri-single-hero__pin--hide-mobile{% endunless %}"
+            style="
+              --ysh-pin-x-desktop: {{ block.settings.position_x_desktop }}%;
+              --ysh-pin-y-desktop: {{ block.settings.position_y_desktop }}%;
+              --ysh-pin-x-mobile: {{ block.settings.position_x_mobile }}%;
+              --ysh-pin-y-mobile: {{ block.settings.position_y_mobile }}%;
+              --ysh-pin-bg: {{ block.settings.pin_color }};
+              --ysh-pin-text: {{ block.settings.pin_text_color }};
+            "
+            {% if block.settings.link != blank %}href="{{ block.settings.link }}" aria-label="{{ pin_accessible_label | escape }}"{% endif %}
+            {{ block.shopify_attributes }}
+          >
+            {%- if block.settings.pin_style == 'dot' and pin_label == blank -%}
+              <span class="visually-hidden">{{ pin_accessible_label }}</span>
+            {%- elsif block.settings.pin_style == 'numbered' -%}
+              <span>{{ pin_label | default: forloop.index }}</span>
+            {%- else -%}
+              <span>{{ pin_label }}</span>
+            {%- endif -%}
+          </{{ pin_tag }}>
+        {%- endif -%}
+      {%- endfor -%}
     </div>
   </div>
 </section>
@@ -317,12 +476,12 @@
     },
     {
       "type": "header",
-      "content": "Content"
+      "content": "Content position"
     },
     {
       "type": "select",
-      "id": "content_position",
-      "label": "Content position",
+      "id": "desktop_content_horizontal",
+      "label": "Desktop content horizontal position",
       "default": "left",
       "options": [
         {
@@ -341,8 +500,28 @@
     },
     {
       "type": "select",
-      "id": "text_alignment",
-      "label": "Text alignment",
+      "id": "desktop_content_vertical",
+      "label": "Desktop content vertical position",
+      "default": "center",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Centre"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "desktop_text_alignment",
+      "label": "Desktop text alignment",
       "default": "left",
       "options": [
         {
@@ -360,49 +539,104 @@
       ]
     },
     {
-      "type": "color",
-      "id": "text_color",
-      "label": "Hero text colour",
-      "default": "#ffffff"
+      "type": "select",
+      "id": "mobile_content_horizontal",
+      "label": "Mobile content horizontal position",
+      "default": "center",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Centre"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
     },
     {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "New season"
+      "type": "select",
+      "id": "mobile_content_vertical",
+      "label": "Mobile content vertical position",
+      "default": "center",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Centre"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ]
     },
     {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Swimwear with intention"
+      "type": "select",
+      "id": "mobile_text_alignment",
+      "label": "Mobile text alignment",
+      "default": "center",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Centre"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
     },
     {
-      "type": "richtext",
-      "id": "text",
-      "label": "Text",
-      "default": "<p>Sharp silhouettes, clean lines and effortless pieces for sun-led days.</p>"
+      "type": "range",
+      "id": "content_max_width_desktop",
+      "label": "Content max width desktop",
+      "min": 280,
+      "max": 900,
+      "step": 20,
+      "unit": "px",
+      "default": 580
     },
     {
-      "type": "text",
-      "id": "primary_button_label",
-      "label": "Primary button label",
-      "default": "Shop new arrivals"
+      "type": "range",
+      "id": "content_max_width_mobile",
+      "label": "Content max width mobile",
+      "min": 240,
+      "max": 520,
+      "step": 20,
+      "unit": "px",
+      "default": 360
     },
     {
-      "type": "url",
-      "id": "primary_button_link",
-      "label": "Primary button link"
+      "type": "range",
+      "id": "content_gap",
+      "label": "Content gap",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 12
     },
     {
-      "type": "text",
-      "id": "secondary_button_label",
-      "label": "Secondary button label"
-    },
-    {
-      "type": "url",
-      "id": "secondary_button_link",
-      "label": "Secondary button link"
+      "type": "range",
+      "id": "content_padding",
+      "label": "Content padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 0
     },
     {
       "type": "header",
@@ -529,9 +763,410 @@
       "default": 0
     }
   ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "select",
+          "id": "text_type",
+          "label": "Text type",
+          "default": "paragraph",
+          "options": [
+            {
+              "value": "eyebrow",
+              "label": "Eyebrow"
+            },
+            {
+              "value": "heading",
+              "label": "Heading"
+            },
+            {
+              "value": "paragraph",
+              "label": "Paragraph"
+            }
+          ]
+        },
+        {
+          "type": "richtext",
+          "id": "text_content",
+          "label": "Text content"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Heading HTML tag",
+          "default": "h1",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Heading size",
+          "default": "large",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            },
+            {
+              "value": "extra-large",
+              "label": "Extra large"
+            }
+          ]
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text colour override"
+        },
+        {
+          "type": "range",
+          "id": "max_width",
+          "label": "Max width",
+          "min": 0,
+          "max": 900,
+          "step": 20,
+          "unit": "px",
+          "default": 0,
+          "info": "Set to 0 to use the content area width."
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "default": "primary",
+          "options": [
+            {
+              "value": "primary",
+              "label": "Primary"
+            },
+            {
+              "value": "secondary",
+              "label": "Secondary"
+            },
+            {
+              "value": "text",
+              "label": "Text link"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_window",
+          "label": "Open in new tab",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "full_width_mobile",
+          "label": "Full width on mobile",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 4
+        }
+      ]
+    },
+    {
+      "type": "two_buttons",
+      "name": "Two buttons",
+      "settings": [
+        {
+          "type": "text",
+          "id": "primary_label",
+          "label": "Primary label"
+        },
+        {
+          "type": "url",
+          "id": "primary_link",
+          "label": "Primary link"
+        },
+        {
+          "type": "text",
+          "id": "secondary_label",
+          "label": "Secondary label"
+        },
+        {
+          "type": "url",
+          "id": "secondary_link",
+          "label": "Secondary link"
+        },
+        {
+          "type": "select",
+          "id": "primary_style",
+          "label": "Primary style",
+          "default": "primary",
+          "options": [
+            {
+              "value": "primary",
+              "label": "Primary"
+            },
+            {
+              "value": "secondary",
+              "label": "Secondary"
+            },
+            {
+              "value": "text",
+              "label": "Text link"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "secondary_style",
+          "label": "Secondary style",
+          "default": "secondary",
+          "options": [
+            {
+              "value": "primary",
+              "label": "Primary"
+            },
+            {
+              "value": "secondary",
+              "label": "Secondary"
+            },
+            {
+              "value": "text",
+              "label": "Text link"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "stack_on_mobile",
+          "label": "Stack on mobile",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 8
+        }
+      ]
+    },
+    {
+      "type": "custom_html",
+      "name": "Custom HTML",
+      "settings": [
+        {
+          "type": "html",
+          "id": "html",
+          "label": "HTML"
+        }
+      ]
+    },
+    {
+      "type": "custom_liquid",
+      "name": "Custom Liquid",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "For advanced users. Invalid Liquid can break this section."
+        },
+        {
+          "type": "liquid",
+          "id": "liquid",
+          "label": "Liquid"
+        }
+      ]
+    },
+    {
+      "type": "image_pin",
+      "name": "Image pin",
+      "settings": [
+        {
+          "type": "text",
+          "id": "pin_label",
+          "label": "Pin label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "range",
+          "id": "position_x_desktop",
+          "label": "Horizontal position desktop",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "position_y_desktop",
+          "label": "Vertical position desktop",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "position_x_mobile",
+          "label": "Horizontal position mobile",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "position_y_mobile",
+          "label": "Vertical position mobile",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 50
+        },
+        {
+          "type": "select",
+          "id": "pin_style",
+          "label": "Pin style",
+          "default": "dot",
+          "options": [
+            {
+              "value": "dot",
+              "label": "Dot"
+            },
+            {
+              "value": "label",
+              "label": "Label"
+            },
+            {
+              "value": "numbered",
+              "label": "Numbered"
+            }
+          ]
+        },
+        {
+          "type": "color",
+          "id": "pin_color",
+          "label": "Pin colour",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "pin_text_color",
+          "label": "Pin text colour",
+          "default": "#111111"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_on_mobile",
+          "label": "Show on mobile",
+          "default": true
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Single Image Hero"
+      "name": "Single Image Hero",
+      "blocks": [
+        {
+          "type": "text",
+          "settings": {
+            "text_type": "eyebrow",
+            "text_content": "<p>NEW SEASON</p>",
+            "margin_bottom": 0
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text_type": "heading",
+            "heading_size": "large",
+            "heading_tag": "h1",
+            "text_content": "<p>Swimwear made for sun-drenched escapes</p>",
+            "margin_bottom": 0
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text_type": "paragraph",
+            "text_content": "<p>Elegant silhouettes, refined details and statement swimwear designed for poolside days, beach clubs and golden-hour getaways.</p>",
+            "max_width": 520,
+            "margin_bottom": 0
+          }
+        },
+        {
+          "type": "two_buttons",
+          "settings": {
+            "primary_label": "Shop the Collection",
+            "primary_link": "shopify://collections/all",
+            "secondary_label": "Explore New Arrivals",
+            "secondary_link": "shopify://collections/new",
+            "primary_style": "primary",
+            "secondary_style": "secondary",
+            "stack_on_mobile": true,
+            "margin_top": 8
+          }
+        }
+      ]
     }
   ]
 }

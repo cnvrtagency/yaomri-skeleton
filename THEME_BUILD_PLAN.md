@@ -14,7 +14,7 @@ Do not build speculative storefront features before the launch-critical surfaces
 | Mobile menu | Needs cleanup | Drawer is built and demo fallback is removed; full visual QA still needed. |
 | Cart page fallback | Half-built | Usable page fallback, but it is not positioned clearly as fallback-only. |
 | Cart drawer | Not started | Required for a polished launch if cart drawer is in scope. |
-| Homepage | Half-built | Hello World has been replaced with Single Image Hero; 3-Card Hero is available, but remaining homepage sections are still needed. |
+| Homepage | Half-built | Hello World has been replaced with a block-based Single Image Hero; 3-Card Hero is available, but remaining homepage sections are still needed. |
 | Product page | Not started | Still default Skeleton unless separately changed. |
 | Collection page | Not started | Still default Skeleton unless separately changed. |
 | Search | Half-built | Basic search exists; no Ya Omri QA pass. |
@@ -109,6 +109,7 @@ Objective:
 Tasks:
 - Done: replace `templates/index.json` Hello World.
 - Done: split the old combined Hero into Single Image Hero and 3-Card Hero so merchants do not see irrelevant layout settings.
+- Done: make Single Image Hero content block-based for flexible text, buttons, custom markup, and image pins.
 - Add core launch sections in this order:
   1. Brand strip.
   2. Promo banner.

@@ -18,9 +18,16 @@
         "desktop_custom_height": 680,
         "mobile_height_mode": "custom",
         "mobile_custom_height": 560,
-        "content_position": "left",
-        "text_alignment": "left",
-        "text_color": "#ffffff",
+        "desktop_content_horizontal": "left",
+        "desktop_content_vertical": "center",
+        "desktop_text_alignment": "left",
+        "mobile_content_horizontal": "center",
+        "mobile_content_vertical": "center",
+        "mobile_text_alignment": "center",
+        "content_max_width_desktop": 580,
+        "content_max_width_mobile": 360,
+        "content_gap": 12,
+        "content_padding": 0,
         "overlay_color": "#000000",
         "overlay_opacity": 20,
         "show_border": false,
@@ -38,15 +45,62 @@
         "margin_bottom_desktop": 0,
         "margin_top_mobile": 0,
         "margin_bottom_mobile": 0,
-        "eyebrow": "New season",
-        "heading": "Swimwear with intention",
-        "text": "<p>Sharp silhouettes, clean lines and effortless pieces for sun-led days.</p>",
-        "primary_button_label": "Shop new arrivals",
-        "primary_button_link": "",
-        "secondary_button_label": "",
-        "secondary_button_link": "",
         "image_position": "center center"
-      }
+      },
+      "blocks": {
+        "eyebrow": {
+          "type": "text",
+          "settings": {
+            "text_type": "eyebrow",
+            "text_content": "<p>NEW SEASON</p>",
+            "heading_tag": "h1",
+            "heading_size": "large",
+            "max_width": 0,
+            "margin_bottom": 0
+          }
+        },
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text_type": "heading",
+            "text_content": "<p>Swimwear made for sun-drenched escapes</p>",
+            "heading_tag": "h1",
+            "heading_size": "large",
+            "max_width": 0,
+            "margin_bottom": 0
+          }
+        },
+        "paragraph": {
+          "type": "text",
+          "settings": {
+            "text_type": "paragraph",
+            "text_content": "<p>Elegant silhouettes, refined details and statement swimwear designed for poolside days, beach clubs and golden-hour getaways.</p>",
+            "heading_tag": "h1",
+            "heading_size": "large",
+            "max_width": 520,
+            "margin_bottom": 0
+          }
+        },
+        "buttons": {
+          "type": "two_buttons",
+          "settings": {
+            "primary_label": "Shop the Collection",
+            "primary_link": "/collections/all",
+            "secondary_label": "Explore New Arrivals",
+            "secondary_link": "/collections/new",
+            "primary_style": "primary",
+            "secondary_style": "secondary",
+            "stack_on_mobile": true,
+            "margin_top": 8
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow",
+        "heading",
+        "paragraph",
+        "buttons"
+      ]
     }
   },
   "order": [

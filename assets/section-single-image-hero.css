@@ -3,7 +3,6 @@
   margin-top: var(--ysh-margin-top-desktop, 0);
   margin-bottom: var(--ysh-margin-bottom-desktop, 0);
   background: var(--ysh-section-bg, var(--color-background));
-  color: var(--ysh-text, var(--color-foreground));
 }
 
 .yaomri-single-hero,
@@ -76,25 +75,40 @@
 
 .yaomri-single-hero__content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: grid;
   grid-area: 1 / 1;
-  align-content: center;
-  justify-self: var(--ysh-content-justify, start);
-  justify-items: var(--ysh-text-justify, start);
-  align-self: stretch;
-  width: min(36rem, 92%);
-  padding: clamp(1.5rem, 3vw, 3rem);
-  color: var(--ysh-text, #fff);
-  text-align: var(--ysh-text-align, left);
+  align-self: var(--ysh-desktop-align, center);
+  justify-self: var(--ysh-desktop-justify, start);
+  width: min(var(--ysh-content-max-width-desktop, 580px), 100%);
+  max-width: calc(100% - 2rem);
+  padding: var(--ysh-content-padding, 0);
+  color: #fff;
+  text-align: var(--ysh-desktop-text-align, left);
 }
 
 .yaomri-single-hero--desktop-height-custom .yaomri-single-hero__content {
-  min-height: var(--ysh-height-desktop, 680px);
+  min-height: auto;
+}
+
+.yaomri-single-hero__content-stack {
+  display: grid;
+  justify-items: var(--ysh-desktop-item-justify, start);
+  gap: var(--ysh-content-gap, 12px);
+}
+
+.yaomri-single-hero__block {
+  width: 100%;
+}
+
+.yaomri-single-hero__text-block {
+  max-width: var(--ysh-block-max-width, 100%);
+  margin-bottom: var(--ysh-block-margin-bottom, 0);
+  color: var(--ysh-block-text-color, inherit);
 }
 
 .yaomri-single-hero__eyebrow {
-  margin: 0 0 0.75rem;
+  margin: 0;
   font-size: 0.72rem;
   font-style: italic;
   font-weight: 800;
@@ -106,7 +120,6 @@
 .yaomri-single-hero__heading {
   max-width: 11ch;
   margin: 0;
-  font-size: clamp(2.4rem, 7vw, 6.5rem);
   font-style: italic;
   font-weight: 800;
   letter-spacing: 0;
@@ -114,18 +127,42 @@
   text-transform: uppercase;
 }
 
+.yaomri-single-hero__text-block--heading-small .yaomri-single-hero__heading {
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+}
+
+.yaomri-single-hero__text-block--heading-medium .yaomri-single-hero__heading {
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+}
+
+.yaomri-single-hero__text-block--heading-large .yaomri-single-hero__heading {
+  font-size: clamp(2.4rem, 7vw, 6.5rem);
+}
+
+.yaomri-single-hero__text-block--heading-extra-large .yaomri-single-hero__heading {
+  font-size: clamp(3rem, 8.5vw, 8rem);
+}
+
 .yaomri-single-hero__text {
   max-width: 34rem;
-  margin: 1rem 0 0;
   font-size: clamp(0.9rem, 1.4vw, 1.08rem);
   line-height: 1.45;
+}
+
+.yaomri-single-hero__text > * {
+  margin-block: 0;
+}
+
+.yaomri-single-hero__button-block,
+.yaomri-single-hero__buttons {
+  margin-top: var(--ysh-block-margin-top, 0);
 }
 
 .yaomri-single-hero__buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 0.7rem;
-  margin-top: 1.35rem;
+  justify-content: var(--ysh-desktop-item-justify, start);
 }
 
 .yaomri-single-hero__button {
@@ -151,14 +188,81 @@
   color: var(--color-foreground, #111);
 }
 
+.yaomri-single-hero__button--secondary {
+  background: transparent;
+  color: inherit;
+}
+
+.yaomri-single-hero__button--text {
+  min-height: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.28em;
+}
+
 .yaomri-single-hero__button:hover,
 .yaomri-single-hero__button:focus-visible {
   opacity: 0.72;
 }
 
+.yaomri-single-hero__custom-html,
+.yaomri-single-hero__custom-liquid {
+  color: inherit;
+}
+
+.yaomri-single-hero__custom-html > *,
+.yaomri-single-hero__custom-liquid > * {
+  margin-block: 0;
+}
+
+.yaomri-single-hero__pin {
+  position: absolute;
+  z-index: 3;
+  left: var(--ysh-pin-x-desktop, 50%);
+  top: var(--ysh-pin-y-desktop, 50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1rem;
+  min-height: 1rem;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgb(0 0 0 / 0.12);
+  border-radius: 999px;
+  background: var(--ysh-pin-bg, #fff);
+  color: var(--ysh-pin-text, #111);
+  font-size: 0.68rem;
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.14);
+}
+
+.yaomri-single-hero__pin--dot {
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+}
+
+.yaomri-single-hero__pin--label {
+  min-height: 2rem;
+  padding: 0.55rem 0.7rem;
+}
+
+.yaomri-single-hero__pin--numbered {
+  width: 2rem;
+  height: 2rem;
+}
+
 .yaomri-single-hero__placeholder {
   display: grid;
   place-items: center;
+  min-height: 360px;
   padding: 1rem;
   color: var(--color-muted, #666);
   text-align: center;
@@ -192,8 +296,7 @@
 
   .yaomri-single-hero--mobile-height-custom .yaomri-single-hero__stage,
   .yaomri-single-hero--mobile-height-custom .yaomri-single-hero__media,
-  .yaomri-single-hero--mobile-height-custom .yaomri-single-hero__placeholder,
-  .yaomri-single-hero--mobile-height-custom .yaomri-single-hero__content {
+  .yaomri-single-hero--mobile-height-custom .yaomri-single-hero__placeholder {
     min-height: var(--ysh-height-mobile, 560px);
   }
 
@@ -203,8 +306,7 @@
 
   .yaomri-single-hero--mobile-height-adapt .yaomri-single-hero__stage,
   .yaomri-single-hero--mobile-height-adapt .yaomri-single-hero__media,
-  .yaomri-single-hero--mobile-height-adapt .yaomri-single-hero__placeholder,
-  .yaomri-single-hero--mobile-height-adapt .yaomri-single-hero__content {
+  .yaomri-single-hero--mobile-height-adapt .yaomri-single-hero__placeholder {
     min-height: 360px;
   }
 
@@ -221,17 +323,55 @@
   }
 
   .yaomri-single-hero__content {
+    align-self: var(--ysh-mobile-align, center);
+    justify-self: var(--ysh-mobile-justify, center);
+    width: min(var(--ysh-content-max-width-mobile, 360px), calc(100% - 2rem));
+    text-align: var(--ysh-mobile-text-align, center);
+  }
+
+  .yaomri-single-hero__content-stack {
+    justify-items: var(--ysh-mobile-item-justify, center);
+  }
+
+  .yaomri-single-hero__buttons {
+    justify-content: var(--ysh-mobile-item-justify, center);
+  }
+
+  .yaomri-single-hero__buttons--stack-mobile {
+    flex-direction: column;
+  }
+
+  .yaomri-single-hero__buttons--stack-mobile .yaomri-single-hero__button,
+  .yaomri-single-hero__button--mobile-full {
     width: 100%;
-    padding: 1.25rem;
   }
 
   .yaomri-single-hero__heading {
+    max-width: 11ch;
+  }
+
+  .yaomri-single-hero__text-block--heading-small .yaomri-single-hero__heading {
+    font-size: clamp(1.8rem, 10vw, 3rem);
+  }
+
+  .yaomri-single-hero__text-block--heading-medium .yaomri-single-hero__heading,
+  .yaomri-single-hero__text-block--heading-large .yaomri-single-hero__heading,
+  .yaomri-single-hero__text-block--heading-extra-large .yaomri-single-hero__heading {
     font-size: clamp(2.4rem, 15vw, 4.5rem);
+  }
+
+  .yaomri-single-hero__pin {
+    left: var(--ysh-pin-x-mobile, var(--ysh-pin-x-desktop, 50%));
+    top: var(--ysh-pin-y-mobile, var(--ysh-pin-y-desktop, 50%));
+  }
+
+  .yaomri-single-hero__pin--hide-mobile {
+    display: none;
   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .yaomri-single-hero__content {
+  .yaomri-single-hero__content-stack {
     animation: yaomri-single-hero-rise 520ms ease both;
   }
 

@@ -182,8 +182,19 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Single Image Hero desktop height mode works: Adapt to image and Custom height.
 - Single Image Hero mobile height mode works: Adapt to image and Custom height.
 - Single Image Hero custom height sliders only affect their matching Custom height modes.
-- Single Image Hero content position moves the content block left, centre, and right.
-- Single Image Hero text alignment changes text/buttons inside the content block.
+- Single Image Hero desktop content horizontal position moves the content block left, centre, and right.
+- Single Image Hero desktop content vertical position moves the content block top, centre, and bottom.
+- Single Image Hero mobile content horizontal position overrides desktop on mobile.
+- Single Image Hero mobile content vertical position overrides desktop on mobile.
+- Single Image Hero desktop/mobile text alignment changes text/buttons inside the content block.
+- Single Image Hero Text block renders eyebrow, heading, and paragraph styles.
+- Single Image Hero Button block renders only when label and link are set.
+- Single Image Hero Two buttons block renders only valid buttons and never empty wrappers.
+- Single Image Hero Custom HTML block renders inside the content stack.
+- Single Image Hero Custom Liquid block renders inside the content stack.
+- Single Image Hero Image pin positions correctly on desktop and mobile.
+- Single Image Hero Image pin can hide on mobile.
+- Single Image Hero empty blocks do not render empty markup.
 - Single Image Hero width modes work: Site width, Full width, Custom.
 - 3-Card Hero renders one, two, or three cards cleanly.
 - 3-Card Hero no-block placeholder state is polished and not clickable.
