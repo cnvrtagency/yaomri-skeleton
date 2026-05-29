@@ -61,8 +61,10 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Desktop icon spacing changes desktop action icons only.
 - Mobile icon spacing changes mobile action icons only.
 - Cart count style changes bubble background, text, size, and offset.
-- Region chip is display-only and does not change country, market, currency, or localization.
-- Region chip hides without leaving spacing residue.
+- Country selector renders only when more than one Shopify country is available.
+- Country selector submits `country_code` through a Shopify localization form.
+- Country selector style, height, and optional colours do not break header actions.
+- Manual region/shipping labels are not present in Header settings.
 - Account icon respects Shopify customer-account availability.
 - Wishlist icon uses the configured or fallback URL.
 
@@ -94,6 +96,8 @@ Use this before publishing and after any architecture-level change. Passing auto
 - `.yaomri-mega-panels` remains positioning/backdrop only.
 - `.yaomri-mega-panel` paints the visible background, border, and shadow.
 - `.yaomri-mega-panel__inner` remains width `100%` inside the panel.
+- Panel background/text/border/shadow settings affect the visible panel.
+- Panel style presets do not break 25/50/100 column layout.
 - Simple link behavior is unaffected by mega scripts.
 - Dropdown link behavior is unaffected by mega panel width.
 - Mega link opens and closes on hover/focus.
@@ -125,15 +129,17 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Root view shows no back arrow.
 - Drill view shows Back.
 - Back returns to root or prior drill view.
-- Root title displays drawer title.
-- Drill title displays selected menu item.
+- Root title displays drawer title when set.
+- Blank drawer title removes title text and does not reserve unnecessary centre title space.
+- Drill title displays selected menu item when a title node exists.
 - Search field appears when enabled.
 - Search submits to Shopify search.
-- Footer utility block hides when disabled.
-- Sign in link appears only when enabled and customer accounts are enabled.
-- Wishlist link appears when enabled.
-- Shipping text appears when enabled and remains display-only.
-- Instagram link appears when enabled.
+- Footer block area hides when disabled.
+- Footer link blocks render only when they have usable links.
+- Account footer link appears only when customer accounts are enabled.
+- Country selector block renders only when more than one Shopify country is available.
+- Text row blocks render only when label or text is set.
+- Social link blocks render only when label and link are set.
 - Mobile drawer width affects the visible drawer only.
 - Mobile drawer colours affect drawer only.
 - No duplicate drawer exists in DOM.

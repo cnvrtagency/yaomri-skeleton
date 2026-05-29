@@ -318,7 +318,8 @@
       {
         "type": "range",
         "id": "icon_button_size_desktop",
-        "label": "Desktop icon tap area",
+        "label": "Desktop icon button size",
+        "info": "Clickable button size around each header icon. The minimum protects usability; use icon spacing to change the gap between buttons.",
         "min": 36,
         "max": 64,
         "step": 2,
@@ -328,7 +329,8 @@
       {
         "type": "range",
         "id": "icon_button_size_mobile",
-        "label": "Mobile icon tap area",
+        "label": "Mobile icon button size",
+        "info": "Clickable tap target around each mobile icon. The minimum protects touch usability; very small spacing can feel crowded.",
         "min": 34,
         "max": 56,
         "step": 2,
@@ -339,6 +341,7 @@
         "type": "range",
         "id": "desktop_icon_gap",
         "label": "Desktop icon spacing",
+        "info": "Gap between desktop icon buttons. Button size controls the clickable area; spacing controls the space between buttons.",
         "min": 0,
         "max": 32,
         "step": 1,
@@ -349,6 +352,7 @@
         "type": "range",
         "id": "mobile_icon_gap",
         "label": "Mobile icon spacing",
+        "info": "Gap between mobile icon buttons. Keep this modest so icons do not crowd the logo or drawer button.",
         "min": 0,
         "max": 24,
         "step": 1,
@@ -432,60 +436,46 @@
       },
       {
         "type": "checkbox",
-        "id": "show_region_chip",
-        "label": "Show shipping region chip",
-        "info": "Display only. Does not change market, currency, or localization.",
+        "id": "show_country_selector",
+        "label": "Show country selector",
+        "info": "Uses Shopify Markets/localization. Shows only when more than one country is available.",
         "default": true
       },
       {
-        "type": "text",
-        "id": "region_flag",
-        "label": "Region chip flag",
-        "info": "Display only. Does not change market, currency, or localization.",
-        "default": "🇦🇪"
-      },
-      {
-        "type": "text",
-        "id": "region_label",
-        "label": "Region chip country label",
-        "info": "Display only. Does not change market, currency, or localization.",
-        "default": "AE"
-      },
-      {
-        "type": "text",
-        "id": "region_currency",
-        "label": "Region chip currency label",
-        "info": "Display only. Does not change market, currency, or localization.",
-        "default": "AED"
-      },
-      {
-        "type": "url",
-        "id": "region_link",
-        "label": "Region chip link",
-        "info": "Optional. Display only; this does not switch market or currency."
+        "type": "select",
+        "id": "country_selector_style",
+        "label": "Country selector style",
+        "default": "compact",
+        "options": [
+          {
+            "value": "compact",
+            "label": "Compact"
+          },
+          {
+            "value": "full",
+            "label": "Full"
+          }
+        ]
       },
       {
         "type": "color",
-        "id": "region_chip_background",
-        "label": "Region chip background",
-        "default": "#ffffff"
+        "id": "country_selector_background",
+        "label": "Country selector background"
       },
       {
         "type": "color",
-        "id": "region_chip_border",
-        "label": "Region chip border",
-        "default": "#e8e8e8"
+        "id": "country_selector_border",
+        "label": "Country selector border"
       },
       {
         "type": "color",
-        "id": "region_chip_text",
-        "label": "Region chip text colour",
-        "default": "#111111"
+        "id": "country_selector_text",
+        "label": "Country selector text colour"
       },
       {
         "type": "range",
-        "id": "region_chip_height",
-        "label": "Region chip height",
+        "id": "country_selector_height",
+        "label": "Country selector height",
         "min": 34,
         "max": 64,
         "step": 2,

@@ -161,7 +161,7 @@ Tasks:
 - Audit search template and search routes from header/mobile drawer.
 - Finish responsive QA across all target widths.
 - Confirm theme editor sections are understandable.
-- Update merchant notes for navigation, region chip, wishlist placeholder, and cart behavior.
+- Update merchant notes for navigation, country selector, wishlist placeholder, mobile footer blocks, and cart behavior.
 
 Success looks like:
 - Search works.
@@ -220,8 +220,8 @@ Do not get distracted by:
 - Logo max-height and vertical offset settings.
 - Header custom shadow controls if presets are enough.
 - Mega menu close delay setting.
-- Region chip link.
 - Global social settings group.
+- Flag emoji enhancement for the country selector.
 - Dynamic free-shipping progress.
 - Product recommendations.
 - Predictive search.
@@ -251,7 +251,8 @@ Do not get distracted by:
 - How desktop navigation is built with Header blocks.
 - How mobile navigation is controlled by Mobile Menu.
 - How Mega panel IDs connect Header mega links to Mega Menu panels.
-- Region chip is display-only and does not switch market/currency.
+- How the Shopify country selector works and when it appears.
+- How Mobile Menu footer blocks are configured.
 - Wishlist is a placeholder link.
 - Cart page is fallback; cart drawer status must be stated.
 - How to update footer links and payment icons.
@@ -318,7 +319,7 @@ Do not get distracted by:
 7. Done: remove legacy `country_label` fallback.
 8. Done: remove legacy `site_content_width` fallback.
 9. Done: remove missing `social_instagram_link` fallback.
-10. Decide whether to defer or remove `Hover close delay` before publish.
+10. Done: remove manual region chip and mobile shipping text settings; use Shopify localization and mobile footer blocks.
 
 ## Next 5 Codex Tasks In Exact Order
 
@@ -487,4 +488,4 @@ Risk level:
 - Separate desktop and mobile navigation sources are powerful but need documentation.
 - Cart page JavaScript can look like a dynamic cart system even though it only recalculates display before submit.
 - Custom shadow controls are probably too granular before launch.
-- Region chip link risks implying localization that does not exist.
+- Fake manual country/shipping text has been removed; do not reintroduce it as localization.

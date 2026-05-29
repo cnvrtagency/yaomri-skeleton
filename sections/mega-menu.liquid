@@ -1,11 +1,42 @@
+{%- liquid
+  assign panel_background = section.settings.mega_panel_background
+  if panel_background == blank
+    assign panel_background = 'var(--color-background)'
+  endif
+  assign panel_text = section.settings.mega_panel_text
+  if panel_text == blank
+    assign panel_text = 'var(--color-foreground)'
+  endif
+  assign panel_border = section.settings.mega_panel_border
+  if panel_border == blank
+    assign panel_border = 'var(--color-border)'
+  endif
+  assign panel_shadow = section.settings.mega_panel_shadow | default: 'subtle'
+  assign panel_shadow_value = '0 18px 34px rgba(10, 10, 10, 0.08)'
+  case panel_shadow
+    when 'none'
+      assign panel_shadow_value = 'none'
+    when 'medium'
+      assign panel_shadow_value = '0 26px 44px rgba(10, 10, 10, 0.1)'
+    when 'strong'
+      assign panel_shadow_value = '0 34px 64px rgba(10, 10, 10, 0.16)'
+  endcase
+  assign panel_style_preset = section.settings.panel_style_preset | default: 'minimal'
+  assign heading_style = section.settings.heading_style | default: 'bold'
+-%}
+
 <div class="yaomri-mega-section" data-mega-section>
   <div
-    class="yaomri-mega-panels"
+    class="yaomri-mega-panels yaomri-mega-panels--style-{{ panel_style_preset }} yaomri-mega-panels--heading-{{ heading_style }}"
     data-mega-panels
     data-panel-width="{{ section.settings.mega_panel_width | default: 1200 }}"
     data-close-delay="{{ section.settings.close_delay | default: 250 }}"
     style="
       --ym-panel-width: {{ section.settings.mega_panel_width | default: 1200 }}px;
+      --ym-panel-bg: {{ panel_background }};
+      --ym-panel-text: {{ panel_text }};
+      --ym-panel-border: {{ panel_border }};
+      --ym-panel-shadow: {{ panel_shadow_value }};
     "
     aria-hidden="true"
   >
@@ -33,6 +64,85 @@
       "step": 20,
       "unit": "px",
       "default": 1200
+    },
+    {
+      "type": "select",
+      "id": "panel_style_preset",
+      "label": "Panel style",
+      "default": "minimal",
+      "options": [
+        {
+          "value": "minimal",
+          "label": "Minimal"
+        },
+        {
+          "value": "editorial",
+          "label": "Editorial"
+        },
+        {
+          "value": "compact",
+          "label": "Compact"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "mega_panel_background",
+      "label": "Mega panel background"
+    },
+    {
+      "type": "color",
+      "id": "mega_panel_text",
+      "label": "Mega panel text colour"
+    },
+    {
+      "type": "color",
+      "id": "mega_panel_border",
+      "label": "Mega panel border colour"
+    },
+    {
+      "type": "select",
+      "id": "mega_panel_shadow",
+      "label": "Mega panel shadow",
+      "default": "subtle",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "subtle",
+          "label": "Subtle"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "strong",
+          "label": "Strong"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "heading_style",
+      "label": "Link column heading style",
+      "default": "bold",
+      "options": [
+        {
+          "value": "understated",
+          "label": "Understated"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        },
+        {
+          "value": "editorial",
+          "label": "Editorial"
+        }
+      ]
     },
     {
       "type": "range",

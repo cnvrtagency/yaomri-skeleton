@@ -1,13 +1,12 @@
 {%- liquid
   assign drawer_menu = menu
 
-  assign drawer_title = section.settings.mobile_menu_label | default: 'Menu'
+  assign drawer_title = section.settings.mobile_menu_label
+  assign has_drawer_title = false
+  if drawer_title != blank
+    assign has_drawer_title = true
+  endif
   assign search_placeholder = section.settings.mobile_drawer_search_placeholder | default: 'Search Ya Omri'
-  assign wishlist_target = section.settings.mobile_drawer_wishlist_link | default: wishlist_url | default: '/pages/wishlist'
-  assign shipping_label = section.settings.mobile_drawer_shipping_label | default: 'Shipping to'
-  assign shipping_region = section.settings.mobile_drawer_shipping_region | default: 'United Arab Emirates · AED'
-  assign instagram_label = section.settings.mobile_drawer_instagram_label | default: 'Follow @yaomri'
-  assign instagram_url = section.settings.mobile_drawer_instagram_url | default: '#'
 -%}
 
 <div
@@ -23,12 +22,14 @@
 >
   <button class="mdrawer__scrim" type="button" data-mdrawer-close aria-label="Close menu"></button>
 
-  <aside class="mdrawer__panel" role="dialog" aria-modal="true" aria-labelledby="MobileDrawerTitle" tabindex="-1">
-    <header class="mdrawer__header is-root" data-mdrawer-header>
+  <aside class="mdrawer__panel" role="dialog" aria-modal="true"{% if has_drawer_title %} aria-labelledby="MobileDrawerTitle"{% else %} aria-label="Mobile menu"{% endif %} tabindex="-1">
+    <header class="mdrawer__header is-root{% unless has_drawer_title %} mdrawer__header--no-title{% endunless %}" data-mdrawer-header>
       <button class="mdrawer__icon-btn mdrawer__back" type="button" data-mdrawer-back hidden aria-label="Back">
         {% render 'icon-yaomri-chevron-left' %}
       </button>
-      <h2 id="MobileDrawerTitle" class="mdrawer__title" data-mdrawer-title>{{ drawer_title }}</h2>
+      {%- if has_drawer_title -%}
+        <h2 id="MobileDrawerTitle" class="mdrawer__title" data-mdrawer-title>{{ drawer_title }}</h2>
+      {%- endif -%}
       <button class="mdrawer__icon-btn mdrawer__close" type="button" data-mdrawer-close aria-label="Close menu">
         {% render 'icon-yaomri-close' %}
       </button>
@@ -69,27 +70,81 @@
           </ul>
         </nav>
 
-        {%- if section.settings.show_mobile_drawer_footer -%}
-          <div class="mdrawer__footer" data-mdrawer-root-only>
-            <div class="mdrawer__utility-links">
-              {%- if section.settings.show_mobile_drawer_sign_in and shop.customer_accounts_enabled -%}
-                <a href="{{ routes.account_login_url }}">Sign in / Register</a>
-              {%- endif -%}
-              {%- if section.settings.show_mobile_drawer_wishlist -%}
-                <a href="{{ wishlist_target }}">Wishlist</a>
-              {%- endif -%}
+        {%- if section.settings.show_mobile_drawer_footer and section.blocks.size > 0 -%}
+          {%- capture drawer_footer_content -%}
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when 'footer_link' -%}
+                  {%- liquid
+                    assign footer_link = block.settings.link
+                    assign footer_label = block.settings.label
+                    assign footer_icon = block.settings.icon | default: 'none'
+                    if footer_icon == 'account' and footer_link == blank
+                      if shop.customer_accounts_enabled
+                        assign footer_link = routes.account_login_url
+                      endif
+                    elsif footer_icon == 'heart' and footer_link == blank
+                      assign footer_link = settings.wishlist_link | default: wishlist_url | default: '/pages/wishlist'
+                    endif
+                  -%}
+                  {%- if footer_label != blank and footer_link != blank -%}
+                    <a class="mdrawer__footer-item" href="{{ footer_link }}" {% if block.settings.open_new_window %}target="_blank" rel="noopener"{% endif %} {{ block.shopify_attributes }}>
+                      {%- if footer_icon == 'account' and shop.customer_accounts_enabled -%}
+                        <span class="mdrawer__footer-icon" aria-hidden="true">{% render 'icon-yaomri-account' %}</span>
+                      {%- elsif footer_icon == 'heart' -%}
+                        <span class="mdrawer__footer-icon" aria-hidden="true">{% render 'icon-yaomri-heart' %}</span>
+                      {%- endif -%}
+                      <span>{{ footer_label }}</span>
+                    </a>
+                  {%- endif -%}
+                {%- when 'country_selector' -%}
+                  {%- if localization.available_countries.size > 1 -%}
+                    {%- form 'localization', id: 'MobileDrawerCountryForm', class: 'mdrawer__country-form' -%}
+                      {%- if block.settings.label != blank -%}
+                        <label class="mdrawer__country-label" for="MobileDrawerCountrySelector">{{ block.settings.label }}</label>
+                      {%- else -%}
+                        <label class="visually-hidden" for="MobileDrawerCountrySelector">Country/region</label>
+                      {%- endif -%}
+                      <select
+                        id="MobileDrawerCountrySelector"
+                        class="mdrawer__country-select"
+                        name="country_code"
+                        aria-label="Country/region"
+                        onchange="this.form.submit()"
+                      >
+                        {%- for country in localization.available_countries -%}
+                          <option
+                            value="{{ country.iso_code }}"
+                            {%- if country.iso_code == localization.country.iso_code -%} selected{%- endif -%}
+                          >
+                            {{ country.name }} ({{ country.currency.iso_code }}{% if country.currency.symbol != blank %} {{ country.currency.symbol }}{% endif %})
+                          </option>
+                        {%- endfor -%}
+                      </select>
+                    {%- endform -%}
+                  {%- endif -%}
+                {%- when 'text_row' -%}
+                  {%- if block.settings.label != blank or block.settings.text != blank -%}
+                    <p class="mdrawer__footer-text" {{ block.shopify_attributes }}>
+                      {%- if block.settings.label != blank -%}<span>{{ block.settings.label }}</span>{%- endif -%}
+                      {%- if block.settings.text != blank -%}<strong>{{ block.settings.text }}</strong>{%- endif -%}
+                    </p>
+                  {%- endif -%}
+                {%- when 'social_link' -%}
+                  {%- if block.settings.label != blank and block.settings.link != blank -%}
+                    <a class="mdrawer__footer-item mdrawer__footer-item--social" href="{{ block.settings.link }}" {% if block.settings.open_new_window %}target="_blank" rel="noopener"{% endif %} {{ block.shopify_attributes }}>
+                      <span>{{ block.settings.label }}</span>
+                    </a>
+                  {%- endif -%}
+              {%- endcase -%}
+            {%- endfor -%}
+          {%- endcapture -%}
+          {%- assign drawer_footer_content = drawer_footer_content | strip -%}
+          {%- if drawer_footer_content != blank -%}
+            <div class="mdrawer__footer" data-mdrawer-root-only>
+              {{ drawer_footer_content }}
             </div>
-
-            {%- if section.settings.show_mobile_drawer_shipping -%}
-              <p class="mdrawer__shipping">{{ shipping_label }} {{ shipping_region }}</p>
-            {%- endif -%}
-
-            {%- if section.settings.show_mobile_drawer_instagram -%}
-              <a class="mdrawer__instagram" href="{{ instagram_url }}" target="_blank" rel="noopener">
-                {{ instagram_label }}
-              </a>
-            {%- endif -%}
-          </div>
+          {%- endif -%}
         {%- endif -%}
       </div>
 

@@ -114,7 +114,7 @@ Owns:
 - Account, wishlist, cart visibility.
 - Wishlist link.
 - Cart count style.
-- Region chip display-only fields and styling.
+- Country selector visibility, style, and local styling.
 
 Must not own:
 - Individual navigation item content.
@@ -129,7 +129,7 @@ Must not be duplicated elsewhere:
 - Header colours.
 - Header icon sizing.
 - Cart count styling.
-- Region chip fields.
+- Country selector settings.
 
 Current implementation:
 - The intended global header settings are in `config/settings_schema.json`.
@@ -137,6 +137,7 @@ Current implementation:
 - `sections/header.liquid` no longer reads removed section-level header styling settings.
 - `sections/header-group.json` has no stale removed header settings from the previous header schema.
 - Header code still defensively falls back to Layout A if old saved data contains an unsupported layout value.
+- Manual region chip fields were removed. The header now uses Shopify localization for the country selector and renders it only when multiple countries are available.
 
 Judgement:
 - Header ownership is now clear enough for launch: global Theme settings own header style, and Header section blocks own desktop navigation items.
@@ -156,7 +157,7 @@ Must not own:
 - Header visual style.
 - Logo settings.
 - Header width settings.
-- Region chip settings.
+- Country selector settings.
 - Mobile drawer settings.
 - Mega panel content.
 
@@ -180,6 +181,9 @@ Owned by `sections/mega-menu.liquid` and `snippets/mega-menu-panel.liquid`.
 Owns:
 - `mega_panel_width`
 - `close_delay`
+- Panel style preset.
+- Mega panel background, text, border, and shadow.
+- Link column heading style.
 - Mega panel IDs.
 - Flexible column layout toggle.
 - Link columns.
@@ -215,8 +219,8 @@ Owns:
 - Mobile drawer menu.
 - Mobile drawer title.
 - Search field toggle and placeholder.
-- Drawer footer utilities.
-- Sign in, wishlist, shipping text, Instagram link.
+- Drawer footer utility blocks.
+- Footer links, country selector block, text rows, and social links.
 - Mobile drawer width and drawer-specific colours.
 
 Must not own:
@@ -228,16 +232,18 @@ Must not own:
 Must not be duplicated elsewhere:
 - Mobile drawer width.
 - Mobile drawer menu picker.
-- Mobile drawer footer utility controls.
+- Mobile drawer footer utility blocks.
 
 Current implementation:
 - Putting Mobile Menu in the Header group makes sense. It is part of header navigation behavior even though it is a separate section.
 - Mobile menu currently has its own menu picker, while desktop header has `header_menu` and header blocks. This is a deliberate split, but it requires merchant guidance.
 - If `drawer_menu` is blank, the implementation falls back to `main-menu` only. Demo menu behavior has been removed.
-- Mobile drawer Instagram now uses the section URL setting only, with `#` as the final empty fallback. It no longer references a missing global social setting.
+- Mobile drawer footer utilities are now blocks. This is cleaner than fixed sign-in/wishlist/shipping/Instagram settings because merchants can remove, reorder, and replace rows.
+- Mobile drawer country selection uses the same Shopify localization model as the header country selector and only renders when multiple countries are available.
 
 Judgement:
 - Keep Mobile Menu in the Header group.
+- Do not reintroduce manual shipping/country text as localization. Use the country selector block where market context matters.
 - Blank navigation should fail cleanly, not invent storefront links.
 
 ## Cart

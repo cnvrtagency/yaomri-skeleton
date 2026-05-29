@@ -19,11 +19,11 @@
   endif
 
   assign wishlist_url = settings.wishlist_link | default: '/pages/wishlist'
-  assign region_label = settings.region_label
-  assign region_flag = settings.region_flag
-  assign region_currency = settings.region_currency
-  assign region_link = settings.region_link
-  assign show_region_chip = settings.show_region_chip
+  assign show_country_selector = settings.show_country_selector
+  assign country_selector_style = settings.country_selector_style | default: 'compact'
+  unless country_selector_style == 'compact' or country_selector_style == 'full'
+    assign country_selector_style = 'compact'
+  endunless
   assign show_account_icon = settings.show_account_icon
   assign show_wishlist_icon = settings.show_wishlist_icon
   assign show_cart_icon = settings.show_cart_icon
@@ -59,10 +59,19 @@
   assign cart_count_text_size = settings.cart_count_text_size | default: 10
   assign cart_count_offset_x = settings.cart_count_offset_x | default: 4
   assign cart_count_offset_y = settings.cart_count_offset_y | default: 5
-  assign region_chip_background = settings.region_chip_background | default: '#ffffff'
-  assign region_chip_border = settings.region_chip_border | default: '#e8e8e8'
-  assign region_chip_text = settings.region_chip_text | default: '#111111'
-  assign region_chip_height = settings.region_chip_height | default: 48
+  assign country_selector_background = settings.country_selector_background
+  if country_selector_background == blank
+    assign country_selector_background = 'var(--color-background)'
+  endif
+  assign country_selector_border = settings.country_selector_border
+  if country_selector_border == blank
+    assign country_selector_border = 'var(--color-border)'
+  endif
+  assign country_selector_text = settings.country_selector_text
+  if country_selector_text == blank
+    assign country_selector_text = 'currentColor'
+  endif
+  assign country_selector_height = settings.country_selector_height | default: 48
   assign header_shadow = settings.header_shadow | default: 'none'
   assign header_shadow_value = 'none'
   case header_shadow
@@ -127,10 +136,10 @@
     --yh-cart-count-font-size: {{ cart_count_text_size }}px;
     --yh-cart-count-offset-x: {{ cart_count_offset_x }}px;
     --yh-cart-count-offset-y: {{ cart_count_offset_y }}px;
-    --yh-region-bg: {{ region_chip_background }};
-    --yh-region-border: {{ region_chip_border }};
-    --yh-region-text: {{ region_chip_text }};
-    --yh-region-height: {{ region_chip_height }}px;
+    --yh-country-bg: {{ country_selector_background }};
+    --yh-country-border: {{ country_selector_border }};
+    --yh-country-text: {{ country_selector_text }};
+    --yh-country-height: {{ country_selector_height }}px;
   "
   {{ section.shopify_attributes }}
 >
@@ -182,17 +191,26 @@
         {% render 'icon-yaomri-search' %}
       </a>
 
-      {%- if show_region_chip -%}
-        {%- capture region_text -%}
-          {%- if region_flag != blank -%}<span class="yaomri-header__region-flag">{{ region_flag }}</span>{%- endif -%}
-          {%- if region_label != blank -%}<span>{{ region_label }}</span>{%- endif -%}
-          {%- if region_currency != blank -%}<span>/ {{ region_currency }}</span>{%- endif -%}
-        {%- endcapture -%}
-        {%- if region_link != blank -%}
-          <a class="yaomri-header__region" href="{{ region_link }}">{{ region_text }}</a>
-        {%- else -%}
-          <span class="yaomri-header__region">{{ region_text }}</span>
-        {%- endif -%}
+      {%- if show_country_selector and localization.available_countries.size > 1 -%}
+        {%- form 'localization', id: 'HeaderCountryForm', class: 'yaomri-header__country-selector yaomri-header__country-selector--' | append: country_selector_style -%}
+          <label class="visually-hidden" for="HeaderCountrySelector">Country/region</label>
+          <select
+            id="HeaderCountrySelector"
+            class="yaomri-header__country-select"
+            name="country_code"
+            aria-label="Country/region"
+            onchange="this.form.submit()"
+          >
+            {%- for country in localization.available_countries -%}
+              <option
+                value="{{ country.iso_code }}"
+                {%- if country.iso_code == localization.country.iso_code -%} selected{%- endif -%}
+              >
+                {{ country.name }} ({{ country.currency.iso_code }}{% if country.currency.symbol != blank %} {{ country.currency.symbol }}{% endif %})
+              </option>
+            {%- endfor -%}
+          </select>
+        {%- endform -%}
       {%- endif -%}
 
       {%- if show_account_icon and shop.customer_accounts_enabled -%}

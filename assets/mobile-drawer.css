@@ -93,6 +93,10 @@ html.mdrawer-open body {
   grid-template-columns: 2.75rem 1fr 2.75rem;
 }
 
+.mdrawer__header--no-title {
+  grid-template-columns: auto 1fr auto;
+}
+
 .mdrawer__header.is-root .mdrawer__title {
   text-align: left;
 }
@@ -246,13 +250,77 @@ html.mdrawer-open body {
   flex-wrap: wrap;
 }
 
-.mdrawer__utility-links a,
-.mdrawer__shipping,
-.mdrawer__instagram {
+.mdrawer__footer-item,
+.mdrawer__footer-text,
+.mdrawer__country-label {
   font-size: 0.7rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--color-muted, #666);
+}
+
+.mdrawer__footer-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.35rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--color-border, #efefef);
+  text-decoration: none;
+}
+
+.mdrawer__footer-item:hover,
+.mdrawer__footer-item:focus-visible {
+  color: inherit;
+}
+
+.mdrawer__footer-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+}
+
+.mdrawer__footer-icon .icon-yaomri {
+  width: 1rem;
+  height: 1rem;
+}
+
+.mdrawer__footer-text {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--color-border, #efefef);
+}
+
+.mdrawer__footer-text strong {
+  color: inherit;
+  font-weight: 800;
+}
+
+.mdrawer__country-form {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--color-border, #efefef);
+}
+
+.mdrawer__country-label {
+  display: block;
+}
+
+.mdrawer__country-select {
+  width: 100%;
+  min-height: 2.45rem;
+  border: 1px solid var(--color-border, #e8e8e8);
+  background: var(--paper, #fff);
+  color: inherit;
+  font: inherit;
+  font-size: 0.78rem;
+  padding: 0 0.7rem;
 }
 
 .mdrawer__drill-nav {

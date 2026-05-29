@@ -62,64 +62,12 @@
       "type": "checkbox",
       "id": "show_mobile_drawer_footer",
       "label": "Show drawer footer",
+      "info": "Shows configurable footer blocks at the bottom of the drawer.",
       "default": true
     },
     {
       "type": "header",
-      "content": "Mobile drawer footer"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_mobile_drawer_sign_in",
-      "label": "Show sign in link",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_mobile_drawer_wishlist",
-      "label": "Show wishlist link",
-      "default": true
-    },
-    {
-      "type": "url",
-      "id": "mobile_drawer_wishlist_link",
-      "label": "Mobile wishlist link"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_mobile_drawer_shipping",
-      "label": "Show shipping region text",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "mobile_drawer_shipping_label",
-      "label": "Shipping label",
-      "default": "Shipping to"
-    },
-    {
-      "type": "text",
-      "id": "mobile_drawer_shipping_region",
-      "label": "Shipping region",
-      "info": "Display only. Does not change market or currency.",
-      "default": "United Arab Emirates · AED"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_mobile_drawer_instagram",
-      "label": "Show Instagram link",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "mobile_drawer_instagram_label",
-      "label": "Instagram label",
-      "default": "Follow @yaomri"
-    },
-    {
-      "type": "url",
-      "id": "mobile_drawer_instagram_url",
-      "label": "Instagram link"
+      "content": "Mobile drawer style"
     },
     {
       "type": "range",
@@ -144,9 +92,127 @@
       "default": "#111111"
     }
   ],
+  "blocks": [
+    {
+      "type": "footer_link",
+      "name": "Footer link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Footer link"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "none",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "account",
+              "label": "Account"
+            },
+            {
+              "value": "heart",
+              "label": "Heart"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_window",
+          "label": "Open in new tab",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "country_selector",
+      "name": "Country selector",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Country / region"
+        }
+      ]
+    },
+    {
+      "type": "text_row",
+      "name": "Text row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "social_link",
+      "name": "Social link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Follow @yaomri"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_window",
+          "label": "Open in new tab",
+          "default": true
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Mobile Menu"
+      "name": "Mobile Menu",
+      "blocks": [
+        {
+          "type": "footer_link",
+          "settings": {
+            "label": "Sign in / Register",
+            "icon": "account"
+          }
+        },
+        {
+          "type": "footer_link",
+          "settings": {
+            "label": "Wishlist",
+            "icon": "heart"
+          }
+        },
+        {
+          "type": "country_selector"
+        },
+        {
+          "type": "social_link"
+        }
+      ]
     }
   ],
   "enabled_on": {
