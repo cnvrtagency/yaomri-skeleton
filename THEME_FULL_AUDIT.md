@@ -14,6 +14,7 @@ Current state:
 3. Major architectural debt remains in naming and section ownership patterns (Ya Omri-branded class system and mixed responsive conventions).
 4. Homepage is minimal and predictable (`templates/index.json` has only `single-image-hero` and `collection-cards` in this snapshot).
 5. Header/mobile drawer/mega menu stack behavior is now feature-complete for fade-away, mobile/desktop thresholds, easing, and duration, including solid-state suppression in fade-away mode.
+6. Announcement namespace migration phase 1 is complete: `cnvrt-announcement*` selectors and `--cnvrt-announcement-*` variables now coexist with legacy `yaomri*`/`yab-*`.
 
 ## B. Critical launch blockers
 
@@ -167,7 +168,7 @@ Current state:
    - `ysh-`: single-image and shared typography blocks
    - `yh-`: header-level tokens/variables
    - `ym-`: header/inline variables
-   - `yab-`: hero/card-like local variants
+   - `yab-`: announcement local variants (already paired with `cnvrt-announcement*` in phase 1 aliases)
    - `cc-`: collection cards system
    - `mdrawer-`: mobile drawer system
 2. Current risk profile
@@ -177,7 +178,8 @@ Current state:
    - Introduce neutral aliases where feasible, then migrate per section:
      1. Add dual selectors in CSS/JS (`yaomri-*` + `cnvrt-*`) or data attributes to preserve behavior.
      2. Update sections one-at-a-time starting with low-traffic utility sections.
-     3. After migration and QA, remove aliases.
+     3. Announcement bar aliases are complete and provide a validated phase-1 template.
+     4. After migration and QA, remove aliases.
 4. Preserve data attributes
    - Keep `[data-yaomri-header-group]` or migrate intentionally with compatibility shim.
 5. Suggested end-state convention

@@ -198,8 +198,13 @@ Preferred: **section-by-section with compatibility aliases**.
 ### Phase 1 — Announcement
 - Files: `sections/announcement-bar.liquid`, `assets/announcement-bar.css`
 - Risk: medium-low
+- Status: Completed (compatibility alias phase)
 - QA: desktop/mobile visibility, marquee/carousel controls, autoplay behavior
 - Suggested commit: `feat: add cnvrt announcement namespace aliases`
+
+Announcement announcement bar now renders both legacy and neutral namespace classes and variables during compatibility migration:
+- legacy: `yaomri-announcement*`, `yab-*`
+- new: `cnvrt-announcement*`, `--cnvrt-announcement-*`
 
 ### Phase 2 — Collection Cards
 - Files: `sections/collection-cards.liquid`, `assets/section-collection-cards.css`, `assets/section-collection-cards.js`
