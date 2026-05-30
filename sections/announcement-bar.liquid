@@ -13,9 +13,17 @@
   assign show_dots = section.settings.carousel_show_dots
   assign marquee_speed = section.settings.marquee_speed | default: 28
   assign marquee_pause_on_hover = section.settings.marquee_pause_on_hover
+  assign announcement_offset_desktop = section.settings.height_desktop | plus: section.settings.desktop_padding_block | plus: section.settings.desktop_padding_block
+  assign announcement_offset_mobile = section.settings.height_mobile | plus: section.settings.mobile_padding_block | plus: section.settings.mobile_padding_block
 -%}
 
 {%- if is_enabled or request.design_mode -%}
+<style>
+  :root {
+    --yaomri-announcement-offset-desktop: {{ announcement_offset_desktop }}px;
+    --yaomri-announcement-offset-mobile: {{ announcement_offset_mobile }}px;
+  }
+</style>
 <section
   class="yaomri-announcement full-width yaomri-announcement--mode-{{ mode }} yaomri-announcement--width-{{ width_mode }}{% if show_bottom_border %} yaomri-announcement--with-border{% endif %}{% if marquee_pause_on_hover %} yaomri-announcement--marquee-pause{% endif %}"
   style="
@@ -255,7 +263,7 @@
     {
       "type": "checkbox",
       "id": "enable_announcement_bar",
-      "label": "Enable announcement bar",
+      "label": "Show announcement bar",
       "default": true
     },
     {

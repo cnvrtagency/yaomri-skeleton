@@ -112,6 +112,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Announcement Bar section appears above Header in `sections/header-group.json`.
 - Static mode renders the first non-empty announcement item.
 - Carousel mode rotates announcements one at a time.
+- Carousel mode is always centre-aligned.
 - Carousel autoplay pauses on hover and focus.
 - Carousel arrows appear only when enabled.
 - Carousel dots appear only when enabled.
@@ -126,6 +127,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Desktop/mobile typography settings apply.
 - Announcement bar works with Full/Site/Custom bar width modes.
 - Announcement bar remains in normal flow above transparent header and does not break hero overlay behavior.
+- Transparent header starts below the announcement bar offset and does not overlap the bar.
 
 ## Mega Menu
 

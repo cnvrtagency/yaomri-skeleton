@@ -1,7 +1,11 @@
 (() => {
   const initCarousel = (root) => {
+    if (!root || root.dataset.announcementInit === 'true') return;
     const slides = Array.from(root.querySelectorAll('[data-announcement-slide]'));
-    if (slides.length < 2) return;
+    if (slides.length < 2) {
+      root.dataset.announcementInit = 'true';
+      return;
+    }
 
     const prevBtn = root.querySelector('[data-announcement-prev]');
     const nextBtn = root.querySelector('[data-announcement-next]');
@@ -62,10 +66,12 @@
 
     render();
     start();
+    root.dataset.announcementInit = 'true';
   };
 
-  const mount = () => {
-    document.querySelectorAll('[data-announcement-carousel]').forEach(initCarousel);
+  const mount = (container) => {
+    const scope = container && container.querySelectorAll ? container : document;
+    scope.querySelectorAll('[data-announcement-carousel]').forEach(initCarousel);
   };
 
   if (document.readyState === 'loading') {
@@ -74,5 +80,7 @@
     mount();
   }
 
-  document.addEventListener('shopify:section:load', mount);
+  document.addEventListener('shopify:section:load', (event) => {
+    mount(event.target);
+  });
 })();

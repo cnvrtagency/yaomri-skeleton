@@ -11,7 +11,7 @@
 
 .yaomri-header--transparent-active {
   position: absolute;
-  top: 0;
+  top: var(--yaomri-announcement-offset-desktop, 0px);
   left: 0;
   right: 0;
   z-index: 70;
@@ -441,6 +441,10 @@
 }
 
 @media screen and (max-width: 990px) {
+  .yaomri-header--transparent-active {
+    top: var(--yaomri-announcement-offset-mobile, var(--yaomri-announcement-offset-desktop, 0px));
+  }
+
   .yaomri-header__desktop {
     display: none;
   }
