@@ -9,6 +9,9 @@
   const SCROLL_BEHAVIOR_FADE_AWAY = 'fade_away_after_scroll';
   const DEFAULT_SCROLL_THRESHOLD = 40;
   const DEFAULT_STACK_TRANSITION = 'fade_slide';
+  const DEFAULT_STACK_TRANSITION_DURATION = 350;
+  const MIN_STACK_TRANSITION_DURATION = 100;
+  const MAX_STACK_TRANSITION_DURATION = 1200;
 
   const parseIntSetting = (value, fallback) => {
     const parsed = Number.parseInt(value, 10);
@@ -94,6 +97,12 @@
     const stackBehavior = header.dataset.headerStackScrollBehavior || SCROLL_BEHAVIOR_ALWAYS_VISIBLE;
     const scrollThresholdRaw = header.dataset.headerStackScrollThreshold;
     const stackTransition = header.dataset.headerStackTransition || DEFAULT_STACK_TRANSITION;
+    const stackTransitionDurationRaw = header.dataset.headerStackTransitionDuration;
+    const stackTransitionDuration = clampNumber(
+      parseIntSetting(stackTransitionDurationRaw, DEFAULT_STACK_TRANSITION_DURATION),
+      MIN_STACK_TRANSITION_DURATION,
+      MAX_STACK_TRANSITION_DURATION
+    );
     const isPastThreshold = window.scrollY > clampNumber(parseIntSetting(scrollThresholdRaw, DEFAULT_SCROLL_THRESHOLD), 0, 200);
 
     const shouldHideStack = (
@@ -104,6 +113,7 @@
 
     if (group) {
       group.classList.add(GROUP_CLASS);
+      group.style.setProperty('--yaomri-header-stack-transition-duration', `${stackTransitionDuration}ms`);
       updateMeasuredHeight(group);
       group.classList.toggle(GROUP_OVERLAY_CLASS, transparentActive && stickyEnabled);
       cleanTransitionClass(group, stackBehavior === SCROLL_BEHAVIOR_FADE_AWAY ? resolveTransitionClass(stackTransition) : null);

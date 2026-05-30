@@ -441,6 +441,17 @@
         ]
       },
       {
+        "type": "range",
+        "id": "header_stack_transition_duration",
+        "label": "Header stack transition duration",
+        "info": "Controls how quickly the announcement/header stack fades or slides away after scrolling.",
+        "min": 100,
+        "max": 1200,
+        "step": 50,
+        "unit": "ms",
+        "default": 350
+      },
+      {
         "type": "color",
         "id": "transparent_header_solid_background",
         "label": "Solid header background after scroll"
