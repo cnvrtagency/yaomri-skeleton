@@ -70,6 +70,12 @@
   color: var(--cnvrt-header-fg, var(--color-foreground));
   box-shadow: var(--cnvrt-header-shadow, none);
   transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  --cnvrt-header-country-bg: var(--cnvrt-header-country-bg-normal, var(--yh-country-bg-normal, var(--color-background)));
+  --cnvrt-header-country-border: var(--cnvrt-header-country-border-normal, var(--yh-country-border-normal, var(--color-border)));
+  --cnvrt-header-country-text: var(--cnvrt-header-country-text-normal, var(--yh-country-text-normal, currentColor));
+  --yh-country-bg: var(--cnvrt-header-country-bg);
+  --yh-country-border: var(--cnvrt-header-country-border);
+  --yh-country-text: var(--cnvrt-header-country-text);
 }
 
 .yaomri-header--transparent-active, .cnvrt-header--transparent-active {
@@ -90,8 +96,11 @@
   --yh-current-fg: var(--cnvrt-header-fg);
   --ym-link-color: currentColor;
   --cnvrt-header-country-bg: transparent;
-  --cnvrt-header-country-border: var(--cnvrt-header-transparent-border, transparent);
-  --cnvrt-header-country-text: var(--cnvrt-header-transparent-text, #fff);
+  --cnvrt-header-country-border: var(--cnvrt-header-transparent-border, var(--yh-transparent-border, transparent));
+  --cnvrt-header-country-text: var(--cnvrt-header-transparent-text, var(--yh-transparent-text, #fff));
+  --yh-country-bg: var(--cnvrt-header-country-bg);
+  --yh-country-border: var(--cnvrt-header-country-border);
+  --yh-country-text: var(--cnvrt-header-country-text);
 }
 
 .yaomri-header--transparent-active:not(.is-scrolled) .yaomri-header__nav-link,
@@ -118,7 +127,10 @@
   box-shadow: var(--cnvrt-header-shadow, none);
   --cnvrt-header-country-bg: var(--cnvrt-header-country-bg-normal, var(--color-background));
   --cnvrt-header-country-border: var(--cnvrt-header-country-border-normal, var(--color-border));
-  --cnvrt-header-country-text: var(--cnvrt-header-country-text-solid, var(--cnvrt-header-country-text-normal, currentColor));
+  --cnvrt-header-country-text: var(--cnvrt-header-country-text-solid, var(--cnvrt-header-country-text-normal, var(--cnvrt-header-fg, currentColor)));
+  --yh-country-bg: var(--cnvrt-header-country-bg);
+  --yh-country-border: var(--cnvrt-header-country-border);
+  --yh-country-text: var(--cnvrt-header-country-text);
 }
 
 .yaomri-header--transparent-active:not(.is-scrolled).yaomri-header--no-border,
@@ -241,9 +253,9 @@
   height: var(--cnvrt-header-country-height, 48px);
   box-sizing: border-box;
   padding-inline: 0.56rem;
-  border: 1px solid var(--cnvrt-header-country-border, var(--color-border));
-  background: var(--cnvrt-header-country-bg, var(--color-background));
-  color: var(--cnvrt-header-country-text, currentColor);
+  border: 1px solid var(--cnvrt-header-country-border, var(--yh-country-border, var(--color-border)));
+  background: var(--cnvrt-header-country-bg, var(--yh-country-bg, var(--color-background)));
+  color: var(--cnvrt-header-country-text, var(--yh-country-text, currentColor));
   font-size: 0.72rem;
   font-style: italic;
   font-weight: 800;
@@ -295,6 +307,7 @@
   display: block;
   min-width: 0;
   max-width: calc(100% - 0.78rem);
+  color: var(--cnvrt-header-country-text, var(--yh-country-text, currentColor));
   overflow: hidden;
   text-overflow: clip;
   text-transform: uppercase;
@@ -317,7 +330,7 @@
   border: 0;
   appearance: none;
   background: transparent;
-  color: inherit;
+  color: var(--cnvrt-header-country-text, var(--yh-country-text, currentColor));
   font: inherit;
   letter-spacing: inherit;
   text-transform: none;
