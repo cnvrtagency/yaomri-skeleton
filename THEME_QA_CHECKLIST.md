@@ -129,8 +129,9 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Hide on desktop works per block.
 - Desktop/mobile typography settings apply.
 - Announcement bar works with Full/Site/Custom bar width modes.
-- Announcement bar remains in normal flow above transparent header and does not break hero overlay behavior.
-- Transparent header starts below the announcement bar offset and does not overlap the bar.
+- Transparent mode treats announcement + header as one stack (no separate-layer jitter).
+- On scroll threshold, announcement/header stack collapses together with no gap or overlap.
+- Scrolling back to top restores the full stack cleanly.
 
 ## Mega Menu
 

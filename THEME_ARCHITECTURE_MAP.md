@@ -129,8 +129,8 @@ Must not be duplicated elsewhere:
 
 Current implementation:
 - The section is now independent and inserted above Header in `sections/header-group.json`.
-- It remains in normal flow above the header.
-- Transparent header behavior is preserved: the header still overlays hero while the announcement bar remains a normal strip.
+- It remains independently editable, but frontend scroll behavior is unified with Header through shared stack state.
+- In transparent mode, announcement + header behave as one overlay stack and collapse together on scroll.
 
 Judgement:
 - This ownership is launch-correct. Do not bury announcement settings inside Header.

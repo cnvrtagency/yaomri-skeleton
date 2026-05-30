@@ -74,9 +74,10 @@ For sections with section-level width controls:
 
 ## Transparent header + announcement interaction
 
-- Announcement bar stays normal-flow above header when enabled.
-- Header transparent offset (home) is calculated from announcement heights when required.
-- When not transparent (or scrolled solid state), header uses solid zero-offset behavior per header implementation.
+- Announcement bar and header are rendered as separate sections but treated as one stack in transparent mode.
+- In transparent mode with sticky enabled, the section-group stack is fixed at the top and overlays the hero.
+- On scroll threshold, the stack collapses upward by announcement height so the header settles at top with no gap.
+- Solid-after-scroll continues to control header colours/logo treatment while the stack is collapsed.
 
 ## Section-level width/inset checklist
 

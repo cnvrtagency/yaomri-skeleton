@@ -1,3 +1,31 @@
+.yaomri-header-stack {
+  position: relative;
+}
+
+.yaomri-header-stack--overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 80;
+  transform: translate3d(0, 0, 0);
+  transition: transform 220ms ease;
+  will-change: transform;
+}
+
+.yaomri-header-stack--overlay.is-collapsed {
+  transform: translate3d(0, calc(-1 * var(--yhs-announcement-height, 0px)), 0);
+}
+
+.yaomri-header-stack--overlay .yaomri-announcement {
+  transition: opacity 200ms ease;
+}
+
+.yaomri-header-stack--overlay.is-collapsed .yaomri-announcement {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .yaomri-header {
   position: relative;
   z-index: 30;
@@ -10,10 +38,7 @@
 }
 
 .yaomri-header--transparent-active {
-  position: absolute;
-  top: var(--yaomri-announcement-offset-desktop, 0px);
-  left: 0;
-  right: 0;
+  position: relative;
   z-index: 70;
   border-bottom-color: var(--yh-transparent-border, transparent);
   background: rgb(0 0 0 / var(--yh-transparent-bg-opacity, 0));
@@ -35,12 +60,7 @@
   color: inherit;
 }
 
-.yaomri-header--transparent-active.yaomri-header--sticky-enabled {
-  position: fixed;
-}
-
 .yaomri-header--transparent-active.is-scrolled {
-  top: 0;
   border-bottom-color: var(--yh-border, var(--color-border));
   background: var(--yh-solid-after-scroll-bg, var(--yh-bg, var(--color-background)));
   color: var(--yh-solid-after-scroll-text, var(--yh-fg, var(--color-foreground)));
@@ -445,10 +465,6 @@
 }
 
 @media screen and (max-width: 990px) {
-  .yaomri-header--transparent-active {
-    top: var(--yaomri-announcement-offset-mobile, var(--yaomri-announcement-offset-desktop, 0px));
-  }
-
   .yaomri-header--width-site .yaomri-header__mobile {
     width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--page-width, 90rem));
     max-width: var(--page-width, 90rem);
@@ -468,6 +484,16 @@
 
   .yaomri-header__desktop {
     display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .yaomri-header-stack--overlay {
+    transition: none;
+  }
+
+  .yaomri-header-stack--overlay .yaomri-announcement {
+    transition: none;
   }
 }
 
