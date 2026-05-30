@@ -7,6 +7,7 @@
 
   {%- liquid
     assign site_width_mode = settings.site_width_mode | default: 'boxed'
+    assign mobile_site_inset = settings.mobile_site_inset | default: 16
     if site_width_mode == 'full'
       assign resolved_page_width = '100%'
     elsif site_width_mode == 'custom'
@@ -26,6 +27,7 @@
     --font-primary--style: {{ settings.type_primary_font.style }};
     --font-primary--weight: {{ settings.type_primary_font.weight }};
     --page-width: {{ resolved_page_width }};
+    --page-mobile-inset: {{ mobile_site_inset }}px;
     --page-margin: 0px;
     --color-background: {{ settings.background_color }};
     --color-foreground: {{ settings.foreground_color }};

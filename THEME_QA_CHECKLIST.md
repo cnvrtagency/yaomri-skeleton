@@ -35,6 +35,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - `boxed` page width constrains normal sections.
 - `full` page width allows normal sections to span full width.
 - `custom` page width uses `custom_site_content_width`.
+- `mobile_site_inset` updates `--page-mobile-inset`.
 - Custom page width does not control header width.
 - Custom page width does not control mega panel width.
 - Custom page width does not control mobile drawer width.
@@ -273,7 +274,8 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Cards visible tablet setting works in carousel mode (2/3/4).
 - Cards visible mobile setting works in carousel mode (1/1.2/1.5/2).
 - Grid mode is unaffected by carousel visible-card controls.
-- Mobile Site width mode follows the site-width wrapper model; when viewport is narrower than `--page-width`, it can appear full-width unless mobile side padding is added.
+- Mobile Site width mode applies `max(--page-mobile-inset, mobile section side padding)` on Collection Cards inner wrapper.
+- Full width mode can remain edge-to-edge on mobile when section mobile side padding is 0.
 - No hidden hardcoded inner padding is reintroduced for Collection Cards mobile inset.
 - Grid mode renders the same card design in responsive columns.
 - Carousel mode renders horizontal scroll-snap cards.
