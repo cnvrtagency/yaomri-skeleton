@@ -70,13 +70,13 @@ For sections with section-level width controls:
 - **Header**: site/custom width modes consume global inset through width clamps; full mode stays edge-to-edge.
 - **Single Image Hero**: content width and section width are now controlled through section variables (`section_width`, `content_width`, and side padding settings).
 - **Collection Cards**: width modes and container constraints consume global inset through `.cc-carousel__inner`.
-- **Announcement Bar (inside Header)**: width mode remains announcement-owned, but rendering/stacking is now part of `sections/header.liquid`.
+- **Announcement Bar**: standalone section above Header in `sections/header-group.json`; site/custom width modes consume global inset through its own inner wrapper.
 
 ## Transparent header + announcement interaction
 
-- Announcement and main header are rendered in one Header section component.
-- Transparent mode overlays that unified component; no cross-section offset handoff is needed.
-- Solid-after-scroll updates the header visual state in place without announcement/header geometry jumps.
+- Announcement and Header remain separate sections, but are coordinated as one stack through shared state on the header-group wrapper.
+- In transparent + sticky mode, the shared stack overlays the hero and can collapse without cross-section offset hacks.
+- Solid-after-scroll updates header visuals while preserving stable announcement/header geometry.
 
 ## Section-level width/inset checklist
 

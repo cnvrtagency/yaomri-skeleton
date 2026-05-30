@@ -33,6 +33,7 @@ Tasks:
 - Done: remove legacy header layout mapping for search-field layouts.
 - Done: remove stale Header section fallbacks from `sections/header.liquid`.
 - Done: confirm `sections/header-group.json` has no known stale removed Header keys.
+- Done: restore standalone `announcement-bar` section in `sections/header-group.json` (above Header) and remove failed announcement-in-Header merge.
 - Done: remove `settings.site_content_width` fallback from `snippets/css-variables.liquid`.
 - Done: remove `settings.social_instagram_link` fallback from the mobile drawer.
 - Finalize navigation source rules:
