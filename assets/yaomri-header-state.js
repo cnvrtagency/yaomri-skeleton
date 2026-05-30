@@ -1,7 +1,36 @@
 (() => {
-  const SCROLL_THRESHOLD = 24;
   const GROUP_CLASS = 'yaomri-header-stack';
   const GROUP_OVERLAY_CLASS = 'yaomri-header-stack--overlay';
+  const GROUP_FADE_CLASS = 'yaomri-header-stack--fade';
+  const GROUP_SLIDE_CLASS = 'yaomri-header-stack--slide';
+  const GROUP_FADE_SLIDE_CLASS = 'yaomri-header-stack--fade-slide';
+  const HIDDEN_CLASS = 'is-hidden-after-scroll';
+  const SCROLL_BEHAVIOR_ALWAYS_VISIBLE = 'always_visible';
+  const SCROLL_BEHAVIOR_FADE_AWAY = 'fade_away_after_scroll';
+  const DEFAULT_SCROLL_THRESHOLD = 40;
+  const DEFAULT_STACK_TRANSITION = 'fade_slide';
+
+  const parseIntSetting = (value, fallback) => {
+    const parsed = Number.parseInt(value, 10);
+    return Number.isNaN(parsed) ? fallback : parsed;
+  };
+
+  const clampNumber = (value, min, max) => Math.min(max, Math.max(min, value));
+
+  const cleanTransitionClass = (group, nextClass) => {
+    group.classList.remove(GROUP_FADE_CLASS, GROUP_SLIDE_CLASS, GROUP_FADE_SLIDE_CLASS);
+    if (nextClass) group.classList.add(nextClass);
+  };
+
+  const hasOpenOverlayInteraction = () => {
+    const megaOpen = document.querySelector('.yaomri-mega-panels.is-open, .yaomri-mega__item.is-open');
+    if (megaOpen) return true;
+
+    const drawerOpen = document.querySelector('.mdrawer.is-open');
+    if (drawerOpen) return true;
+
+    return document.documentElement.classList.contains('mdrawer-open');
+  };
 
   const findStackGroup = (header) => {
     if (!header) return null;
@@ -36,17 +65,52 @@
     return headerSection?.parentElement || null;
   };
 
+  const updateMeasuredHeight = (group) => {
+    if (!group) return;
+    if (group.classList.contains(GROUP_OVERLAY_CLASS)) return;
+    const height = group.scrollHeight;
+    if (!height) return;
+    group.style.setProperty('--yaomri-header-stack-height', `${Math.ceil(height)}px`);
+  };
+
+  const resolveTransitionClass = (value) => {
+    switch (value) {
+      case 'fade':
+        return GROUP_FADE_CLASS;
+      case 'slide':
+        return GROUP_SLIDE_CLASS;
+      case 'fade_slide':
+      default:
+        return GROUP_FADE_SLIDE_CLASS;
+    }
+  };
+
   const applyState = (header, group) => {
     if (!header) return;
 
     const transparentActive = header.dataset.transparentActive === 'true';
     const stickyEnabled = header.classList.contains('yaomri-header--sticky-enabled');
     const solidAfterScroll = header.dataset.transparentSolidAfterScroll === 'true';
-    const isPastThreshold = window.scrollY > SCROLL_THRESHOLD;
+    const stackBehavior = header.dataset.headerStackScrollBehavior || SCROLL_BEHAVIOR_ALWAYS_VISIBLE;
+    const scrollThresholdRaw = header.dataset.headerStackScrollThreshold;
+    const stackTransition = header.dataset.headerStackTransition || DEFAULT_STACK_TRANSITION;
+    const isPastThreshold = window.scrollY > clampNumber(parseIntSetting(scrollThresholdRaw, DEFAULT_SCROLL_THRESHOLD), 0, 200);
+
+    const shouldHideStack = (
+      stackBehavior === SCROLL_BEHAVIOR_FADE_AWAY &&
+      isPastThreshold &&
+      !hasOpenOverlayInteraction()
+    );
 
     if (group) {
       group.classList.add(GROUP_CLASS);
+      updateMeasuredHeight(group);
       group.classList.toggle(GROUP_OVERLAY_CLASS, transparentActive && stickyEnabled);
+      cleanTransitionClass(group, stackBehavior === SCROLL_BEHAVIOR_FADE_AWAY ? resolveTransitionClass(stackTransition) : null);
+      group.classList.toggle(HIDDEN_CLASS, shouldHideStack);
+      if (stackBehavior === SCROLL_BEHAVIOR_ALWAYS_VISIBLE) {
+        group.classList.remove(HIDDEN_CLASS);
+      }
     }
 
     if (transparentActive && solidAfterScroll) {
@@ -74,10 +138,14 @@
     queueApply();
     window.addEventListener('scroll', queueApply, { passive: true });
     window.addEventListener('resize', queueApply);
+    document.addEventListener('click', queueApply, { passive: true });
+    document.addEventListener('touchstart', queueApply, { passive: true });
+    document.addEventListener('keyup', queueApply);
 
     document.addEventListener('shopify:section:load', queueApply);
     document.addEventListener('shopify:section:reorder', queueApply);
     document.addEventListener('shopify:section:select', queueApply);
+    document.addEventListener('shopify:section:unload', queueApply);
     document.addEventListener('shopify:block:select', queueApply);
 
     document.body.dataset.yaomriHeaderStateInit = 'true';

@@ -74,9 +74,12 @@ For sections with section-level width controls:
 
 ## Transparent header + announcement interaction
 
-- Announcement and Header remain separate sections, but are coordinated as one stack through shared state on the header-group wrapper.
-- In transparent + sticky mode, the shared stack overlays the hero and stays as a single top unit.
-- Solid-after-scroll updates header visuals while preserving stable announcement/header geometry.
+- Announcement and Header remain separate sections, but are coordinated as one stack through shared state on the common header-group wrapper.
+- The shared wrapper is the owner for hide/show control and uses `[data-yaomri-header-group]`, with the fallback `.shopify-section-group-header-group`.
+- In normal flow and transparent+sticky flow, the stack keeps announcement and header locked together by mutating wrapper classes only (`is-hidden-after-scroll`, `yaomri-header-stack--fade`, `yaomri-header-stack--slide`, `yaomri-header-stack--fade-slide`).
+- `is-hidden-after-scroll` removes pointer events and transitions stack geometry so announcement/header do not overlap and no invisible tap blocker remains.
+- In sticky-overlay mode, the shared stack uses transform/opacity only; in normal-flow mode, stack height is measured and collapsed to avoid top gap/jump.
+- Solid-after-scroll updates header visuals while preserving stack geometry and shared ownership.
 
 ## Section-level width/inset checklist
 

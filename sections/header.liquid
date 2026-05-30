@@ -119,6 +119,15 @@
   if transparent_header_solid_text == blank
     assign transparent_header_solid_text = header_foreground
   endif
+  assign header_stack_scroll_behavior = settings.header_stack_scroll_behavior | default: 'always_visible'
+  unless header_stack_scroll_behavior == 'always_visible' or header_stack_scroll_behavior == 'fade_away_after_scroll'
+    assign header_stack_scroll_behavior = 'always_visible'
+  endunless
+  assign header_stack_scroll_threshold = settings.header_stack_scroll_threshold | default: 40
+  assign header_stack_transition = settings.header_stack_transition | default: 'fade_slide'
+  unless header_stack_transition == 'fade' or header_stack_transition == 'slide' or header_stack_transition == 'fade_slide'
+    assign header_stack_transition = 'fade_slide'
+  endunless
   assign current_country_name = localization.country.name
   if current_country_name == blank
     assign current_country_name = localization.country.iso_code
@@ -178,6 +187,9 @@
   data-transparent-mode="{{ transparent_header_mode }}"
   data-transparent-active="{% if transparent_header_active %}true{% else %}false{% endif %}"
   data-transparent-solid-after-scroll="{% if transparent_header_solid_after_scroll %}true{% else %}false{% endif %}"
+  data-header-stack-scroll-behavior="{{ header_stack_scroll_behavior }}"
+  data-header-stack-scroll-threshold="{{ header_stack_scroll_threshold }}"
+  data-header-stack-transition="{{ header_stack_transition }}"
   data-header-desktop-padding="{{ header_desktop_padding }}"
   style="
     --yh-bg: {{ header_background }};

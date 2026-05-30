@@ -62,12 +62,20 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Transparent header mode Homepage only applies on the homepage (`request.page_type = index`) only.
 - Transparent header mode All pages applies on all page types.
 - Transparent header overlays the first section without pushing page content down.
+- Header stack scroll behavior defaults to Always visible.
+- Header stack behaviour can be switched to Fade away after scroll.
+- Fade-away threshold accepts 0–200px and defaults to 40.
+- Header stack transition options work: Fade, Slide, Fade + Slide.
+- Scroll down past threshold hides both announcement + header together.
+- Scroll back to top shows the shared stack again with no jump.
 - Transparent logo and transparent mobile logo swap correctly in transparent state and fall back correctly when blank.
 - Transparent header colour scheme Light/Dark/Custom resolves expected icon/link/logo visibility.
 - Transparent header background opacity applies only in transparent state.
 - Transparent state suppresses normal border/shadow and uses transparent border colour when configured.
 - Use solid header after scroll toggles to solid state after a small scroll threshold.
 - Solid/scrolled state restores normal border/shadow behavior and uses solid-after-scroll colours.
+- Mobile drawer still opens and stays tappable when stack is hidden (`pointer-events: none` only when hidden).
+- Mega menu/dropdown does not hide while open during scroll interaction.
 - Bottom border can be shown/hidden.
 - Shadow presets work: none, subtle, medium, strong.
 - Custom shadow controls work only when custom shadow is selected.

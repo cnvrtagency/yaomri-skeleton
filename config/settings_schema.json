@@ -395,6 +395,52 @@
         "default": true
       },
       {
+        "type": "select",
+        "id": "header_stack_scroll_behavior",
+        "label": "Header stack scroll behavior",
+        "default": "always_visible",
+        "options": [
+          {
+            "value": "always_visible",
+            "label": "Always visible"
+          },
+          {
+            "value": "fade_away_after_scroll",
+            "label": "Fade away after scroll"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "header_stack_scroll_threshold",
+        "label": "Fade-away scroll threshold",
+        "min": 0,
+        "max": 200,
+        "step": 1,
+        "unit": "px",
+        "default": 40
+      },
+      {
+        "type": "select",
+        "id": "header_stack_transition",
+        "label": "Header stack transition",
+        "default": "fade_slide",
+        "options": [
+          {
+            "value": "fade",
+            "label": "Fade"
+          },
+          {
+            "value": "slide",
+            "label": "Slide"
+          },
+          {
+            "value": "fade_slide",
+            "label": "Fade + slide"
+          }
+        ]
+      },
+      {
         "type": "color",
         "id": "transparent_header_solid_background",
         "label": "Solid header background after scroll"
