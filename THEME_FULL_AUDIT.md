@@ -19,6 +19,7 @@ Current state:
 8. Legacy removal Phase 1 (cart markup only) is complete: `sections/cart.liquid` now emits CNVRT cart classes only; cart CSS/JS legacy fallbacks are intentionally retained for one release.
 9. Legacy removal Phase 2 (footer markup only) is complete: `sections/footer.liquid` now emits CNVRT footer classes only; footer CSS legacy fallback selectors are intentionally retained for one release.
 10. Legacy removal Phase 3 (announcement markup only) is complete: `sections/announcement-bar.liquid` now emits CNVRT announcement classes only; announcement CSS/JS selector fallbacks and `--yab-*` variable fallbacks are intentionally retained for one release.
+11. Legacy removal Phase 4 (Collection Cards markup only) is complete: `sections/collection-cards.liquid` now emits CNVRT collection-card classes only; collection CSS/JS/data selector fallbacks and `--cc-*` variable fallbacks are intentionally retained for one release.
 
 ## B. Critical launch blockers
 
@@ -177,7 +178,7 @@ Current state:
    - `yh-`: header-level tokens/variables
   - `ym-`: header/inline variables (paired with header migration work; mega-menu still pending)
   - `yab-`: announcement local variants (already paired with `cnvrt-announcement*` in phase 1 aliases)
-  - `cc-`: collection cards system (paired with `cnvrt-collection-cards*` in phase 2 aliases)
+  - `cc-`: collection cards system (phase 2 alias migration complete; phase 4 markup cleanup complete with runtime fallbacks retained)
    - `mdrawer-`: mobile drawer system (now compatibility-only alongside `cnvrt-drawer*`)
 2. Current risk profile
    - These prefixes are functionally stable but brand-specific for distribution readiness.

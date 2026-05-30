@@ -44,7 +44,7 @@
 -%}
 
 <section
-  class="cnvrt-collection-cards cc-carousel full-width cnvrt-collection-cards--layout-{{ layout_mode }} cc-carousel--layout-{{ layout_mode }} cnvrt-collection-cards--width-{{ section_width_mode }} cc-carousel--width-{{ section_width_mode }} cnvrt-collection-cards--ratio-{{ card_ratio }} cc-carousel--ratio-{{ card_ratio }}{% if section.settings.border_top %} cnvrt-collection-cards--border-top cc-carousel--border-top{% endif %}"
+  class="cnvrt-collection-cards full-width cnvrt-collection-cards--layout-{{ layout_mode }} cnvrt-collection-cards--width-{{ section_width_mode }} cnvrt-collection-cards--ratio-{{ card_ratio }}{% if section.settings.border_top %} cnvrt-collection-cards--border-top{% endif %}"
   aria-label="{{ section.settings.heading | default: 'Collection cards' | escape }}"
   style="
     --cnvrt-collection-cards-container-width: {{ section_width_value }};
@@ -110,20 +110,20 @@
   "
   {{ section.shopify_attributes }}
 >
-  <div class="cnvrt-collection-cards__inner cc-carousel__inner">
-    <div class="cnvrt-collection-cards__head cc-carousel__head">
-      <div class="cnvrt-collection-cards__heading-group cc-carousel__heading-group">
-        <h2 class="cnvrt-collection-cards__title cc-carousel__title">{{ section.settings.heading }}</h2>
+  <div class="cnvrt-collection-cards__inner">
+    <div class="cnvrt-collection-cards__head">
+      <div class="cnvrt-collection-cards__heading-group">
+        <h2 class="cnvrt-collection-cards__title">{{ section.settings.heading }}</h2>
         {%- if section.settings.heading_subtitle != blank -%}
-          <p class="cnvrt-collection-cards__subtitle cc-carousel__subtitle">{{ section.settings.heading_subtitle }}</p>
+          <p class="cnvrt-collection-cards__subtitle">{{ section.settings.heading_subtitle }}</p>
         {%- endif -%}
       </div>
-      <div class="cnvrt-collection-cards__nav cc-carousel__nav{% unless layout_mode == 'carousel' and show_arrows %} is-hidden{% endunless %}">
+      <div class="cnvrt-collection-cards__nav{% unless layout_mode == 'carousel' and show_arrows %} is-hidden{% endunless %}">
         {%- if layout_mode == 'carousel' and show_arrows -%}
-          <button type="button" class="cnvrt-collection-cards__button cc-carousel__btn" data-cc-prev data-cnvrt-prev aria-label="Previous collection cards">
+          <button type="button" class="cnvrt-collection-cards__button" data-cc-prev data-cnvrt-prev aria-label="Previous collection cards">
             {% render 'icon-yaomri-chevron-left' %}
           </button>
-          <button type="button" class="cnvrt-collection-cards__button cc-carousel__btn" data-cc-next data-cnvrt-next aria-label="Next collection cards">
+          <button type="button" class="cnvrt-collection-cards__button" data-cc-next data-cnvrt-next aria-label="Next collection cards">
             {% render 'icon-yaomri-chevron-right' %}
           </button>
         {%- endif -%}
@@ -145,7 +145,7 @@
 
     {%- if valid_cards > 0 or request.design_mode -%}
       <div
-        class="cnvrt-collection-cards__track cc-carousel__track{% if layout_mode == 'grid' %} cc-carousel__track--grid cnvrt-collection-cards__track--grid{% endif %}"
+        class="cnvrt-collection-cards__track{% if layout_mode == 'grid' %} cnvrt-collection-cards__track--grid{% endif %}"
         data-cc-track
         data-cnvrt-track
       >
@@ -173,16 +173,16 @@
             {%- if card_link != blank and valid_cards > 0 -%}
               <a
                 href="{{ card_link }}"
-                class="cnvrt-collection-card cc-card cc-card--hover-{{ section.settings.image_hover }} cnvrt-collection-card--hover-{{ hover_variant }}"
+                class="cnvrt-collection-card cnvrt-collection-card--hover-{{ hover_variant }}"
                 style="--cc-image-position: {{ block.settings.image_position | default: 'center center' }};"
                 {{ block.shopify_attributes }}
                 {% if block.settings.open_new_window %}target="_blank" rel="noopener noreferrer"{% endif %}
                 aria-label="{{ card_title | escape }}"
               >
-                <div class="cnvrt-collection-card__media cc-card__media">
+                <div class="cnvrt-collection-card__media">
                   {%- if block.settings.badge_text != blank -%}
                     <span
-                      class="cnvrt-collection-card__badge cc-card__badge cc-card__badge--{{ block.settings.badge_placement }}"
+                      class="cnvrt-collection-card__badge cnvrt-collection-card__badge--{{ block.settings.badge_placement }}"
                       style="
                         --cc-badge-text: {{ block.settings.badge_text_color }};
                         --cc-badge-bg: {{ block.settings.badge_background_color }};
@@ -201,34 +201,34 @@
                         loading: 'lazy',
                         widths: '300,500,700,900',
                         sizes: '(min-width:1024px) 24vw, (min-width:768px) 32vw, (min-width:640px) 45vw, 70vw',
-                        class: 'cnvrt-collection-card__image cc-card__img',
+                        class: 'cnvrt-collection-card__image',
                         alt: card_title | default: card_img.alt | escape
                     }}
                   {%- else -%}
-                    <div class="cnvrt-collection-card__placeholder cc-card__placeholder">{{ 'collection-1' | placeholder_svg_tag }}</div>
+                    <div class="cnvrt-collection-card__placeholder">{{ 'collection-1' | placeholder_svg_tag }}</div>
                   {%- endif -%}
-                  <div class="cnvrt-collection-card__overlay cc-card__overlay">
+                  <div class="cnvrt-collection-card__overlay">
                     {%- if card_title != blank -%}
-                      <p class="cnvrt-collection-card__title cc-card__title">{{ card_title }}</p>
+                      <p class="cnvrt-collection-card__title">{{ card_title }}</p>
                     {%- endif -%}
                     {%- if show_count and coll.products_count > 0 -%}
-                      <p class="cnvrt-collection-card__meta cc-card__count">{{ coll.products_count }} pieces</p>
+                      <p class="cnvrt-collection-card__meta">{{ coll.products_count }} pieces</p>
                     {%- elsif card_subtitle != blank -%}
-                      <p class="cnvrt-collection-card__meta cc-card__count">{{ card_subtitle }}</p>
+                      <p class="cnvrt-collection-card__meta">{{ card_subtitle }}</p>
                     {%- endif -%}
                   </div>
                 </div>
               </a>
             {%- else -%}
               <article
-                class="cnvrt-collection-card cc-card cc-card--hover-{{ section.settings.image_hover }} cnvrt-collection-card--hover-{{ hover_variant }}"
+                class="cnvrt-collection-card cnvrt-collection-card--hover-{{ hover_variant }}"
                 style="--cc-image-position: {{ block.settings.image_position | default: 'center center' }};"
                 {{ block.shopify_attributes }}
               >
-                <div class="cnvrt-collection-card__media cc-card__media">
+                <div class="cnvrt-collection-card__media">
                   {%- if block.settings.badge_text != blank -%}
                     <span
-                      class="cnvrt-collection-card__badge cc-card__badge cc-card__badge--{{ block.settings.badge_placement }}"
+                      class="cnvrt-collection-card__badge cnvrt-collection-card__badge--{{ block.settings.badge_placement }}"
                       style="
                         --cc-badge-text: {{ block.settings.badge_text_color }};
                         --cc-badge-bg: {{ block.settings.badge_background_color }};
@@ -247,44 +247,44 @@
                         loading: 'lazy',
                         widths: '300,500,700,900',
                         sizes: '(min-width:1024px) 24vw, (min-width:768px) 32vw, (min-width:640px) 45vw, 70vw',
-                        class: 'cnvrt-collection-card__image cc-card__img',
+                        class: 'cnvrt-collection-card__image',
                         alt: card_title | default: card_img.alt | escape
                     }}
                   {%- else -%}
-                    <div class="cnvrt-collection-card__placeholder cc-card__placeholder">{{ 'collection-1' | placeholder_svg_tag }}</div>
+                    <div class="cnvrt-collection-card__placeholder">{{ 'collection-1' | placeholder_svg_tag }}</div>
                   {%- endif -%}
-                  <div class="cnvrt-collection-card__overlay cc-card__overlay">
+                  <div class="cnvrt-collection-card__overlay">
                     {%- if card_title != blank -%}
-                      <p class="cnvrt-collection-card__title cc-card__title">{{ card_title }}</p>
+                      <p class="cnvrt-collection-card__title">{{ card_title }}</p>
                     {%- endif -%}
                     {%- if show_count and coll.products_count > 0 -%}
-                      <p class="cnvrt-collection-card__meta cc-card__count">{{ coll.products_count }} pieces</p>
+                      <p class="cnvrt-collection-card__meta">{{ coll.products_count }} pieces</p>
                     {%- elsif card_subtitle != blank -%}
-                      <p class="cnvrt-collection-card__meta cc-card__count">{{ card_subtitle }}</p>
+                      <p class="cnvrt-collection-card__meta">{{ card_subtitle }}</p>
                     {%- endif -%}
                   </div>
                 </div>
               </article>
             {%- endif -%}
           {%- elsif request.design_mode -%}
-            <article class="cnvrt-collection-card cc-card cc-card--placeholder cnvrt-collection-card--placeholder" {{ block.shopify_attributes }}>
-              <div class="cnvrt-collection-card__media cc-card__media">
-                <div class="cnvrt-collection-card__placeholder cc-card__placeholder">{{ 'collection-1' | placeholder_svg_tag }}</div>
+            <article class="cnvrt-collection-card cnvrt-collection-card--placeholder" {{ block.shopify_attributes }}>
+              <div class="cnvrt-collection-card__media">
+                <div class="cnvrt-collection-card__placeholder">{{ 'collection-1' | placeholder_svg_tag }}</div>
               </div>
-              <div class="cnvrt-collection-card__overlay cc-card__overlay">
-                <p class="cnvrt-collection-card__title cc-card__title">Collection</p>
+              <div class="cnvrt-collection-card__overlay">
+                <p class="cnvrt-collection-card__title">Collection</p>
               </div>
             </article>
           {%- endif -%}
         {%- endfor -%}
         {%- if request.design_mode and valid_cards == 0 and section.blocks.size == 0 -%}
           {%- for i in (1..4) -%}
-            <article class="cnvrt-collection-card cc-card cc-card--placeholder cnvrt-collection-card--placeholder">
-              <div class="cnvrt-collection-card__media cc-card__media">
-                <div class="cnvrt-collection-card__placeholder cc-card__placeholder">{{ 'collection-1' | placeholder_svg_tag }}</div>
+            <article class="cnvrt-collection-card cnvrt-collection-card--placeholder">
+              <div class="cnvrt-collection-card__media">
+                <div class="cnvrt-collection-card__placeholder">{{ 'collection-1' | placeholder_svg_tag }}</div>
               </div>
-              <div class="cnvrt-collection-card__overlay cc-card__overlay">
-                <p class="cnvrt-collection-card__title cc-card__title">Collection</p>
+              <div class="cnvrt-collection-card__overlay">
+                <p class="cnvrt-collection-card__title">Collection</p>
               </div>
             </article>
           {%- endfor -%}

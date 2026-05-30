@@ -237,9 +237,9 @@ Announcement bar now renders CNVRT namespace classes in markup and keeps compati
 ### Phase 2 — Collection Cards
 - Files: `sections/collection-cards.liquid`, `assets/section-collection-cards.css`, `assets/section-collection-cards.js`
 - Risk: medium
-- Status: Completed (compatibility alias phase)
+- Status: Completed (compatibility alias phase + legacy markup cleanup phase)
 - QA: arrow interactions, placeholders, responsive layout, links
-- Compatibility note: legacy `cc-*` classes and `--cc-*` variables remain as aliases while `cnvrt-*` and `--cnvrt-*` are now used as primary.
+- Compatibility note: Collection Cards markup now emits CNVRT classes as primary; legacy CSS/JS/data support and `--cc-*` variables remain as aliases for one release.
 - Suggested commit: `feat: migrate collection cards class namespace with compatibility selectors`
 
 ### Phase 3 — Single Image Hero
@@ -302,7 +302,7 @@ Announcement bar now renders CNVRT namespace classes in markup and keeps compati
 
 - Announcement namespace migration is complete and stable.
 - Announcement legacy markup aliases have been removed (Phase 3 legacy cleanup), with CSS/JS/`--yab-*` fallbacks retained for one release.
-- Collection Cards namespace migration is now complete with compatibility aliases and compatibility `cc-*` retention.
+- Collection Cards namespace migration is now complete; legacy `cc-*` markup aliases are removed (Phase 4 legacy cleanup) while CSS/JS/data/`--cc-*` fallbacks remain for one release.
 - Single Image Hero migration is now complete with compatibility aliases retained.
 - Header migration is complete with compatibility aliases.
 - Mega menu migration is complete with compatibility aliases.

@@ -229,6 +229,8 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Cart runtime root lookup resolves `cnvrt-cart` first and still supports `yaomri-cart` fallback.
 - Cart Phase 1 legacy markup cleanup: `sections/cart.liquid` renders CNVRT cart classes only.
 - Cart CSS/JS legacy fallbacks remain intentionally active for one release (`assets/yaomri-cart.css`, `assets/yaomri-cart.js`).
+- Collection Cards Phase 4 legacy markup cleanup: `sections/collection-cards.liquid` renders CNVRT collection-card classes only.
+- Collection Cards CSS/JS/data and `--cc-*` variable fallbacks remain intentionally active for one release (`assets/section-collection-cards.css`, `assets/section-collection-cards.js`, `data-cc-*`).
 - Next legacy alias-removal candidate remains pending QA sign-off.
 - Footer Phase 2 legacy markup cleanup: `sections/footer.liquid` renders CNVRT footer classes only.
 - Footer CSS legacy fallback selectors remain intentionally active for one release.
