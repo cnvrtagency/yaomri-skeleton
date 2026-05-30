@@ -40,6 +40,7 @@
 }
 
 .yaomri-header--transparent-active.is-scrolled {
+  top: 0;
   border-bottom-color: var(--yh-border, var(--color-border));
   background: var(--yh-solid-after-scroll-bg, var(--yh-bg, var(--color-background)));
   color: var(--yh-solid-after-scroll-text, var(--yh-fg, var(--color-foreground)));
