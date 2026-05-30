@@ -20,7 +20,7 @@ Do not build speculative storefront features before the launch-critical surfaces
 | Search | Half-built | Basic search exists; no Ya Omri QA pass. |
 | Footer | Half-built | Skeleton default, not brand-ready. |
 | Theme editor UX | Needs cleanup | Labels, duplicate/stale settings, and merchant workflow need tightening. |
-| Responsive QA | Needs cleanup | Header has work, but full-site responsive QA is not complete. |
+| Responsive QA | In progress | Responsive width/inset system now documented (`THEME_RESPONSIVE_SYSTEM.md`); launch pass still required by viewport matrix. |
 | Publish readiness | Not started | Needs unpublished theme push, editor setup, and final QA. |
 
 ## Day 1: Settings And Navigation Control Layer

@@ -377,6 +377,10 @@ For each:
 - Mobile drawer width clamps correctly.
 - Cart page remains usable.
 - Footer does not overflow.
+- Modern sections follow width/inset contract from `THEME_RESPONSIVE_SYSTEM.md`.
+- Site-width sections do not appear edge-to-edge unless intended by mode and section/mobile padding.
+- Single Image Hero content block aligns to the active content width mode without hardcoded extra inset.
+- Collection Cards align heading row and track within active section width mode.
 
 ## Publish
 

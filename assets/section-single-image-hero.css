@@ -81,7 +81,6 @@
   align-self: var(--ysh-desktop-align, center);
   justify-self: var(--ysh-desktop-justify, start);
   width: min(var(--ysh-content-width, var(--page-width)), 100%);
-  max-width: calc(100% - 2rem);
   padding: var(--ysh-content-padding, 0);
   color: #fff;
   text-align: var(--ysh-desktop-text-align, left);
@@ -339,7 +338,7 @@
   .yaomri-single-hero__content {
     align-self: var(--ysh-mobile-align, center);
     justify-self: var(--ysh-mobile-justify, center);
-    width: min(var(--ysh-content-width, var(--page-width)), calc(100% - 2rem));
+    width: min(var(--ysh-content-width, var(--page-width)), 100%);
     text-align: var(--ysh-mobile-text-align, center);
   }
 

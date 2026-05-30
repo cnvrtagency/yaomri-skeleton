@@ -65,8 +65,12 @@ Must not be duplicated elsewhere:
 Current implementation:
 - `site_width_mode` and `custom_site_content_width` control `--page-width`.
 - `mobile_site_inset` controls `--page-mobile-inset` for mobile breathing room in site-width sections that consume it.
+- Responsive width behavior for modern sections is documented in `THEME_RESPONSIVE_SYSTEM.md`.
 - `header_width_mode` and `header_custom_width` are separate header-specific settings, which is acceptable if clearly labelled.
 - Legacy `settings.site_content_width` fallback has been removed. `custom_site_content_width` is the only custom page width setting.
+
+Guidance:
+- Site-width sections should follow the shared inner-wrapper contract in the responsive system doc and avoid hidden hardcoded inner side inset.
 
 Judgement:
 - Keep both site width and header width, but label them clearly. The merchant must understand that site width is page content and header width is header row content.
@@ -471,5 +475,5 @@ Recommendation:
 | Search | Half-built | Basic search page exists; no Ya Omri QA pass. |
 | Footer | Half-built | Skeleton default, not brand-ready. |
 | Theme editor UX | Needs cleanup | Labels and stale saved settings need tightening. |
-| Responsive QA | Needs cleanup | Header has responsive work, but full-site QA not complete. |
+| Responsive QA | In progress | Responsive system contract is documented in `THEME_RESPONSIVE_SYSTEM.md`; modern sections are converging on shared width/inset rules. |
 | Publish readiness | Not started | No unpublished-theme/editor QA cycle yet. |
