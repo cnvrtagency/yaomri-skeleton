@@ -4,14 +4,13 @@
 {%- liquid
   assign layout_mode = section.settings.layout_mode | default: 'carousel'
   assign section_width_mode = section.settings.section_width | default: 'full'
-  case section_width_mode
-    when 'site_width'
-      assign section_width_mode = 'site'
-    when 'full_width'
-      assign section_width_mode = 'full'
-    when 'custom_width'
-      assign section_width_mode = 'custom'
-  endcase
+  if section_width_mode contains 'site'
+    assign section_width_mode = 'site'
+  elsif section_width_mode contains 'custom'
+    assign section_width_mode = 'custom'
+  elsif section_width_mode contains 'full'
+    assign section_width_mode = 'full'
+  endif
   unless section_width_mode == 'site' or section_width_mode == 'full' or section_width_mode == 'custom'
     assign section_width_mode = 'full'
   endunless

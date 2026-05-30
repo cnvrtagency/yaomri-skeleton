@@ -248,6 +248,9 @@ Use this before publishing and after any architecture-level change. Passing auto
 
 ## Reusable Section Header Pattern
 
+- Theme settings > Section headers group is present and saves correctly.
+- Global Section headers preset/decorative defaults apply when snippet parameters are not passed.
+- Section-level snippet parameters override global Section headers defaults when passed.
 - `snippets/section-header.liquid` renders nothing when all content fields are blank.
 - Eyebrow/Heading/Text render only when each field has content.
 - CTA renders only when both label and link are present.
@@ -265,6 +268,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Heading/subtitle/arrows align on one clean row on desktop.
 - Mobile heading layout stacks cleanly and arrows do not crowd heading text.
 - Section width modes (Full/Site/Custom) visibly change the shared heading/cards container width.
+- Site width mode in Collection Cards resolves to `var(--page-width)` and does not silently fall back to full width.
 - Grid mode renders the same card design in responsive columns.
 - Carousel mode renders horizontal scroll-snap cards.
 - Switching between Carousel and Grid does not cause awkward top-spacing/width jumps.

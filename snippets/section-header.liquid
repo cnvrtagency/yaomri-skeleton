@@ -8,17 +8,30 @@
   assign alignment_value = alignment | default: 'left'
   assign width_mode_value = width_mode | default: 'site'
   assign custom_width_value = custom_width | default: 1200
-  assign preset_value = preset | default: 'minimal'
-  assign decorative_value = decorative_style | default: 'none'
+  assign preset_value = preset | default: settings.section_header_preset | default: 'minimal'
+  assign decorative_value = decorative_style | default: settings.section_header_decorative_style | default: 'none'
   assign cta_style_value = cta_style | default: 'text'
 
-  assign heading_size_desktop_value = heading_size_desktop | default: 48
-  assign heading_size_mobile_value = heading_size_mobile | default: 32
-  assign text_size_desktop_value = text_size_desktop | default: 16
-  assign text_size_mobile_value = text_size_mobile | default: 15
-  assign eyebrow_size_value = eyebrow_size | default: 12
-  assign heading_weight_value = heading_weight | default: 700
-  assign text_max_width_value = text_max_width | default: 760
+  assign heading_size_desktop_value = heading_size_desktop | default: settings.section_header_heading_size_desktop | default: 48
+  assign heading_size_mobile_value = heading_size_mobile | default: settings.section_header_heading_size_mobile | default: 32
+  assign text_size_desktop_value = text_size_desktop | default: settings.section_header_text_size_desktop | default: 16
+  assign text_size_mobile_value = text_size_mobile | default: settings.section_header_text_size_mobile | default: 15
+  assign eyebrow_size_value = eyebrow_size | default: settings.section_header_eyebrow_size | default: 12
+  assign heading_weight_value = heading_weight | default: settings.section_header_heading_weight | default: 700
+  assign text_max_width_value = text_max_width | default: settings.section_header_text_max_width | default: 760
+  assign eyebrow_weight_value = settings.section_header_eyebrow_weight | default: 700
+  assign eyebrow_letter_spacing_value = settings.section_header_eyebrow_letter_spacing | default: 6 | divided_by: 100.0
+  assign eyebrow_transform_value = settings.section_header_eyebrow_transform | default: 'uppercase'
+  assign heading_line_height_value = settings.section_header_heading_line_height | default: 105 | divided_by: 100.0
+  assign heading_letter_spacing_value = settings.section_header_heading_letter_spacing | default: 0 | divided_by: 100.0
+  assign heading_transform_value = settings.section_header_heading_transform | default: 'none'
+  assign text_weight_value = settings.section_header_text_weight | default: 400
+  assign text_line_height_value = settings.section_header_text_line_height | default: 150 | divided_by: 100.0
+  assign margin_bottom_desktop_value = settings.section_header_margin_bottom_desktop | default: 24
+  assign margin_bottom_mobile_value = settings.section_header_margin_bottom_mobile | default: 18
+  assign eyebrow_margin_bottom_value = settings.section_header_eyebrow_margin_bottom | default: 8
+  assign heading_margin_bottom_value = settings.section_header_heading_margin_bottom | default: 10
+  assign text_margin_bottom_value = settings.section_header_text_margin_bottom | default: 0
 
   assign render_cta = false
   if cta_label_value != blank and cta_link_value != blank
@@ -36,11 +49,11 @@
     class="yaomri-section-header yaomri-section-header--align-{{ alignment_value }} yaomri-section-header--width-{{ width_mode_value }} yaomri-section-header--preset-{{ preset_value }} yaomri-section-header--decor-{{ decorative_value }}"
     style="
       --yshd-custom-width: {{ custom_width_value }}px;
-      --yshd-text-color: {{ text_colour | default: 'var(--color-foreground)' }};
-      --yshd-eyebrow-color: {{ eyebrow_colour | default: 'currentColor' }};
-      --yshd-heading-color: {{ heading_colour | default: 'currentColor' }};
-      --yshd-rule-color: {{ rule_colour | default: 'var(--color-border)' }};
-      --yshd-cta-color: {{ cta_colour | default: 'currentColor' }};
+      --yshd-text-color: {{ text_colour | default: settings.section_header_text_color | default: 'var(--color-foreground)' }};
+      --yshd-eyebrow-color: {{ eyebrow_colour | default: settings.section_header_eyebrow_color | default: 'currentColor' }};
+      --yshd-heading-color: {{ heading_colour | default: settings.section_header_heading_color | default: 'currentColor' }};
+      --yshd-rule-color: {{ rule_colour | default: settings.section_header_rule_color | default: 'var(--color-border)' }};
+      --yshd-cta-color: {{ cta_colour | default: settings.section_header_cta_color | default: 'currentColor' }};
       --yshd-heading-size-desktop: {{ heading_size_desktop_value }}px;
       --yshd-heading-size-mobile: {{ heading_size_mobile_value }}px;
       --yshd-text-size-desktop: {{ text_size_desktop_value }}px;
@@ -48,6 +61,19 @@
       --yshd-eyebrow-size: {{ eyebrow_size_value }}px;
       --yshd-heading-weight: {{ heading_weight_value }};
       --yshd-text-max-width: {{ text_max_width_value }}px;
+      --yshd-eyebrow-weight: {{ eyebrow_weight_value }};
+      --yshd-eyebrow-letter-spacing: {{ eyebrow_letter_spacing_value }}em;
+      --yshd-eyebrow-transform: {{ eyebrow_transform_value }};
+      --yshd-heading-line-height: {{ heading_line_height_value }};
+      --yshd-heading-letter-spacing: {{ heading_letter_spacing_value }}em;
+      --yshd-heading-transform: {{ heading_transform_value }};
+      --yshd-text-weight: {{ text_weight_value }};
+      --yshd-text-line-height: {{ text_line_height_value }};
+      --yshd-margin-bottom-desktop: {{ margin_bottom_desktop_value }}px;
+      --yshd-margin-bottom-mobile: {{ margin_bottom_mobile_value }}px;
+      --yshd-eyebrow-margin-bottom: {{ eyebrow_margin_bottom_value }}px;
+      --yshd-heading-margin-bottom: {{ heading_margin_bottom_value }}px;
+      --yshd-text-margin-bottom: {{ text_margin_bottom_value }}px;
     "
   >
     <div class="yaomri-section-header__inner">

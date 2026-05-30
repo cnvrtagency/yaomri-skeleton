@@ -145,11 +145,12 @@ Must not own:
 
 Current implementation:
 - Reusable snippet and scoped CSS now exist.
-- Existing sections are intentionally not retrofitted in this pass to avoid regressions.
-- Next consumer should be Collection Cards/Collection Carousel section.
+- Theme settings now include a global `Section headers` group for reusable defaults.
+- Existing sections are intentionally not retrofitted blindly to avoid regressions.
+- `Collection Cards` intentionally keeps its Lovable-style local heading row for launch consistency.
 
 Judgement:
-- Use this snippet for new content sections to avoid repeating inconsistent heading/intro markup.
+- Use this snippet for new content sections and inherit global `Section headers` defaults unless a section needs local override settings.
 
 ### Collection Cards Section
 
@@ -173,6 +174,7 @@ Current implementation:
 - Supports fallbacks from selected `collection` object with explicit custom overrides.
 - Carousel is lightweight, scroll-snap based, with progressive enhancement via vanilla JS arrows.
 - No separate card snippet; card rendering is local to the section for easier maintenance.
+- Keeps local heading row markup (does not use `section-header` snippet) to preserve the approved Lovable carousel composition.
 
 Judgement:
 - This is the launch-ready pattern for category merchandising sections; keep it simple and avoid adding styling bloat.

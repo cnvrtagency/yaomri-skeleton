@@ -113,6 +113,7 @@ Tasks:
 - Done: make Single Image Hero content block-based with separate Eyebrow, Heading, Paragraph, buttons, custom markup, and image pins.
 - Done: add a dedicated Announcement Bar section above Header with Static/Carousel/Marquee modes.
 - Done: add a reusable `section-header` snippet/CSS pattern for upcoming content sections (starting with Collection Cards/Carousel).
+- Done: add global Theme settings > Section headers defaults and wire fallback behavior into the reusable section-header snippet.
 - Done: add `Collection cards` section with Grid/Carousel modes and a simplified premium heading row.
 - Add core launch sections in this order:
   1. Brand strip.
