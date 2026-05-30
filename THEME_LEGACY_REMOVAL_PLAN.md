@@ -5,6 +5,7 @@
 - `config/` and `templates/` currently contain no legacy-prefix setting IDs or class strings from this audit set.
 - The only universally safe removals right now are docs-only references.
 - First code-removal target should be a controlled pilot on one isolated component (recommended: Cart markup classes only), with CSS/JS fallbacks retained for one release.
+- Phase 1 is complete: legacy `yaomri-cart*` markup classes were removed from `sections/cart.liquid`; CSS/JS legacy fallbacks remain intentionally active for one release.
 
 ## Prefix inventory (legacy readiness)
 
@@ -89,11 +90,11 @@
 - JS: root query is `".cnvrt-cart, .yaomri-cart"` (CNVRT-first fallback).
 - CNVRT equivalent: yes.
 - JS prefers CNVRT: yes (for root lookup).
-- Remove legacy markup classes now: **Conditionally yes (pilot candidate)**.
+- Remove legacy markup classes now: **Completed in Phase 1 (markup-only)**.
 - Remove legacy CSS aliases now: **No**.
 - Keep old vars: N/A (no `y*` var namespace dependency like other components).
 - Risk: **Low-Medium**.
-- Action: best first runtime removal candidate is markup-only `yaomri-cart*`, keep CSS/JS fallback for one release.
+- Action: keep CSS/JS fallback selectors for one release; next runtime alias-removal candidate remains pending QA sign-off.
 - Class: **B**.
 
 ### 7) Mobile Drawer
@@ -145,7 +146,8 @@
 
 ## Safe-to-remove list (A)
 1. Docs-only legacy references in markdown files where they are historical/contextual and not current instructions.
-2. No runtime legacy class/var alias is globally safe for immediate removal across all components.
+2. Cart markup-only `yaomri-cart*` aliases in `sections/cart.liquid` were safe and have now been removed (Phase 1 complete).
+3. No additional runtime legacy class/var alias is globally safe for immediate removal across all components.
 
 ## Keep-temporarily list (B)
 1. `yab-*` (Announcement vars)
@@ -181,13 +183,14 @@
    - `YAOMRI_BUILD_SPEC.md`
 
 ## First removal target recommendation
-- **Recommended first runtime removal phase:** Cart markup aliases only.
+- **Completed first runtime removal phase:** Cart markup aliases only.
 - Scope:
-  1. Remove `yaomri-cart*` classes from `sections/cart.liquid` only.
-  2. Keep `cnvrt-cart*` classes.
-  3. Keep `assets/yaomri-cart.css` dual selectors for one release.
-  4. Keep `assets/yaomri-cart.js` fallback selector (`.cnvrt-cart, .yaomri-cart`) for one release.
+  1. Removed `yaomri-cart*` classes from `sections/cart.liquid` only.
+  2. Kept `cnvrt-cart*` classes.
+  3. Kept `assets/yaomri-cart.css` dual selectors for one release.
+  4. Kept `assets/yaomri-cart.js` fallback selector (`.cnvrt-cart, .yaomri-cart`) for one release.
 - Why first: isolated template, low cross-component coupling, JS already CNVRT-first.
+- Next candidate: pending QA sign-off.
 
 ## Exact next Codex prompt for first removal phase
 "You are working inside `~/Desktop/shopify-themes/ya-omri-skeleton`.
