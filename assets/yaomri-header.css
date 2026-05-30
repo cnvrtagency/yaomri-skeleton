@@ -1,12 +1,9 @@
 .yaomri-header-stack {
   position: relative;
-  --yaomri-header-stack-height: 0px;
   --yaomri-header-stack-transition-duration: 350ms;
-  overflow: hidden;
-  max-height: var(--yaomri-header-stack-height);
   opacity: 1;
   transform: translateY(0);
-  transition: opacity var(--yaomri-header-stack-transition-duration) ease, transform var(--yaomri-header-stack-transition-duration) ease, max-height var(--yaomri-header-stack-transition-duration) ease;
+  transition: opacity var(--yaomri-header-stack-transition-duration) ease, transform var(--yaomri-header-stack-transition-duration) ease;
   pointer-events: auto;
 }
 
@@ -17,7 +14,6 @@
   right: 0;
   z-index: 80;
   overflow: visible;
-  max-height: none;
   transition: background-color 180ms ease;
 }
 
@@ -29,28 +25,25 @@
 
 .yaomri-header-stack--overlay.is-hidden-after-scroll {
   pointer-events: none;
-  max-height: none;
   overflow: visible;
 }
 
 .yaomri-header-stack--fade {
-  transition: opacity var(--yaomri-header-stack-transition-duration) ease, max-height var(--yaomri-header-stack-transition-duration) ease;
+  transition: opacity var(--yaomri-header-stack-transition-duration) ease;
 }
 
 .yaomri-header-stack--slide {
-  transition: transform var(--yaomri-header-stack-transition-duration) ease, max-height var(--yaomri-header-stack-transition-duration) ease;
+  transition: transform var(--yaomri-header-stack-transition-duration) ease;
 }
 
 .yaomri-header-stack--fade-slide {
-  transition: opacity var(--yaomri-header-stack-transition-duration) ease, transform var(--yaomri-header-stack-transition-duration) ease, max-height var(--yaomri-header-stack-transition-duration) ease;
+  transition: opacity var(--yaomri-header-stack-transition-duration) ease, transform var(--yaomri-header-stack-transition-duration) ease;
 }
 
 .yaomri-header-stack.is-hidden-after-scroll {
   opacity: 0;
   pointer-events: none;
   transform: translateY(-100%);
-  max-height: 0;
-  overflow: hidden;
 }
 
 .yaomri-header-stack--fade:not(.is-hidden-after-scroll) {

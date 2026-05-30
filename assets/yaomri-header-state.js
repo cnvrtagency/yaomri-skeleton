@@ -68,14 +68,6 @@
     return headerSection?.parentElement || null;
   };
 
-  const updateMeasuredHeight = (group) => {
-    if (!group) return;
-    if (group.classList.contains(GROUP_OVERLAY_CLASS)) return;
-    const height = group.scrollHeight;
-    if (!height) return;
-    group.style.setProperty('--yaomri-header-stack-height', `${Math.ceil(height)}px`);
-  };
-
   const resolveTransitionClass = (value) => {
     switch (value) {
       case 'fade':
@@ -114,7 +106,6 @@
     if (group) {
       group.classList.add(GROUP_CLASS);
       group.style.setProperty('--yaomri-header-stack-transition-duration', `${stackTransitionDuration}ms`);
-      updateMeasuredHeight(group);
       group.classList.toggle(GROUP_OVERLAY_CLASS, transparentActive && stickyEnabled);
       cleanTransitionClass(group, stackBehavior === SCROLL_BEHAVIOR_FADE_AWAY ? resolveTransitionClass(stackTransition) : null);
       group.classList.toggle(HIDDEN_CLASS, shouldHideStack);
