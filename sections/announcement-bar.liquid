@@ -1,6 +1,5 @@
 {{ 'announcement-bar.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'announcement-bar.js' | asset_url }}" defer></script>
-{%- render 'section-header', heading: blank -%}
 
 {%- liquid
   assign is_enabled = section.settings.enable_announcement_bar

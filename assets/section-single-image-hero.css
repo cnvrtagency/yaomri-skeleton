@@ -157,6 +157,14 @@
 .yaomri-single-hero__text > * {
   margin-block: 0;
   text-align: inherit;
+  font-weight: inherit;
+}
+
+.yaomri-single-hero__text p,
+.yaomri-single-hero__text li,
+.yaomri-single-hero__text a,
+.yaomri-single-hero__text span {
+  font-weight: inherit;
 }
 
 .yaomri-single-hero__button-block,

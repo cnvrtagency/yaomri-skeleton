@@ -257,6 +257,27 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Decorative styles render correctly: none, short underline, half underline, eyebrow line, side rule, corner accent.
 - Split preset places CTA to the right on desktop and stacks on mobile.
 - Colour overrides apply through local CSS variables and inherit global tokens when blank.
+
+## Collection Cards
+
+- Collection Cards section appears in Theme Editor.
+- Reusable `section-header` is used by Collection Cards and renders preset/decorative/alignment/width settings correctly.
+- Grid mode works at desktop/tablet/mobile column settings.
+- Carousel mode works at desktop/tablet/mobile visible-card settings.
+- Carousel arrows move the track by one card step.
+- Carousel drag/swipe works when enabled.
+- Carousel autoplay works only when enabled.
+- Carousel progress bar updates while scrolling.
+- Selected collection fallback works: title, image, link from collection object.
+- Custom title/image/link overrides take priority over collection defaults.
+- Empty block cards are not rendered on storefront.
+- Placeholder cards render only in Theme Editor when no usable blocks exist.
+- Card ratio modes work: 4:5, 1:1, 4:3, 16:9, adapt.
+- Card style presets (image/editorial/minimal) change visual treatment.
+- Card CTA shows only when enabled and card has a link.
+- No nested/broken links are rendered.
+- Desktop/mobile padding and margin defaults remain 0.
+- No default browser-blue link styling appears.
 - 3-Card Hero renders one, two, or three cards cleanly.
 - 3-Card Hero no-block placeholder state is polished and not clickable.
 - 3-Card Hero cards are equal height on desktop.
