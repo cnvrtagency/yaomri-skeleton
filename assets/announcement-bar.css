@@ -70,15 +70,14 @@
 }
 
 .yaomri-announcement__carousel {
+  position: relative;
   width: 100%;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  column-gap: 8px;
+  display: block;
 }
 
 .yaomri-announcement__slides {
   position: relative;
+  width: 100%;
   min-height: calc(var(--yab-height-desktop, 40px) - (var(--yab-pad-block-desktop, 0) * 2));
   display: grid;
   align-items: center;
@@ -86,18 +85,39 @@
 
 .yaomri-announcement__slide {
   grid-area: 1 / 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   opacity: 0;
   visibility: hidden;
-  justify-self: center;
   transition: opacity 180ms ease;
+  pointer-events: none;
 }
 
 .yaomri-announcement__slide.is-active {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
+}
+
+.yaomri-announcement__slide .yaomri-announcement__link,
+.yaomri-announcement__slide .yaomri-announcement__text {
+  text-align: center;
+}
+
+.yaomri-announcement__slide .yaomri-announcement__link {
+  justify-content: center;
+  width: max-content;
+  max-width: 100%;
 }
 
 .yaomri-announcement__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
   width: 28px;
   height: 28px;
   border: 0;
@@ -109,13 +129,20 @@
   padding: 0;
 }
 
+.yaomri-announcement__arrow--prev {
+  left: 0;
+}
+
+.yaomri-announcement__arrow--next {
+  right: 0;
+}
+
 .yaomri-announcement .icon-yaomri {
   width: 16px;
   height: 16px;
 }
 
 .yaomri-announcement__dots {
-  grid-column: 1 / -1;
   display: flex;
   justify-content: center;
   gap: 6px;
