@@ -46,40 +46,40 @@
 -%}
 
 <section
-  class="yaomri-single-hero yaomri-single-hero--width-{{ width_mode }} yaomri-single-hero--content-width-{{ content_width_mode }} yaomri-single-hero--desktop-height-{{ desktop_height_mode }} yaomri-single-hero--mobile-height-{{ mobile_height_mode }} yaomri-single-hero--desktop-horizontal-{{ desktop_horizontal }} yaomri-single-hero--desktop-vertical-{{ desktop_vertical }} yaomri-single-hero--desktop-text-{{ desktop_text_alignment }} yaomri-single-hero--mobile-horizontal-{{ mobile_horizontal }} yaomri-single-hero--mobile-vertical-{{ mobile_vertical }} yaomri-single-hero--mobile-text-{{ mobile_text_alignment }}{% if section.settings.show_border %} yaomri-single-hero--border{% endif %} full-width"
+  class="yaomri-single-hero cnvrt-single-hero yaomri-single-hero--width-{{ width_mode }} cnvrt-single-hero--width-{{ width_mode }} yaomri-single-hero--content-width-{{ content_width_mode }} cnvrt-single-hero--content-width-{{ content_width_mode }} yaomri-single-hero--desktop-height-{{ desktop_height_mode }} cnvrt-single-hero--desktop-height-{{ desktop_height_mode }} yaomri-single-hero--mobile-height-{{ mobile_height_mode }} cnvrt-single-hero--mobile-height-{{ mobile_height_mode }} yaomri-single-hero--desktop-horizontal-{{ desktop_horizontal }} cnvrt-single-hero--desktop-horizontal-{{ desktop_horizontal }} yaomri-single-hero--desktop-vertical-{{ desktop_vertical }} cnvrt-single-hero--desktop-vertical-{{ desktop_vertical }} yaomri-single-hero--desktop-text-{{ desktop_text_alignment }} cnvrt-single-hero--desktop-text-{{ desktop_text_alignment }} yaomri-single-hero--mobile-horizontal-{{ mobile_horizontal }} cnvrt-single-hero--mobile-horizontal-{{ mobile_horizontal }} yaomri-single-hero--mobile-vertical-{{ mobile_vertical }} cnvrt-single-hero--mobile-vertical-{{ mobile_vertical }} yaomri-single-hero--mobile-text-{{ mobile_text_alignment }} cnvrt-single-hero--mobile-text-{{ mobile_text_alignment }}{% if section.settings.show_border %} yaomri-single-hero--border cnvrt-single-hero--border{% endif %} full-width"
   style="
-    --ysh-section-width: {{ section_width_value }};
-    --ysh-section-bg: {{ section_background }};
-    --ysh-border-color: {{ border_color }};
-    --ysh-overlay-color: {{ overlay_color }};
-    --ysh-overlay-opacity: {{ overlay_opacity }};
-    --ysh-content-width: {{ content_width_value }};
-    --ysh-content-gap: {{ section.settings.content_gap }}px;
-    --ysh-content-padding: {{ section.settings.content_padding }}px;
-    --ysh-height-desktop: {{ section.settings.desktop_custom_height }}px;
-    --ysh-height-mobile: {{ section.settings.mobile_custom_height }}px;
-    --ysh-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
-    --ysh-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
-    --ysh-padding-left-desktop: {{ section.settings.padding_left_desktop }}px;
-    --ysh-padding-right-desktop: {{ section.settings.padding_right_desktop }}px;
-    --ysh-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
-    --ysh-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
-    --ysh-padding-left-mobile: {{ section.settings.padding_left_mobile }}px;
-    --ysh-padding-right-mobile: {{ section.settings.padding_right_mobile }}px;
-    --ysh-margin-top-desktop: {{ section.settings.margin_top_desktop }}px;
-    --ysh-margin-bottom-desktop: {{ section.settings.margin_bottom_desktop }}px;
-    --ysh-margin-top-mobile: {{ section.settings.margin_top_mobile }}px;
-    --ysh-margin-bottom-mobile: {{ section.settings.margin_bottom_mobile }}px;
+    --cnvrt-single-hero-section-width: {{ section_width_value }};
+    --cnvrt-single-hero-section-bg: {{ section_background }};
+    --cnvrt-single-hero-border-color: {{ border_color }};
+    --cnvrt-single-hero-overlay-color: {{ overlay_color }};
+    --cnvrt-single-hero-overlay-opacity: {{ overlay_opacity }};
+    --cnvrt-single-hero-content-width: {{ content_width_value }};
+    --cnvrt-single-hero-content-gap: {{ section.settings.content_gap }}px;
+    --cnvrt-single-hero-content-padding: {{ section.settings.content_padding }}px;
+    --cnvrt-single-hero-height-desktop: {{ section.settings.desktop_custom_height }}px;
+    --cnvrt-single-hero-height-mobile: {{ section.settings.mobile_custom_height }}px;
+    --cnvrt-single-hero-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --cnvrt-single-hero-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --cnvrt-single-hero-padding-left-desktop: {{ section.settings.padding_left_desktop }}px;
+    --cnvrt-single-hero-padding-right-desktop: {{ section.settings.padding_right_desktop }}px;
+    --cnvrt-single-hero-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --cnvrt-single-hero-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --cnvrt-single-hero-padding-left-mobile: {{ section.settings.padding_left_mobile }}px;
+    --cnvrt-single-hero-padding-right-mobile: {{ section.settings.padding_right_mobile }}px;
+    --cnvrt-single-hero-margin-top-desktop: {{ section.settings.margin_top_desktop }}px;
+    --cnvrt-single-hero-margin-bottom-desktop: {{ section.settings.margin_bottom_desktop }}px;
+    --cnvrt-single-hero-margin-top-mobile: {{ section.settings.margin_top_mobile }}px;
+    --cnvrt-single-hero-margin-bottom-mobile: {{ section.settings.margin_bottom_mobile }}px;
   "
   {{ section.shopify_attributes }}
 >
-  <div class="yaomri-single-hero__frame">
-    <div class="yaomri-single-hero__stage" style="--ysh-image-position: {{ section.settings.image_position }};">
-      <div class="yaomri-single-hero__media">
+  <div class="yaomri-single-hero__frame cnvrt-single-hero__frame">
+    <div class="yaomri-single-hero__stage cnvrt-single-hero__stage" style="--cnvrt-single-hero-image-position: {{ section.settings.image_position }};">
+      <div class="yaomri-single-hero__media cnvrt-single-hero__media">
         {%- if section.settings.desktop_image != blank -%}
-          {%- assign image_class = 'yaomri-single-hero__image' -%}
+          {%- assign image_class = 'yaomri-single-hero__image cnvrt-single-hero__image' -%}
           {%- if section.settings.mobile_image != blank -%}
-            {%- assign image_class = image_class | append: ' yaomri-single-hero__image--has-mobile' -%}
+            {%- assign image_class = image_class | append: ' yaomri-single-hero__image--has-mobile cnvrt-single-hero__image--has-mobile' -%}
           {%- endif -%}
           {{
             section.settings.desktop_image
@@ -92,7 +92,7 @@
               alt: section.settings.desktop_image.alt | default: shop.name | escape
           }}
         {%- else -%}
-          <div class="yaomri-single-hero__placeholder" data-label="Add hero image"></div>
+          <div class="yaomri-single-hero__placeholder cnvrt-single-hero__placeholder" data-label="Add hero image"></div>
         {%- endif -%}
 
         {%- if section.settings.mobile_image != blank -%}
@@ -100,7 +100,7 @@
             section.settings.mobile_image
             | image_url: width: 1200
             | image_tag:
-              class: 'yaomri-single-hero__image yaomri-single-hero__mobile-image',
+              class: 'yaomri-single-hero__image cnvrt-single-hero__image yaomri-single-hero__mobile-image cnvrt-single-hero__mobile-image',
               widths: '360, 540, 720, 900, 1200',
               sizes: '100vw',
               loading: 'eager',
@@ -109,11 +109,11 @@
         {%- endif -%}
       </div>
 
-      <div class="yaomri-single-hero__overlay"></div>
+      <div class="yaomri-single-hero__overlay cnvrt-single-hero__overlay"></div>
 
-      <div class="yaomri-single-hero__content-positioner">
-        <div class="yaomri-single-hero__content">
-          <div class="yaomri-single-hero__content-stack">
+      <div class="yaomri-single-hero__content-positioner cnvrt-single-hero__content-positioner">
+        <div class="yaomri-single-hero__content cnvrt-single-hero__content">
+          <div class="yaomri-single-hero__content-stack cnvrt-single-hero__content-stack">
             {%- for block in section.blocks -%}
               {%- case block.type -%}
               {%- when 'eyebrow' -%}
@@ -139,7 +139,7 @@
                     if eyebrow_size_desktop != blank
                       capture text_style
                         echo text_style
-                        echo '--ysh-eyebrow-size-desktop: '
+                        echo '--cnvrt-single-hero-eyebrow-size-desktop: '
                         echo eyebrow_size_desktop
                         echo 'px;'
                       endcapture
@@ -147,7 +147,7 @@
                     if eyebrow_size_mobile != blank
                       capture text_style
                         echo text_style
-                        echo '--ysh-eyebrow-size-mobile: '
+                        echo '--cnvrt-single-hero-eyebrow-size-mobile: '
                         echo eyebrow_size_mobile
                         echo 'px;'
                       endcapture
@@ -155,7 +155,7 @@
                     if eyebrow_weight != blank
                       capture text_style
                         echo text_style
-                        echo '--ysh-eyebrow-weight: '
+                        echo '--cnvrt-single-hero-eyebrow-weight: '
                         echo eyebrow_weight
                         echo ';'
                       endcapture
@@ -163,7 +163,7 @@
                     if eyebrow_line_height != blank
                       capture text_style
                         echo text_style
-                        echo '--ysh-eyebrow-line-height: '
+                        echo '--cnvrt-single-hero-eyebrow-line-height: '
                         echo eyebrow_line_height
                         echo '%;'
                       endcapture
@@ -171,7 +171,7 @@
                     if eyebrow_letter_spacing != blank
                       capture text_style
                         echo text_style
-                        echo '--ysh-eyebrow-letter-spacing: '
+                        echo '--cnvrt-single-hero-eyebrow-letter-spacing: '
                         echo eyebrow_letter_spacing
                         echo 'px;'
                       endcapture
@@ -179,7 +179,7 @@
                     if eyebrow_text_transform != blank
                       capture text_style
                         echo text_style
-                        echo '--ysh-eyebrow-transform: '
+                        echo '--cnvrt-single-hero-eyebrow-transform: '
                         echo eyebrow_text_transform
                         echo ';'
                       endcapture
@@ -187,7 +187,7 @@
                     if eyebrow_max_width > 0
                       capture text_style
                         echo text_style
-                        echo '--ysh-eyebrow-max-width: '
+                        echo '--cnvrt-single-hero-eyebrow-max-width: '
                         echo eyebrow_max_width
                         echo 'px;'
                       endcapture
@@ -195,24 +195,24 @@
                     if eyebrow_color != blank
                       capture text_style
                         echo text_style
-                        echo '--ysh-block-text-color: '
+                        echo '--cnvrt-single-hero-block-text-color: '
                         echo eyebrow_color
                         echo ';'
                       endcapture
                     endif
                     capture text_style
                       echo text_style
-                      echo '--ysh-block-margin-bottom: '
+                      echo '--cnvrt-single-hero-block-margin-bottom: '
                       echo eyebrow_margin_bottom
                       echo 'px;'
                     endcapture
                   -%}
                   <div
-                    class="yaomri-single-hero__block yaomri-single-hero__eyebrow-block"
+                    class="yaomri-single-hero__block cnvrt-single-hero__block yaomri-single-hero__eyebrow-block cnvrt-single-hero__eyebrow-block"
                     style="{{ text_style }}"
                     {{ block.shopify_attributes }}
                   >
-                    <p class="yaomri-single-hero__eyebrow">{{ block.settings.text }}</p>
+                    <p class="yaomri-single-hero__eyebrow cnvrt-single-hero__eyebrow">{{ block.settings.text }}</p>
                   </div>
                 {%- endif -%}
 
@@ -236,7 +236,7 @@
                     if heading_size_desktop != blank
                       capture heading_style
                         echo heading_style
-                        echo '--ysh-heading-size-desktop: '
+                        echo '--cnvrt-single-hero-heading-size-desktop: '
                         echo heading_size_desktop
                         echo 'px;'
                       endcapture
@@ -244,7 +244,7 @@
                     if heading_size_mobile != blank
                       capture heading_style
                         echo heading_style
-                        echo '--ysh-heading-size-mobile: '
+                        echo '--cnvrt-single-hero-heading-size-mobile: '
                         echo heading_size_mobile
                         echo 'px;'
                       endcapture
@@ -252,7 +252,7 @@
                     if heading_weight != blank
                       capture heading_style
                         echo heading_style
-                        echo '--ysh-heading-weight: '
+                        echo '--cnvrt-single-hero-heading-weight: '
                         echo heading_weight
                         echo ';'
                       endcapture
@@ -260,7 +260,7 @@
                     if heading_line_height_desktop != blank
                       capture heading_style
                         echo heading_style
-                        echo '--ysh-heading-line-height-desktop: '
+                        echo '--cnvrt-single-hero-heading-line-height-desktop: '
                         echo heading_line_height_desktop
                         echo '%;'
                       endcapture
@@ -268,7 +268,7 @@
                     if heading_line_height_mobile != blank
                       capture heading_style
                         echo heading_style
-                        echo '--ysh-heading-line-height-mobile: '
+                        echo '--cnvrt-single-hero-heading-line-height-mobile: '
                         echo heading_line_height_mobile
                         echo '%;'
                       endcapture
@@ -276,7 +276,7 @@
                     if heading_letter_spacing != blank
                       capture heading_style
                         echo heading_style
-                        echo '--ysh-heading-letter-spacing: '
+                        echo '--cnvrt-single-hero-heading-letter-spacing: '
                         echo heading_letter_spacing
                         echo 'px;'
                       endcapture
@@ -284,7 +284,7 @@
                     if heading_text_transform != blank
                       capture heading_style
                         echo heading_style
-                        echo '--ysh-heading-transform: '
+                        echo '--cnvrt-single-hero-heading-transform: '
                         echo heading_text_transform
                         echo ';'
                       endcapture
@@ -292,7 +292,7 @@
                     if heading_colour != blank
                       capture heading_style
                         echo heading_style
-                        echo '--ysh-block-text-color: '
+                        echo '--cnvrt-single-hero-block-text-color: '
                         echo heading_colour
                         echo ';'
                       endcapture
@@ -300,27 +300,27 @@
                     if heading_max_width > 0
                       capture heading_style
                         echo heading_style
-                        echo '--ysh-heading-max-width: '
+                        echo '--cnvrt-single-hero-heading-max-width: '
                         echo heading_max_width
                         echo 'px;'
                       endcapture
                     endif
                     capture heading_style
                       echo heading_style
-                      echo '--ysh-block-margin-bottom: '
+                      echo '--cnvrt-single-hero-block-margin-bottom: '
                       echo heading_margin_bottom
                       echo 'px;'
                     endcapture
                   -%}
                   <div
-                    class="yaomri-single-hero__block yaomri-single-hero__heading-block"
+                    class="yaomri-single-hero__block cnvrt-single-hero__block yaomri-single-hero__heading-block cnvrt-single-hero__heading-block"
                     style="{{ heading_style }}"
                     {{ block.shopify_attributes }}
                   >
                     {%- if block.settings.heading_tag == 'h2' -%}
-                      <h2 class="yaomri-single-hero__heading">{{ heading_text }}</h2>
+                      <h2 class="yaomri-single-hero__heading cnvrt-single-hero__heading">{{ heading_text }}</h2>
                     {%- else -%}
-                      <h1 class="yaomri-single-hero__heading">{{ heading_text }}</h1>
+                      <h1 class="yaomri-single-hero__heading cnvrt-single-hero__heading">{{ heading_text }}</h1>
                     {%- endif -%}
                   </div>
                 {%- endif -%}
@@ -341,7 +341,7 @@
                     if text_size_desktop != blank
                       capture paragraph_style
                         echo paragraph_style
-                        echo '--ysh-text-size-desktop: '
+                        echo '--cnvrt-single-hero-text-size-desktop: '
                         echo text_size_desktop
                         echo 'px;'
                       endcapture
@@ -349,7 +349,7 @@
                     if text_size_mobile != blank
                       capture paragraph_style
                         echo paragraph_style
-                        echo '--ysh-text-size-mobile: '
+                        echo '--cnvrt-single-hero-text-size-mobile: '
                         echo text_size_mobile
                         echo 'px;'
                       endcapture
@@ -357,7 +357,7 @@
                     if text_weight != blank
                       capture paragraph_style
                         echo paragraph_style
-                        echo '--ysh-text-weight: '
+                        echo '--cnvrt-single-hero-text-weight: '
                         echo text_weight
                         echo ';'
                       endcapture
@@ -365,7 +365,7 @@
                     if text_line_height_desktop != blank
                       capture paragraph_style
                         echo paragraph_style
-                        echo '--ysh-text-line-height-desktop: '
+                        echo '--cnvrt-single-hero-text-line-height-desktop: '
                         echo text_line_height_desktop
                         echo '%;'
                       endcapture
@@ -373,7 +373,7 @@
                     if text_line_height_mobile != blank
                       capture paragraph_style
                         echo paragraph_style
-                        echo '--ysh-text-line-height-mobile: '
+                        echo '--cnvrt-single-hero-text-line-height-mobile: '
                         echo text_line_height_mobile
                         echo '%;'
                       endcapture
@@ -381,7 +381,7 @@
                     if text_letter_spacing != blank
                       capture paragraph_style
                         echo paragraph_style
-                        echo '--ysh-text-letter-spacing: '
+                        echo '--cnvrt-single-hero-text-letter-spacing: '
                         echo text_letter_spacing
                         echo 'px;'
                       endcapture
@@ -389,7 +389,7 @@
                     if text_colour != blank
                       capture paragraph_style
                         echo paragraph_style
-                        echo '--ysh-block-text-color: '
+                        echo '--cnvrt-single-hero-block-text-color: '
                         echo text_colour
                         echo ';'
                       endcapture
@@ -397,24 +397,24 @@
                     if text_max_width > 0
                       capture paragraph_style
                         echo paragraph_style
-                        echo '--ysh-text-max-width: '
+                        echo '--cnvrt-single-hero-text-max-width: '
                         echo text_max_width
                         echo 'px;'
                       endcapture
                     endif
                     capture paragraph_style
                       echo paragraph_style
-                      echo '--ysh-block-margin-bottom: '
+                      echo '--cnvrt-single-hero-block-margin-bottom: '
                       echo text_margin_bottom
                       echo 'px;'
                     endcapture
                   -%}
                   <div
-                    class="yaomri-single-hero__block yaomri-single-hero__paragraph-block"
+                    class="yaomri-single-hero__block cnvrt-single-hero__block yaomri-single-hero__paragraph-block cnvrt-single-hero__paragraph-block"
                     style="{{ paragraph_style }}"
                     {{ block.shopify_attributes }}
                   >
-                    <div class="yaomri-single-hero__text">{{ block.settings.text }}</div>
+                    <div class="yaomri-single-hero__text cnvrt-single-hero__text">{{ block.settings.text }}</div>
                   </div>
                 {%- endif -%}
 
@@ -428,18 +428,18 @@
                     assign button_text_transform = block.settings.button_text_transform | default: 'uppercase'
                   -%}
                   <div
-                    class="yaomri-single-hero__block yaomri-single-hero__button-block"
+                    class="yaomri-single-hero__block cnvrt-single-hero__block yaomri-single-hero__button-block cnvrt-single-hero__button-block"
                     style="
-                      --ysh-block-margin-top: {{ block.settings.margin_top }}px;
-                      --ysh-button-size: {{ button_size }}px;
-                      --ysh-button-weight: {{ button_weight }};
-                      --ysh-button-letter-spacing: {{ button_letter_spacing }}em;
-                      --ysh-button-transform: {{ button_text_transform }};
+                      --cnvrt-single-hero-block-margin-top: {{ block.settings.margin_top }}px;
+                      --cnvrt-single-hero-button-size: {{ button_size }}px;
+                      --cnvrt-single-hero-button-weight: {{ button_weight }};
+                      --cnvrt-single-hero-button-letter-spacing: {{ button_letter_spacing }}em;
+                      --cnvrt-single-hero-button-transform: {{ button_text_transform }};
                     "
                     {{ block.shopify_attributes }}
                   >
-                    <a
-                      class="yaomri-single-hero__button yaomri-single-hero__button--{{ block.settings.style }}{% if block.settings.full_width_mobile %} yaomri-single-hero__button--mobile-full{% endif %}"
+                  <a
+                      class="yaomri-single-hero__button cnvrt-single-hero__button yaomri-single-hero__button--{{ block.settings.style }} cnvrt-single-hero__button--{{ block.settings.style }}{% if block.settings.full_width_mobile %} yaomri-single-hero__button--mobile-full cnvrt-single-hero__button--mobile-full{% endif %}"
                       href="{{ block.settings.link }}"
                       {% if block.settings.open_new_window %}target="_blank" rel="noopener noreferrer"{% endif %}
                     >
@@ -466,23 +466,23 @@
                 -%}
                 {%- if has_primary or has_secondary -%}
                   <div
-                    class="yaomri-single-hero__block yaomri-single-hero__buttons{% if block.settings.stack_on_mobile %} yaomri-single-hero__buttons--stack-mobile{% endif %}"
+                    class="yaomri-single-hero__block cnvrt-single-hero__block yaomri-single-hero__buttons cnvrt-single-hero__buttons{% if block.settings.stack_on_mobile %} yaomri-single-hero__buttons--stack-mobile cnvrt-single-hero__buttons--stack-mobile{% endif %}"
                     style="
-                      --ysh-block-margin-top: {{ block.settings.margin_top }}px;
-                      --ysh-button-size: {{ button_size }}px;
-                      --ysh-button-weight: {{ button_weight }};
-                      --ysh-button-letter-spacing: {{ button_letter_spacing }}em;
-                      --ysh-button-transform: {{ button_text_transform }};
+                      --cnvrt-single-hero-block-margin-top: {{ block.settings.margin_top }}px;
+                      --cnvrt-single-hero-button-size: {{ button_size }}px;
+                      --cnvrt-single-hero-button-weight: {{ button_weight }};
+                      --cnvrt-single-hero-button-letter-spacing: {{ button_letter_spacing }}em;
+                      --cnvrt-single-hero-button-transform: {{ button_text_transform }};
                     "
                     {{ block.shopify_attributes }}
                   >
                     {%- if has_primary -%}
-                      <a class="yaomri-single-hero__button yaomri-single-hero__button--{{ block.settings.primary_style }}" href="{{ block.settings.primary_link }}">
+                      <a class="yaomri-single-hero__button cnvrt-single-hero__button yaomri-single-hero__button--{{ block.settings.primary_style }} cnvrt-single-hero__button--{{ block.settings.primary_style }}" href="{{ block.settings.primary_link }}">
                         <span>{{ block.settings.primary_label }}</span>
                       </a>
                     {%- endif -%}
                     {%- if has_secondary -%}
-                      <a class="yaomri-single-hero__button yaomri-single-hero__button--{{ block.settings.secondary_style }}" href="{{ block.settings.secondary_link }}">
+                      <a class="yaomri-single-hero__button cnvrt-single-hero__button yaomri-single-hero__button--{{ block.settings.secondary_style }} cnvrt-single-hero__button--{{ block.settings.secondary_style }}" href="{{ block.settings.secondary_link }}">
                         <span>{{ block.settings.secondary_label }}</span>
                       </a>
                     {%- endif -%}
@@ -491,14 +491,14 @@
 
               {%- when 'custom_html' -%}
                 {%- if block.settings.html != blank -%}
-                  <div class="yaomri-single-hero__block yaomri-single-hero__custom-html" {{ block.shopify_attributes }}>
+                  <div class="yaomri-single-hero__block cnvrt-single-hero__block yaomri-single-hero__custom-html cnvrt-single-hero__custom-html" {{ block.shopify_attributes }}>
                     {{ block.settings.html }}
                   </div>
                 {%- endif -%}
 
               {%- when 'custom_liquid' -%}
                 {%- if block.settings.liquid != blank -%}
-                  <div class="yaomri-single-hero__block yaomri-single-hero__custom-liquid" {{ block.shopify_attributes }}>
+                  <div class="yaomri-single-hero__block cnvrt-single-hero__block yaomri-single-hero__custom-liquid cnvrt-single-hero__custom-liquid" {{ block.shopify_attributes }}>
                     {{ block.settings.liquid }}
                   </div>
                 {%- endif -%}
@@ -508,7 +508,7 @@
         </div>
       </div>
 
-      {%- for block in section.blocks -%}
+        {%- for block in section.blocks -%}
         {%- if block.type == 'image_pin' -%}
           {%- liquid
             assign pin_label = block.settings.pin_label
@@ -522,14 +522,14 @@
             endif
           -%}
           <{{ pin_tag }}
-            class="yaomri-single-hero__pin yaomri-single-hero__pin--{{ block.settings.pin_style }}{% unless block.settings.show_on_mobile %} yaomri-single-hero__pin--hide-mobile{% endunless %}"
+            class="yaomri-single-hero__pin cnvrt-single-hero__pin yaomri-single-hero__pin--{{ block.settings.pin_style }} cnvrt-single-hero__pin--{{ block.settings.pin_style }}{% unless block.settings.show_on_mobile %} yaomri-single-hero__pin--hide-mobile cnvrt-single-hero__pin--hide-mobile{% endunless %}"
             style="
-              --ysh-pin-x-desktop: {{ block.settings.position_x_desktop }}%;
-              --ysh-pin-y-desktop: {{ block.settings.position_y_desktop }}%;
-              --ysh-pin-x-mobile: {{ block.settings.position_x_mobile }}%;
-              --ysh-pin-y-mobile: {{ block.settings.position_y_mobile }}%;
-              --ysh-pin-bg: {{ block.settings.pin_color }};
-              --ysh-pin-text: {{ block.settings.pin_text_color }};
+              --cnvrt-single-hero-pin-x-desktop: {{ block.settings.position_x_desktop }}%;
+              --cnvrt-single-hero-pin-y-desktop: {{ block.settings.position_y_desktop }}%;
+              --cnvrt-single-hero-pin-x-mobile: {{ block.settings.position_x_mobile }}%;
+              --cnvrt-single-hero-pin-y-mobile: {{ block.settings.position_y_mobile }}%;
+              --cnvrt-single-hero-pin-bg: {{ block.settings.pin_color }};
+              --cnvrt-single-hero-pin-text: {{ block.settings.pin_text_color }};
             "
             {% if block.settings.link != blank %}href="{{ block.settings.link }}" aria-label="{{ pin_accessible_label | escape }}"{% endif %}
             {{ block.shopify_attributes }}

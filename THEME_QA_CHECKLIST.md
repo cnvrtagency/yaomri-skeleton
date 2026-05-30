@@ -248,6 +248,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Single Image Hero mobile content horizontal position overrides desktop on mobile.
 - Single Image Hero mobile content vertical position overrides desktop on mobile.
 - Single Image Hero desktop/mobile text alignment changes text/buttons inside the content block.
+- Single Image Hero Phase 3 migration keeps legacy `yaomri-single-hero*`/`--ysh-*` behavior while adding `cnvrt-single-hero*`/`--cnvrt-single-hero-*` compatibility aliases.
 - Single Image Hero desktop text alignment does not change content-area placement.
 - Single Image Hero mobile text alignment does not change content-area placement.
 - Single Image Hero desktop horizontal position remains effective when text alignment changes.

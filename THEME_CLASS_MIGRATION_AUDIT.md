@@ -217,7 +217,9 @@ Announcement announcement bar now renders both legacy and neutral namespace clas
 ### Phase 3 — Single Image Hero
 - Files: `sections/single-image-hero.liquid`, `assets/section-single-image-hero.css`
 - Risk: medium
+- Status: Completed (compatibility alias phase)
 - QA: typography, layout modes, button/pin behavior, mobile overrides
+- Compatibility note: legacy `yaomri-single-hero*` classes and `--ysh-*` variables remain as aliases while `cnvrt-single-hero*` classes and `--cnvrt-single-hero-*` variables are now used as primary.
 - Suggested commit: `feat: migrate single-image-hero classes and css vars to cnvrt namespace`
 
 ### Phase 4 — Header Core
@@ -259,11 +261,12 @@ Announcement announcement bar now renders both legacy and neutral namespace clas
   - shared variable bridge patterns (new token resolves to old token).
 - In JS, query for old/new selectors in the same expression.
 
-### Current completed state (post Phase 2)
+### Current completed state (post Phase 3)
 
 - Announcement namespace migration is complete and stable.
 - Collection Cards namespace migration is now complete with compatibility aliases and compatibility `cc-*` retention.
-- Single Image Hero migration is next, then header/mega/drawer.
+- Single Image Hero migration is now complete with compatibility aliases retained.
+- Next: header/mega/mobile drawer/next sections remain.
 
 ## J. QA checklist for migration phase validation
 
@@ -282,4 +285,4 @@ Announcement announcement bar now renders both legacy and neutral namespace clas
 
 ## L. Suggested next Codex prompt
 
-"Implement compatibility namespace aliases for Single Image Hero (`ysh-*`) classes and vars to `cnvrt-*`, then migrate those section classes with keyboard and responsive QA."
+"Implement compatibility namespace migration for Header Core while preserving `data-yaomri-header-group` and interactive contracts for mega/mobile."

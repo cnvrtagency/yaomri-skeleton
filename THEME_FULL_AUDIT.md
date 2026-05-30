@@ -14,7 +14,7 @@ Current state:
 3. Major architectural debt remains in naming and section ownership patterns (Ya Omri-branded class system and mixed responsive conventions).
 4. Homepage is minimal and predictable (`templates/index.json` has only `single-image-hero` and `collection-cards` in this snapshot).
 5. Header/mobile drawer/mega menu stack behavior is now feature-complete for fade-away, mobile/desktop thresholds, easing, and duration, including solid-state suppression in fade-away mode.
-6. Namespace migration phases are underway and stable: `cnvrt-announcement*` and `--cnvrt-announcement-*` coexist with legacy `yaomri*`/`yab-*`; `cnvrt-collection-cards*` selectors and `--cnvrt-collection-cards-*` / `--cnvrt-collection-card-*` variables now coexist with legacy `cc-*` and `--cc-*`.
+6. Namespace migration is now complete through three sections: announcement (`yaomri-announcement*`/`yab-*`), collection cards (`cc-*`), and Single Image Hero (`yaomri-single-hero*`/`ysh-*`) with compatibility aliasing to `cnvrt-announcement*`, `cnvrt-collection-cards*` and `cnvrt-single-hero*` classes/variables.
 
 ## B. Critical launch blockers
 
@@ -165,7 +165,7 @@ Current state:
 
 1. Prefix inventory (large-theme presence)
    - `yaomri-`: very high concentration (core styling, all major nav/header/hero components)
-   - `ysh-`: single-image and shared typography blocks
+  - `ysh-`: Single Image Hero system (already paired with `cnvrt-single-hero*` in phase 3 aliases)
    - `yh-`: header-level tokens/variables
    - `ym-`: header/inline variables
   - `yab-`: announcement local variants (already paired with `cnvrt-announcement*` in phase 1 aliases)
@@ -190,7 +190,7 @@ Current state:
 1. Do not edit `sections/header-group.json` ordering unless required by merchant request (announcement+header stack ownership is correct).
 2. Do not remove header/mobile overlay interaction guards in JS until focused navigation QA is complete.
 3. Do not perform any destructive cleanup before creating a migration-safe mapping for all `yaomri-*` selectors.
-4. Avoid redesigning single-image hero and collection cards before performance and naming migration are synchronized.
+4. Avoid redesigning collection cards before performance and naming migration are synchronized.
 
 ## M. Recommended branch/commit strategy for cleanup
 
@@ -214,5 +214,5 @@ Current state:
 6. Add lightweight runtime metric instrumentation for hero and carousel load interactions.
 7. Implement compatibility alias layer for class migration (`yaomri-*` -> neutral alias).
 8. Document the alias mapping in `THEME_SETTINGS_REGISTRY.md` and migration notes in `YAOMRI_BUILD_SPEC.md`.
-9. Migrate one section family (`single-image-hero`) to neutral prefix while preserving behavior.
+9. Migrate Header Core, Mega Menu, and Mobile Drawer to neutral namespace aliases while preserving interaction contracts.
 10. Run second full audit pass and prepare launch readiness report for internal sign-off.
