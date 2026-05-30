@@ -199,35 +199,32 @@
 .yaomri-single-hero__heading-block,
 .yaomri-single-hero__paragraph-block {
   margin-bottom: var(--ysh-block-margin-bottom, 0);
-  margin-left: 0;
-  margin-right: auto;
   color: var(--ysh-block-text-color, inherit);
+  justify-self: start;
+}
+
+.yaomri-single-hero__eyebrow-block {
+  width: min(100%, var(--ysh-eyebrow-max-width, 100%));
+}
+
+.yaomri-single-hero__heading-block {
+  width: min(100%, var(--ysh-heading-max-width, 100%));
+}
+
+.yaomri-single-hero__paragraph-block {
+  width: min(100%, var(--ysh-text-max-width, 100%));
 }
 
 .yaomri-single-hero--desktop-text-center .yaomri-single-hero__eyebrow-block,
 .yaomri-single-hero--desktop-text-center .yaomri-single-hero__heading-block,
 .yaomri-single-hero--desktop-text-center .yaomri-single-hero__paragraph-block {
-  margin-left: auto;
-  margin-right: auto;
+  justify-self: center;
 }
 
 .yaomri-single-hero--desktop-text-right .yaomri-single-hero__eyebrow-block,
 .yaomri-single-hero--desktop-text-right .yaomri-single-hero__heading-block,
 .yaomri-single-hero--desktop-text-right .yaomri-single-hero__paragraph-block {
-  margin-left: auto;
-  margin-right: 0;
-}
-
-.yaomri-single-hero__eyebrow-block {
-  max-width: var(--ysh-eyebrow-max-width, 100%);
-}
-
-.yaomri-single-hero__heading-block {
-  max-width: var(--ysh-heading-max-width, 100%);
-}
-
-.yaomri-single-hero__paragraph-block {
-  max-width: var(--ysh-text-max-width, 100%);
+  justify-self: end;
 }
 
 .yaomri-single-hero__eyebrow {
@@ -513,22 +510,19 @@
   .yaomri-single-hero--mobile-text-left .yaomri-single-hero__eyebrow-block,
   .yaomri-single-hero--mobile-text-left .yaomri-single-hero__heading-block,
   .yaomri-single-hero--mobile-text-left .yaomri-single-hero__paragraph-block {
-    margin-left: 0;
-    margin-right: auto;
+    justify-self: start;
   }
 
   .yaomri-single-hero--mobile-text-center .yaomri-single-hero__eyebrow-block,
   .yaomri-single-hero--mobile-text-center .yaomri-single-hero__heading-block,
   .yaomri-single-hero--mobile-text-center .yaomri-single-hero__paragraph-block {
-    margin-left: auto;
-    margin-right: auto;
+    justify-self: center;
   }
 
   .yaomri-single-hero--mobile-text-right .yaomri-single-hero__eyebrow-block,
   .yaomri-single-hero--mobile-text-right .yaomri-single-hero__heading-block,
   .yaomri-single-hero--mobile-text-right .yaomri-single-hero__paragraph-block {
-    margin-left: auto;
-    margin-right: 0;
+    justify-self: end;
   }
 
   .yaomri-single-hero__buttons {
