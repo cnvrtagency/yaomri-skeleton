@@ -1,202 +1,183 @@
-{{ 'section-header.css' | asset_url | stylesheet_tag }}
 {{ 'section-collection-cards.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'section-collection-cards.js' | asset_url }}" defer></script>
 
 {%- liquid
-  assign section_width_mode = section.settings.section_width | default: 'site'
-  assign section_custom_width = section.settings.custom_section_width | default: 1200
-  assign header_width_mode = section.settings.header_width | default: 'site'
-  assign header_custom_width = section.settings.header_custom_width | default: 1200
-  assign layout_mode = section.settings.layout_mode | default: 'grid'
-  assign show_header = section.settings.show_section_header
-  assign show_card_cta = section.settings.show_card_cta
-  assign show_carousel_arrows = section.settings.show_carousel_arrows
-  assign show_carousel_progress = section.settings.show_carousel_progress
-  assign enable_drag = section.settings.enable_drag_swipe
-  assign autoplay = section.settings.carousel_autoplay
-  assign autoplay_speed_ms = section.settings.carousel_autoplay_speed | default: 5 | times: 1000
+  assign layout_mode = section.settings.layout_mode | default: 'carousel'
+  assign section_width_mode = section.settings.section_width | default: 'full'
+  assign custom_section_width = section.settings.custom_section_width | default: 1500
+  assign card_ratio = section.settings.card_image_ratio | default: '4-5'
+  assign show_arrows = section.settings.show_arrows
+  assign show_count_default = section.settings.show_count_default
 
-  assign section_width_value = 'var(--page-width)'
-  if section_width_mode == 'full'
-    assign section_width_value = 'none'
+  assign section_width_value = 'none'
+  if section_width_mode == 'site'
+    assign section_width_value = 'var(--page-width)'
   elsif section_width_mode == 'custom'
     capture section_width_value
-      echo section_custom_width
+      echo custom_section_width
       echo 'px'
     endcapture
   endif
 
-  assign card_ratio = section.settings.card_image_ratio | default: '4-5'
-  assign card_ratio_value = '4 / 5'
+  assign ratio_value = '4 / 5'
   case card_ratio
     when '1-1'
-      assign card_ratio_value = '1 / 1'
+      assign ratio_value = '1 / 1'
     when '4-3'
-      assign card_ratio_value = '4 / 3'
+      assign ratio_value = '4 / 3'
     when '16-9'
-      assign card_ratio_value = '16 / 9'
+      assign ratio_value = '16 / 9'
   endcase
 -%}
 
 <section
-  class="yaomri-collection-cards full-width yaomri-collection-cards--layout-{{ layout_mode }} yaomri-collection-cards--style-{{ section.settings.card_style }} yaomri-collection-cards--ratio-{{ card_ratio }}{% if section.settings.show_card_border %} yaomri-collection-cards--card-border{% endif %}{% if show_carousel_arrows %} yaomri-collection-cards--has-arrows{% endif %}{% if show_carousel_progress %} yaomri-collection-cards--has-progress{% endif %}"
+  class="cc-carousel cc-carousel--layout-{{ layout_mode }} cc-carousel--ratio-{{ card_ratio }}{% if section.settings.border_top %} cc-carousel--border-top{% endif %}"
+  aria-label="{{ section.settings.heading | default: 'Collection cards' | escape }}"
   style="
-    --ycc-section-width: {{ section_width_value }};
-    --ycc-section-bg: {{ section.settings.section_background }};
-    --ycc-section-text: {{ section.settings.text_color }};
-    --ycc-card-bg: {{ section.settings.card_background }};
-    --ycc-card-text: {{ section.settings.card_text_color }};
-    --ycc-card-border: {{ section.settings.card_border_color }};
-    --ycc-image-ratio: {{ card_ratio_value }};
-    --ycc-grid-gap-desktop: {{ section.settings.grid_gap_desktop }}px;
-    --ycc-grid-gap-mobile: {{ section.settings.grid_gap_mobile }}px;
-    --ycc-grid-cols-desktop: {{ section.settings.grid_columns_desktop }};
-    --ycc-grid-cols-tablet: {{ section.settings.grid_columns_tablet }};
-    --ycc-grid-cols-mobile: {{ section.settings.grid_columns_mobile }};
-    --ycc-carousel-gap: {{ section.settings.carousel_gap }}px;
-    --ycc-carousel-visible-desktop: {{ section.settings.carousel_cards_desktop }};
-    --ycc-carousel-visible-tablet: {{ section.settings.carousel_cards_tablet }};
-    --ycc-carousel-visible-mobile: {{ section.settings.carousel_cards_mobile }};
-    --ycc-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
-    --ycc-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
-    --ycc-padding-left-desktop: {{ section.settings.padding_left_desktop }}px;
-    --ycc-padding-right-desktop: {{ section.settings.padding_right_desktop }}px;
-    --ycc-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
-    --ycc-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
-    --ycc-padding-left-mobile: {{ section.settings.padding_left_mobile }}px;
-    --ycc-padding-right-mobile: {{ section.settings.padding_right_mobile }}px;
-    --ycc-margin-top-desktop: {{ section.settings.margin_top_desktop }}px;
-    --ycc-margin-bottom-desktop: {{ section.settings.margin_bottom_desktop }}px;
-    --ycc-margin-top-mobile: {{ section.settings.margin_top_mobile }}px;
-    --ycc-margin-bottom-mobile: {{ section.settings.margin_bottom_mobile }}px;
+    --cc-max-width: {{ section_width_value }};
+    --cc-bg: {{ section.settings.background_color }};
+    --cc-border-color: {{ section.settings.border_color }};
+    --cc-gap-desktop: {{ section.settings.gap_desktop }}px;
+    --cc-gap-mobile: {{ section.settings.gap_mobile }}px;
+    --cc-image-ratio: {{ ratio_value }};
+    --cc-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --cc-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --cc-padding-left-desktop: {{ section.settings.padding_left_desktop }}px;
+    --cc-padding-right-desktop: {{ section.settings.padding_right_desktop }}px;
+    --cc-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --cc-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --cc-padding-left-mobile: {{ section.settings.padding_left_mobile }}px;
+    --cc-padding-right-mobile: {{ section.settings.padding_right_mobile }}px;
+    --cc-margin-top-desktop: {{ section.settings.margin_top_desktop }}px;
+    --cc-margin-bottom-desktop: {{ section.settings.margin_bottom_desktop }}px;
+    --cc-margin-top-mobile: {{ section.settings.margin_top_mobile }}px;
+    --cc-margin-bottom-mobile: {{ section.settings.margin_bottom_mobile }}px;
   "
   {{ section.shopify_attributes }}
 >
-  <div class="yaomri-collection-cards__frame">
-    {%- if show_header -%}
-      {%- render 'section-header',
-        eyebrow: section.settings.header_eyebrow,
-        heading: section.settings.header_heading,
-        text: section.settings.header_text,
-        cta_label: section.settings.header_cta_label,
-        cta_link: section.settings.header_cta_link,
-        alignment: section.settings.header_alignment,
-        width_mode: header_width_mode,
-        custom_width: header_custom_width,
-        preset: section.settings.header_preset,
-        decorative_style: section.settings.header_decorative_style,
-        text_colour: section.settings.header_text_colour,
-        eyebrow_colour: section.settings.header_eyebrow_colour,
-        heading_colour: section.settings.header_heading_colour,
-        rule_colour: section.settings.header_decorative_colour,
-        cta_style: section.settings.header_cta_style,
-        heading_size_desktop: section.settings.header_heading_size_desktop,
-        heading_size_mobile: section.settings.header_heading_size_mobile,
-        text_size_desktop: section.settings.header_text_size_desktop,
-        text_size_mobile: section.settings.header_text_size_mobile,
-        eyebrow_size: section.settings.header_eyebrow_size,
-        heading_weight: section.settings.header_heading_weight,
-        text_max_width: section.settings.header_text_max_width
-      -%}
-    {%- endif -%}
+  <div class="cc-carousel__inner">
+    <div class="cc-carousel__head">
+      <h2 class="cc-carousel__title">
+        {{ section.settings.heading }}
+        {%- if section.settings.heading_subtitle != blank -%}
+          <span class="cc-carousel__subtitle">{{ section.settings.heading_subtitle }}</span>
+        {%- endif -%}
+      </h2>
+      {%- if layout_mode == 'carousel' and show_arrows -%}
+        <div class="cc-carousel__nav">
+          <button type="button" class="cc-carousel__btn" data-cc-prev aria-label="Previous collection cards">
+            {% render 'icon-yaomri-chevron-left' %}
+          </button>
+          <button type="button" class="cc-carousel__btn" data-cc-next aria-label="Next collection cards">
+            {% render 'icon-yaomri-chevron-right' %}
+          </button>
+        </div>
+      {%- endif -%}
+    </div>
 
-    {%- assign valid_blocks = 0 -%}
+    {%- assign valid_cards = 0 -%}
     {%- for block in section.blocks -%}
-      {%- if block.settings.collection != blank or block.settings.custom_title != blank or block.settings.custom_image != blank -%}
-        {%- assign valid_blocks = valid_blocks | plus: 1 -%}
+      {%- assign coll = collections[block.settings.collection] -%}
+      {%- assign card_title_check = block.settings.title | default: coll.title -%}
+      {%- if card_title_check != blank or block.settings.image != blank or coll.image != blank -%}
+        {%- assign valid_cards = valid_cards | plus: 1 -%}
       {%- endif -%}
     {%- endfor -%}
 
-    {%- if valid_blocks == 0 -%}
+    {%- if valid_cards == 0 -%}
       {%- if request.design_mode -%}
-        <div class="yaomri-collection-cards__empty">
-          <article class="yaomri-collection-card yaomri-collection-card--placeholder"><div class="yaomri-collection-card__media"></div><h3 class="yaomri-collection-card__title">Collection</h3></article>
-          <article class="yaomri-collection-card yaomri-collection-card--placeholder"><div class="yaomri-collection-card__media"></div><h3 class="yaomri-collection-card__title">Collection</h3></article>
-          <article class="yaomri-collection-card yaomri-collection-card--placeholder"><div class="yaomri-collection-card__media"></div><h3 class="yaomri-collection-card__title">Collection</h3></article>
-        </div>
-      {%- endif -%}
-    {%- elsif layout_mode == 'carousel' -%}
-      <div
-        class="yaomri-collection-cards__carousel"
-        data-collection-carousel
-        data-autoplay="{% if autoplay %}true{% else %}false{% endif %}"
-        data-autoplay-speed="{{ autoplay_speed_ms }}"
-        data-drag="{% if enable_drag %}true{% else %}false{% endif %}"
-      >
-        {%- if show_carousel_arrows -%}
-          <button type="button" class="yaomri-collection-cards__arrow yaomri-collection-cards__arrow--prev" data-carousel-prev aria-label="Previous collections">{% render 'icon-yaomri-chevron-left' %}</button>
-        {%- endif -%}
-        <div class="yaomri-collection-cards__track" data-carousel-track>
-          {%- for block in section.blocks -%}
-            {%- liquid
-              assign collection_object = collections[block.settings.collection]
-              assign card_title = block.settings.custom_title | default: collection_object.title
-              assign card_subtitle = block.settings.subtitle
-              assign card_link = block.settings.link_override | default: collection_object.url
-              assign card_image = block.settings.custom_image | default: collection_object.image
-            -%}
-            {%- if card_title != blank or card_image != blank -%}
-              <div class="yaomri-collection-cards__slide" {{ block.shopify_attributes }}>
-                {% render 'collection-card-item',
-                  card_title: card_title,
-                  card_subtitle: card_subtitle,
-                  card_link: card_link,
-                  card_image: card_image,
-                  card_badge: block.settings.badge_text,
-                  card_cta_label: block.settings.cta_label,
-                  card_text_colour: block.settings.text_color_override,
-                  card_overlay_color: block.settings.overlay_color,
-                  card_overlay_opacity: block.settings.overlay_opacity,
-                  card_image_position: block.settings.image_position,
-                  open_new_window: block.settings.open_new_window,
-                  image_fit: section.settings.image_fit,
-                  image_hover_effect: section.settings.image_hover_effect,
-                  show_card_cta: show_card_cta,
-                  cta_style: section.settings.cta_style
-                %}
-              </div>
-            {%- endif -%}
+        <div class="cc-carousel__track cc-carousel__track--grid">
+          {%- for i in (1..4) -%}
+            <article class="cc-card cc-card--placeholder">
+              <div class="cc-card__media"><div class="cc-card__placeholder">{{ 'collection-1' | placeholder_svg_tag }}</div></div>
+              <div class="cc-card__overlay"><p class="cc-card__title">Collection</p></div>
+            </article>
           {%- endfor -%}
-        </div>
-        {%- if show_carousel_arrows -%}
-          <button type="button" class="yaomri-collection-cards__arrow yaomri-collection-cards__arrow--next" data-carousel-next aria-label="Next collections">{% render 'icon-yaomri-chevron-right' %}</button>
-        {%- endif -%}
-      </div>
-      {%- if show_carousel_progress -%}
-        <div class="yaomri-collection-cards__progress" data-carousel-progress>
-          <span class="yaomri-collection-cards__progress-bar" data-carousel-progress-bar></span>
         </div>
       {%- endif -%}
     {%- else -%}
-      <div class="yaomri-collection-cards__grid">
+      <div
+        class="cc-carousel__track{% if layout_mode == 'grid' %} cc-carousel__track--grid{% endif %}"
+        data-cc-track
+      >
         {%- for block in section.blocks -%}
           {%- liquid
-            assign collection_object = collections[block.settings.collection]
-            assign card_title = block.settings.custom_title | default: collection_object.title
+            assign coll = collections[block.settings.collection]
+            assign card_img = block.settings.image | default: coll.image
+            assign card_title = block.settings.title | default: coll.title
             assign card_subtitle = block.settings.subtitle
-            assign card_link = block.settings.link_override | default: collection_object.url
-            assign card_image = block.settings.custom_image | default: collection_object.image
+            assign card_link = block.settings.link_override | default: coll.url
+            assign show_count = block.settings.show_count
+            if show_count == blank
+              assign show_count = show_count_default
+            endif
           -%}
-          {%- if card_title != blank or card_image != blank -%}
-            <div class="yaomri-collection-cards__grid-item" {{ block.shopify_attributes }}>
-              {% render 'collection-card-item',
-                card_title: card_title,
-                card_subtitle: card_subtitle,
-                card_link: card_link,
-                card_image: card_image,
-                card_badge: block.settings.badge_text,
-                card_cta_label: block.settings.cta_label,
-                card_text_colour: block.settings.text_color_override,
-                card_overlay_color: block.settings.overlay_color,
-                card_overlay_opacity: block.settings.overlay_opacity,
-                card_image_position: block.settings.image_position,
-                open_new_window: block.settings.open_new_window,
-                image_fit: section.settings.image_fit,
-                image_hover_effect: section.settings.image_hover_effect,
-                show_card_cta: show_card_cta,
-                cta_style: section.settings.cta_style
-              %}
-            </div>
+          {%- if card_title != blank or card_img != blank -%}
+            {%- if card_link != blank -%}
+              <a
+                href="{{ card_link }}"
+                class="cc-card cc-card--hover-{{ section.settings.image_hover }}"
+                {{ block.shopify_attributes }}
+                {% if block.settings.open_new_window %}target="_blank" rel="noopener noreferrer"{% endif %}
+                aria-label="{{ card_title | escape }}"
+              >
+                <div class="cc-card__media">
+                  {%- if card_img != blank -%}
+                    {{
+                      card_img
+                      | image_url: width: 900
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '300,500,700,900',
+                        sizes: '(min-width:1024px) 24vw, (min-width:768px) 32vw, (min-width:640px) 45vw, 70vw',
+                        class: 'cc-card__img',
+                        alt: card_title | default: card_img.alt | escape
+                    }}
+                  {%- else -%}
+                    <div class="cc-card__placeholder">{{ 'collection-1' | placeholder_svg_tag }}</div>
+                  {%- endif -%}
+                  <div class="cc-card__overlay">
+                    {%- if card_title != blank -%}
+                      <p class="cc-card__title">{{ card_title }}</p>
+                    {%- endif -%}
+                    {%- if show_count and coll.products_count > 0 -%}
+                      <p class="cc-card__count">{{ coll.products_count }} pieces</p>
+                    {%- elsif card_subtitle != blank -%}
+                      <p class="cc-card__count">{{ card_subtitle }}</p>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </a>
+            {%- else -%}
+              <article class="cc-card cc-card--hover-{{ section.settings.image_hover }}" {{ block.shopify_attributes }}>
+                <div class="cc-card__media">
+                  {%- if card_img != blank -%}
+                    {{
+                      card_img
+                      | image_url: width: 900
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '300,500,700,900',
+                        sizes: '(min-width:1024px) 24vw, (min-width:768px) 32vw, (min-width:640px) 45vw, 70vw',
+                        class: 'cc-card__img',
+                        alt: card_title | default: card_img.alt | escape
+                    }}
+                  {%- else -%}
+                    <div class="cc-card__placeholder">{{ 'collection-1' | placeholder_svg_tag }}</div>
+                  {%- endif -%}
+                  <div class="cc-card__overlay">
+                    {%- if card_title != blank -%}
+                      <p class="cc-card__title">{{ card_title }}</p>
+                    {%- endif -%}
+                    {%- if show_count and coll.products_count > 0 -%}
+                      <p class="cc-card__count">{{ coll.products_count }} pieces</p>
+                    {%- elsif card_subtitle != blank -%}
+                      <p class="cc-card__count">{{ card_subtitle }}</p>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </article>
+            {%- endif -%}
           {%- endif -%}
         {%- endfor -%}
       </div>
@@ -207,159 +188,35 @@
 {% schema %}
 {
   "name": "Collection cards",
-  "blocks": [
-    {
-      "type": "collection_card",
-      "name": "Collection card",
-      "settings": [
-        { "type": "collection", "id": "collection", "label": "Collection" },
-        { "type": "image_picker", "id": "custom_image", "label": "Custom image" },
-        { "type": "text", "id": "custom_title", "label": "Custom title" },
-        { "type": "text", "id": "subtitle", "label": "Subtitle" },
-        { "type": "url", "id": "link_override", "label": "Link override" },
-        { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Shop now" },
-        { "type": "text", "id": "badge_text", "label": "Badge/eyebrow text" },
-        { "type": "color", "id": "text_color_override", "label": "Text colour override" },
-        { "type": "color", "id": "overlay_color", "label": "Overlay colour", "default": "#000000" },
-        { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 90, "step": 1, "unit": "%", "default": 20 },
-        {
-          "type": "select",
-          "id": "image_position",
-          "label": "Image position",
-          "default": "center center",
-          "options": [
-            { "value": "center center", "label": "Centre" },
-            { "value": "center top", "label": "Top" },
-            { "value": "center bottom", "label": "Bottom" },
-            { "value": "left center", "label": "Left" },
-            { "value": "right center", "label": "Right" }
-          ]
-        },
-        { "type": "checkbox", "id": "open_new_window", "label": "Open link in new tab", "default": false }
-      ]
-    }
-  ],
-  "max_blocks": 18,
   "settings": [
-    { "type": "header", "content": "Section header" },
-    { "type": "checkbox", "id": "show_section_header", "label": "Show section header", "default": true },
-    { "type": "text", "id": "header_eyebrow", "label": "Eyebrow", "default": "Shop by category" },
-    { "type": "text", "id": "header_heading", "label": "Heading", "default": "Collections for every sun-soaked escape" },
-    { "type": "richtext", "id": "header_text", "label": "Text", "default": "<p>Discover curated edits for beach clubs, coastal days and poolside nights.</p>" },
-    { "type": "text", "id": "header_cta_label", "label": "CTA label" },
-    { "type": "url", "id": "header_cta_link", "label": "CTA link" },
-    {
-      "type": "select",
-      "id": "header_preset",
-      "label": "Header preset",
-      "default": "minimal",
-      "options": [
-        { "value": "minimal", "label": "Minimal" },
-        { "value": "editorial_underline", "label": "Editorial underline" },
-        { "value": "eyebrow_line", "label": "Eyebrow line" },
-        { "value": "split", "label": "Split" },
-        { "value": "centre_statement", "label": "Centre statement" }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "header_alignment",
-      "label": "Header alignment",
-      "default": "left",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Centre" },
-        { "value": "right", "label": "Right" }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "header_width",
-      "label": "Header width",
-      "default": "site",
-      "options": [
-        { "value": "site", "label": "Site width" },
-        { "value": "full", "label": "Full width" },
-        { "value": "custom", "label": "Custom width" }
-      ]
-    },
-    { "type": "range", "id": "header_custom_width", "label": "Custom header width", "min": 600, "max": 2200, "step": 20, "unit": "px", "default": 1200 },
-    {
-      "type": "select",
-      "id": "header_decorative_style",
-      "label": "Decorative style",
-      "default": "none",
-      "options": [
-        { "value": "none", "label": "None" },
-        { "value": "short_underline", "label": "Short underline" },
-        { "value": "half_underline", "label": "Half underline" },
-        { "value": "eyebrow_line", "label": "Eyebrow line" },
-        { "value": "side_rule", "label": "Side rule" },
-        { "value": "corner_accent", "label": "Corner accent" }
-      ]
-    },
-    { "type": "color", "id": "header_text_colour", "label": "Text colour" },
-    { "type": "color", "id": "header_eyebrow_colour", "label": "Eyebrow colour" },
-    { "type": "color", "id": "header_heading_colour", "label": "Heading colour" },
-    { "type": "color", "id": "header_decorative_colour", "label": "Decorative colour" },
-    {
-      "type": "select",
-      "id": "header_cta_style",
-      "label": "CTA style",
-      "default": "text",
-      "options": [
-        { "value": "text", "label": "Text link" },
-        { "value": "button", "label": "Button" }
-      ]
-    },
-    { "type": "range", "id": "header_heading_size_desktop", "label": "Heading size desktop", "min": 24, "max": 96, "step": 1, "unit": "px", "default": 48 },
-    { "type": "range", "id": "header_heading_size_mobile", "label": "Heading size mobile", "min": 20, "max": 64, "step": 1, "unit": "px", "default": 32 },
-    { "type": "range", "id": "header_text_size_desktop", "label": "Text size desktop", "min": 12, "max": 28, "step": 1, "unit": "px", "default": 16 },
-    { "type": "range", "id": "header_text_size_mobile", "label": "Text size mobile", "min": 12, "max": 22, "step": 1, "unit": "px", "default": 15 },
-    { "type": "range", "id": "header_eyebrow_size", "label": "Eyebrow size", "min": 10, "max": 24, "step": 1, "unit": "px", "default": 12 },
-    { "type": "range", "id": "header_heading_weight", "label": "Heading weight", "min": 300, "max": 900, "step": 100, "default": 700 },
-    { "type": "range", "id": "header_text_max_width", "label": "Text max width", "min": 240, "max": 1100, "step": 10, "unit": "px", "default": 760 },
-
-    { "type": "header", "content": "General" },
-    {
-      "type": "select",
-      "id": "section_width",
-      "label": "Section width",
-      "default": "site",
-      "options": [
-        { "value": "site", "label": "Site width" },
-        { "value": "full", "label": "Full width" },
-        { "value": "custom", "label": "Custom width" }
-      ]
-    },
-    { "type": "range", "id": "custom_section_width", "label": "Custom section width", "min": 720, "max": 2200, "step": 20, "unit": "px", "default": 1200 },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Shop by collection" },
+    { "type": "text", "id": "heading_subtitle", "label": "Heading subtitle", "default": "Curated edits" },
+    { "type": "checkbox", "id": "show_arrows", "label": "Show arrows", "default": true },
     {
       "type": "select",
       "id": "layout_mode",
       "label": "Layout",
-      "default": "grid",
+      "default": "carousel",
       "options": [
-        { "value": "grid", "label": "Grid" },
-        { "value": "carousel", "label": "Carousel" }
+        { "value": "carousel", "label": "Carousel" },
+        { "value": "grid", "label": "Grid" }
       ]
     },
     {
       "type": "select",
-      "id": "card_style",
-      "label": "Card style",
-      "default": "image",
+      "id": "section_width",
+      "label": "Section width",
+      "default": "full",
       "options": [
-        { "value": "image", "label": "Image card" },
-        { "value": "editorial", "label": "Editorial card" },
-        { "value": "minimal", "label": "Minimal card" }
+        { "value": "site", "label": "Site width" },
+        { "value": "full", "label": "Full width" },
+        { "value": "custom", "label": "Custom width" }
       ]
     },
-    { "type": "color", "id": "section_background", "label": "Section background", "default": "#ffffff" },
-    { "type": "color", "id": "text_color", "label": "Text colour", "default": "#111111" },
-    { "type": "color", "id": "card_background", "label": "Card background", "default": "#ffffff" },
-    { "type": "color", "id": "card_text_color", "label": "Card text colour", "default": "#111111" },
-    { "type": "color", "id": "card_border_color", "label": "Card border colour", "default": "#e8e8e8" },
-    { "type": "checkbox", "id": "show_card_border", "label": "Show card border", "default": false },
+    { "type": "range", "id": "custom_section_width", "label": "Custom section width", "min": 720, "max": 2200, "step": 20, "unit": "px", "default": 1500 },
+    { "type": "color", "id": "background_color", "label": "Background colour", "default": "#ffffff" },
+    { "type": "checkbox", "id": "border_top", "label": "Border top", "default": true },
+    { "type": "color", "id": "border_color", "label": "Border colour", "default": "#e8e8e8" },
     {
       "type": "select",
       "id": "card_image_ratio",
@@ -369,89 +226,22 @@
         { "value": "4-5", "label": "Portrait 4:5" },
         { "value": "1-1", "label": "Square 1:1" },
         { "value": "4-3", "label": "Landscape 4:3" },
-        { "value": "16-9", "label": "Wide 16:9" },
-        { "value": "adapt", "label": "Adapt to image" }
+        { "value": "16-9", "label": "Wide 16:9" }
       ]
     },
     {
       "type": "select",
-      "id": "image_fit",
-      "label": "Image fit",
-      "default": "cover",
-      "options": [
-        { "value": "cover", "label": "Cover" },
-        { "value": "contain", "label": "Contain" }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "image_hover_effect",
-      "label": "Image hover effect",
-      "default": "none",
+      "id": "image_hover",
+      "label": "Image hover",
+      "default": "subtle_zoom",
       "options": [
         { "value": "none", "label": "None" },
-        { "value": "zoom", "label": "Zoom" },
-        { "value": "fade", "label": "Fade" }
+        { "value": "subtle_zoom", "label": "Subtle zoom" }
       ]
     },
-    { "type": "checkbox", "id": "show_card_cta", "label": "Show card CTA", "default": true },
-    {
-      "type": "select",
-      "id": "cta_style",
-      "label": "CTA style",
-      "default": "text",
-      "options": [
-        { "value": "button", "label": "Button" },
-        { "value": "text", "label": "Text link" }
-      ]
-    },
-
-    { "type": "header", "content": "Grid" },
-    {
-      "type": "select",
-      "id": "grid_columns_desktop",
-      "label": "Columns desktop",
-      "default": "3",
-      "options": [
-        { "value": "2", "label": "2" },
-        { "value": "3", "label": "3" },
-        { "value": "4", "label": "4" },
-        { "value": "5", "label": "5" }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "grid_columns_tablet",
-      "label": "Columns tablet",
-      "default": "2",
-      "options": [
-        { "value": "2", "label": "2" },
-        { "value": "3", "label": "3" }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "grid_columns_mobile",
-      "label": "Columns mobile",
-      "default": "1",
-      "options": [
-        { "value": "1", "label": "1" },
-        { "value": "2", "label": "2" }
-      ]
-    },
-    { "type": "range", "id": "grid_gap_desktop", "label": "Gap desktop", "min": 8, "max": 64, "step": 2, "unit": "px", "default": 20 },
-    { "type": "range", "id": "grid_gap_mobile", "label": "Gap mobile", "min": 8, "max": 40, "step": 2, "unit": "px", "default": 14 },
-
-    { "type": "header", "content": "Carousel" },
-    { "type": "range", "id": "carousel_cards_desktop", "label": "Cards visible desktop", "min": 1, "max": 5, "step": 1, "default": 3 },
-    { "type": "range", "id": "carousel_cards_tablet", "label": "Cards visible tablet", "min": 1, "max": 4, "step": 1, "default": 2 },
-    { "type": "range", "id": "carousel_cards_mobile", "label": "Cards visible mobile", "min": 1, "max": 3, "step": 1, "default": 1 },
-    { "type": "range", "id": "carousel_gap", "label": "Carousel gap", "min": 8, "max": 40, "step": 2, "unit": "px", "default": 16 },
-    { "type": "checkbox", "id": "show_carousel_arrows", "label": "Show arrows", "default": true },
-    { "type": "checkbox", "id": "show_carousel_progress", "label": "Show scrollbar/progress", "default": true },
-    { "type": "checkbox", "id": "enable_drag_swipe", "label": "Enable drag/swipe", "default": true },
-    { "type": "checkbox", "id": "carousel_autoplay", "label": "Autoplay", "default": false },
-    { "type": "range", "id": "carousel_autoplay_speed", "label": "Autoplay speed", "min": 2, "max": 12, "step": 1, "unit": "s", "default": 5 },
+    { "type": "range", "id": "gap_desktop", "label": "Gap desktop", "min": 8, "max": 40, "step": 1, "unit": "px", "default": 16 },
+    { "type": "range", "id": "gap_mobile", "label": "Gap mobile", "min": 8, "max": 28, "step": 1, "unit": "px", "default": 12 },
+    { "type": "checkbox", "id": "show_count_default", "label": "Show product count by default", "default": true },
 
     { "type": "header", "content": "Spacing" },
     { "type": "range", "id": "padding_top_desktop", "label": "Padding top desktop", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 0 },
@@ -467,13 +257,43 @@
     { "type": "range", "id": "margin_top_mobile", "label": "Margin top mobile", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 },
     { "type": "range", "id": "margin_bottom_mobile", "label": "Margin bottom mobile", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 0 }
   ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection card",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "text", "id": "title", "label": "Card title override" },
+        { "type": "text", "id": "subtitle", "label": "Subtitle override" },
+        { "type": "image_picker", "id": "image", "label": "Image override" },
+        { "type": "checkbox", "id": "show_count", "label": "Show product count", "default": true },
+        { "type": "url", "id": "link_override", "label": "Link override" },
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Image position",
+          "default": "center center",
+          "options": [
+            { "value": "center center", "label": "Centre" },
+            { "value": "center top", "label": "Top" },
+            { "value": "center bottom", "label": "Bottom" },
+            { "value": "left center", "label": "Left" },
+            { "value": "right center", "label": "Right" }
+          ]
+        },
+        { "type": "checkbox", "id": "open_new_window", "label": "Open in new tab", "default": false }
+      ]
+    }
+  ],
+  "max_blocks": 12,
   "presets": [
     {
       "name": "Collection cards",
       "blocks": [
-        { "type": "collection_card" },
-        { "type": "collection_card" },
-        { "type": "collection_card" }
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" }
       ]
     }
   ]

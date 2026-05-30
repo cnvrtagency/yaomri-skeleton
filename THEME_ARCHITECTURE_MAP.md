@@ -155,26 +155,26 @@ Judgement:
 
 Owned by:
 - `sections/collection-cards.liquid`
-- `snippets/collection-card-item.liquid`
 - `assets/section-collection-cards.css`
 - `assets/section-collection-cards.js`
 
 Owns:
 - Collection showcase in Grid or Carousel mode.
-- Reusable section header integration for collection/category intros.
-- Card-level collection overrides (title/image/link/subtitle/badge/cta).
+- Simple section heading row with optional subtitle and carousel arrows.
+- Card-level collection overrides (title/image/link/subtitle/image/count).
 
 Must not own:
 - Global header/nav/cart logic.
 - Global typography tokens.
 
 Current implementation:
-- Uses the reusable `section-header` snippet for heading content and style.
+- Uses a handoff-style simplified structure with a dedicated heading row.
 - Supports fallbacks from selected `collection` object with explicit custom overrides.
-- Carousel is lightweight, scroll-snap based, with progressive enhancement via vanilla JS.
+- Carousel is lightweight, scroll-snap based, with progressive enhancement via vanilla JS arrows.
+- No separate card snippet; card rendering is local to the section for easier maintenance.
 
 Judgement:
-- This is the launch-ready pattern for category merchandising sections.
+- This is the launch-ready pattern for category merchandising sections; keep it simple and avoid adding styling bloat.
 
 ### Theme Settings > Header
 

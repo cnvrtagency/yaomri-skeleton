@@ -261,21 +261,23 @@ Use this before publishing and after any architecture-level change. Passing auto
 ## Collection Cards
 
 - Collection Cards section appears in Theme Editor.
-- Reusable `section-header` is used by Collection Cards and renders preset/decorative/alignment/width settings correctly.
-- Grid mode works at desktop/tablet/mobile column settings.
-- Carousel mode works at desktop/tablet/mobile visible-card settings.
-- Carousel arrows move the track by one card step.
-- Carousel drag/swipe works when enabled.
-- Carousel autoplay works only when enabled.
-- Carousel progress bar updates while scrolling.
+- Heading and optional heading subtitle render correctly in the section header row.
+- Grid mode renders the same card design in responsive columns.
+- Carousel mode renders horizontal scroll-snap cards.
+- Carousel arrows move the track by about 80% of the track width.
+- Carousel works after Theme Editor section reload.
 - Selected collection fallback works: title, image, link from collection object.
 - Custom title/image/link overrides take priority over collection defaults.
+- Product count line renders when enabled and falls back to subtitle override when count is hidden or unavailable.
 - Empty block cards are not rendered on storefront.
 - Placeholder cards render only in Theme Editor when no usable blocks exist.
-- Card ratio modes work: 4:5, 1:1, 4:3, 16:9, adapt.
-- Card style presets (image/editorial/minimal) change visual treatment.
-- Card CTA shows only when enabled and card has a link.
+- Card ratio modes work: 4:5, 1:1, 4:3, 16:9.
+- Cards with no resolved link render as non-clickable articles, not fake `#` links.
 - No nested/broken links are rendered.
+- Image position setting affects image crop focus.
+- Image hover mode supports none and subtle zoom.
+- Border top and border colour render correctly.
+- Section width modes work: Full, Site, Custom.
 - Desktop/mobile padding and margin defaults remain 0.
 - No default browser-blue link styling appears.
 - 3-Card Hero renders one, two, or three cards cleanly.
