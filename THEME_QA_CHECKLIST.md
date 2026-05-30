@@ -130,6 +130,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Desktop/mobile typography settings apply.
 - Announcement bar works with Full/Site/Custom bar width modes.
 - Announcement shows above the main header in the shared header-group stack and does not overlap header controls.
+- Shared header-stack class/state is attached to the common header-group wrapper, not the header section wrapper alone.
 - Disabling announcement leaves no residual vertical gap.
 - Transparent/sticky/solid-after-scroll stack states have no top gap, overlap, or flicker.
 

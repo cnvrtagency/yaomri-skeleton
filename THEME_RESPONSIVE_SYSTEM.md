@@ -75,7 +75,7 @@ For sections with section-level width controls:
 ## Transparent header + announcement interaction
 
 - Announcement and Header remain separate sections, but are coordinated as one stack through shared state on the header-group wrapper.
-- In transparent + sticky mode, the shared stack overlays the hero and can collapse without cross-section offset hacks.
+- In transparent + sticky mode, the shared stack overlays the hero and stays as a single top unit.
 - Solid-after-scroll updates header visuals while preserving stable announcement/header geometry.
 
 ## Section-level width/inset checklist

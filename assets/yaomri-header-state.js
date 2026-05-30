@@ -2,23 +2,41 @@
   const SCROLL_THRESHOLD = 24;
   const GROUP_CLASS = 'yaomri-header-stack';
   const GROUP_OVERLAY_CLASS = 'yaomri-header-stack--overlay';
-  const GROUP_COLLAPSED_CLASS = 'is-collapsed';
 
   const findStackGroup = (header) => {
     if (!header) return null;
-    return (
-      header.closest('.shopify-section-group-header-group') ||
-      header.parentElement ||
-      null
-    );
+    const explicitGroup = header.closest('[data-yaomri-header-group]');
+    if (explicitGroup) return explicitGroup;
+
+    const themedGroup = header.closest('.shopify-section-group-header-group');
+    if (themedGroup) return themedGroup;
+
+    const headerSection = header.closest('[id^="shopify-section-"]') || header.parentElement;
+    const announcement = document.querySelector('.yaomri-announcement');
+    const announcementSection =
+      announcement && (announcement.closest('[id^="shopify-section-"]') || announcement.parentElement);
+
+    if (!announcementSection) return headerSection?.parentElement || null;
+
+    const headerAncestors = [];
+    let current = headerSection;
+    while (current) {
+      headerAncestors.push(current);
+      current = current.parentElement;
+      if (current === document.body || current === document.documentElement) break;
+    }
+
+    current = announcementSection;
+    while (current) {
+      if (headerAncestors.includes(current)) return current;
+      current = current.parentElement;
+      if (current === document.body || current === document.documentElement) break;
+    }
+
+    return headerSection?.parentElement || null;
   };
 
-  const isElementVisible = (element) => {
-    if (!element) return false;
-    return getComputedStyle(element).display !== 'none' && element.offsetHeight > 0;
-  };
-
-  const applyState = (header, group, announcement) => {
+  const applyState = (header, group) => {
     if (!header) return;
 
     const transparentActive = header.dataset.transparentActive === 'true';
@@ -29,18 +47,6 @@
     if (group) {
       group.classList.add(GROUP_CLASS);
       group.classList.toggle(GROUP_OVERLAY_CLASS, transparentActive && stickyEnabled);
-    }
-
-    const announcementHeight = isElementVisible(announcement)
-      ? Math.round(announcement.getBoundingClientRect().height)
-      : 0;
-
-    if (group) {
-      group.style.setProperty('--yhs-announcement-height', `${announcementHeight}px`);
-      group.classList.toggle(
-        GROUP_COLLAPSED_CLASS,
-        transparentActive && stickyEnabled && announcementHeight > 0 && isPastThreshold
-      );
     }
 
     if (transparentActive && solidAfterScroll) {
@@ -61,22 +67,13 @@
         const header = document.querySelector('.yaomri-header');
         if (!header) return;
         const group = findStackGroup(header);
-        const announcement = group
-          ? group.querySelector('.yaomri-announcement')
-          : document.querySelector('.yaomri-announcement');
-        applyState(header, group, announcement);
+        applyState(header, group);
       });
     };
 
     queueApply();
     window.addEventListener('scroll', queueApply, { passive: true });
     window.addEventListener('resize', queueApply);
-
-    if (window.ResizeObserver) {
-      const observer = new ResizeObserver(queueApply);
-      const bar = document.querySelector('.yaomri-announcement');
-      if (bar) observer.observe(bar);
-    }
 
     document.addEventListener('shopify:section:load', queueApply);
     document.addEventListener('shopify:section:reorder', queueApply);

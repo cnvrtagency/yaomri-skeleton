@@ -130,8 +130,9 @@ Must not be duplicated elsewhere:
 Current implementation:
 - Announcement is a standalone section in `sections/header-group.json` above Header.
 - Header and announcement stay separately editable in Theme Editor.
-- Frontend behavior is coordinated through shared stack state classes on the header-group wrapper so the two sections move together in transparent/sticky mode.
+- Frontend behavior is coordinated through a shared header-group wrapper in `layout/theme.liquid` (`[data-yaomri-header-group]` and `.yaomri-header-stack`), so the two sections move together in transparent/sticky mode.
 - Header group order is: Announcement Bar, Header, Mega Menu, Mobile Menu.
+- Stack ownership moved to the wrapper level to avoid placing announcement-related transforms on the header section alone.
 
 Judgement:
 - This ownership is launch-correct. Announcement should remain standalone for merchant clarity, with stack behavior coordinated at the group level.

@@ -263,7 +263,7 @@ Status values:
 ## Announcement Bar Settings
 
 Announcement bar settings and blocks are owned by `sections/announcement-bar.liquid` and rendered as a standalone section in `sections/header-group.json` above Header.
-Header remains a separate section (`sections/header.liquid`). Shared stack scroll behavior is coordinated by header-group-level classes/state, not by moving announcement markup into Header.
+Header remains a separate section (`sections/header.liquid`). Shared stack behavior is coordinated by a dedicated wrapper around the header group in `layout/theme.liquid` (`[data-yaomri-header-group]` + `.yaomri-header-stack`), not by moving announcement markup into Header or using header-only offsets.
 
 | Setting ID | Current label | Location | Type | Default | Owner | What it controls | Where it is used | CSS variable | Status | Suggested label | Suggested help text | Notes/conflicts |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
