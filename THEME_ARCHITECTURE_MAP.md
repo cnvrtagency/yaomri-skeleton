@@ -140,13 +140,12 @@ Judgement:
 ### Reusable Section Header Pattern
 
 Owned by:
-- `snippets/section-header.liquid`
-- `assets/section-header.css`
+Deferred (not active) while we keep section-specific local heading implementations for launch.
 
 Owns:
-- Reusable section-level editorial header UI pattern for content sections.
-- Shared structure for eyebrow, heading, text, optional CTA, width/alignment/preset/decorative styles.
-- Local visual styling through parameters, not global section state.
+- `n/a` in the active build (snippet and CSS have been removed from runtime use).
+- Planned reusable section-level editorial header UI for content sections.
+- Shared structure for eyebrow, heading, text, optional CTA, and width/alignment variants (future use).
 
 Must not own:
 - Actual section settings schema for each consuming section.
@@ -154,13 +153,13 @@ Must not own:
 - Global typography tokens.
 
 Current implementation:
-- Reusable snippet and scoped CSS now exist.
-- Theme settings now include a global `Section headers` group for reusable defaults.
-- Existing sections are intentionally not retrofitted blindly to avoid regressions.
-- `Collection Cards` intentionally keeps its Lovable-style local heading row for launch consistency.
+- The runtime owner remains local to each section (`Collection Cards` and `Single Image Hero`).
+- `snippets/section-header.liquid` and `assets/section-header.css` are not rendered in active sections.
+- Theme settings still include dormant `Section headers` defaults documented for future rollout.
+- Deferred system is intentionally not consuming any active section yet.
 
 Judgement:
-- Use this snippet for new content sections and inherit global `Section headers` defaults unless a section needs local override settings.
+- Keep this system deferred until a dedicated migration pass. Current active sections keep local heading implementations.
 
 ### Collection Cards Section
 

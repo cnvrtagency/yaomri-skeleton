@@ -10,7 +10,7 @@ The header-stack patch is integrated and stable: announcement and header remain 
 
 Current state:
 1. No theme-check blockers.
-2. One theme-check warning: orphaned snippet `snippets/section-header.liquid`.
+2. Reusable section-header system is currently deferred; orphaned assets were removed from runtime use.
 3. Major architectural debt remains in naming and section ownership patterns (Ya Omri-branded class system and mixed responsive conventions).
 4. Homepage is minimal and predictable (`templates/index.json` has only `single-image-hero` and `collection-cards` in this snapshot).
 5. Header/mobile drawer/mega menu stack behavior is now feature-complete for fade-away, mobile/desktop thresholds, easing, and duration, including solid-state suppression in fade-away mode.
@@ -18,14 +18,14 @@ Current state:
 ## B. Critical launch blockers
 
 1. No critical runtime blockers were found by theme check, but there are launch readiness gaps that should be addressed before release as a premium theme.
-2. Orphaned/unused code should be cleaned before packaging: `snippets/section-header.liquid` and possibly unused assets (`assets/section-header.css`, `assets/icon-account.svg`) from schema/theme scanning are candidates.
+2. Confirm deferred reusable systems are either fully removed or actively reintroduced before packaging (`section-header` system is currently deferred in docs and inactive).
 3. Some sections still rely on hardcoded/brand-specific class/token systems that are not yet migration-ready for broad distribution.
 4. No end-to-end automated accessibility test harness is present for modal drawer focus trapping, mobile nav keyboard behavior, and announcement controls.
 5. `layouts` and section-specific assets are loaded per section with potential duplication; this is manageable now but may become a perf issue as content sections grow.
 
 ## C. High-priority fixes
 
-1. Resolve orphaned snippet and unused asset risk by either deleting or repurposing them; add references if they are intended as reusable entry points.
+1. Keep deferred section-header assets out of active runtime paths and document clear migration criteria before reactivation.
 2. Continue hardening class/naming migration planning before external theme package distribution:
    - replace or aliases `yaomri-*`/`yh-*` in future updates
    - preserve data attributes for JS compatibility.
@@ -60,7 +60,7 @@ Current state:
    - `sections/cart.liquid`: `yaomri-cart.css`, `yaomri-cart.js`
 3. Potential wins
    - Consolidate header/nav JS responsibilities into one small module if future sections add additional scroll/interaction controllers.
-   - Audit and eliminate unused selectors/assets before publish (`section-header.css`/`icon-account.svg` candidate unused).
+   - Audit and eliminate unused selectors/assets before publish.
    - Defer non-essential scripts in non-interactive templates where practical.
 4. No blocking heavy issues found; no blocking console-level JS exceptions from theme check.
 
@@ -204,8 +204,8 @@ Current state:
 
 ## Suggested next 10 Codex tasks (in order)
 
-1. Remove or repurpose orphaned snippet `snippets/section-header.liquid` and verify build output.
-2. Confirm ownership and usage of `assets/section-header.css` and `assets/icon-account.svg`.
+1. Keep the deferred section-header system state documented and only reintroduce with owning section migration.
+2. Confirm ownership and usage of `assets/icon-account.svg`.
 3. Add an explicit skip link and confirm landmark structure in layout templates.
 4. Audit and fix remaining breakpoint mismatches against `THEME_RESPONSIVE_SYSTEM.md` in all section-level CSS.
 5. Extend accessibility checks for mobile drawer focus/close behavior and keyboard navigation.

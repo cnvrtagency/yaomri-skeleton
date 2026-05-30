@@ -48,8 +48,9 @@ This audit recommends a standardized, granular system without reducing control.
 5. Repeated pattern components (eyebrow/heading/text/button) do not share a single naming contract across sections.
 
 Update note (May 30, 2026):
-- Reusable section header infrastructure has now been added (`snippets/section-header.liquid` and `assets/section-header.css`) for future section adoption.
-- Theme settings now include a global `Section headers` group used as fallback defaults by the reusable section header snippet.
+- Reusable section-header infrastructure is currently deferred and no longer active in the runtime.
+- `snippets/section-header.liquid` and `assets/section-header.css` were removed from active use while we keep local heading systems for active sections.
+- Theme settings still include a `Section headers` group, but it is currently dormant until the reusable system is reintroduced with migration safeguards.
 - Single Image Hero Paragraph weight options now include Light (300) and Extra bold (800).
 - Single Image Hero paragraph rich text now inherits the selected paragraph font weight, so Light/300 produces an actual rendered change when the active font supports that weight.
 

@@ -113,8 +113,8 @@ Tasks:
 - Done: split the old combined Hero into Single Image Hero and 3-Card Hero so merchants do not see irrelevant layout settings.
 - Done: make Single Image Hero content block-based with separate Eyebrow, Heading, Paragraph, buttons, custom markup, and image pins.
 - Done: integrate Announcement Bar into the Header section with Static/Carousel/Marquee modes (single header system ownership).
-- Done: add a reusable `section-header` snippet/CSS pattern for upcoming content sections (starting with Collection Cards/Carousel).
-- Done: add global Theme settings > Section headers defaults and wire fallback behavior into the reusable section-header snippet.
+- Deferred: `section-header` snippet/CSS pattern remains out-of-scope for active rollout while we ship with local heading ownership in Collection Cards.
+- Deferred: global Theme settings > Section headers defaults are documented for future use; no active section currently consumes them.
 - Done: add `Collection cards` section with Grid/Carousel modes and a simplified premium heading row.
 - Add core launch sections in this order:
   1. Brand strip.

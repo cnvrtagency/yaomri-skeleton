@@ -273,18 +273,16 @@ Use this before publishing and after any architecture-level change. Passing auto
 
 ## Reusable Section Header Pattern
 
-- Theme settings > Section headers group is present and saves correctly.
-- Global Section headers preset/decorative defaults apply when snippet parameters are not passed.
-- Section-level snippet parameters override global Section headers defaults when passed.
-- `snippets/section-header.liquid` renders nothing when all content fields are blank.
-- Eyebrow/Heading/Text render only when each field has content.
-- CTA renders only when both label and link are present.
-- Alignment classes work: left, centre, right.
-- Width mode classes work: site, full, custom.
-- Presets render correctly: minimal, editorial underline, eyebrow line, split, centre statement.
-- Decorative styles render correctly: none, short underline, half underline, eyebrow line, side rule, corner accent.
-- Split preset places CTA to the right on desktop and stacks on mobile.
-- Colour overrides apply through local CSS variables and inherit global tokens when blank.
+- The section-header reusable system is deferred and currently not rendered by active sections.
+- `snippets/section-header.liquid` and `assets/section-header.css` were removed from active runtime ownership.
+- QA for this pattern is deferred until it is migrated back into production sections.
+- Keep future checks for:
+  - section-level setting overrides
+  - preset/decorative behavior
+  - width/alignment class behavior
+  - CTA and empty-state rendering
+  - colour inheritance
+  - but block this section in current QA passes until reintroduction.
 
 ## Collection Cards
 
