@@ -228,6 +228,9 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Cart Phase 1 legacy markup cleanup: `sections/cart.liquid` renders CNVRT cart classes only.
 - Cart CSS/JS legacy fallbacks remain intentionally active for one release (`assets/yaomri-cart.css`, `assets/yaomri-cart.js`).
 - Next legacy alias-removal candidate remains pending QA sign-off.
+- Footer Phase 2 legacy markup cleanup: `sections/footer.liquid` renders CNVRT footer classes only.
+- Footer CSS legacy fallback selectors remain intentionally active for one release.
+- Next legacy alias-removal candidate remains pending QA sign-off.
 - Empty state renders heading, body text, icon, and continue shopping link.
 - Item state renders item image, title, options, price, quantity, remove link, line total, and summary.
 - Quantity input recalculates visible line totals and subtotal.

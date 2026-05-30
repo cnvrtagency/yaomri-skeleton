@@ -17,6 +17,7 @@ Current state:
 6. Namespace migration is now complete through the remaining alias phases: announcement (`yaomri-announcement*`/`yab-*`), collection cards (`cc-*`), Single Image Hero (`yaomri-single-hero*`/`ysh-*`), Header stack (`yaomri-header*`/`yaomri-header-stack*`), Mega menu (`yaomri-mega*`/`ym-*`), mobile drawer (`mdrawer*`), cart (`yaomri-cart*`), footer (`site-footer`/`footer__*`) and 3-card hero (`yaomri-three-hero*`/`yth-*`) with compatibility aliasing to CNVRT namespaces.
 7. Controlled cleanup pass completed: runtime selectors now resolve CNVRT-first with legacy fallbacks, and alias-removal is explicitly deferred to avoid regressions.
 8. Legacy removal Phase 1 (cart markup only) is complete: `sections/cart.liquid` now emits CNVRT cart classes only; cart CSS/JS legacy fallbacks are intentionally retained for one release.
+9. Legacy removal Phase 2 (footer markup only) is complete: `sections/footer.liquid` now emits CNVRT footer classes only; footer CSS legacy fallback selectors are intentionally retained for one release.
 
 ## B. Critical launch blockers
 

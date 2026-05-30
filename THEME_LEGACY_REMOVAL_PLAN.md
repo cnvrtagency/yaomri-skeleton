@@ -6,6 +6,7 @@
 - The only universally safe removals right now are docs-only references.
 - First code-removal target should be a controlled pilot on one isolated component (recommended: Cart markup classes only), with CSS/JS fallbacks retained for one release.
 - Phase 1 is complete: legacy `yaomri-cart*` markup classes were removed from `sections/cart.liquid`; CSS/JS legacy fallbacks remain intentionally active for one release.
+- Phase 2 is complete: legacy footer markup aliases (`site-footer`, `footer__*`) were removed from `sections/footer.liquid`; footer CSS legacy fallbacks remain intentionally active for one release.
 
 ## Prefix inventory (legacy readiness)
 
@@ -79,9 +80,9 @@
 - Liquid/CSS use `site-footer` + `footer__*` with CNVRT aliases.
 - Not part of the listed legacy prefix set (`yaomri-/y*/cc-/mdrawer-`).
 - Runtime dependency risk is low, but this is a separate naming-cleanup track.
-- Remove now: **Defer from this legacy-prefix phase**.
+- Remove now: **Completed in Phase 2 (markup-only)**.
 - Risk: **Low**.
-- Action: treat as neutral naming cleanup after legacy-prefix retirement.
+- Action: keep footer CSS fallback selectors for one release; next runtime alias-removal candidate remains pending QA sign-off.
 - Class: **B (temporary compatibility naming)**.
 
 ### 6) Cart
@@ -147,7 +148,8 @@
 ## Safe-to-remove list (A)
 1. Docs-only legacy references in markdown files where they are historical/contextual and not current instructions.
 2. Cart markup-only `yaomri-cart*` aliases in `sections/cart.liquid` were safe and have now been removed (Phase 1 complete).
-3. No additional runtime legacy class/var alias is globally safe for immediate removal across all components.
+3. Footer markup-only legacy aliases (`site-footer`, `footer__*`) in `sections/footer.liquid` were safe and have now been removed (Phase 2 complete).
+4. No additional runtime legacy class/var alias is globally safe for immediate removal across all components.
 
 ## Keep-temporarily list (B)
 1. `yab-*` (Announcement vars)

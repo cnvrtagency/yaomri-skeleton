@@ -44,6 +44,7 @@ Runtime cleanup completed in this pass:
 3. No legacy data attributes were removed.
 4. Legacy class and variable aliases remain intentionally until a dedicated alias-removal phase.
 5. Cart Phase 1 legacy markup cleanup is complete: `sections/cart.liquid` now renders CNVRT cart classes only, while legacy CSS/JS fallbacks remain intentionally active for one release.
+6. Footer Phase 2 legacy markup cleanup is complete: `sections/footer.liquid` now renders CNVRT footer classes only, while legacy footer CSS fallback selectors remain intentionally active for one release.
 
 ## B. Prefix inventory
 
