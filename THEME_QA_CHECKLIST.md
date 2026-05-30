@@ -18,6 +18,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Confirm no old Dawn repo edits.
 - Confirm no settings were added without registry updates.
 - Confirm no invalid URL defaults.
+- Confirm skip-link target and layout landmarks are present (`Skip to content`, `MainContent`, landmark roles).
 
 ## Theme Settings
 
@@ -127,6 +128,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 ## Announcement Bar
 
 - Announcement bar is a standalone section in `sections/header-group.json` above Header.
+- `Skip to content` focuses `MainContent` when present.
 - Static mode renders the first non-empty announcement item.
 - Carousel mode rotates announcements one at a time.
 - Carousel mode is always centre-aligned.
@@ -137,6 +139,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Marquee pause on hover works when enabled.
 - Marquee respects `prefers-reduced-motion`.
 - Announcement links are keyboard accessible.
+- Announcement control buttons expose clear accessible names.
 - Announcement item with no link renders plain text.
 - Empty announcement blocks are not rendered.
 - Hide on mobile works per block.
@@ -182,6 +185,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 ## Mobile Menu
 
 - Drawer opens from mobile header menu button.
+- Mobile drawer trigger reflects open/closed state through `aria-expanded`.
 - Drawer closes with close button.
 - Drawer closes by tapping scrim.
 - Drawer closes with Escape.
@@ -191,6 +195,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Focus returns to trigger on close.
 - Root view shows no back arrow.
 - Drill view shows Back.
+- Drill buttons expose `aria-expanded` and `aria-controls` on open/close.
 - Back returns to root or prior drill view.
 - Root title displays drawer title when set.
 - Blank drawer title removes title text and does not reserve unnecessary centre title space.

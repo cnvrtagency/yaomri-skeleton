@@ -133,6 +133,7 @@ Current implementation:
 - Frontend behavior is coordinated through a shared header-group wrapper in `layout/theme.liquid` (`[data-yaomri-header-group]` and `.yaomri-header-stack`), so the two sections move together in transparent/sticky mode.
 - Header group order is: Announcement Bar, Header, Mega Menu, Mobile Menu.
 - Stack ownership moved to the wrapper level to avoid placing announcement-related transforms on the header section alone.
+- Skip link and main content landmark are wired in layout for keyboard-first navigation into the page flow.
 
 Judgement:
 - This ownership is launch-correct. Announcement should remain standalone for merchant clarity, with stack behavior coordinated at the group level.

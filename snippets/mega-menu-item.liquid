@@ -33,6 +33,7 @@
     assign dropdown_width = block.settings.dropdown_width | default: 260
     assign dropdown_style = item_style | append: '--ym-dropdown-width:' | append: dropdown_width | append: 'px;'
     assign dropdown_menu = blank
+    assign dropdown_panel_id = 'yaomri-mega-dropdown-' | append: block.id
     if block.settings.menu != blank
       assign dropdown_menu = linklists[block.settings.menu]
       if dropdown_menu != blank and dropdown_menu.links.size == 0
@@ -51,7 +52,11 @@
       href="{{ item_url }}"
       {% if item_target == '_blank' %}target="_blank" rel="noopener"{% endif %}
       data-dropdown-trigger
+      data-dropdown-target="{{ dropdown_panel_id }}"
       data-mega-link
+      aria-controls="{{ dropdown_panel_id }}"
+      aria-expanded="false"
+      aria-haspopup="true"
     >
       <span>{{ item_title }}</span>
       {%- if item_label != blank -%}
@@ -59,7 +64,11 @@
       {%- endif -%}
     </a>
     {%- if dropdown_menu != blank -%}
-      <div class="yaomri-mega__dropdown-panel" data-dropdown-panel>
+      <div
+        class="yaomri-mega__dropdown-panel"
+        data-dropdown-panel
+        id="{{ dropdown_panel_id }}"
+      >
         <ul class="yaomri-mega__dropdown-list" role="list">
           {%- for child in dropdown_menu.links -%}
             <li class="yaomri-mega__dropdown-item">
@@ -73,6 +82,7 @@
 {%- elsif block.type == 'mega_item' -%}
   {%- liquid
     assign mega_id = block.settings.mega_menu_id | strip
+    assign mega_panel_id = 'yaomri-mega-panel-' | append: mega_id
   -%}
   <li
     class="yaomri-mega__item yaomri-mega__item--mega"
@@ -85,7 +95,10 @@
       href="{{ item_url }}"
       {% if item_target == '_blank' %}target="_blank" rel="noopener"{% endif %}
       data-mega-trigger
+      aria-controls="{{ mega_panel_id }}"
       data-mega-target="{{ mega_id | escape }}"
+      aria-expanded="false"
+      aria-haspopup="true"
       data-mega-link
     >
       <span>{{ item_title }}</span>

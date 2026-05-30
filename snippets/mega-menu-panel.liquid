@@ -20,6 +20,7 @@
 {%- if parent_id != blank and has_panel_content -%}
   <section
     class="yaomri-mega-panel{% if packery_enabled %} yaomri-mega-panel--packery{% else %} yaomri-mega-panel--rows{% endif %}"
+    id="yaomri-mega-panel-{{ parent_id }}"
     data-mega-panel
     data-mega-parent="{{ parent_id | escape }}"
     style="--ym-panel-width: {{ panel_width_value }}px;"

@@ -57,6 +57,9 @@
                     type="button"
                     data-mdrawer-drill
                     data-target="{{ panel_id }}"
+                    data-controls="drawer-panel-{{ panel_id }}"
+                    aria-controls="drawer-panel-{{ panel_id }}"
+                    aria-expanded="false"
                     data-title="{{ link.title | escape }}"
                   >
                     <span>{{ link.title }}</span>
@@ -151,7 +154,7 @@
       {%- for link in drawer_menu.links -%}
         {%- if link.links.size > 0 -%}
           {%- assign panel_id = 'panel-' | append: link.handle -%}
-          <div class="mdrawer__view" data-mdrawer-view="{{ panel_id }}">
+          <div class="mdrawer__view" data-mdrawer-view="{{ panel_id }}" id="drawer-panel-{{ panel_id }}">
             <nav class="mdrawer__drill-nav" aria-label="{{ link.title | escape }}">
               <ul class="mdrawer__drill-list" role="list">
                 {%- assign ungrouped_started = false -%}

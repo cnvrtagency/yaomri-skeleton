@@ -151,13 +151,13 @@ Current state:
    - Many controls include semantic roles in cart and heading sections.
    - Buttons and links use clear labels in menu and announcement interactions.
 2. Medium issues
-   - Missing explicit "skip to content" landmark pattern in shared layout output.
+   - Explicit "skip to content" landmark pattern is now present in layout; confirm regression on future structural changes.
    - Some decorative placeholders and rich text blocks need periodic validation for descriptive alt/assistive behavior.
    - Reduced-motion is respected for header stack and some section transitions; verify consistency across non-header animations.
 3. Improvements to prioritize
-   - Add/verify focus-visible treatment and focus restoration in mobile drawer open/close.
+   - Keep focus-visible verification and focus restoration in mobile drawer open/close.
    - Ensure announcement controls do not become trapped when hidden or rapidly changing.
-   - Add explicit aria-live strategy for dynamic announcement text where needed.
+   - Add explicit aria-live strategy for additional dynamic text surfaces as features expand.
 4. No critical accessibility regression detected in static review, but no automated WCAG pass was run.
 
 ## K. Class naming migration plan
@@ -206,7 +206,7 @@ Current state:
 
 1. Keep the deferred section-header system state documented and only reintroduce with owning section migration.
 2. Confirm ownership and usage of `assets/icon-account.svg`.
-3. Add an explicit skip link and confirm landmark structure in layout templates.
+3. Keep skip-link and landmark regression checks in automated QA checkpoints.
 4. Audit and fix remaining breakpoint mismatches against `THEME_RESPONSIVE_SYSTEM.md` in all section-level CSS.
 5. Extend accessibility checks for mobile drawer focus/close behavior and keyboard navigation.
 6. Add lightweight runtime metric instrumentation for hero and carousel load interactions.

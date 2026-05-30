@@ -19,6 +19,8 @@
 <section
   class="yaomri-announcement full-width yaomri-announcement--mode-{{ mode }} yaomri-announcement--width-{{ width_mode }}{% if show_bottom_border %} yaomri-announcement--with-border{% endif %}{% if marquee_pause_on_hover %} yaomri-announcement--marquee-pause{% endif %}"
   data-yaomri-announcement
+  role="region"
+  aria-label="Announcement bar"
   style="
     --yab-custom-width: {{ custom_width }}px;
     --yab-bg: {{ section.settings.background_color }};
@@ -99,7 +101,7 @@
         data-autoplay="{% if autoplay %}true{% else %}false{% endif %}"
         data-speed="{{ autoplay_speed }}"
       >
-        <div class="yaomri-announcement__slides" data-announcement-slides>
+        <div class="yaomri-announcement__slides" data-announcement-slides aria-live="polite" aria-atomic="true">
           {%- assign slide_index = 0 -%}
           {%- for block in section.blocks -%}
             {%- if block.settings.text != blank -%}

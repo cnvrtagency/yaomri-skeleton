@@ -15,6 +15,12 @@
   var activeTrigger = null;
   var viewStack = ["root"];
 
+  function syncDrawerTriggerExpanded(isOpen) {
+    triggers.forEach(function (trigger) {
+      trigger.setAttribute("aria-expanded", isOpen && trigger === activeTrigger ? "true" : "false");
+    });
+  }
+
   function getView(name) {
     return drawer.querySelector('[data-mdrawer-view="' + name + '"]');
   }
@@ -65,6 +71,7 @@
   function restoreRootView() {
     viewStack = ["root"];
     setView("root");
+    syncDrawerDrillExpanded(null);
   }
 
   function openDrawer(trigger) {
@@ -73,6 +80,7 @@
     drawer.classList.add("is-open");
     document.documentElement.classList.add("mdrawer-open");
     restoreRootView();
+    syncDrawerTriggerExpanded(true);
 
     window.setTimeout(function () {
       if (panel) panel.focus();
@@ -84,9 +92,17 @@
     drawer.classList.remove("is-open");
     document.documentElement.classList.remove("mdrawer-open");
     restoreRootView();
+    syncDrawerTriggerExpanded(false);
+    syncDrawerDrillExpanded(null);
     if (activeTrigger && typeof activeTrigger.focus === "function") {
       activeTrigger.focus();
     }
+  }
+
+  function syncDrawerDrillExpanded(viewName) {
+    drillButtons.forEach(function (button) {
+      button.setAttribute("aria-expanded", button.getAttribute("data-target") === viewName ? "true" : "false");
+    });
   }
 
   function handleEscape(event) {
@@ -133,6 +149,7 @@
       if (!target || !getView(target)) return;
       viewStack.push(target);
       setView(target);
+      syncDrawerDrillExpanded(target);
     });
   });
 
@@ -141,6 +158,7 @@
       if (viewStack.length > 1) viewStack.pop();
       var target = viewStack[viewStack.length - 1] || "root";
       setView(target, { reverse: true, keepDirection: true });
+      syncDrawerDrillExpanded(target === "root" ? null : target);
     });
   }
 

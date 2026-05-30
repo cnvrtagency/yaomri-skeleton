@@ -188,8 +188,11 @@
   {%- endstyle -%}
 {%- endif -%}
 
-<section
+<header
   class="yaomri-header full-width yaomri-header--layout-{{ resolved_layout }} yaomri-header--width-{{ header_width_mode }} yaomri-header--collapse-{{ nav_collapse_width }}{% unless show_bottom_border %} yaomri-header--no-border{% endunless %}{% if transparent_header_active %} yaomri-header--transparent-active{% endif %}{% if enable_sticky %} yaomri-header--sticky-enabled{% endif %}"
+  role="banner"
+  aria-label="Site header"
+  id="SiteHeader"
   data-transparent-mode="{{ transparent_header_mode }}"
   data-transparent-active="{% if transparent_header_active %}true{% else %}false{% endif %}"
   data-transparent-solid-after-scroll="{% if transparent_header_solid_after_scroll %}true{% else %}false{% endif %}"
@@ -310,6 +313,7 @@
     <div class="yaomri-header__actions">
       {%- if show_country_selector and localization.available_countries.size > 1 -%}
         {%- form 'localization', id: 'HeaderCountryForm', class: country_selector_class -%}
+          <label class="visually-hidden" for="HeaderCountrySelector">Country/region</label>
           <span class="yaomri-header__country-current" aria-hidden="true">
             {{ current_country_label }}
           </span>
@@ -398,6 +402,8 @@
         type="button"
         data-mdrawer-trigger
         aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="MobileDrawer"
       >
         {% render 'icon-yaomri-menu' %}
       </button>
@@ -428,7 +434,7 @@
       {%- endif -%}
     </div>
   </div>
-</section>
+</header>
 
 {% schema %}
 {

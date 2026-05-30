@@ -74,6 +74,9 @@
   const closeAll = () => {
     clearCloseTimer();
     nav?.querySelectorAll('.yaomri-mega__item.is-open').forEach((item) => item.classList.remove('is-open'));
+    nav?.querySelectorAll('[data-dropdown-trigger], [data-mega-trigger]').forEach((trigger) => {
+      trigger.setAttribute('aria-expanded', 'false');
+    });
     if (panelRoot) {
       panelRoot.classList.remove('is-open');
       panelRoot.setAttribute('aria-hidden', 'true');
@@ -97,7 +100,14 @@
     nav.querySelectorAll('.yaomri-mega__item.is-open').forEach((openItem) => {
       if (openItem !== item) openItem.classList.remove('is-open');
     });
+    nav.querySelectorAll('[data-dropdown-trigger], [data-mega-trigger]').forEach((trigger) => {
+      trigger.setAttribute('aria-expanded', 'false');
+    });
     item.classList.add('is-open');
+    const dropdownTrigger = item.querySelector('[data-dropdown-trigger]');
+    if (dropdownTrigger) {
+      dropdownTrigger.setAttribute('aria-expanded', 'true');
+    }
     if (panelRoot) {
       panelRoot.classList.remove('is-open');
       panelRoot.setAttribute('aria-hidden', 'true');
@@ -126,6 +136,9 @@
       if (openItem !== item) openItem.classList.remove('is-open');
     });
     item.classList.add('is-open');
+    nav.querySelectorAll('[data-dropdown-trigger], [data-mega-trigger]').forEach((menuTrigger) => {
+      menuTrigger.setAttribute('aria-expanded', menuTrigger === trigger ? 'true' : 'false');
+    });
     panelRoot.classList.add('is-open');
     panelRoot.setAttribute('aria-hidden', 'false');
     panelRoot.querySelectorAll('[data-mega-panel]').forEach((candidate) => {
