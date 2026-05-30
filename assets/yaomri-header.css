@@ -6,7 +6,6 @@
     cubic-bezier(0.22, 1, 0.36, 1)
   );
   opacity: 1;
-  transform: translateY(0);
   transition: opacity var(--cnvrt-header-stack-transition-duration) var(--cnvrt-header-stack-transition-easing), transform var(--cnvrt-header-stack-transition-duration) var(--cnvrt-header-stack-transition-easing);
   pointer-events: auto;
 }
@@ -49,13 +48,6 @@
 .yaomri-header-stack--fade:not(.is-hidden-after-scroll),
 .cnvrt-header-stack--fade:not(.is-hidden-after-scroll) {
   opacity: 1;
-}
-
-.yaomri-header-stack--slide:not(.is-hidden-after-scroll),
-.cnvrt-header-stack--slide:not(.is-hidden-after-scroll),
-.yaomri-header-stack--fade-slide:not(.is-hidden-after-scroll),
-.cnvrt-header-stack--fade-slide:not(.is-hidden-after-scroll) {
-  transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
