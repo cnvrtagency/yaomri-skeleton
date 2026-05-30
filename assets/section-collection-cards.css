@@ -22,7 +22,6 @@
   width: 100%;
   max-width: none;
   margin: 0 auto;
-  padding: 0 1rem;
 }
 
 .cc-carousel--width-site .cc-carousel__inner {
@@ -35,12 +34,6 @@
 
 .cc-carousel--width-full .cc-carousel__inner {
   max-width: none;
-}
-
-@media (min-width: 768px) {
-  .cc-carousel__inner {
-    padding: 0 1.25rem;
-  }
 }
 
 .cc-carousel__head {
