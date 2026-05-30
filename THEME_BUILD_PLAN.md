@@ -111,7 +111,7 @@ Tasks:
 - Done: replace `templates/index.json` Hello World.
 - Done: split the old combined Hero into Single Image Hero and 3-Card Hero so merchants do not see irrelevant layout settings.
 - Done: make Single Image Hero content block-based with separate Eyebrow, Heading, Paragraph, buttons, custom markup, and image pins.
-- Done: add a dedicated Announcement Bar section above Header with Static/Carousel/Marquee modes.
+- Done: integrate Announcement Bar into the Header section with Static/Carousel/Marquee modes (single header system ownership).
 - Done: add a reusable `section-header` snippet/CSS pattern for upcoming content sections (starting with Collection Cards/Carousel).
 - Done: add global Theme settings > Section headers defaults and wire fallback behavior into the reusable section-header snippet.
 - Done: add `Collection cards` section with Grid/Carousel modes and a simplified premium heading row.

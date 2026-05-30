@@ -112,7 +112,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 
 ## Announcement Bar
 
-- Announcement Bar section appears above Header in `sections/header-group.json`.
+- Announcement bar is configured inside the Header section (not as a separate header-group section).
 - Static mode renders the first non-empty announcement item.
 - Carousel mode rotates announcements one at a time.
 - Carousel mode is always centre-aligned.
@@ -129,9 +129,9 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Hide on desktop works per block.
 - Desktop/mobile typography settings apply.
 - Announcement bar works with Full/Site/Custom bar width modes.
-- Transparent mode treats announcement + header as one stack (no separate-layer jitter).
-- On scroll threshold, announcement/header stack collapses together with no gap or overlap.
-- Scrolling back to top restores the full stack cleanly.
+- Announcement shows above the main header inside the same section and does not overlap header controls.
+- Disabling announcement leaves no residual vertical gap.
+- Transparent/sticky/solid-after-scroll states have no top gap, overlap, or flicker.
 
 ## Mega Menu
 

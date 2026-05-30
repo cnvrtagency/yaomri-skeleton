@@ -1,31 +1,3 @@
-.yaomri-header-stack {
-  position: relative;
-}
-
-.yaomri-header-stack--overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 80;
-  transform: translate3d(0, 0, 0);
-  transition: transform 220ms ease;
-  will-change: transform;
-}
-
-.yaomri-header-stack--overlay.is-collapsed {
-  transform: translate3d(0, calc(-1 * var(--yhs-announcement-height, 0px)), 0);
-}
-
-.yaomri-header-stack--overlay .yaomri-announcement {
-  transition: opacity 200ms ease;
-}
-
-.yaomri-header-stack--overlay.is-collapsed .yaomri-announcement {
-  opacity: 0;
-  pointer-events: none;
-}
-
 .yaomri-header {
   position: relative;
   z-index: 30;
@@ -484,16 +456,6 @@
 
   .yaomri-header__desktop {
     display: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .yaomri-header-stack--overlay {
-    transition: none;
-  }
-
-  .yaomri-header-stack--overlay .yaomri-announcement {
-    transition: none;
   }
 }
 

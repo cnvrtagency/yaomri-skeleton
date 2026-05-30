@@ -108,9 +108,9 @@ Judgement:
 
 ## Header System
 
-### Announcement Bar Section
+### Header Announcement Bar
 
-Owned by `sections/announcement-bar.liquid`.
+Owned by `sections/header.liquid` (announcement settings + announcement blocks).
 
 Owns:
 - Announcement strip content above the header.
@@ -128,12 +128,12 @@ Must not be duplicated elsewhere:
 - Announcement item content blocks.
 
 Current implementation:
-- The section is now independent and inserted above Header in `sections/header-group.json`.
-- It remains independently editable, but frontend scroll behavior is unified with Header through shared stack state.
-- In transparent mode, announcement + header behave as one overlay stack and collapse together on scroll.
+- Announcement rendering now lives inside the Header section and no longer runs as a separate active header-group section.
+- Announcement and main header are one component (single section ownership), so stacking and transparent/sticky behavior are controlled in one place.
+- Header group order now starts with Header, then Mega Menu and Mobile Menu.
 
 Judgement:
-- This ownership is launch-correct. Do not bury announcement settings inside Header.
+- This ownership is launch-correct. Announcement should remain part of the Header system for predictable stacking and scroll behavior.
 
 ### Reusable Section Header Pattern
 
