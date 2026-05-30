@@ -102,6 +102,8 @@
       isPastThreshold &&
       !hasOpenOverlayInteraction()
     );
+    const isTransparentHeader = transparentActive && solidAfterScroll;
+    const shouldApplyScrolledVisual = isTransparentHeader && !(stackBehavior === SCROLL_BEHAVIOR_FADE_AWAY && shouldHideStack);
 
     if (group) {
       group.classList.add(GROUP_CLASS);
@@ -114,7 +116,7 @@
       }
     }
 
-    if (transparentActive && solidAfterScroll) {
+    if (shouldApplyScrolledVisual) {
       header.classList.toggle('is-scrolled', isPastThreshold);
     } else {
       header.classList.remove('is-scrolled');
