@@ -97,9 +97,9 @@ Current state:
    - large desktop: `>=1200px`
 2. Compliance status
    - Confirmed in `THEME_RESPONSIVE_SYSTEM.md` and implemented for the header stack threshold split and menu behaviour.
-   - `sections/header.liquid` and `assets/yaomri-header.css` use several breakpoints consistent with the contract and nav collapse setting (`1100px`).
+   - `sections/header.liquid` and `assets/yaomri-header.css` now use a consistent desktop boundary at `>= 990px` and mobile boundary at `<= 989px` for shared header-stack/desktop-mobile rendering.
 3. Drift findings
-   - Mixed breakpoint usage exists across the theme (`989/990` and `1024/1360` plus `1100`), which can produce edge-case inconsistencies.
+   - Mixed breakpoint usage still exists across the theme (`1024/1360` plus `1100`), but the former `989/990` contract-surface mismatch has been cleaned up.
    - Single Image Hero has robust mobile width clamp (`<=749px`) and is generally aligned.
    - Announcement bar media handling at `<=989px` is close to contract, but should be reviewed with actual product content.
 4. Top issues to monitor

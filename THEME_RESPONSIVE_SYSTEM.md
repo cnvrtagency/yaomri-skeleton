@@ -71,6 +71,7 @@ For sections with section-level width controls:
 - **Single Image Hero**: content width and section width are now controlled through section variables (`section_width`, `content_width`, and side padding settings).
 - **Collection Cards**: width modes and container constraints consume global inset through `.cc-carousel__inner`.
 - **Announcement Bar**: standalone section above Header in `sections/header-group.json`; site/custom width modes consume global inset through its own inner wrapper.
+- **Header responsive split**: desktop header and large-screen logo paths are aligned to `min-width: 990px`, while mobile header paths are aligned to `max-width: 989px`, matching the contract boundary.
 
 ## Transparent header + announcement interaction
 

@@ -452,7 +452,7 @@
   white-space: nowrap;
 }
 
-@media screen and (min-width: 991px) {
+@media screen and (min-width: 990px) {
   .yaomri-header--width-site .yaomri-header__desktop {
     width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--page-width, 90rem));
     max-width: var(--page-width, 90rem);
@@ -507,7 +507,7 @@
   }
 }
 
-@media screen and (max-width: 990px) {
+@media screen and (max-width: 989px) {
   .yaomri-header--width-site .yaomri-header__mobile {
     width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--page-width, 90rem));
     max-width: var(--page-width, 90rem);
@@ -586,7 +586,7 @@
   }
 }
 
-@media screen and (max-width: 1280px) and (min-width: 991px) {
+@media screen and (max-width: 1280px) and (min-width: 990px) {
   .yaomri-header {
     --yh-nav-gap: max(8px, calc(var(--yh-nav-gap, 24px) - 8px));
   }

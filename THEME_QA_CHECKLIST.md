@@ -67,6 +67,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Fade-away threshold (desktop/tablet) accepts 0–200px and defaults to 40.
 - Fade-away threshold (mobile) accepts 0–200px and defaults to 24.
 - Desktop/tablet uses the desktop threshold; mobile (`<= 749px`) uses the mobile threshold.
+- Header layout/markup switches at contract breakpoints (`>= 990` desktop, `<= 989` mobile) for responsive header mode and desktop/mobile logo image selection.
 - Header stack transition options work: Fade, Slide, Fade + Slide.
 - Header stack transition duration controls both hide and reappear timing.
 - Header stack transition easing controls hide/show feel (Smooth/Snappy/Linear/Ease).
