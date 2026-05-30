@@ -127,6 +127,30 @@ Current implementation:
 Judgement:
 - This ownership is launch-correct. Do not bury announcement settings inside Header.
 
+### Reusable Section Header Pattern
+
+Owned by:
+- `snippets/section-header.liquid`
+- `assets/section-header.css`
+
+Owns:
+- Reusable section-level editorial header UI pattern for content sections.
+- Shared structure for eyebrow, heading, text, optional CTA, width/alignment/preset/decorative styles.
+- Local visual styling through parameters, not global section state.
+
+Must not own:
+- Actual section settings schema for each consuming section.
+- Header/navigation logic.
+- Global typography tokens.
+
+Current implementation:
+- Reusable snippet and scoped CSS now exist.
+- Existing sections are intentionally not retrofitted in this pass to avoid regressions.
+- Next consumer should be Collection Cards/Collection Carousel section.
+
+Judgement:
+- Use this snippet for new content sections to avoid repeating inconsistent heading/intro markup.
+
 ### Theme Settings > Header
 
 Owned by `config/settings_schema.json` under `Header`.

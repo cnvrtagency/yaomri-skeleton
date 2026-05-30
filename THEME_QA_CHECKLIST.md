@@ -233,6 +233,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Single Image Hero Heading block renders H1/H2, desktop/mobile font size, line height, font weight, max width, and hides when blank.
 - Single Image Hero Heading text transform control applies.
 - Single Image Hero Paragraph block renders rich text, desktop/mobile font size, line height, font weight, max width, and hides when blank.
+- Single Image Hero Paragraph block offers Light/300 and Extra bold/800 weight options in addition to existing weights.
 - Single Image Hero Paragraph letter spacing control applies.
 - Single Image Hero generic Text block is not active in homepage JSON.
 - Single Image Hero Button block renders only when label and link are set.
@@ -244,6 +245,18 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Single Image Hero Image pin can hide on mobile.
 - Single Image Hero empty blocks do not render empty markup.
 - Single Image Hero width modes work: Site width, Full width, Custom.
+
+## Reusable Section Header Pattern
+
+- `snippets/section-header.liquid` renders nothing when all content fields are blank.
+- Eyebrow/Heading/Text render only when each field has content.
+- CTA renders only when both label and link are present.
+- Alignment classes work: left, centre, right.
+- Width mode classes work: site, full, custom.
+- Presets render correctly: minimal, editorial underline, eyebrow line, split, centre statement.
+- Decorative styles render correctly: none, short underline, half underline, eyebrow line, side rule, corner accent.
+- Split preset places CTA to the right on desktop and stacks on mobile.
+- Colour overrides apply through local CSS variables and inherit global tokens when blank.
 - 3-Card Hero renders one, two, or three cards cleanly.
 - 3-Card Hero no-block placeholder state is polished and not clickable.
 - 3-Card Hero cards are equal height on desktop.

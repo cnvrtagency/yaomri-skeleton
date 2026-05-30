@@ -1,0 +1,78 @@
+{% # theme-check-disable OrphanedSnippet %}
+{%- liquid
+  assign eyebrow_value = eyebrow | default: ''
+  assign heading_value = heading | default: ''
+  assign text_value = text | default: ''
+  assign cta_label_value = cta_label | default: ''
+  assign cta_link_value = cta_link | default: ''
+
+  assign alignment_value = alignment | default: 'left'
+  assign width_mode_value = width_mode | default: 'site'
+  assign custom_width_value = custom_width | default: 1200
+  assign preset_value = preset | default: 'minimal'
+  assign decorative_value = decorative_style | default: 'none'
+  assign cta_style_value = cta_style | default: 'text'
+
+  assign heading_size_desktop_value = heading_size_desktop | default: 48
+  assign heading_size_mobile_value = heading_size_mobile | default: 32
+  assign text_size_desktop_value = text_size_desktop | default: 16
+  assign text_size_mobile_value = text_size_mobile | default: 15
+  assign eyebrow_size_value = eyebrow_size | default: 12
+  assign heading_weight_value = heading_weight | default: 700
+  assign text_max_width_value = text_max_width | default: 760
+
+  assign render_cta = false
+  if cta_label_value != blank and cta_link_value != blank
+    assign render_cta = true
+  endif
+
+  assign has_content = false
+  if eyebrow_value != blank or heading_value != blank or text_value != blank or render_cta
+    assign has_content = true
+  endif
+-%}
+
+{%- if has_content -%}
+  <div
+    class="yaomri-section-header yaomri-section-header--align-{{ alignment_value }} yaomri-section-header--width-{{ width_mode_value }} yaomri-section-header--preset-{{ preset_value }} yaomri-section-header--decor-{{ decorative_value }}"
+    style="
+      --yshd-custom-width: {{ custom_width_value }}px;
+      --yshd-text-color: {{ text_colour | default: 'var(--color-foreground)' }};
+      --yshd-eyebrow-color: {{ eyebrow_colour | default: 'currentColor' }};
+      --yshd-heading-color: {{ heading_colour | default: 'currentColor' }};
+      --yshd-rule-color: {{ rule_colour | default: 'var(--color-border)' }};
+      --yshd-cta-color: {{ cta_colour | default: 'currentColor' }};
+      --yshd-heading-size-desktop: {{ heading_size_desktop_value }}px;
+      --yshd-heading-size-mobile: {{ heading_size_mobile_value }}px;
+      --yshd-text-size-desktop: {{ text_size_desktop_value }}px;
+      --yshd-text-size-mobile: {{ text_size_mobile_value }}px;
+      --yshd-eyebrow-size: {{ eyebrow_size_value }}px;
+      --yshd-heading-weight: {{ heading_weight_value }};
+      --yshd-text-max-width: {{ text_max_width_value }}px;
+    "
+  >
+    <div class="yaomri-section-header__inner">
+      <div class="yaomri-section-header__main">
+        {%- if eyebrow_value != blank -%}
+          <p class="yaomri-section-header__eyebrow">{{ eyebrow_value }}</p>
+        {%- endif -%}
+        {%- if heading_value != blank -%}
+          <h2 class="yaomri-section-header__heading">{{ heading_value }}</h2>
+        {%- endif -%}
+        {%- if text_value != blank -%}
+          <div class="yaomri-section-header__text">{{ text_value }}</div>
+        {%- endif -%}
+      </div>
+      {%- if render_cta -%}
+        <div class="yaomri-section-header__actions">
+          <a
+            class="yaomri-section-header__cta yaomri-section-header__cta--{{ cta_style_value }}"
+            href="{{ cta_link_value }}"
+          >
+            <span>{{ cta_label_value }}</span>
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}

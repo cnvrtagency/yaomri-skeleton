@@ -300,6 +300,23 @@ Status values:
 | open_new_window | Open in new tab | Announcement item block | checkbox | false | Announcement Bar | Link target behavior | `sections/announcement-bar.liquid` | none | keep | Open in new tab | Opens this announcement link in a new tab. | |
 | hide_on_mobile | Hide on mobile | Announcement item block | checkbox | false | Announcement Bar | Mobile visibility toggle | `sections/announcement-bar.liquid`, `assets/announcement-bar.css` | class modifier | keep | Hide on mobile | Hides this announcement item on mobile. | |
 | hide_on_desktop | Hide on desktop | Announcement item block | checkbox | false | Announcement Bar | Desktop visibility toggle | `sections/announcement-bar.liquid`, `assets/announcement-bar.css` | class modifier | keep | Hide on desktop | Hides this announcement item on desktop. | |
+
+## Reusable Section Header Pattern
+
+This is a shared snippet/CSS pattern and does not add global Theme settings by itself.
+Consuming sections must define their own schema settings and pass values into:
+- `snippets/section-header.liquid`
+- `assets/section-header.css`
+
+Recommended setting IDs for consuming sections:
+- Content: `show_section_header`, `header_eyebrow`, `header_heading`, `header_text`, `header_cta_label`, `header_cta_link`
+- Layout/style: `header_preset`, `header_alignment`, `header_width`, `header_custom_width`, `header_decorative_style`, `header_text_colour`, `header_eyebrow_colour`, `header_heading_colour`, `header_decorative_colour`, `header_cta_style`
+- Typography: `header_heading_size_desktop`, `header_heading_size_mobile`, `header_text_size_desktop`, `header_text_size_mobile`, `header_eyebrow_size`, `header_heading_weight`, `header_text_max_width`
+
+Notes:
+- CTA renders only when both label and link exist.
+- Decorative and preset classes are presentational; colour settings still apply.
+- This pattern should be used for upcoming Collection Cards / Collection Carousel.
 | n/a | `button_size` | Button + Two buttons | New typography control. |
 | n/a | `button_weight` | Button + Two buttons | New typography control. |
 | n/a | `button_letter_spacing` | Button + Two buttons | New typography control (`0.01em` units). |
@@ -329,7 +346,7 @@ Status values:
 | text | Text | Single Image Hero block: Paragraph | richtext | default paragraph | Single Image Hero content block | Paragraph content | `sections/single-image-hero.liquid` | none | keep | Text | Leave blank to hide this block. | Paragraph block only. |
 | font_size_desktop | Font size desktop | Single Image Hero block: Paragraph | range | 18 | Single Image Hero content block | Paragraph size on desktop | `sections/single-image-hero.liquid`, `assets/section-single-image-hero.css` | `--ysh-paragraph-font-size-desktop` | keep | Font size desktop | Uses px values for paragraph scale consistency. | Replaces preset-based size setting. |
 | font_size_mobile | Font size mobile | Single Image Hero block: Paragraph | range | 16 | Single Image Hero content block | Paragraph size on mobile | `sections/single-image-hero.liquid`, `assets/section-single-image-hero.css` | `--ysh-paragraph-font-size-mobile` | keep | Font size mobile | Uses px values for responsive paragraph control. | Replaces preset-based size setting. |
-| font_weight | Font weight | Single Image Hero block: Paragraph | select | 400 | Single Image Hero content block | Paragraph weight | `sections/single-image-hero.liquid`, `assets/section-single-image-hero.css` | `--ysh-paragraph-font-weight` | keep | Font weight | Use regular/medium/bold for hierarchy. | New control replacing preset-like behaviour. |
+| font_weight | Font weight | Single Image Hero block: Paragraph | select | 400 | Single Image Hero content block | Paragraph weight | `sections/single-image-hero.liquid`, `assets/section-single-image-hero.css` | `--ysh-paragraph-font-weight` | keep | Font weight | Supports Light (300), Regular (400), Medium (500), Semibold (600), Bold (700), Extra bold (800). | New control replacing preset-like behaviour. |
 | line_height_desktop | Line height desktop | Single Image Hero block: Paragraph | range | 150 | Single Image Hero content block | Paragraph line height on desktop | `sections/single-image-hero.liquid`, `assets/section-single-image-hero.css` | `--ysh-paragraph-line-height-desktop` | keep | Line height desktop | Percent line-height value (for example 150%). | Replaces preset-like behaviour with precise control. |
 | line_height_mobile | Line height mobile | Single Image Hero block: Paragraph | range | 160 | Single Image Hero content block | Paragraph line height on mobile | `sections/single-image-hero.liquid`, `assets/section-single-image-hero.css` | `--ysh-paragraph-line-height-mobile` | keep | Line height mobile | Percent line-height value (for example 160%). | Replaces preset-like behaviour with precise control. |
 | color | Colour override | Single Image Hero block: Paragraph | color | blank | Single Image Hero content block | Optional paragraph colour override | `sections/single-image-hero.liquid`, `assets/section-single-image-hero.css` | `--ysh-block-text-color` | keep | Colour override | Optional. Leave blank to inherit hero text colour. | Block-local override. |

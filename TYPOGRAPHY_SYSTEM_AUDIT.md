@@ -47,6 +47,10 @@ This audit recommends a standardized, granular system without reducing control.
 4. Global tokens do not cover heading/body/button weights, line-height, and letter spacing defaults.
 5. Repeated pattern components (eyebrow/heading/text/button) do not share a single naming contract across sections.
 
+Update note (May 30, 2026):
+- Reusable section header infrastructure has now been added (`snippets/section-header.liquid` and `assets/section-header.css`) for future section adoption.
+- Single Image Hero Paragraph weight options now include Light (300) and Extra bold (800).
+
 ## Inventory of typography-related settings (current)
 
 ## Global (theme settings)
