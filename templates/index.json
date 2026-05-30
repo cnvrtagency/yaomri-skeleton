@@ -119,9 +119,151 @@
         "margin_top_mobile": 0,
         "margin_bottom_mobile": 0
       }
+    },
+    "collection_cards_aXzpjd": {
+      "type": "collection-cards",
+      "blocks": {
+        "collection_37hfJn": {
+          "type": "collection",
+          "settings": {
+            "collection": "two-piece-bikinis",
+            "title": "",
+            "subtitle": "",
+            "show_count": true,
+            "link_override": "",
+            "image_position": "center center",
+            "open_new_window": false
+          }
+        },
+        "collection_QCLi6R": {
+          "type": "collection",
+          "settings": {
+            "collection": "linen-jumpsuits",
+            "title": "",
+            "subtitle": "",
+            "show_count": true,
+            "link_override": "",
+            "image_position": "center center",
+            "open_new_window": false
+          }
+        },
+        "collection_AqnUnk": {
+          "type": "collection",
+          "settings": {
+            "collection": "high-waisted-bikinis",
+            "title": "",
+            "subtitle": "",
+            "show_count": true,
+            "link_override": "",
+            "image_position": "center center",
+            "open_new_window": false
+          }
+        },
+        "collection_GEdUqi": {
+          "type": "collection",
+          "settings": {
+            "collection": "embellished-swimsuits",
+            "title": "",
+            "subtitle": "",
+            "show_count": true,
+            "link_override": "",
+            "image_position": "center center",
+            "open_new_window": false
+          }
+        },
+        "collection_DLrqDt": {
+          "type": "collection",
+          "settings": {
+            "collection": "bandeau-bikinis",
+            "title": "",
+            "subtitle": "",
+            "show_count": true,
+            "link_override": "",
+            "image_position": "center center",
+            "open_new_window": false
+          }
+        },
+        "collection_Tk8dQf": {
+          "type": "collection",
+          "settings": {
+            "collection": "bikinis",
+            "title": "",
+            "subtitle": "",
+            "show_count": true,
+            "link_override": "",
+            "image_position": "center center",
+            "open_new_window": false
+          }
+        },
+        "collection_9gDNxh": {
+          "type": "collection",
+          "settings": {
+            "collection": "beach-cover-up-dresses",
+            "title": "",
+            "subtitle": "",
+            "show_count": true,
+            "link_override": "",
+            "image_position": "center center",
+            "open_new_window": false
+          }
+        },
+        "collection_LkR7rT": {
+          "type": "collection",
+          "settings": {
+            "collection": "belted-swimsuits",
+            "title": "",
+            "subtitle": "",
+            "show_count": true,
+            "link_override": "",
+            "image_position": "center center",
+            "open_new_window": false
+          }
+        }
+      },
+      "block_order": [
+        "collection_37hfJn",
+        "collection_QCLi6R",
+        "collection_AqnUnk",
+        "collection_GEdUqi",
+        "collection_DLrqDt",
+        "collection_Tk8dQf",
+        "collection_9gDNxh",
+        "collection_LkR7rT"
+      ],
+      "name": "Collection cards",
+      "settings": {
+        "heading": "Shop by style",
+        "heading_subtitle": "Curated edits",
+        "show_arrows": true,
+        "layout_mode": "carousel",
+        "section_width": "full",
+        "custom_section_width": 720,
+        "background_color": "#ffffff",
+        "border_top": true,
+        "border_color": "#e8e8e8",
+        "card_image_ratio": "4-5",
+        "image_hover": "subtle_zoom",
+        "gap_desktop": 8,
+        "gap_mobile": 11,
+        "show_count_default": true,
+        "use_first_product_image": true,
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0,
+        "padding_left_desktop": 0,
+        "padding_right_desktop": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "padding_left_mobile": 0,
+        "padding_right_mobile": 0,
+        "margin_top_desktop": 0,
+        "margin_bottom_desktop": 0,
+        "margin_top_mobile": 0,
+        "margin_bottom_mobile": 0
+      }
     }
   },
   "order": [
-    "single_image_hero"
+    "single_image_hero",
+    "collection_cards_aXzpjd"
   ]
 }
