@@ -18,11 +18,13 @@ The contract intentionally stays pragmatic: small number of shared layout tokens
 Owned by `config/settings_schema.json` + `snippets/css-variables.liquid`:
 
 - `--page-width` from layout `site_width_mode` / `custom_site_content_width`
-- `--page-mobile-inset` from layout `mobile_site_inset` (default `16px`)
+- `--page-inset` from layout `site_inset` (default `20px`)
+- `--page-inset-effective` for core grid sections (`0px` when global page width mode is `full`)
 
 Current behavior:
 - Boxed/custom global page width is controlled by `site_width_mode` and `custom_site_content_width`.
-- Mobile site-width sections can apply a consistent side breathing room through `--page-mobile-inset`.
+- Site-width content uses a consistent global inset through `--page-inset`.
+- `--page-mobile-inset` remains as a compatibility alias to `--page-inset`.
 
 ## Section structure contract
 
@@ -49,24 +51,26 @@ For sections with section-level width controls:
 
 - **Site width**
   - `section__inner` follows global `--page-width`.
-  - On mobile, section can combine `--page-mobile-inset` with section-side padding for breathing room.
+  - Wrapper width is clamped with global inset safety:
+    `width: min(var(--page-width), calc(100% - (var(--page-inset) * 2)))`.
 
 - **Custom width**
   - `section__inner` uses section custom width variable.
-  - Still clamped by viewport, and should be safe on narrow screens.
+  - Wrapper width is clamped with global inset safety:
+    `width: min(var(--custom-width), calc(100% - (var(--page-inset) * 2)))`.
 
-## Mobile inset behavior
+## Inset behavior
 
-- `mobile_site_inset` is the global baseline inset for site-width sections on mobile.
-- Section mobile left/right padding is **additive** where supported.
-- Full-width sections remain edge-to-edge unless their own section padding is set.
+- `site_inset` is a single global setting used across desktop, tablet, and mobile.
+- Full-width sections stay edge-to-edge unless section-local padding is set.
+- Section padding remains section-owned and additive to section layout, not a replacement for global inset.
 
 ## Contract usage by current sections
 
-- **Header**: uses its own internal safe mobile/header-specific spacing, and does not import global inset unless explicitly designed.
+- **Header**: site/custom width modes consume global inset through width clamps; full mode stays edge-to-edge.
 - **Single Image Hero**: content width and section width are now controlled through section variables (`section_width`, `content_width`, and side padding settings).
-- **Collection Cards**: width modes and container constraints are section-owned and should remain aligned via shared `.cc-carousel__inner` width routing.
-- **Announcement Bar**: width mode remains section-owned (full/site/custom). It is positioned in normal flow above header.
+- **Collection Cards**: width modes and container constraints consume global inset through `.cc-carousel__inner`.
+- **Announcement Bar**: width mode remains section-owned; site/custom modes consume global inset. It is positioned in normal flow above header.
 
 ## Transparent header + announcement interaction
 

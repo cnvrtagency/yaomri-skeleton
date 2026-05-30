@@ -133,7 +133,7 @@
 .yaomri-mega-panel {
   position: relative;
   z-index: 1;
-  width: min(calc(100vw - 2rem), var(--ym-panel-width, 1200px));
+  width: min(calc(100vw - (var(--page-inset, 20px) * 2)), var(--ym-panel-width, 1200px));
   box-sizing: border-box;
   margin-inline: auto;
   border: 1px solid var(--ym-panel-border, var(--color-border));

@@ -50,8 +50,9 @@ Owned by `config/settings_schema.json` under `Layout` and emitted by `snippets/c
 Owns:
 - `site_width_mode`
 - `custom_site_content_width`
-- `mobile_site_inset`
+- `site_inset`
 - `--page-width`
+- `--page-inset`
 
 Must not own:
 - Header-only width.
@@ -64,7 +65,8 @@ Must not be duplicated elsewhere:
 
 Current implementation:
 - `site_width_mode` and `custom_site_content_width` control `--page-width`.
-- `mobile_site_inset` controls `--page-mobile-inset` for mobile breathing room in site-width sections that consume it.
+- `site_inset` controls global site-width breathing room across desktop/tablet/mobile via `--page-inset`.
+- `--page-mobile-inset` remains an alias of `--page-inset` for compatibility while sections migrate.
 - Responsive width behavior for modern sections is documented in `THEME_RESPONSIVE_SYSTEM.md`.
 - `header_width_mode` and `header_custom_width` are separate header-specific settings, which is acceptable if clearly labelled.
 - Legacy `settings.site_content_width` fallback has been removed. `custom_site_content_width` is the only custom page width setting.

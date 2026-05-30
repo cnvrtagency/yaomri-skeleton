@@ -92,7 +92,7 @@ body {
  * the entire viewport.
  */
 .shopify-section {
-  --content-width: min(var(--page-width), 100%);
+  --content-width: min(var(--page-width), calc(100% - (var(--page-inset-effective, 0px) * 2)));
   --content-margin: minmax(0, 1fr);
   --content-grid: var(--content-margin) var(--content-width) var(--content-margin);
 

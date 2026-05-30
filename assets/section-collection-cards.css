@@ -25,14 +25,17 @@
 }
 
 .cc-carousel--width-site .cc-carousel__inner {
-  max-width: min(var(--page-width, 1200px), 100%);
+  width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--page-width, 1200px));
+  max-width: var(--page-width, 1200px);
 }
 
 .cc-carousel--width-custom .cc-carousel__inner {
-  max-width: min(var(--cc-custom-width, 1200px), 100%);
+  width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--cc-custom-width, 1200px));
+  max-width: var(--cc-custom-width, 1200px);
 }
 
 .cc-carousel--width-full .cc-carousel__inner {
+  width: 100%;
   max-width: none;
 }
 
@@ -399,17 +402,5 @@
   .cc-carousel__btn .icon-yaomri {
     width: 0.85rem;
     height: 0.85rem;
-  }
-}
-
-@media (max-width: 749px) {
-  .cc-carousel--width-site .cc-carousel__inner {
-    padding-left: max(var(--page-mobile-inset, 16px), var(--cc-padding-left-mobile, 0px));
-    padding-right: max(var(--page-mobile-inset, 16px), var(--cc-padding-right-mobile, 0px));
-  }
-
-  .cc-carousel--width-site {
-    padding-left: 0;
-    padding-right: 0;
   }
 }

@@ -103,14 +103,14 @@
       },
       {
         "type": "range",
-        "id": "mobile_site_inset",
-        "label": "Mobile site inset",
-        "info": "Adds left/right breathing room to site-width sections on mobile. Set to 0 for edge-to-edge layouts.",
+        "id": "site_inset",
+        "label": "Site inset",
+        "info": "Adds left/right breathing room to site-width content across all breakpoints. Set to 0 for edge-to-edge layouts.",
         "min": 0,
-        "max": 40,
+        "max": 60,
         "step": 2,
         "unit": "px",
-        "default": 16
+        "default": 20
       }
     ]
   },

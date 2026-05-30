@@ -26,14 +26,17 @@
 }
 
 .yaomri-announcement--width-site .yaomri-announcement__inner {
-  max-width: min(var(--page-width, 90rem), 100%);
+  width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--page-width, 90rem));
+  max-width: var(--page-width, 90rem);
 }
 
 .yaomri-announcement--width-custom .yaomri-announcement__inner {
-  max-width: min(var(--yab-custom-width, 1200px), 100%);
+  width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--yab-custom-width, 1200px));
+  max-width: var(--yab-custom-width, 1200px);
 }
 
 .yaomri-announcement--width-full .yaomri-announcement__inner {
+  width: 100%;
   max-width: none;
 }
 

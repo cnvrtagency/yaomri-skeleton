@@ -391,16 +391,19 @@
 
 @media screen and (min-width: 991px) {
   .yaomri-header--width-site .yaomri-header__desktop {
-    max-width: min(var(--page-width, 90rem), 100%);
+    width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--page-width, 90rem));
+    max-width: var(--page-width, 90rem);
     padding-inline: 0;
   }
 
   .yaomri-header--width-custom .yaomri-header__desktop {
-    max-width: min(var(--yh-custom-content-width, 1500px), 100%);
+    width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--yh-custom-content-width, 1500px));
+    max-width: var(--yh-custom-content-width, 1500px);
     padding-inline: 0;
   }
 
   .yaomri-header--width-full .yaomri-header__desktop {
+    width: 100%;
     max-width: none;
     padding-inline: var(--yh-desktop-padding, 24px);
   }
@@ -444,6 +447,23 @@
 @media screen and (max-width: 990px) {
   .yaomri-header--transparent-active {
     top: var(--yaomri-announcement-offset-mobile, var(--yaomri-announcement-offset-desktop, 0px));
+  }
+
+  .yaomri-header--width-site .yaomri-header__mobile {
+    width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--page-width, 90rem));
+    max-width: var(--page-width, 90rem);
+    margin-inline: auto;
+  }
+
+  .yaomri-header--width-custom .yaomri-header__mobile {
+    width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--yh-custom-content-width, 1500px));
+    max-width: var(--yh-custom-content-width, 1500px);
+    margin-inline: auto;
+  }
+
+  .yaomri-header--width-full .yaomri-header__mobile {
+    width: 100%;
+    max-width: none;
   }
 
   .yaomri-header__desktop {

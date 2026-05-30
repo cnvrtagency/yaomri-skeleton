@@ -10,14 +10,17 @@
 }
 
 .yaomri-section-header--width-site .yaomri-section-header__inner {
-  max-width: min(var(--page-width, 90rem), 100%);
+  width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--page-width, 90rem));
+  max-width: var(--page-width, 90rem);
 }
 
 .yaomri-section-header--width-custom .yaomri-section-header__inner {
-  max-width: min(var(--yshd-custom-width, 1200px), 100%);
+  width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--yshd-custom-width, 1200px));
+  max-width: var(--yshd-custom-width, 1200px);
 }
 
 .yaomri-section-header--width-full .yaomri-section-header__inner {
+  width: 100%;
   max-width: none;
 }
 

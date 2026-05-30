@@ -161,6 +161,7 @@ Objective:
 - Close brand and usability gaps.
 
 Tasks:
+- Keep responsive layout contract centralized (`--page-width` + global `site_inset`) and avoid per-section hidden side padding hacks.
 - Replace default footer presentation with Ya Omri styling.
 - Rename footer labels away from translation keys if needed.
 - Audit search template and search routes from header/mobile drawer.

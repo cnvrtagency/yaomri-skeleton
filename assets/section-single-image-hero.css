@@ -21,7 +21,18 @@
     var(--ysh-padding-left-desktop, 0);
 }
 
+.yaomri-single-hero--width-site .yaomri-single-hero__frame {
+  width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--page-width, 1200px));
+  max-width: var(--page-width, 1200px);
+}
+
+.yaomri-single-hero--width-custom .yaomri-single-hero__frame {
+  width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--ysh-section-width, 1440px));
+  max-width: var(--ysh-section-width, 1440px);
+}
+
 .yaomri-single-hero--width-full .yaomri-single-hero__frame {
+  width: 100%;
   max-width: none;
 }
 
@@ -84,6 +95,18 @@
   padding: var(--ysh-content-padding, 0);
   color: #fff;
   text-align: var(--ysh-desktop-text-align, left);
+}
+
+.yaomri-single-hero--content-width-site .yaomri-single-hero__content {
+  width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--ysh-content-width, var(--page-width)));
+}
+
+.yaomri-single-hero--content-width-custom .yaomri-single-hero__content {
+  width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--ysh-content-width, 720px));
+}
+
+.yaomri-single-hero--content-width-full .yaomri-single-hero__content {
+  width: 100%;
 }
 
 .yaomri-single-hero--desktop-height-custom .yaomri-single-hero__content {
@@ -338,7 +361,6 @@
   .yaomri-single-hero__content {
     align-self: var(--ysh-mobile-align, center);
     justify-self: var(--ysh-mobile-justify, center);
-    width: min(var(--ysh-content-width, var(--page-width)), 100%);
     text-align: var(--ysh-mobile-text-align, center);
   }
 
