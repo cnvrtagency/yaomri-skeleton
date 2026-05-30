@@ -20,6 +20,7 @@
 
 .cc-carousel__inner {
   width: min(100%, var(--cc-container-width, 100%));
+  max-width: var(--cc-container-width, 100%);
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -39,10 +40,11 @@
 }
 
 .cc-carousel__heading-group {
-  display: inline-flex;
+  display: flex;
   align-items: baseline;
   gap: 0.5rem;
   min-width: 0;
+  flex-wrap: wrap;
 }
 
 .cc-carousel__title {
@@ -273,14 +275,17 @@
   }
 
   .cc-carousel__head {
-    align-items: stretch;
-    flex-direction: column;
-    gap: 0.65rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 0.75rem;
+    row-gap: 0.3rem;
     margin-bottom: 1rem;
   }
 
   .cc-carousel__heading-group {
     display: block;
+    min-width: 0;
   }
 
   .cc-carousel__title {
@@ -292,11 +297,12 @@
 
   .cc-carousel__subtitle {
     display: block;
-    margin-top: 0.4rem;
+    margin-top: 0.35rem;
     white-space: normal;
   }
 
   .cc-carousel__nav {
-    align-self: flex-end;
+    justify-self: end;
+    align-self: start;
   }
 }

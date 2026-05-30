@@ -4,6 +4,17 @@
 {%- liquid
   assign layout_mode = section.settings.layout_mode | default: 'carousel'
   assign section_width_mode = section.settings.section_width | default: 'full'
+  case section_width_mode
+    when 'site_width'
+      assign section_width_mode = 'site'
+    when 'full_width'
+      assign section_width_mode = 'full'
+    when 'custom_width'
+      assign section_width_mode = 'custom'
+  endcase
+  unless section_width_mode == 'site' or section_width_mode == 'full' or section_width_mode == 'custom'
+    assign section_width_mode = 'full'
+  endunless
   assign custom_section_width = section.settings.custom_section_width | default: 1500
   assign card_ratio = section.settings.card_image_ratio | default: '4-5'
   assign show_arrows = section.settings.show_arrows
