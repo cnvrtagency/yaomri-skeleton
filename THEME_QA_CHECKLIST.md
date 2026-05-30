@@ -235,8 +235,9 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Single Image Hero Eyebrow typography controls (desktop/mobile font size, weight, letter spacing, uppercase) apply.
 - Single Image Hero Eyebrow line-height control applies.
 - Single Image Hero Eyebrow max width control applies.
-- Single Image Hero content width works: Site width, Full width, Custom width.
-- Single Image Hero content width defaults to Site width and does not start full-bleed by default.
+- Single Image Hero content width works: Narrow, Medium, Wide, Site width, Full width, Custom width.
+- Single Image Hero content width defaults to Medium (`680px`) and makes Left/Centre/Right positioning visually clear.
+- Single Image Hero Site width content mode is intentionally very wide; horizontal movement can appear subtle in this mode.
 - Single Image Hero content width is controlled by Content width and is constrained in Site-width mode.
 - Single Image Hero Eyebrow block renders and hides when blank.
 - Single Image Hero Heading block renders H1/H2, desktop/mobile font size, line height, font weight, max width, and hides when blank.

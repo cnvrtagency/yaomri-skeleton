@@ -11,7 +11,7 @@
   assign mobile_horizontal = section.settings.mobile_content_horizontal | default: 'center'
   assign mobile_vertical = section.settings.mobile_content_vertical | default: 'center'
   assign mobile_text_alignment = section.settings.mobile_text_alignment | default: 'center'
-  assign content_width_mode = section.settings.content_width | default: 'site'
+  assign content_width_mode = section.settings.content_width | default: 'medium'
   assign custom_content_width = section.settings.custom_content_width | default: 720
   assign overlay_color = section.settings.overlay_color | default: '#000000'
   assign overlay_opacity = section.settings.overlay_opacity | default: 20 | divided_by: 100.0
@@ -28,8 +28,14 @@
     endcapture
   endif
 
-  assign content_width_value = 'var(--page-width)'
-  if content_width_mode == 'full'
+  assign content_width_value = '680px'
+  if content_width_mode == 'narrow'
+    assign content_width_value = '480px'
+  elsif content_width_mode == 'wide'
+    assign content_width_value = '860px'
+  elsif content_width_mode == 'site'
+    assign content_width_value = 'var(--page-width)'
+  elsif content_width_mode == 'full'
     assign content_width_value = '100%'
   elsif content_width_mode == 'custom'
     capture content_width_value
@@ -719,12 +725,24 @@
       "type": "select",
       "id": "content_width",
       "label": "Content width",
-      "default": "site",
-      "info": "Controls the text/button content area inside the hero. Section width controls the overall hero frame.",
+      "default": "medium",
+      "info": "Controls the width of the hero text/button content box. Use Medium or Custom for clear left/centre/right positioning. Site width is very wide, so horizontal position may appear subtle.",
       "options": [
         {
+          "value": "narrow",
+          "label": "Narrow"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        },
+        {
           "value": "site",
-          "label": "Site width"
+          "label": "Site width (very wide)"
         },
         {
           "value": "full",

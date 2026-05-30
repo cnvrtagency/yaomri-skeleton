@@ -96,7 +96,7 @@
         "image_position": "center center",
         "overlay_color": "#000000",
         "overlay_opacity": 30,
-        "content_width": "site",
+        "content_width": "medium",
         "custom_content_width": 680,
         "desktop_content_horizontal": "center",
         "desktop_content_vertical": "center",

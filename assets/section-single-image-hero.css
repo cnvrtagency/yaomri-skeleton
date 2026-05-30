@@ -114,17 +114,17 @@
   bottom: var(--ysh-pos-bottom);
   transform: translate(var(--ysh-pos-translate-x), var(--ysh-pos-translate-y));
   pointer-events: auto;
-  width: min(var(--ysh-content-width, var(--page-width)), 100%);
+  width: min(var(--ysh-content-width, 680px), calc(100% - (var(--ysh-content-safe-inline, 20px) * 2)));
   padding: var(--ysh-content-padding, 0);
   color: #fff;
 }
 
 .yaomri-single-hero--content-width-site .yaomri-single-hero__content {
-  width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--ysh-content-width, var(--page-width)));
+  width: min(calc(100% - (var(--ysh-content-safe-inline, 20px) * 2)), var(--ysh-content-width, var(--page-width)));
 }
 
 .yaomri-single-hero--content-width-custom .yaomri-single-hero__content {
-  width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--ysh-content-width, 720px));
+  width: min(calc(100% - (var(--ysh-content-safe-inline, 20px) * 2)), var(--ysh-content-width, 720px));
 }
 
 .yaomri-single-hero--content-width-full .yaomri-single-hero__content {
@@ -456,7 +456,7 @@
     top: var(--ysh-mobile-pos-top);
     bottom: var(--ysh-mobile-pos-bottom);
     transform: translate(var(--ysh-mobile-pos-translate-x), var(--ysh-mobile-pos-translate-y));
-    width: min(var(--ysh-content-width, var(--page-width)), 100%);
+    width: min(var(--ysh-content-width, 680px), calc(100% - (var(--ysh-content-safe-inline, 20px) * 2)));
   }
 
   .yaomri-single-hero--mobile-horizontal-left {
