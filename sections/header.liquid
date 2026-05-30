@@ -124,11 +124,16 @@
     assign header_stack_scroll_behavior = 'always_visible'
   endunless
   assign header_stack_scroll_threshold = settings.header_stack_scroll_threshold | default: 40
+  assign header_stack_scroll_threshold_mobile = settings.header_stack_scroll_threshold_mobile | default: 24
   assign header_stack_transition = settings.header_stack_transition | default: 'fade_slide'
   unless header_stack_transition == 'fade' or header_stack_transition == 'slide' or header_stack_transition == 'fade_slide'
     assign header_stack_transition = 'fade_slide'
   endunless
   assign header_stack_transition_duration = settings.header_stack_transition_duration | default: 350
+  assign header_stack_transition_easing = settings.header_stack_transition_easing | default: 'smooth'
+  unless header_stack_transition_easing == 'ease' or header_stack_transition_easing == 'smooth' or header_stack_transition_easing == 'snappy' or header_stack_transition_easing == 'linear'
+    assign header_stack_transition_easing = 'smooth'
+  endunless
   assign current_country_name = localization.country.name
   if current_country_name == blank
     assign current_country_name = localization.country.iso_code
@@ -190,8 +195,10 @@
   data-transparent-solid-after-scroll="{% if transparent_header_solid_after_scroll %}true{% else %}false{% endif %}"
   data-header-stack-scroll-behavior="{{ header_stack_scroll_behavior }}"
   data-header-stack-scroll-threshold="{{ header_stack_scroll_threshold }}"
+  data-header-stack-scroll-threshold-mobile="{{ header_stack_scroll_threshold_mobile }}"
   data-header-stack-transition="{{ header_stack_transition }}"
   data-header-stack-transition-duration="{{ header_stack_transition_duration }}"
+  data-header-stack-transition-easing="{{ header_stack_transition_easing }}"
   data-header-desktop-padding="{{ header_desktop_padding }}"
   style="
     --yh-bg: {{ header_background }};

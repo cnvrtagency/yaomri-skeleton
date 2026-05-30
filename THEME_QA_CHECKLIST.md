@@ -64,10 +64,15 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Transparent header overlays the first section without pushing page content down.
 - Header stack scroll behavior defaults to Always visible.
 - Header stack behaviour can be switched to Fade away after scroll.
-- Fade-away threshold accepts 0–200px and defaults to 40.
+- Fade-away threshold (desktop/tablet) accepts 0–200px and defaults to 40.
+- Fade-away threshold (mobile) accepts 0–200px and defaults to 24.
+- Desktop/tablet uses the desktop threshold; mobile (`<= 749px`) uses the mobile threshold.
 - Header stack transition options work: Fade, Slide, Fade + Slide.
+- Header stack transition duration controls both hide and reappear timing.
+- Header stack transition easing controls hide/show feel (Smooth/Snappy/Linear/Ease).
 - Scroll down past threshold hides both announcement + header together.
 - Scroll back to top shows the shared stack again with no jump.
+- In fade-away mode, solid-after-scroll styles are suppressed while hiding/hidden so there is no white/solid flash.
 - Transparent logo and transparent mobile logo swap correctly in transparent state and fall back correctly when blank.
 - Transparent header colour scheme Light/Dark/Custom resolves expected icon/link/logo visibility.
 - Transparent header background opacity applies only in transparent state.

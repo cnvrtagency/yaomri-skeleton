@@ -1,9 +1,10 @@
 .yaomri-header-stack {
   position: relative;
   --yaomri-header-stack-transition-duration: 350ms;
+  --yaomri-header-stack-transition-easing: cubic-bezier(0.22, 1, 0.36, 1);
   opacity: 1;
   transform: translateY(0);
-  transition: opacity var(--yaomri-header-stack-transition-duration) ease, transform var(--yaomri-header-stack-transition-duration) ease;
+  transition: opacity var(--yaomri-header-stack-transition-duration) var(--yaomri-header-stack-transition-easing), transform var(--yaomri-header-stack-transition-duration) var(--yaomri-header-stack-transition-easing);
   pointer-events: auto;
 }
 
@@ -20,7 +21,7 @@
 .yaomri-header-stack--overlay.yaomri-header-stack--fade,
 .yaomri-header-stack--overlay.yaomri-header-stack--fade-slide,
 .yaomri-header-stack--overlay.yaomri-header-stack--slide {
-  transition: opacity var(--yaomri-header-stack-transition-duration) ease, transform var(--yaomri-header-stack-transition-duration) ease;
+  transition: opacity var(--yaomri-header-stack-transition-duration) var(--yaomri-header-stack-transition-easing), transform var(--yaomri-header-stack-transition-duration) var(--yaomri-header-stack-transition-easing);
 }
 
 .yaomri-header-stack--overlay.is-hidden-after-scroll {
@@ -29,15 +30,15 @@
 }
 
 .yaomri-header-stack--fade {
-  transition: opacity var(--yaomri-header-stack-transition-duration) ease;
+  transition: opacity var(--yaomri-header-stack-transition-duration) var(--yaomri-header-stack-transition-easing);
 }
 
 .yaomri-header-stack--slide {
-  transition: transform var(--yaomri-header-stack-transition-duration) ease;
+  transition: transform var(--yaomri-header-stack-transition-duration) var(--yaomri-header-stack-transition-easing);
 }
 
 .yaomri-header-stack--fade-slide {
-  transition: opacity var(--yaomri-header-stack-transition-duration) ease, transform var(--yaomri-header-stack-transition-duration) ease;
+  transition: opacity var(--yaomri-header-stack-transition-duration) var(--yaomri-header-stack-transition-easing), transform var(--yaomri-header-stack-transition-duration) var(--yaomri-header-stack-transition-easing);
 }
 
 .yaomri-header-stack.is-hidden-after-scroll {

@@ -7,11 +7,20 @@
   const HIDDEN_CLASS = 'is-hidden-after-scroll';
   const SCROLL_BEHAVIOR_ALWAYS_VISIBLE = 'always_visible';
   const SCROLL_BEHAVIOR_FADE_AWAY = 'fade_away_after_scroll';
+  const MOBILE_BREAKPOINT = '(max-width: 749px)';
   const DEFAULT_SCROLL_THRESHOLD = 40;
+  const DEFAULT_SCROLL_THRESHOLD_MOBILE = 24;
   const DEFAULT_STACK_TRANSITION = 'fade_slide';
   const DEFAULT_STACK_TRANSITION_DURATION = 350;
   const MIN_STACK_TRANSITION_DURATION = 100;
   const MAX_STACK_TRANSITION_DURATION = 1200;
+  const DEFAULT_STACK_TRANSITION_EASING = 'smooth';
+  const STACK_TRANSITION_EASING_MAP = {
+    ease: 'ease',
+    smooth: 'cubic-bezier(0.22, 1, 0.36, 1)',
+    snappy: 'cubic-bezier(0.4, 0, 0.2, 1)',
+    linear: 'linear'
+  };
 
   const parseIntSetting = (value, fallback) => {
     const parsed = Number.parseInt(value, 10);
@@ -24,6 +33,11 @@
     group.classList.remove(GROUP_FADE_CLASS, GROUP_SLIDE_CLASS, GROUP_FADE_SLIDE_CLASS);
     if (nextClass) group.classList.add(nextClass);
   };
+
+  const isMobileViewport = () => window.matchMedia(MOBILE_BREAKPOINT).matches;
+
+  const resolveTransitionEasing = (value) =>
+    STACK_TRANSITION_EASING_MAP[value] || STACK_TRANSITION_EASING_MAP[DEFAULT_STACK_TRANSITION_EASING];
 
   const hasOpenOverlayInteraction = () => {
     const megaOpen = document.querySelector('.yaomri-mega-panels.is-open, .yaomri-mega__item.is-open');
@@ -88,14 +102,20 @@
     const solidAfterScroll = header.dataset.transparentSolidAfterScroll === 'true';
     const stackBehavior = header.dataset.headerStackScrollBehavior || SCROLL_BEHAVIOR_ALWAYS_VISIBLE;
     const scrollThresholdRaw = header.dataset.headerStackScrollThreshold;
+    const scrollThresholdMobileRaw = header.dataset.headerStackScrollThresholdMobile;
     const stackTransition = header.dataset.headerStackTransition || DEFAULT_STACK_TRANSITION;
     const stackTransitionDurationRaw = header.dataset.headerStackTransitionDuration;
+    const stackTransitionEasingRaw = header.dataset.headerStackTransitionEasing || DEFAULT_STACK_TRANSITION_EASING;
     const stackTransitionDuration = clampNumber(
       parseIntSetting(stackTransitionDurationRaw, DEFAULT_STACK_TRANSITION_DURATION),
       MIN_STACK_TRANSITION_DURATION,
       MAX_STACK_TRANSITION_DURATION
     );
-    const isPastThreshold = window.scrollY > clampNumber(parseIntSetting(scrollThresholdRaw, DEFAULT_SCROLL_THRESHOLD), 0, 200);
+    const stackTransitionEasing = resolveTransitionEasing(stackTransitionEasingRaw);
+    const scrollThreshold = isMobileViewport()
+      ? parseIntSetting(scrollThresholdMobileRaw, DEFAULT_SCROLL_THRESHOLD_MOBILE)
+      : parseIntSetting(scrollThresholdRaw, DEFAULT_SCROLL_THRESHOLD);
+    const isPastThreshold = window.scrollY > clampNumber(scrollThreshold, 0, 200);
 
     const shouldHideStack = (
       stackBehavior === SCROLL_BEHAVIOR_FADE_AWAY &&
@@ -105,9 +125,10 @@
     const isTransparentHeader = transparentActive && solidAfterScroll;
     const shouldApplyScrolledVisual = isTransparentHeader && !(stackBehavior === SCROLL_BEHAVIOR_FADE_AWAY && shouldHideStack);
 
-    if (group) {
+      if (group) {
       group.classList.add(GROUP_CLASS);
       group.style.setProperty('--yaomri-header-stack-transition-duration', `${stackTransitionDuration}ms`);
+      group.style.setProperty('--yaomri-header-stack-transition-easing', stackTransitionEasing);
       group.classList.toggle(GROUP_OVERLAY_CLASS, transparentActive && stickyEnabled);
       cleanTransitionClass(group, stackBehavior === SCROLL_BEHAVIOR_FADE_AWAY ? resolveTransitionClass(stackTransition) : null);
       group.classList.toggle(HIDDEN_CLASS, shouldHideStack);
