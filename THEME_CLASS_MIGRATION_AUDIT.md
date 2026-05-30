@@ -19,6 +19,31 @@ Recommended path:
 3. Migrate section-by-section in increasing isolation order.
 4. Remove old prefixes only after behavior and accessibility regression checks.
 
+### Controlled cleanup pass (2026-05-30, post phase rollout)
+
+CNVRT is now the primary runtime namespace for migrated systems, with legacy namespaces intentionally retained as compatibility fallbacks.
+
+Legacy prefix status after inventory:
+
+| Prefix | Current role | Classification |
+|---|---|---|
+| `yaomri-` | Legacy class aliases across migrated components | Keep as compatibility alias for now |
+| `ysh-` | Single Image Hero legacy variable aliases | Keep as compatibility alias for now |
+| `yh-` | Header legacy variable aliases | Keep as compatibility alias for now |
+| `yab-` | Announcement legacy variable aliases | Keep as compatibility alias for now |
+| `ym-` | Mega menu legacy variable aliases + JS writes | Must keep (runtime compatibility) |
+| `cc-` | Collection Cards legacy class/data/var aliases | Must keep (runtime compatibility) |
+| `mdrawer-` | Drawer open-lock class + legacy selectors/data attrs | Must keep (runtime compatibility) |
+| `yth-` | 3-card hero legacy variable aliases | Keep as compatibility alias for now |
+| `icon-yaomri` | Icon snippet/class system | Deferred icon migration (do not rename yet) |
+
+Runtime cleanup completed in this pass:
+
+1. JS selector priority now prefers CNVRT hooks first, while preserving legacy fallbacks.
+2. No Shopify setting IDs were renamed.
+3. No legacy data attributes were removed.
+4. Legacy class and variable aliases remain intentionally until a dedicated alias-removal phase.
+
 ## B. Prefix inventory
 
 | Prefix | Where seen | Primary system/component | Artifact type | Dependency risk | Rename recommendation |

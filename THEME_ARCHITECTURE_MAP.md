@@ -10,6 +10,7 @@ This is the control map for the Skeleton-based Ya Omri theme. It is intentionall
 - Theme settings own global brand, layout, colour, and header style defaults.
 - Sections own content and local behavior only.
 - Section group JSON can contain stale editor-saved settings; it must not be treated as schema truth.
+- CNVRT class/variable names are now the primary runtime contract; legacy Ya Omri-prefixed classes/variables remain as compatibility aliases until a dedicated alias-removal phase.
 
 ## Global Theme Settings
 

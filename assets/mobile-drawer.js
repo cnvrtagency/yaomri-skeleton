@@ -1,16 +1,16 @@
 (function () {
-  var drawer = document.querySelector("[data-mdrawer], [data-cnvrt-drawer]");
+  var drawer = document.querySelector("[data-cnvrt-drawer], [data-mdrawer]");
   if (!drawer) return;
 
-  var panel = drawer.querySelector(".mdrawer__panel, .cnvrt-drawer__panel");
-  var drawerHeader = drawer.querySelector("[data-mdrawer-header], [data-cnvrt-drawer-header]");
-  var titleNode = drawer.querySelector("[data-mdrawer-title], [data-cnvrt-drawer-title]");
-  var backButton = drawer.querySelector("[data-mdrawer-back], [data-cnvrt-drawer-back]");
-  var closeButtons = drawer.querySelectorAll("[data-mdrawer-close], [data-cnvrt-drawer-close]");
-  var triggers = document.querySelectorAll("[data-mdrawer-trigger], [data-cnvrt-drawer-trigger]");
-  var drillButtons = drawer.querySelectorAll("[data-mdrawer-drill], [data-cnvrt-drawer-drill]");
-  var views = drawer.querySelectorAll("[data-mdrawer-view], [data-cnvrt-drawer-view]");
-  var rootView = drawer.querySelector('[data-mdrawer-view="root"], [data-cnvrt-drawer-view="root"]');
+  var panel = drawer.querySelector(".cnvrt-drawer__panel, .mdrawer__panel");
+  var drawerHeader = drawer.querySelector("[data-cnvrt-drawer-header], [data-mdrawer-header]");
+  var titleNode = drawer.querySelector("[data-cnvrt-drawer-title], [data-mdrawer-title]");
+  var backButton = drawer.querySelector("[data-cnvrt-drawer-back], [data-mdrawer-back]");
+  var closeButtons = drawer.querySelectorAll("[data-cnvrt-drawer-close], [data-mdrawer-close]");
+  var triggers = document.querySelectorAll("[data-cnvrt-drawer-trigger], [data-mdrawer-trigger]");
+  var drillButtons = drawer.querySelectorAll("[data-cnvrt-drawer-drill], [data-mdrawer-drill]");
+  var views = drawer.querySelectorAll("[data-cnvrt-drawer-view], [data-mdrawer-view]");
+  var rootView = drawer.querySelector('[data-cnvrt-drawer-view="root"], [data-mdrawer-view="root"]');
   var rootTitle = titleNode ? titleNode.textContent : "Menu";
   var activeTrigger = null;
   var viewStack = ["root"];
@@ -31,7 +31,7 @@
 
   function getView(name) {
     return drawer.querySelector(
-      '[data-mdrawer-view="' + name + '"], [data-cnvrt-drawer-view="' + name + '"]'
+      '[data-cnvrt-drawer-view="' + name + '"], [data-mdrawer-view="' + name + '"]'
     );
   }
 
@@ -56,7 +56,7 @@
         titleNode.textContent = rootTitle;
       } else {
         var sourceButton = drawer.querySelector(
-          '[data-target="' + name + '"][data-title], [data-cnvrt-target="' + name + '"][data-cnvrt-title]'
+          '[data-cnvrt-target="' + name + '"][data-cnvrt-title], [data-target="' + name + '"][data-title]'
         );
         titleNode.textContent = sourceButton
           ? getAttributeFrom(sourceButton, ["data-title", "data-cnvrt-title"])

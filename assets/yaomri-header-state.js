@@ -55,14 +55,14 @@
 
   const hasOpenOverlayInteraction = () => {
     const megaOpen = document.querySelector(
-      '.yaomri-mega-panels.is-open, .cnvrt-mega-panels.is-open, .yaomri-mega__item.is-open, .cnvrt-mega__item.is-open'
+      '.cnvrt-mega-panels.is-open, .yaomri-mega-panels.is-open, .cnvrt-mega__item.is-open, .yaomri-mega__item.is-open'
     );
     if (megaOpen) return true;
 
     const drawerOpen =
-      document.querySelector('.mdrawer.is-open, .cnvrt-drawer.is-open') ||
-      document.documentElement.classList.contains('mdrawer-open') ||
-      document.documentElement.classList.contains('cnvrt-drawer-open');
+      document.querySelector('.cnvrt-drawer.is-open, .mdrawer.is-open') ||
+      document.documentElement.classList.contains('cnvrt-drawer-open') ||
+      document.documentElement.classList.contains('mdrawer-open');
     if (drawerOpen) return true;
 
     return false;
@@ -85,7 +85,7 @@
     if (themedGroup) return themedGroup;
 
     const headerSection = header.closest('[id^="shopify-section-"]') || header.parentElement;
-    const announcement = document.querySelector('.yaomri-announcement');
+    const announcement = document.querySelector('.cnvrt-announcement, .yaomri-announcement');
     const announcementSection =
       announcement && (announcement.closest('[id^="shopify-section-"]') || announcement.parentElement);
 
@@ -126,8 +126,8 @@
 
     const transparentActive = header.dataset.transparentActive === 'true';
     const stickyEnabled =
-      header.classList.contains('yaomri-header--sticky-enabled') ||
-      header.classList.contains('cnvrt-header--sticky-enabled');
+      header.classList.contains('cnvrt-header--sticky-enabled') ||
+      header.classList.contains('yaomri-header--sticky-enabled');
     const solidAfterScroll = header.dataset.transparentSolidAfterScroll === 'true';
     const stackBehavior = resolveHeaderDataAttr(header, [
       'headerStackScrollBehavior',
@@ -208,7 +208,7 @@
       if (rafId) return;
       rafId = window.requestAnimationFrame(() => {
         rafId = null;
-        const activeHeader = document.querySelector('.yaomri-header, .cnvrt-header');
+        const activeHeader = document.querySelector('.cnvrt-header, .yaomri-header');
         if (!activeHeader) return;
         const group = findStackGroup(activeHeader);
         applyState(activeHeader, group);

@@ -1,5 +1,5 @@
 (function () {
-  var cartRoot = document.querySelector(".yaomri-cart, .cnvrt-cart");
+  var cartRoot = document.querySelector(".cnvrt-cart, .yaomri-cart");
   if (!cartRoot) return;
 
   var moneyFormat = cartRoot.dataset.moneyFormat || "{{amount}}";

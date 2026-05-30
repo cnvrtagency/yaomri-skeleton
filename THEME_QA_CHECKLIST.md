@@ -18,6 +18,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Confirm no old Dawn repo edits.
 - Confirm no settings were added without registry updates.
 - Confirm no invalid URL defaults.
+- Confirm CNVRT-first runtime hooks still work with legacy compatibility aliases enabled.
 - Confirm skip-link target and layout landmarks are present (`Skip to content`, `MainContent`, landmark roles).
 
 ## Theme Settings
@@ -190,6 +191,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 ## Mobile Menu
 
 - Mobile drawer Phase 6 alias migration keeps legacy `mdrawer*` behavior active while `cnvrt-drawer*` aliases are active.
+- CNVRT drawer hooks are primary in JS queries while `mdrawer*` hooks remain valid fallbacks.
 - Drawer opens from mobile header menu button.
 - Mobile drawer trigger reflects open/closed state through `aria-expanded`.
 - Drawer closes with close button.
@@ -222,6 +224,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 ## Cart
 
 - Cart Phase 7 alias migration keeps legacy `yaomri-cart*` behavior active while `cnvrt-cart*` aliases are active.
+- Cart runtime root lookup resolves `cnvrt-cart` first and still supports `yaomri-cart` fallback.
 - Empty state renders heading, body text, icon, and continue shopping link.
 - Item state renders item image, title, options, price, quantity, remove link, line total, and summary.
 - Quantity input recalculates visible line totals and subtotal.

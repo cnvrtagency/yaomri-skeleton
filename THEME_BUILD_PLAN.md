@@ -23,6 +23,11 @@ Do not build speculative storefront features before the launch-critical surfaces
 | Responsive QA | In progress | Responsive width/inset system now documented (`THEME_RESPONSIVE_SYSTEM.md`); launch pass still required by viewport matrix. |
 | Publish readiness | Not started | Needs unpublished theme push, editor setup, and final QA. |
 
+Naming migration status:
+- CNVRT namespace aliases are rolled out across Announcement, Collection Cards, Single Image Hero, Header/Header Stack, Mega Menu, Mobile Drawer, Cart, Footer, and 3-Card Hero.
+- Runtime hooks are now CNVRT-first with legacy fallback support.
+- Legacy alias removal is deferred until a dedicated regression pass.
+
 ## Day 1: Settings And Navigation Control Layer
 
 Objective:

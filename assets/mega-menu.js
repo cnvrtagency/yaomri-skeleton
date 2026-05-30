@@ -25,7 +25,7 @@
   const refreshElements = () => {
     nav = document.querySelector('[data-mega]');
     panelRoot = document.querySelector('[data-mega-panels]');
-    header = document.querySelector('.yaomri-header');
+    header = document.querySelector('.cnvrt-header, .yaomri-header');
     closeDelay =
       Number(panelRoot?.getAttribute('data-close-delay')) ||
       Number(nav?.getAttribute('data-close-delay')) ||
@@ -43,19 +43,19 @@
   const syncPanelWidthVars = () => {
     if (!panelRoot) return;
     const panelWidth = getPanelWidth();
-    panelRoot.style.setProperty('--ym-panel-width', `${panelWidth}px`);
     panelRoot.style.setProperty('--cnvrt-mega-panel-width', `${panelWidth}px`);
+    panelRoot.style.setProperty('--ym-panel-width', `${panelWidth}px`);
   };
 
   const syncPanelPadding = () => {
     if (!panelRoot) return;
     const headerDesktopPadding = Number(header?.dataset.headerDesktopPadding) || 24;
-    panelRoot.style.setProperty('--ym-content-padding', `${headerDesktopPadding}px`);
     panelRoot.style.setProperty('--cnvrt-mega-content-padding', `${headerDesktopPadding}px`);
+    panelRoot.style.setProperty('--ym-content-padding', `${headerDesktopPadding}px`);
   };
 
   const getHeaderBottom = () => {
-    const liveHeader = document.querySelector('.yaomri-header, .cnvrt-header');
+    const liveHeader = document.querySelector('.cnvrt-header, .yaomri-header');
     if (!liveHeader) return 0;
     const rect = liveHeader.getBoundingClientRect();
     return Math.max(0, rect.bottom);
@@ -64,6 +64,7 @@
   const updatePanelTop = () => {
     if (!panelRoot) return;
     const top = getHeaderBottom();
+    panelRoot.style.setProperty('--cnvrt-mega-panel-top', `${top}px`);
     panelRoot.style.setProperty('--ym-panel-top', `${top}px`);
   };
 
@@ -75,7 +76,7 @@
 
   const closeAll = () => {
     clearCloseTimer();
-    nav?.querySelectorAll('.yaomri-mega__item.is-open, .cnvrt-mega__item.is-open').forEach((item) =>
+    nav?.querySelectorAll('.cnvrt-mega__item.is-open, .yaomri-mega__item.is-open').forEach((item) =>
       item.classList.remove('is-open')
     );
     nav?.querySelectorAll('[data-dropdown-trigger], [data-mega-trigger]').forEach((trigger) => {
@@ -101,7 +102,7 @@
   const openDropdown = (item) => {
     if (!desktopQuery.matches || !nav || !item) return;
     clearCloseTimer();
-    nav.querySelectorAll('.yaomri-mega__item.is-open, .cnvrt-mega__item.is-open').forEach((openItem) => {
+    nav.querySelectorAll('.cnvrt-mega__item.is-open, .yaomri-mega__item.is-open').forEach((openItem) => {
       if (openItem !== item) openItem.classList.remove('is-open');
     });
     nav.querySelectorAll('[data-dropdown-trigger], [data-mega-trigger]').forEach((trigger) => {
@@ -136,7 +137,7 @@
     syncPanelWidthVars();
     syncPanelPadding();
 
-    nav.querySelectorAll('.yaomri-mega__item.is-open, .cnvrt-mega__item.is-open').forEach((openItem) => {
+    nav.querySelectorAll('.cnvrt-mega__item.is-open, .yaomri-mega__item.is-open').forEach((openItem) => {
       if (openItem !== item) openItem.classList.remove('is-open');
     });
     item.classList.add('is-open');
