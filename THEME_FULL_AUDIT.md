@@ -18,6 +18,7 @@ Current state:
 7. Controlled cleanup pass completed: runtime selectors now resolve CNVRT-first with legacy fallbacks, and alias-removal is explicitly deferred to avoid regressions.
 8. Legacy removal Phase 1 (cart markup only) is complete: `sections/cart.liquid` now emits CNVRT cart classes only; cart CSS/JS legacy fallbacks are intentionally retained for one release.
 9. Legacy removal Phase 2 (footer markup only) is complete: `sections/footer.liquid` now emits CNVRT footer classes only; footer CSS legacy fallback selectors are intentionally retained for one release.
+10. Legacy removal Phase 3 (announcement markup only) is complete: `sections/announcement-bar.liquid` now emits CNVRT announcement classes only; announcement CSS/JS selector fallbacks and `--yab-*` variable fallbacks are intentionally retained for one release.
 
 ## B. Critical launch blockers
 
@@ -185,7 +186,7 @@ Current state:
 - Introduce neutral aliases where feasible, then migrate per section:
   1. Add dual selectors in CSS/JS (`yaomri-*` + `cnvrt-*`) or data attributes to preserve behavior.
   2. Update sections one-at-a-time starting with low-traffic utility sections.
-     3. Announcement bar aliases are complete and provide a validated phase-1 template.
+     3. Announcement alias migration is complete and markup cleanup is complete; selector/variable fallbacks remain for one release.
      4. Header stack aliases are now complete (phase 4) and documented.
      5. Mega menu aliases are now complete (phase 5) and documented.
      5. After migration and QA, remove aliases.

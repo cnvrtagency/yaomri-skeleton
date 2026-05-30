@@ -17,7 +17,7 @@
 
 {%- if is_enabled or request.design_mode -%}
 <section
-  class="yaomri-announcement cnvrt-announcement full-width yaomri-announcement--mode-{{ mode }} cnvrt-announcement--mode-{{ mode }} yaomri-announcement--width-{{ width_mode }} cnvrt-announcement--width-{{ width_mode }}{% if show_bottom_border %} yaomri-announcement--with-border cnvrt-announcement--with-border{% endif %}{% if marquee_pause_on_hover %} yaomri-announcement--marquee-pause cnvrt-announcement--marquee-pause{% endif %}"
+  class="cnvrt-announcement full-width cnvrt-announcement--mode-{{ mode }} cnvrt-announcement--width-{{ width_mode }}{% if show_bottom_border %} cnvrt-announcement--with-border{% endif %}{% if marquee_pause_on_hover %} cnvrt-announcement--marquee-pause{% endif %}"
   data-yaomri-announcement
   role="region"
   aria-label="Announcement bar"
@@ -59,7 +59,7 @@
   "
   {{ section.shopify_attributes }}
 >
-  <div class="yaomri-announcement__inner cnvrt-announcement__inner">
+  <div class="cnvrt-announcement__inner">
     {%- liquid
       assign valid_block_count = 0
       for block in section.blocks
@@ -71,17 +71,17 @@
 
     {%- if valid_block_count == 0 -%}
       {%- if request.design_mode -%}
-        <div class="yaomri-announcement__placeholder cnvrt-announcement__placeholder">Add announcement blocks</div>
+        <div class="cnvrt-announcement__placeholder">Add announcement blocks</div>
       {%- endif -%}
     {%- elsif mode == 'static' -%}
       {%- for block in section.blocks -%}
         {%- if block.settings.text != blank -%}
-          <div class="yaomri-announcement__item cnvrt-announcement__item{% if block.settings.hide_on_mobile %} yaomri-announcement__item--hide-mobile cnvrt-announcement__item--hide-mobile{% endif %}{% if block.settings.hide_on_desktop %} yaomri-announcement__item--hide-desktop cnvrt-announcement__item--hide-desktop{% endif %}" {{ block.shopify_attributes }}>
+          <div class="cnvrt-announcement__item{% if block.settings.hide_on_mobile %} cnvrt-announcement__item--hide-mobile{% endif %}{% if block.settings.hide_on_desktop %} cnvrt-announcement__item--hide-desktop{% endif %}" {{ block.shopify_attributes }}>
             {%- liquid
               assign prefix = block.settings.prefix
               assign label = block.settings.text
               if block.settings.link != blank
-                echo '<a class="yaomri-announcement__link cnvrt-announcement__link" href="'
+                echo '<a class="cnvrt-announcement__link" href="'
                 echo block.settings.link
                 echo '"'
                 if block.settings.open_new_window
@@ -89,20 +89,20 @@
                 endif
                 echo '>'
                 if prefix != blank
-                  echo '<span class="yaomri-announcement__prefix cnvrt-announcement__prefix">'
+                  echo '<span class="cnvrt-announcement__prefix">'
                   echo prefix | escape
                   echo '</span>'
                 endif
-                echo '<span class="yaomri-announcement__text cnvrt-announcement__text">'
+                echo '<span class="cnvrt-announcement__text">'
                 echo label
                 echo '</span></a>'
               else
                 if prefix != blank
-                  echo '<span class="yaomri-announcement__prefix cnvrt-announcement__prefix">'
+                  echo '<span class="cnvrt-announcement__prefix">'
                   echo prefix | escape
                   echo '</span>'
                 endif
-                echo '<span class="yaomri-announcement__text cnvrt-announcement__text">'
+                echo '<span class="cnvrt-announcement__text">'
                 echo label
                 echo '</span>'
               endif
@@ -113,17 +113,17 @@
       {%- endfor -%}
     {%- elsif mode == 'carousel' -%}
       <div
-        class="yaomri-announcement__carousel cnvrt-announcement__carousel"
+        class="cnvrt-announcement__carousel"
         data-announcement-carousel
         data-autoplay="{% if autoplay %}true{% else %}false{% endif %}"
         data-speed="{{ autoplay_speed }}"
       >
-        <div class="yaomri-announcement__slides cnvrt-announcement__slides" data-announcement-slides aria-live="polite" aria-atomic="true">
+        <div class="cnvrt-announcement__slides" data-announcement-slides aria-live="polite" aria-atomic="true">
           {%- assign slide_index = 0 -%}
           {%- for block in section.blocks -%}
             {%- if block.settings.text != blank -%}
               <div
-                class="yaomri-announcement__slide cnvrt-announcement__slide{% if slide_index == 0 %} is-active{% endif %}{% if block.settings.hide_on_mobile %} yaomri-announcement__item--hide-mobile cnvrt-announcement__item--hide-mobile{% endif %}{% if block.settings.hide_on_desktop %} yaomri-announcement__item--hide-desktop cnvrt-announcement__item--hide-desktop{% endif %}"
+                class="cnvrt-announcement__slide{% if slide_index == 0 %} is-active{% endif %}{% if block.settings.hide_on_mobile %} cnvrt-announcement__item--hide-mobile{% endif %}{% if block.settings.hide_on_desktop %} cnvrt-announcement__item--hide-desktop{% endif %}"
                 data-announcement-slide
                 {{ block.shopify_attributes }}
               >
@@ -131,7 +131,7 @@
                   assign prefix = block.settings.prefix
                   assign label = block.settings.text
                   if block.settings.link != blank
-                    echo '<a class="yaomri-announcement__link cnvrt-announcement__link" href="'
+                    echo '<a class="cnvrt-announcement__link" href="'
                     echo block.settings.link
                     echo '"'
                     if block.settings.open_new_window
@@ -139,20 +139,20 @@
                     endif
                     echo '>'
                     if prefix != blank
-                      echo '<span class="yaomri-announcement__prefix cnvrt-announcement__prefix">'
+                      echo '<span class="cnvrt-announcement__prefix">'
                       echo prefix | escape
                       echo '</span>'
                     endif
-                    echo '<span class="yaomri-announcement__text cnvrt-announcement__text">'
+                    echo '<span class="cnvrt-announcement__text">'
                     echo label
                     echo '</span></a>'
                   else
                     if prefix != blank
-                      echo '<span class="yaomri-announcement__prefix cnvrt-announcement__prefix">'
+                      echo '<span class="cnvrt-announcement__prefix">'
                       echo prefix | escape
                       echo '</span>'
                     endif
-                    echo '<span class="yaomri-announcement__text cnvrt-announcement__text">'
+                    echo '<span class="cnvrt-announcement__text">'
                     echo label
                     echo '</span>'
                   endif
@@ -164,36 +164,36 @@
         </div>
 
         {%- if show_arrows and valid_block_count > 1 -%}
-          <button type="button" class="yaomri-announcement__arrow cnvrt-announcement__arrow yaomri-announcement__arrow--prev cnvrt-announcement__arrow--prev" data-announcement-prev aria-label="Previous announcement">
+          <button type="button" class="cnvrt-announcement__arrow cnvrt-announcement__arrow--prev" data-announcement-prev aria-label="Previous announcement">
             {% render 'icon-yaomri-chevron-left' %}
           </button>
-          <button type="button" class="yaomri-announcement__arrow cnvrt-announcement__arrow yaomri-announcement__arrow--next cnvrt-announcement__arrow--next" data-announcement-next aria-label="Next announcement">
+          <button type="button" class="cnvrt-announcement__arrow cnvrt-announcement__arrow--next" data-announcement-next aria-label="Next announcement">
             {% render 'icon-yaomri-chevron-right' %}
           </button>
         {%- endif -%}
 
         {%- if show_dots and valid_block_count > 1 -%}
-          <div class="yaomri-announcement__dot cnvrt-announcement__dot yaomri-announcement__dots cnvrt-announcement__dots" data-announcement-dots>
+          <div class="cnvrt-announcement__dot cnvrt-announcement__dots" data-announcement-dots>
             {%- for block in section.blocks -%}
               {%- if block.settings.text != blank -%}
-                <button type="button" class="yaomri-announcement__dot cnvrt-announcement__dot{% if forloop.index0 == 0 %} is-active{% endif %}" data-announcement-dot="{{ forloop.index0 }}" aria-label="Go to announcement {{ forloop.index }}"></button>
+                <button type="button" class="cnvrt-announcement__dot{% if forloop.index0 == 0 %} is-active{% endif %}" data-announcement-dot="{{ forloop.index0 }}" aria-label="Go to announcement {{ forloop.index }}"></button>
               {%- endif -%}
             {%- endfor -%}
           </div>
         {%- endif -%}
       </div>
     {%- else -%}
-      <div class="yaomri-announcement__marquee cnvrt-announcement__marquee" data-announcement-marquee>
-        <div class="yaomri-announcement__marquee-track cnvrt-announcement__marquee-track">
-          <div class="yaomri-announcement__marquee-group cnvrt-announcement__marquee-group">
+      <div class="cnvrt-announcement__marquee" data-announcement-marquee>
+        <div class="cnvrt-announcement__marquee-track">
+          <div class="cnvrt-announcement__marquee-group">
             {%- for block in section.blocks -%}
               {%- if block.settings.text != blank -%}
-                <div class="yaomri-announcement__item cnvrt-announcement__item{% if block.settings.hide_on_mobile %} yaomri-announcement__item--hide-mobile cnvrt-announcement__item--hide-mobile{% endif %}{% if block.settings.hide_on_desktop %} yaomri-announcement__item--hide-desktop cnvrt-announcement__item--hide-desktop{% endif %}" {{ block.shopify_attributes }}>
+                <div class="cnvrt-announcement__item{% if block.settings.hide_on_mobile %} cnvrt-announcement__item--hide-mobile{% endif %}{% if block.settings.hide_on_desktop %} cnvrt-announcement__item--hide-desktop{% endif %}" {{ block.shopify_attributes }}>
                   {%- liquid
                     assign prefix = block.settings.prefix
                     assign label = block.settings.text
                     if block.settings.link != blank
-                      echo '<a class="yaomri-announcement__link cnvrt-announcement__link" href="'
+                      echo '<a class="cnvrt-announcement__link" href="'
                       echo block.settings.link
                       echo '"'
                       if block.settings.open_new_window
@@ -201,20 +201,20 @@
                       endif
                       echo '>'
                       if prefix != blank
-                        echo '<span class="yaomri-announcement__prefix cnvrt-announcement__prefix">'
+                        echo '<span class="cnvrt-announcement__prefix">'
                         echo prefix | escape
                         echo '</span>'
                       endif
-                      echo '<span class="yaomri-announcement__text cnvrt-announcement__text">'
+                      echo '<span class="cnvrt-announcement__text">'
                       echo label
                       echo '</span></a>'
                     else
                       if prefix != blank
-                        echo '<span class="yaomri-announcement__prefix cnvrt-announcement__prefix">'
+                        echo '<span class="cnvrt-announcement__prefix">'
                         echo prefix | escape
                         echo '</span>'
                       endif
-                      echo '<span class="yaomri-announcement__text cnvrt-announcement__text">'
+                      echo '<span class="cnvrt-announcement__text">'
                       echo label
                       echo '</span>'
                     endif
@@ -223,15 +223,15 @@
               {%- endif -%}
             {%- endfor -%}
           </div>
-          <div class="yaomri-announcement__marquee-group cnvrt-announcement__marquee-group" aria-hidden="true">
+          <div class="cnvrt-announcement__marquee-group" aria-hidden="true">
             {%- for block in section.blocks -%}
               {%- if block.settings.text != blank -%}
-                <div class="yaomri-announcement__item cnvrt-announcement__item{% if block.settings.hide_on_mobile %} yaomri-announcement__item--hide-mobile cnvrt-announcement__item--hide-mobile{% endif %}{% if block.settings.hide_on_desktop %} yaomri-announcement__item--hide-desktop cnvrt-announcement__item--hide-desktop{% endif %}">
+                <div class="cnvrt-announcement__item{% if block.settings.hide_on_mobile %} cnvrt-announcement__item--hide-mobile{% endif %}{% if block.settings.hide_on_desktop %} cnvrt-announcement__item--hide-desktop{% endif %}">
                   {%- liquid
                     assign prefix = block.settings.prefix
                     assign label = block.settings.text
                     if block.settings.link != blank
-                      echo '<a class="yaomri-announcement__link cnvrt-announcement__link" href="'
+                      echo '<a class="cnvrt-announcement__link" href="'
                       echo block.settings.link
                       echo '"'
                       if block.settings.open_new_window
@@ -239,20 +239,20 @@
                       endif
                       echo ' tabindex="-1">'
                       if prefix != blank
-                        echo '<span class="yaomri-announcement__prefix cnvrt-announcement__prefix">'
+                        echo '<span class="cnvrt-announcement__prefix">'
                         echo prefix | escape
                         echo '</span>'
                       endif
-                      echo '<span class="yaomri-announcement__text cnvrt-announcement__text">'
+                      echo '<span class="cnvrt-announcement__text">'
                       echo label
                       echo '</span></a>'
                     else
                       if prefix != blank
-                        echo '<span class="yaomri-announcement__prefix cnvrt-announcement__prefix">'
+                        echo '<span class="cnvrt-announcement__prefix">'
                         echo prefix | escape
                         echo '</span>'
                       endif
-                      echo '<span class="yaomri-announcement__text cnvrt-announcement__text">'
+                      echo '<span class="cnvrt-announcement__text">'
                       echo label
                       echo '</span>'
                     endif

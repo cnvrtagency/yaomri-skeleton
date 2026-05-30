@@ -7,6 +7,7 @@
 - First code-removal target should be a controlled pilot on one isolated component (recommended: Cart markup classes only), with CSS/JS fallbacks retained for one release.
 - Phase 1 is complete: legacy `yaomri-cart*` markup classes were removed from `sections/cart.liquid`; CSS/JS legacy fallbacks remain intentionally active for one release.
 - Phase 2 is complete: legacy footer markup aliases (`site-footer`, `footer__*`) were removed from `sections/footer.liquid`; footer CSS legacy fallbacks remain intentionally active for one release.
+- Phase 3 is complete: legacy `yaomri-announcement*` markup classes were removed from `sections/announcement-bar.liquid`; CSS/JS and `--yab-*` variable fallbacks remain intentionally active for one release.
 
 ## Prefix inventory (legacy readiness)
 
@@ -25,16 +26,16 @@
 ## Component-by-component removal readiness
 
 ### 1) Announcement Bar
-- Liquid: dual classes (`yaomri-announcement*` + `cnvrt-announcement*`) and `--yab-*` aliases are emitted.
+- Liquid: CNVRT announcement classes are now primary in markup; legacy `--yab-*` variable aliases remain emitted.
 - CSS: many selectors still target legacy classes directly or mixed legacy/CNVRT combinations.
 - JS: behavior is data-attribute based (`data-announcement-*`), not class-prefixed.
 - CNVRT equivalent: yes.
 - JS prefers CNVRT: N/A (data attrs).
-- Remove legacy markup classes now: **No**.
+- Remove legacy markup classes now: **Completed in Phase 3 (markup-only)**.
 - Remove legacy CSS aliases now: **No**.
 - Keep old vars: **Yes** (`--yab-*`).
 - Risk: **Medium**.
-- Action: keep compatibility aliases for now.
+- Action: keep CSS/JS/variable compatibility aliases for one release; next removal candidate remains pending QA sign-off.
 - Class: **B**.
 
 ### 2) Collection Cards
@@ -149,7 +150,8 @@
 1. Docs-only legacy references in markdown files where they are historical/contextual and not current instructions.
 2. Cart markup-only `yaomri-cart*` aliases in `sections/cart.liquid` were safe and have now been removed (Phase 1 complete).
 3. Footer markup-only legacy aliases (`site-footer`, `footer__*`) in `sections/footer.liquid` were safe and have now been removed (Phase 2 complete).
-4. No additional runtime legacy class/var alias is globally safe for immediate removal across all components.
+4. Announcement markup-only `yaomri-announcement*` aliases in `sections/announcement-bar.liquid` were safe and have now been removed (Phase 3 complete).
+5. No additional runtime legacy class/var alias is globally safe for immediate removal across all components.
 
 ## Keep-temporarily list (B)
 1. `yab-*` (Announcement vars)
@@ -185,13 +187,17 @@
    - `YAOMRI_BUILD_SPEC.md`
 
 ## First removal target recommendation
-- **Completed first runtime removal phase:** Cart markup aliases only.
+- **Completed runtime removal phases:** Cart markup aliases (Phase 1), Footer markup aliases (Phase 2), Announcement markup aliases (Phase 3).
 - Scope:
   1. Removed `yaomri-cart*` classes from `sections/cart.liquid` only.
   2. Kept `cnvrt-cart*` classes.
   3. Kept `assets/yaomri-cart.css` dual selectors for one release.
   4. Kept `assets/yaomri-cart.js` fallback selector (`.cnvrt-cart, .yaomri-cart`) for one release.
-- Why first: isolated template, low cross-component coupling, JS already CNVRT-first.
+  5. Removed footer legacy aliases (`site-footer`, `footer__*`) from `sections/footer.liquid`.
+  6. Kept footer CSS fallback selectors for one release.
+  7. Removed `yaomri-announcement*` classes from `sections/announcement-bar.liquid`.
+  8. Kept announcement CSS/JS selector fallbacks and `--yab-*` variable fallbacks for one release.
+- Why these phases: isolated/low-coupling markup-only cleanups with no selector/runtime removals.
 - Next candidate: pending QA sign-off.
 
 ## Exact next Codex prompt for first removal phase

@@ -142,7 +142,9 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Marquee mode scrolls continuously without visible gaps.
 - Marquee pause on hover works when enabled.
 - Marquee respects `prefers-reduced-motion`.
-- Announcement Phase 1 migration keeps legacy `yaomri-announcement*` and `yab-*` behavior while adding `cnvrt-announcement*` classes and variables.
+- Announcement Phase 3 legacy markup cleanup: `sections/announcement-bar.liquid` now renders CNVRT announcement classes in markup.
+- Announcement CSS/JS selector fallbacks and `--yab-*` variable fallbacks are intentionally retained for one release.
+- Next safe legacy alias-removal candidate remains pending QA sign-off.
 - Announcement links are keyboard accessible.
 - Announcement control buttons expose clear accessible names.
 - Announcement item with no link renders plain text.

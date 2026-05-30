@@ -225,13 +225,14 @@ Preferred: **section-by-section with compatibility aliases**.
 ### Phase 1 — Announcement
 - Files: `sections/announcement-bar.liquid`, `assets/announcement-bar.css`
 - Risk: medium-low
-- Status: Completed (compatibility alias phase)
+- Status: Completed (compatibility alias phase + legacy markup cleanup phase)
 - QA: desktop/mobile visibility, marquee/carousel controls, autoplay behavior
 - Suggested commit: `feat: add cnvrt announcement namespace aliases`
 
-Announcement announcement bar now renders both legacy and neutral namespace classes and variables during compatibility migration:
-- legacy: `yaomri-announcement*`, `yab-*`
-- new: `cnvrt-announcement*`, `--cnvrt-announcement-*`
+Announcement bar now renders CNVRT namespace classes in markup and keeps compatibility fallbacks for one release:
+- markup primary: `cnvrt-announcement*`
+- fallback aliases retained: CSS/JS support for `yaomri-announcement*` selectors and `--yab-*` variables
+- new variable namespace: `--cnvrt-announcement-*`
 
 ### Phase 2 — Collection Cards
 - Files: `sections/collection-cards.liquid`, `assets/section-collection-cards.css`, `assets/section-collection-cards.js`
@@ -300,6 +301,7 @@ Announcement announcement bar now renders both legacy and neutral namespace clas
 ### Current completed state (post Phase 8)
 
 - Announcement namespace migration is complete and stable.
+- Announcement legacy markup aliases have been removed (Phase 3 legacy cleanup), with CSS/JS/`--yab-*` fallbacks retained for one release.
 - Collection Cards namespace migration is now complete with compatibility aliases and compatibility `cc-*` retention.
 - Single Image Hero migration is now complete with compatibility aliases retained.
 - Header migration is complete with compatibility aliases.
