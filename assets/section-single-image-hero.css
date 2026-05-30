@@ -115,8 +115,9 @@
 
 .yaomri-single-hero__content-stack {
   display: grid;
-  justify-items: var(--ysh-desktop-item-justify, start);
+  justify-items: stretch;
   gap: var(--ysh-content-gap, 12px);
+  width: 100%;
 }
 
 .yaomri-single-hero__block {
@@ -198,7 +199,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.7rem;
-  justify-content: var(--ysh-desktop-item-justify, start);
+  justify-content: var(--ysh-desktop-buttons-justify, flex-start);
 }
 
 .yaomri-single-hero__button {
@@ -365,11 +366,11 @@
   }
 
   .yaomri-single-hero__content-stack {
-    justify-items: var(--ysh-mobile-item-justify, center);
+    justify-items: stretch;
   }
 
   .yaomri-single-hero__buttons {
-    justify-content: var(--ysh-mobile-item-justify, center);
+    justify-content: var(--ysh-mobile-buttons-justify, center);
   }
 
   .yaomri-single-hero__buttons--stack-mobile {

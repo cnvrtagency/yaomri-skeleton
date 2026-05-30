@@ -33,13 +33,13 @@
   endif
 
   assign desktop_text = 'left'
-  assign desktop_item_justify = 'start'
+  assign desktop_buttons_justify = 'flex-start'
   if desktop_text_alignment == 'center'
     assign desktop_text = 'center'
-    assign desktop_item_justify = 'center'
+    assign desktop_buttons_justify = 'center'
   elsif desktop_text_alignment == 'right'
     assign desktop_text = 'right'
-    assign desktop_item_justify = 'end'
+    assign desktop_buttons_justify = 'flex-end'
   endif
 
   assign mobile_justify = 'center'
@@ -57,13 +57,13 @@
   endif
 
   assign mobile_text = 'center'
-  assign mobile_item_justify = 'center'
+  assign mobile_buttons_justify = 'center'
   if mobile_text_alignment == 'left'
     assign mobile_text = 'left'
-    assign mobile_item_justify = 'start'
+    assign mobile_buttons_justify = 'flex-start'
   elsif mobile_text_alignment == 'right'
     assign mobile_text = 'right'
-    assign mobile_item_justify = 'end'
+    assign mobile_buttons_justify = 'flex-end'
   endif
 
   assign section_width_value = 'var(--page-width)'
@@ -98,11 +98,11 @@
     --ysh-desktop-justify: {{ desktop_justify }};
     --ysh-desktop-align: {{ desktop_align }};
     --ysh-desktop-text-align: {{ desktop_text }};
-    --ysh-desktop-item-justify: {{ desktop_item_justify }};
+    --ysh-desktop-buttons-justify: {{ desktop_buttons_justify }};
     --ysh-mobile-justify: {{ mobile_justify }};
     --ysh-mobile-align: {{ mobile_align }};
     --ysh-mobile-text-align: {{ mobile_text }};
-    --ysh-mobile-item-justify: {{ mobile_item_justify }};
+    --ysh-mobile-buttons-justify: {{ mobile_buttons_justify }};
     --ysh-content-width: {{ content_width_value }};
     --ysh-content-gap: {{ section.settings.content_gap }}px;
     --ysh-content-padding: {{ section.settings.content_padding }}px;
@@ -805,6 +805,7 @@
       "type": "select",
       "id": "desktop_content_horizontal",
       "label": "Desktop content horizontal position",
+      "info": "Moves the content area left, centre, or right inside the hero.",
       "default": "left",
       "options": [
         {
@@ -845,6 +846,7 @@
       "type": "select",
       "id": "desktop_text_alignment",
       "label": "Desktop text alignment",
+      "info": "Aligns text and buttons inside the content area. Does not move the content area.",
       "default": "left",
       "options": [
         {
@@ -865,6 +867,7 @@
       "type": "select",
       "id": "mobile_content_horizontal",
       "label": "Mobile content horizontal position",
+      "info": "Moves the content area left, centre, or right inside the hero on mobile.",
       "default": "center",
       "options": [
         {
@@ -905,6 +908,7 @@
       "type": "select",
       "id": "mobile_text_alignment",
       "label": "Mobile text alignment",
+      "info": "Aligns text and buttons inside the content area on mobile. Does not move the content area.",
       "default": "center",
       "options": [
         {
