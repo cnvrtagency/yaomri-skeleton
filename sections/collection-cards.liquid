@@ -10,7 +10,7 @@
   assign show_count_default = section.settings.show_count_default
   assign use_first_product_image = section.settings.use_first_product_image
 
-  assign section_width_value = 'none'
+  assign section_width_value = '100%'
   if section_width_mode == 'site'
     assign section_width_value = 'var(--page-width)'
   elsif section_width_mode == 'custom'
@@ -35,12 +35,26 @@
   class="cc-carousel cc-carousel--layout-{{ layout_mode }} cc-carousel--ratio-{{ card_ratio }}{% if section.settings.border_top %} cc-carousel--border-top{% endif %}"
   aria-label="{{ section.settings.heading | default: 'Collection cards' | escape }}"
   style="
-    --cc-max-width: {{ section_width_value }};
+    --cc-container-width: {{ section_width_value }};
     --cc-bg: {{ section.settings.background_color }};
     --cc-border-color: {{ section.settings.border_color }};
     --cc-gap-desktop: {{ section.settings.gap_desktop }}px;
     --cc-gap-mobile: {{ section.settings.gap_mobile }}px;
     --cc-image-ratio: {{ ratio_value }};
+    --cc-title-size-desktop: {{ section.settings.card_title_size_desktop }}px;
+    --cc-title-size-mobile: {{ section.settings.card_title_size_mobile }}px;
+    --cc-title-weight: {{ section.settings.card_title_weight }};
+    --cc-title-line-height: {{ section.settings.card_title_line_height | divided_by: 100.0 }};
+    --cc-title-letter-spacing: {{ section.settings.card_title_letter_spacing | divided_by: 100.0 }}em;
+    --cc-title-transform: {{ section.settings.card_title_transform }};
+    --cc-title-color: {{ section.settings.card_title_color }};
+    --cc-meta-size-desktop: {{ section.settings.card_meta_size_desktop }}px;
+    --cc-meta-size-mobile: {{ section.settings.card_meta_size_mobile }}px;
+    --cc-meta-weight: {{ section.settings.card_meta_weight }};
+    --cc-meta-line-height: {{ section.settings.card_meta_line_height | divided_by: 100.0 }};
+    --cc-meta-letter-spacing: {{ section.settings.card_meta_letter_spacing | divided_by: 100.0 }}em;
+    --cc-meta-transform: {{ section.settings.card_meta_transform }};
+    --cc-meta-color: {{ section.settings.card_meta_color }};
     --cc-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
     --cc-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
     --cc-padding-left-desktop: {{ section.settings.padding_left_desktop }}px;
@@ -58,22 +72,22 @@
 >
   <div class="cc-carousel__inner">
     <div class="cc-carousel__head">
-      <h2 class="cc-carousel__title">
-        {{ section.settings.heading }}
+      <div class="cc-carousel__heading-group">
+        <h2 class="cc-carousel__title">{{ section.settings.heading }}</h2>
         {%- if section.settings.heading_subtitle != blank -%}
-          <span class="cc-carousel__subtitle">{{ section.settings.heading_subtitle }}</span>
+          <p class="cc-carousel__subtitle">{{ section.settings.heading_subtitle }}</p>
         {%- endif -%}
-      </h2>
-      {%- if layout_mode == 'carousel' and show_arrows -%}
-        <div class="cc-carousel__nav">
+      </div>
+      <div class="cc-carousel__nav{% unless layout_mode == 'carousel' and show_arrows %} is-hidden{% endunless %}">
+        {%- if layout_mode == 'carousel' and show_arrows -%}
           <button type="button" class="cc-carousel__btn" data-cc-prev aria-label="Previous collection cards">
             {% render 'icon-yaomri-chevron-left' %}
           </button>
           <button type="button" class="cc-carousel__btn" data-cc-next aria-label="Next collection cards">
             {% render 'icon-yaomri-chevron-right' %}
           </button>
-        </div>
-      {%- endif -%}
+        {%- endif -%}
+      </div>
     </div>
 
     {%- assign valid_cards = 0 -%}
@@ -125,6 +139,19 @@
                 aria-label="{{ card_title | escape }}"
               >
                 <div class="cc-card__media">
+                  {%- if block.settings.badge_text != blank -%}
+                    <span
+                      class="cc-card__badge cc-card__badge--{{ block.settings.badge_placement }}"
+                      style="
+                        --cc-badge-text: {{ block.settings.badge_text_color }};
+                        --cc-badge-bg: {{ block.settings.badge_background_color }};
+                        --cc-badge-size: {{ block.settings.badge_font_size }}px;
+                        --cc-badge-transform: {{ block.settings.badge_text_transform }};
+                      "
+                    >
+                      {{ block.settings.badge_text }}
+                    </span>
+                  {%- endif -%}
                   {%- if card_img != blank -%}
                     {{
                       card_img
@@ -158,6 +185,19 @@
                 {{ block.shopify_attributes }}
               >
                 <div class="cc-card__media">
+                  {%- if block.settings.badge_text != blank -%}
+                    <span
+                      class="cc-card__badge cc-card__badge--{{ block.settings.badge_placement }}"
+                      style="
+                        --cc-badge-text: {{ block.settings.badge_text_color }};
+                        --cc-badge-bg: {{ block.settings.badge_background_color }};
+                        --cc-badge-size: {{ block.settings.badge_font_size }}px;
+                        --cc-badge-transform: {{ block.settings.badge_text_transform }};
+                      "
+                    >
+                      {{ block.settings.badge_text }}
+                    </span>
+                  {%- endif -%}
                   {%- if card_img != blank -%}
                     {{
                       card_img
@@ -267,8 +307,8 @@
         { "value": "subtle_zoom", "label": "Subtle zoom" }
       ]
     },
-    { "type": "range", "id": "gap_desktop", "label": "Gap desktop", "min": 8, "max": 40, "step": 1, "unit": "px", "default": 16 },
-    { "type": "range", "id": "gap_mobile", "label": "Gap mobile", "min": 8, "max": 28, "step": 1, "unit": "px", "default": 12 },
+    { "type": "range", "id": "gap_desktop", "label": "Gap desktop", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 16 },
+    { "type": "range", "id": "gap_mobile", "label": "Gap mobile", "min": 0, "max": 28, "step": 1, "unit": "px", "default": 12 },
     { "type": "checkbox", "id": "show_count_default", "label": "Show product count by default", "default": true },
     {
       "type": "checkbox",
@@ -277,6 +317,22 @@
       "default": true,
       "info": "Collection image is used first. If unavailable, the first product image can be used as a fallback."
     },
+    { "type": "header", "content": "Card title typography" },
+    { "type": "range", "id": "card_title_size_desktop", "label": "Card title size desktop", "min": 12, "max": 32, "step": 1, "unit": "px", "default": 16 },
+    { "type": "range", "id": "card_title_size_mobile", "label": "Card title size mobile", "min": 11, "max": 24, "step": 1, "unit": "px", "default": 14 },
+    { "type": "select", "id": "card_title_weight", "label": "Card title weight", "default": "800", "options": [{ "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "Semibold" }, { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra bold" }] },
+    { "type": "range", "id": "card_title_line_height", "label": "Card title line height", "min": 80, "max": 180, "step": 5, "unit": "%", "default": 120 },
+    { "type": "range", "id": "card_title_letter_spacing", "label": "Card title letter spacing", "min": -10, "max": 40, "step": 1, "unit": "em", "default": 0 },
+    { "type": "select", "id": "card_title_transform", "label": "Card title text transform", "default": "uppercase", "options": [{ "value": "none", "label": "None" }, { "value": "uppercase", "label": "Uppercase" }, { "value": "lowercase", "label": "Lowercase" }, { "value": "capitalize", "label": "Capitalize" }] },
+    { "type": "color", "id": "card_title_color", "label": "Card title colour", "default": "#ffffff" },
+    { "type": "header", "content": "Card meta typography" },
+    { "type": "range", "id": "card_meta_size_desktop", "label": "Card meta size desktop", "min": 10, "max": 24, "step": 1, "unit": "px", "default": 11 },
+    { "type": "range", "id": "card_meta_size_mobile", "label": "Card meta size mobile", "min": 10, "max": 20, "step": 1, "unit": "px", "default": 10 },
+    { "type": "select", "id": "card_meta_weight", "label": "Card meta weight", "default": "600", "options": [{ "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "Semibold" }, { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra bold" }] },
+    { "type": "range", "id": "card_meta_line_height", "label": "Card meta line height", "min": 80, "max": 220, "step": 5, "unit": "%", "default": 130 },
+    { "type": "range", "id": "card_meta_letter_spacing", "label": "Card meta letter spacing", "min": -10, "max": 40, "step": 1, "unit": "em", "default": 18 },
+    { "type": "select", "id": "card_meta_transform", "label": "Card meta text transform", "default": "uppercase", "options": [{ "value": "none", "label": "None" }, { "value": "uppercase", "label": "Uppercase" }, { "value": "lowercase", "label": "Lowercase" }, { "value": "capitalize", "label": "Capitalize" }] },
+    { "type": "color", "id": "card_meta_color", "label": "Card meta colour", "default": "#ffffff" },
 
     { "type": "header", "content": "Spacing" },
     { "type": "range", "id": "padding_top_desktop", "label": "Padding top desktop", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 0 },
@@ -308,6 +364,34 @@
         { "type": "image_picker", "id": "image", "label": "Image override", "info": "Overrides the collection image." },
         { "type": "checkbox", "id": "show_count", "label": "Show product count", "default": true },
         { "type": "url", "id": "link_override", "label": "Link override" },
+        { "type": "text", "id": "badge_text", "label": "Badge text" },
+        {
+          "type": "select",
+          "id": "badge_placement",
+          "label": "Badge placement",
+          "default": "top-left",
+          "options": [
+            { "value": "top-left", "label": "Top left" },
+            { "value": "top-right", "label": "Top right" },
+            { "value": "bottom-left", "label": "Bottom left" },
+            { "value": "bottom-right", "label": "Bottom right" }
+          ]
+        },
+        { "type": "color", "id": "badge_text_color", "label": "Badge text colour", "default": "#ffffff" },
+        { "type": "color", "id": "badge_background_color", "label": "Badge background colour", "default": "#111111" },
+        { "type": "range", "id": "badge_font_size", "label": "Badge font size", "min": 10, "max": 18, "step": 1, "unit": "px", "default": 11 },
+        {
+          "type": "select",
+          "id": "badge_text_transform",
+          "label": "Badge text transform",
+          "default": "uppercase",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "uppercase", "label": "Uppercase" },
+            { "value": "lowercase", "label": "Lowercase" },
+            { "value": "capitalize", "label": "Capitalize" }
+          ]
+        },
         {
           "type": "select",
           "id": "image_position",

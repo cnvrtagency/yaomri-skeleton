@@ -162,6 +162,7 @@ Owns:
 - Collection showcase in Grid or Carousel mode.
 - Simple section heading row with optional subtitle and carousel arrows.
 - Card-level collection overrides (title/image/link/subtitle/image/count).
+- Section-level card typography controls and per-card badge/label rendering.
 
 Must not own:
 - Global header/nav/cart logic.

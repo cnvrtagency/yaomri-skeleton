@@ -262,8 +262,12 @@ Use this before publishing and after any architecture-level change. Passing auto
 
 - Collection Cards section appears in Theme Editor.
 - Heading and optional heading subtitle render correctly in the section header row.
+- Heading/subtitle/arrows align on one clean row on desktop.
+- Mobile heading layout stacks cleanly and arrows do not crowd heading text.
+- Section width modes (Full/Site/Custom) visibly change the shared heading/cards container width.
 - Grid mode renders the same card design in responsive columns.
 - Carousel mode renders horizontal scroll-snap cards.
+- Switching between Carousel and Grid does not cause awkward top-spacing/width jumps.
 - Carousel arrows move the track by about 80% of the track width.
 - Carousel works after Theme Editor section reload.
 - Selected collection fallback works: title, image, link from collection object.
@@ -276,12 +280,17 @@ Use this before publishing and after any architecture-level change. Passing auto
 - In Theme Editor, if no usable blocks exist, four clean placeholder cards render.
 - Placeholder cards use a light overlay style (no heavy dark blur).
 - Card ratio modes work: 4:5, 1:1, 4:3, 16:9.
+- Gap desktop and gap mobile allow `0` and visually remove card spacing.
 - Cards with no resolved link render as non-clickable articles, not fake `#` links.
 - No nested/broken links are rendered.
 - Image position setting affects image crop focus.
 - Image hover mode supports none and subtle zoom.
+- Card title typography controls apply (desktop/mobile size, weight, line-height, letter-spacing, transform, colour).
+- Card meta typography controls apply (desktop/mobile size, weight, line-height, letter-spacing, transform, colour).
+- Badge text renders only when set.
+- Badge placement options position correctly at top/bottom and left/right.
+- Badge colour, font size, and text transform controls apply.
 - Border top and border colour render correctly.
-- Section width modes work: Full, Site, Custom.
 - Desktop/mobile padding and margin defaults remain 0.
 - No default browser-blue link styling appears.
 - 3-Card Hero renders one, two, or three cards cleanly.
