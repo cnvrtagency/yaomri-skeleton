@@ -44,16 +44,18 @@
     if (!panelRoot) return;
     const panelWidth = getPanelWidth();
     panelRoot.style.setProperty('--ym-panel-width', `${panelWidth}px`);
+    panelRoot.style.setProperty('--cnvrt-mega-panel-width', `${panelWidth}px`);
   };
 
   const syncPanelPadding = () => {
     if (!panelRoot) return;
     const headerDesktopPadding = Number(header?.dataset.headerDesktopPadding) || 24;
     panelRoot.style.setProperty('--ym-content-padding', `${headerDesktopPadding}px`);
+    panelRoot.style.setProperty('--cnvrt-mega-content-padding', `${headerDesktopPadding}px`);
   };
 
   const getHeaderBottom = () => {
-    const liveHeader = document.querySelector('.yaomri-header');
+    const liveHeader = document.querySelector('.yaomri-header, .cnvrt-header');
     if (!liveHeader) return 0;
     const rect = liveHeader.getBoundingClientRect();
     return Math.max(0, rect.bottom);
@@ -73,7 +75,9 @@
 
   const closeAll = () => {
     clearCloseTimer();
-    nav?.querySelectorAll('.yaomri-mega__item.is-open').forEach((item) => item.classList.remove('is-open'));
+    nav?.querySelectorAll('.yaomri-mega__item.is-open, .cnvrt-mega__item.is-open').forEach((item) =>
+      item.classList.remove('is-open')
+    );
     nav?.querySelectorAll('[data-dropdown-trigger], [data-mega-trigger]').forEach((trigger) => {
       trigger.setAttribute('aria-expanded', 'false');
     });
@@ -97,7 +101,7 @@
   const openDropdown = (item) => {
     if (!desktopQuery.matches || !nav || !item) return;
     clearCloseTimer();
-    nav.querySelectorAll('.yaomri-mega__item.is-open').forEach((openItem) => {
+    nav.querySelectorAll('.yaomri-mega__item.is-open, .cnvrt-mega__item.is-open').forEach((openItem) => {
       if (openItem !== item) openItem.classList.remove('is-open');
     });
     nav.querySelectorAll('[data-dropdown-trigger], [data-mega-trigger]').forEach((trigger) => {
@@ -132,7 +136,7 @@
     syncPanelWidthVars();
     syncPanelPadding();
 
-    nav.querySelectorAll('.yaomri-mega__item.is-open').forEach((openItem) => {
+    nav.querySelectorAll('.yaomri-mega__item.is-open, .cnvrt-mega__item.is-open').forEach((openItem) => {
       if (openItem !== item) openItem.classList.remove('is-open');
     });
     item.classList.add('is-open');

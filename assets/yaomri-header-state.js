@@ -54,7 +54,9 @@
     STACK_TRANSITION_EASING_MAP[value] || STACK_TRANSITION_EASING_MAP[DEFAULT_STACK_TRANSITION_EASING];
 
   const hasOpenOverlayInteraction = () => {
-    const megaOpen = document.querySelector('.yaomri-mega-panels.is-open, .yaomri-mega__item.is-open');
+    const megaOpen = document.querySelector(
+      '.yaomri-mega-panels.is-open, .cnvrt-mega-panels.is-open, .yaomri-mega__item.is-open, .cnvrt-mega__item.is-open'
+    );
     if (megaOpen) return true;
 
     const drawerOpen = document.querySelector('.mdrawer.is-open');

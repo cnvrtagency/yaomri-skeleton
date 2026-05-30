@@ -25,22 +25,42 @@
   assign heading_style = section.settings.heading_style | default: 'bold'
 -%}
 
-<div class="yaomri-mega-section" data-mega-section>
+<div class="yaomri-mega-section cnvrt-mega-section" data-mega-section>
   <div
-    class="yaomri-mega-panels yaomri-mega-panels--style-{{ panel_style_preset }} yaomri-mega-panels--heading-{{ heading_style }}"
+    class="yaomri-mega-panels cnvrt-mega-panels yaomri-mega-panels--style-{{ panel_style_preset }} cnvrt-mega-panels--style-{{ panel_style_preset }} yaomri-mega-panels--heading-{{ heading_style }} cnvrt-mega-panels--heading-{{ heading_style }}"
     data-mega-panels
     data-panel-width="{{ section.settings.mega_panel_width | default: 1200 }}"
     data-close-delay="{{ section.settings.close_delay | default: 250 }}"
     style="
-      --ym-panel-width: {{ section.settings.mega_panel_width | default: 1200 }}px;
-      --ym-panel-bg: {{ panel_background }};
-      --ym-panel-text: {{ panel_text }};
-      --ym-panel-border: {{ panel_border }};
-      --ym-panel-shadow: {{ panel_shadow_value }};
+      --cnvrt-mega-panel-width: {{ section.settings.mega_panel_width | default: 1200 }}px;
+      --cnvrt-mega-panel-bg: {{ panel_background }};
+      --cnvrt-mega-panel-text: {{ panel_text }};
+      --cnvrt-mega-panel-border: {{ panel_border }};
+      --cnvrt-mega-panel-shadow: {{ panel_shadow_value }};
+      --cnvrt-mega-panel-gap-y: var(--ym-panel-gap-y, 1.25rem);
+      --cnvrt-mega-panel-gap-x: var(--ym-panel-gap-x, 1.25rem);
+      --cnvrt-mega-panel-padding-y: var(--ym-panel-padding-y, 1.5rem);
+      --cnvrt-mega-panel-padding-bottom: var(--ym-panel-padding-bottom, 2rem);
+      --cnvrt-mega-panel-top: var(--ym-panel-top, 0px);
+      --ym-panel-top: var(--cnvrt-mega-panel-top);
+      --ym-panel-width: var(--cnvrt-mega-panel-width);
+      --ym-panel-bg: var(--cnvrt-mega-panel-bg);
+      --ym-panel-text: var(--cnvrt-mega-panel-text);
+      --ym-panel-border: var(--cnvrt-mega-panel-border);
+      --ym-panel-shadow: var(--cnvrt-mega-panel-shadow);
+      --ym-panel-gap-y: var(--cnvrt-mega-panel-gap-y);
+      --ym-panel-gap-x: var(--cnvrt-mega-panel-gap-x);
+      --ym-panel-padding-y: var(--cnvrt-mega-panel-padding-y);
+      --ym-panel-padding-bottom: var(--cnvrt-mega-panel-padding-bottom);
     "
     aria-hidden="true"
   >
-    <button class="yaomri-mega-panels__backdrop" type="button" data-mega-close aria-label="Close menu"></button>
+    <button
+      class="yaomri-mega-panels__backdrop cnvrt-mega-panels__backdrop"
+      type="button"
+      data-mega-close
+      aria-label="Close menu"
+    ></button>
     {%- for block in section.blocks -%}
       {%- if block.type == 'mega_parent' -%}
         {% render 'mega-menu-panel', parent_block: block, all_blocks: section.blocks, panel_width: section.settings.mega_panel_width %}

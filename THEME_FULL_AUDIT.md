@@ -14,7 +14,7 @@ Current state:
 3. Major architectural debt remains in naming and section ownership patterns (Ya Omri-branded class system and mixed responsive conventions).
 4. Homepage is minimal and predictable (`templates/index.json` has only `single-image-hero` and `collection-cards` in this snapshot).
 5. Header/mobile drawer/mega menu stack behavior is now feature-complete for fade-away, mobile/desktop thresholds, easing, and duration, including solid-state suppression in fade-away mode.
-6. Namespace migration is now complete through four sections: announcement (`yaomri-announcement*`/`yab-*`), collection cards (`cc-*`), Single Image Hero (`yaomri-single-hero*`/`ysh-*`), and Header stack (`yaomri-header*`/`yaomri-header-stack*`) with compatibility aliasing to `cnvrt-announcement*`, `cnvrt-collection-cards*`, `cnvrt-single-hero*`, and `cnvrt-header*` classes/variables.
+6. Namespace migration is now complete through five sections: announcement (`yaomri-announcement*`/`yab-*`), collection cards (`cc-*`), Single Image Hero (`yaomri-single-hero*`/`ysh-*`), Header stack (`yaomri-header*`/`yaomri-header-stack*`), and Mega menu (`yaomri-mega*`/`ym-*`) with compatibility aliasing to `cnvrt-announcement*`, `cnvrt-collection-cards*`, `cnvrt-single-hero*`, `cnvrt-header*`, and `cnvrt-mega*` classes/variables.
 
 ## B. Critical launch blockers
 
@@ -184,6 +184,7 @@ Current state:
   2. Update sections one-at-a-time starting with low-traffic utility sections.
      3. Announcement bar aliases are complete and provide a validated phase-1 template.
      4. Header stack aliases are now complete (phase 4) and documented.
+     5. Mega menu aliases are now complete (phase 5) and documented.
      5. After migration and QA, remove aliases.
 4. Preserve data attributes
  - Keep `[data-yaomri-header-group]`, `[data-cnvrt-header-group]`, and migrate intentionally with compatibility shim.

@@ -75,6 +75,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Scroll down past threshold hides both announcement + header together.
 - Scroll back to top shows the shared stack again with no jump.
 - Header Phase 4 alias migration keeps legacy `yaomri-header*` and `yaomri-header-stack*` behavior active while `cnvrt-header*` classes and `--cnvrt-header-*` variables are introduced as compatibility aliases.
+- Mega menu phase 5 alias migration keeps legacy `yaomri-mega*` behavior active while `cnvrt-mega*` classes and `--cnvrt-mega-*` variables are active as compatibility aliases.
 - In fade-away mode, solid-after-scroll styles are suppressed while hiding/hidden so there is no white/solid flash.
 - Transparent logo and transparent mobile logo swap correctly in transparent state and fall back correctly when blank.
 - Transparent header colour scheme Light/Dark/Custom resolves expected icon/link/logo visibility.
@@ -155,6 +156,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 
 ## Mega Menu
 
+- Legacy `yaomri-mega*` and `--ym-*` variables continue to work as compatibility aliases while `cnvrt-mega*` selectors and `--cnvrt-mega-*` variables are introduced.
 - Panel width `400px` visibly changes the white mega panel box.
 - Panel width `700px` visibly narrows the white mega panel box.
 - Panel width `1200px` visibly widens the white mega panel box.

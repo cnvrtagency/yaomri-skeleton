@@ -234,6 +234,8 @@ Announcement announcement bar now renders both legacy and neutral namespace clas
 - Files: `sections/mega-menu.liquid`, `snippets/mega-menu*.liquid`, `assets/mega-menu.css`, `assets/mega-menu.js`
 - Risk: high
 - QA: desktop open/close, panel geometry, keyboard close, close delay behavior
+- Status: Completed (compatibility alias phase)
+- Compatibility note: legacy `yaomri-mega*` classes and `--ym-*` variables remain as aliases while `cnvrt-mega*` classes and `--cnvrt-mega-*` variables are now used as primary.
 - Suggested commit: `feat: migrate mega menu namespace with script compatibility fallbacks`
 
 ### Phase 6 — Mobile Drawer
