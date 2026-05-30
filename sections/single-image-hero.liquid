@@ -161,10 +161,11 @@
 
       <div class="yaomri-single-hero__overlay"></div>
 
-      <div class="yaomri-single-hero__content">
-        <div class="yaomri-single-hero__content-stack">
-          {%- for block in section.blocks -%}
-            {%- case block.type -%}
+      <div class="yaomri-single-hero__content-positioner">
+        <div class="yaomri-single-hero__content">
+          <div class="yaomri-single-hero__content-stack">
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
               {%- when 'eyebrow' -%}
                 {%- if block.settings.text != blank -%}
                   {%- liquid
@@ -551,8 +552,9 @@
                     {{ block.settings.liquid }}
                   </div>
                 {%- endif -%}
-            {%- endcase -%}
-          {%- endfor -%}
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
         </div>
       </div>
 

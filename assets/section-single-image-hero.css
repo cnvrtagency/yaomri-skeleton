@@ -84,17 +84,23 @@
   pointer-events: none;
 }
 
-.yaomri-single-hero__content {
+.yaomri-single-hero__content-positioner {
   position: relative;
   z-index: 2;
-  display: grid;
   grid-area: 1 / 1;
-  align-self: var(--ysh-desktop-align, center);
-  justify-self: var(--ysh-desktop-justify, start);
+  display: grid;
+  width: 100%;
+  height: 100%;
+  justify-items: var(--ysh-desktop-justify, start);
+  align-items: var(--ysh-desktop-align, center);
+}
+
+.yaomri-single-hero__content {
+  position: relative;
+  display: grid;
   width: min(var(--ysh-content-width, var(--page-width)), 100%);
   padding: var(--ysh-content-padding, 0);
   color: #fff;
-  text-align: var(--ysh-desktop-text-align, left);
 }
 
 .yaomri-single-hero--content-width-site .yaomri-single-hero__content {
@@ -118,6 +124,7 @@
   justify-items: stretch;
   gap: var(--ysh-content-gap, 12px);
   width: 100%;
+  text-align: var(--ysh-desktop-text-align, left);
 }
 
 .yaomri-single-hero__block {
@@ -360,13 +367,17 @@
   }
 
   .yaomri-single-hero__content {
-    align-self: var(--ysh-mobile-align, center);
-    justify-self: var(--ysh-mobile-justify, center);
-    text-align: var(--ysh-mobile-text-align, center);
+    width: min(var(--ysh-content-width, var(--page-width)), 100%);
+  }
+
+  .yaomri-single-hero__content-positioner {
+    justify-items: var(--ysh-mobile-justify, center);
+    align-items: var(--ysh-mobile-align, center);
   }
 
   .yaomri-single-hero__content-stack {
     justify-items: stretch;
+    text-align: var(--ysh-mobile-text-align, center);
   }
 
   .yaomri-single-hero__buttons {
