@@ -34,15 +34,15 @@
 }
 
 .yaomri-header-stack--fade {
-  transition: opacity var(--yaomri-header-stack-transition-duration) ease;
+  transition: opacity var(--yaomri-header-stack-transition-duration) ease, max-height var(--yaomri-header-stack-transition-duration) ease;
 }
 
 .yaomri-header-stack--slide {
-  transition: transform var(--yaomri-header-stack-transition-duration) ease;
+  transition: transform var(--yaomri-header-stack-transition-duration) ease, max-height var(--yaomri-header-stack-transition-duration) ease;
 }
 
 .yaomri-header-stack--fade-slide {
-  transition: opacity var(--yaomri-header-stack-transition-duration) ease, transform var(--yaomri-header-stack-transition-duration) ease;
+  transition: opacity var(--yaomri-header-stack-transition-duration) ease, transform var(--yaomri-header-stack-transition-duration) ease, max-height var(--yaomri-header-stack-transition-duration) ease;
 }
 
 .yaomri-header-stack.is-hidden-after-scroll {
