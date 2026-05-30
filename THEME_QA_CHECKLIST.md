@@ -269,6 +269,12 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Mobile heading layout stacks cleanly and arrows do not crowd heading text.
 - Section width modes (Full/Site/Custom) visibly change the shared heading/cards container width.
 - Site width mode in Collection Cards resolves to `var(--page-width)` and does not silently fall back to full width.
+- Cards visible desktop setting works in carousel mode (3/4/5/6).
+- Cards visible tablet setting works in carousel mode (2/3/4).
+- Cards visible mobile setting works in carousel mode (1/1.2/1.5/2).
+- Grid mode is unaffected by carousel visible-card controls.
+- Mobile Site width mode follows the site-width wrapper model; when viewport is narrower than `--page-width`, it can appear full-width unless mobile side padding is added.
+- No hidden hardcoded inner padding is reintroduced for Collection Cards mobile inset.
 - Grid mode renders the same card design in responsive columns.
 - Carousel mode renders horizontal scroll-snap cards.
 - Switching between Carousel and Grid does not cause awkward top-spacing/width jumps.
