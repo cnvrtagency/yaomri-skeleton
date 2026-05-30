@@ -17,7 +17,8 @@
   position: relative;
 }
 
-.yaomri-header .yaomri-mega__top-link {
+.yaomri-header .yaomri-mega__top-link,
+.cnvrt-header .yaomri-mega__top-link {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;

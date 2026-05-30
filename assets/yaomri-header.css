@@ -91,6 +91,9 @@
 
 .yaomri-header--transparent-active:not(.is-scrolled),
 .cnvrt-header--transparent-active:not(.is-scrolled) {
+  --cnvrt-header-fg: var(--cnvrt-header-transparent-text, var(--yh-transparent-text, #fff));
+  --cnvrt-header-current-fg: var(--cnvrt-header-fg, var(--cnvrt-header-transparent-text, #fff));
+  --yh-fg: var(--cnvrt-header-fg);
   --ym-link-color: currentColor;
   --cnvrt-header-country-bg: transparent;
   --cnvrt-header-country-border: var(--cnvrt-header-transparent-border, transparent);
@@ -110,6 +113,9 @@
 
 .yaomri-header--transparent-active.is-scrolled,
 .cnvrt-header--transparent-active.is-scrolled {
+  --cnvrt-header-fg: var(--cnvrt-header-solid-after-scroll-text, var(--color-foreground));
+  --cnvrt-header-current-fg: var(--cnvrt-header-fg);
+  --yh-fg: var(--cnvrt-header-fg);
   border-bottom-color: var(--cnvrt-header-border, var(--color-border));
   background: var(--cnvrt-header-solid-after-scroll-bg, var(--cnvrt-header-bg, var(--color-background)));
   color: var(--cnvrt-header-solid-after-scroll-text, var(--cnvrt-header-fg, var(--color-foreground)));
