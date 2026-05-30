@@ -91,9 +91,11 @@
 
 .yaomri-header--transparent-active:not(.is-scrolled),
 .cnvrt-header--transparent-active:not(.is-scrolled) {
+  color: var(--cnvrt-header-transparent-text, var(--yh-transparent-text, #fff));
   --cnvrt-header-fg: var(--cnvrt-header-transparent-text, var(--yh-transparent-text, #fff));
-  --cnvrt-header-current-fg: var(--cnvrt-header-fg, var(--cnvrt-header-transparent-text, #fff));
+  --cnvrt-header-current-fg: var(--cnvrt-header-transparent-text, var(--yh-transparent-text, #fff));
   --yh-fg: var(--cnvrt-header-fg);
+  --yh-current-fg: var(--cnvrt-header-fg);
   --ym-link-color: currentColor;
   --cnvrt-header-country-bg: transparent;
   --cnvrt-header-country-border: var(--cnvrt-header-transparent-border, transparent);
@@ -107,8 +109,10 @@
 .yaomri-header--transparent-active:not(.is-scrolled) .yaomri-header__icon,
 .cnvrt-header--transparent-active:not(.is-scrolled) .cnvrt-header__icon,
 .yaomri-header--transparent-active:not(.is-scrolled) .yaomri-header__country-selector,
-.cnvrt-header--transparent-active:not(.is-scrolled) .cnvrt-header__country-selector {
-  color: inherit;
+.cnvrt-header--transparent-active:not(.is-scrolled) .cnvrt-header__country-selector,
+.yaomri-header--transparent-active:not(.is-scrolled) .yaomri-mega__top-link,
+.cnvrt-header--transparent-active:not(.is-scrolled) .yaomri-mega__top-link {
+  color: currentColor;
 }
 
 .yaomri-header--transparent-active.is-scrolled,
