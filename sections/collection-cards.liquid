@@ -42,10 +42,11 @@
 -%}
 
 <section
-  class="cc-carousel cc-carousel--layout-{{ layout_mode }} cc-carousel--ratio-{{ card_ratio }}{% if section.settings.border_top %} cc-carousel--border-top{% endif %}"
+  class="cc-carousel cc-carousel--layout-{{ layout_mode }} cc-carousel--width-{{ section_width_mode }} cc-carousel--ratio-{{ card_ratio }}{% if section.settings.border_top %} cc-carousel--border-top{% endif %}"
   aria-label="{{ section.settings.heading | default: 'Collection cards' | escape }}"
   style="
     --cc-container-width: {{ section_width_value }};
+    --cc-custom-width: {{ custom_section_width }}px;
     --cc-bg: {{ section.settings.background_color }};
     --cc-border-color: {{ section.settings.border_color }};
     --cc-gap-desktop: {{ section.settings.gap_desktop }}px;

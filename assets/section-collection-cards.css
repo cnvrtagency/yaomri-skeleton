@@ -19,10 +19,22 @@
 }
 
 .cc-carousel__inner {
-  width: min(100%, var(--cc-container-width, 100%));
-  max-width: var(--cc-container-width, 100%);
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
   padding: 0 1rem;
+}
+
+.cc-carousel--width-site .cc-carousel__inner {
+  max-width: min(var(--page-width, 1200px), 100%);
+}
+
+.cc-carousel--width-custom .cc-carousel__inner {
+  max-width: min(var(--cc-custom-width, 1200px), 100%);
+}
+
+.cc-carousel--width-full .cc-carousel__inner {
+  max-width: none;
 }
 
 @media (min-width: 768px) {
@@ -110,6 +122,8 @@
 
 .cc-carousel__track {
   display: flex;
+  width: 100%;
+  max-width: 100%;
   gap: var(--cc-gap-mobile, 12px);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
