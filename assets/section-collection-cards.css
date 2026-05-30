@@ -181,6 +181,17 @@
   color: #fff;
 }
 
+.cc-card--placeholder .cc-card__overlay {
+  background: linear-gradient(to top, rgb(255 255 255 / 0.85), rgb(255 255 255 / 0.2));
+  color: rgb(28 28 28 / 0.88);
+}
+
+.cc-card--placeholder .cc-card__title {
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
 .cc-card__title {
   margin: 0;
   font-size: 0.875rem;

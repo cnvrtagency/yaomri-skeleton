@@ -267,10 +267,14 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Carousel arrows move the track by about 80% of the track width.
 - Carousel works after Theme Editor section reload.
 - Selected collection fallback works: title, image, link from collection object.
+- Collection image displays when present on the selected collection.
+- First product image fallback displays when collection image is missing and fallback setting is enabled.
 - Custom title/image/link overrides take priority over collection defaults.
 - Product count line renders when enabled and falls back to subtitle override when count is hidden or unavailable.
 - Empty block cards are not rendered on storefront.
-- Placeholder cards render only in Theme Editor when no usable blocks exist.
+- In Theme Editor, placeholder cards render for empty configured blocks so layout does not collapse during setup.
+- In Theme Editor, if no usable blocks exist, four clean placeholder cards render.
+- Placeholder cards use a light overlay style (no heavy dark blur).
 - Card ratio modes work: 4:5, 1:1, 4:3, 16:9.
 - Cards with no resolved link render as non-clickable articles, not fake `#` links.
 - No nested/broken links are rendered.

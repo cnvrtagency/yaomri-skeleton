@@ -8,6 +8,7 @@
   assign card_ratio = section.settings.card_image_ratio | default: '4-5'
   assign show_arrows = section.settings.show_arrows
   assign show_count_default = section.settings.show_count_default
+  assign use_first_product_image = section.settings.use_first_product_image
 
   assign section_width_value = 'none'
   if section_width_mode == 'site'
@@ -78,24 +79,17 @@
     {%- assign valid_cards = 0 -%}
     {%- for block in section.blocks -%}
       {%- assign coll = collections[block.settings.collection] -%}
+      {%- assign fallback_product_image = blank -%}
+      {%- if use_first_product_image and coll != blank and coll.products_count > 0 and coll.products.first.featured_image != blank -%}
+        {%- assign fallback_product_image = coll.products.first.featured_image -%}
+      {%- endif -%}
       {%- assign card_title_check = block.settings.title | default: coll.title -%}
-      {%- if card_title_check != blank or block.settings.image != blank or coll.image != blank -%}
+      {%- if card_title_check != blank or block.settings.image != blank or coll.image != blank or fallback_product_image != blank -%}
         {%- assign valid_cards = valid_cards | plus: 1 -%}
       {%- endif -%}
     {%- endfor -%}
 
-    {%- if valid_cards == 0 -%}
-      {%- if request.design_mode -%}
-        <div class="cc-carousel__track cc-carousel__track--grid">
-          {%- for i in (1..4) -%}
-            <article class="cc-card cc-card--placeholder">
-              <div class="cc-card__media"><div class="cc-card__placeholder">{{ 'collection-1' | placeholder_svg_tag }}</div></div>
-              <div class="cc-card__overlay"><p class="cc-card__title">Collection</p></div>
-            </article>
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
-    {%- else -%}
+    {%- if valid_cards > 0 or request.design_mode -%}
       <div
         class="cc-carousel__track{% if layout_mode == 'grid' %} cc-carousel__track--grid{% endif %}"
         data-cc-track
@@ -103,7 +97,11 @@
         {%- for block in section.blocks -%}
           {%- liquid
             assign coll = collections[block.settings.collection]
-            assign card_img = block.settings.image | default: coll.image
+            assign fallback_product_image = blank
+            if use_first_product_image and coll != blank and coll.products_count > 0 and coll.products.first.featured_image != blank
+              assign fallback_product_image = coll.products.first.featured_image
+            endif
+            assign card_img = block.settings.image | default: coll.image | default: fallback_product_image
             assign card_title = block.settings.title | default: coll.title
             assign card_subtitle = block.settings.subtitle
             assign card_link = block.settings.link_override | default: coll.url
@@ -111,12 +109,17 @@
             if show_count == blank
               assign show_count = show_count_default
             endif
+            assign has_content = false
+            if card_title != blank or card_img != blank
+              assign has_content = true
+            endif
           -%}
-          {%- if card_title != blank or card_img != blank -%}
-            {%- if card_link != blank -%}
+          {%- if has_content -%}
+            {%- if card_link != blank and valid_cards > 0 -%}
               <a
                 href="{{ card_link }}"
                 class="cc-card cc-card--hover-{{ section.settings.image_hover }}"
+                style="--cc-image-position: {{ block.settings.image_position | default: 'center center' }};"
                 {{ block.shopify_attributes }}
                 {% if block.settings.open_new_window %}target="_blank" rel="noopener noreferrer"{% endif %}
                 aria-label="{{ card_title | escape }}"
@@ -149,7 +152,11 @@
                 </div>
               </a>
             {%- else -%}
-              <article class="cc-card cc-card--hover-{{ section.settings.image_hover }}" {{ block.shopify_attributes }}>
+              <article
+                class="cc-card cc-card--hover-{{ section.settings.image_hover }}"
+                style="--cc-image-position: {{ block.settings.image_position | default: 'center center' }};"
+                {{ block.shopify_attributes }}
+              >
                 <div class="cc-card__media">
                   {%- if card_img != blank -%}
                     {{
@@ -178,8 +185,29 @@
                 </div>
               </article>
             {%- endif -%}
+          {%- elsif request.design_mode -%}
+            <article class="cc-card cc-card--placeholder" {{ block.shopify_attributes }}>
+              <div class="cc-card__media">
+                <div class="cc-card__placeholder">{{ 'collection-1' | placeholder_svg_tag }}</div>
+              </div>
+              <div class="cc-card__overlay">
+                <p class="cc-card__title">Collection</p>
+              </div>
+            </article>
           {%- endif -%}
         {%- endfor -%}
+        {%- if request.design_mode and valid_cards == 0 and section.blocks.size == 0 -%}
+          {%- for i in (1..4) -%}
+            <article class="cc-card cc-card--placeholder">
+              <div class="cc-card__media">
+                <div class="cc-card__placeholder">{{ 'collection-1' | placeholder_svg_tag }}</div>
+              </div>
+              <div class="cc-card__overlay">
+                <p class="cc-card__title">Collection</p>
+              </div>
+            </article>
+          {%- endfor -%}
+        {%- endif -%}
       </div>
     {%- endif -%}
   </div>
@@ -242,6 +270,13 @@
     { "type": "range", "id": "gap_desktop", "label": "Gap desktop", "min": 8, "max": 40, "step": 1, "unit": "px", "default": 16 },
     { "type": "range", "id": "gap_mobile", "label": "Gap mobile", "min": 8, "max": 28, "step": 1, "unit": "px", "default": 12 },
     { "type": "checkbox", "id": "show_count_default", "label": "Show product count by default", "default": true },
+    {
+      "type": "checkbox",
+      "id": "use_first_product_image",
+      "label": "Use first product image when collection image is missing",
+      "default": true,
+      "info": "Collection image is used first. If unavailable, the first product image can be used as a fallback."
+    },
 
     { "type": "header", "content": "Spacing" },
     { "type": "range", "id": "padding_top_desktop", "label": "Padding top desktop", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 0 },
@@ -262,10 +297,15 @@
       "type": "collection",
       "name": "Collection card",
       "settings": [
-        { "type": "collection", "id": "collection", "label": "Collection" },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection",
+          "info": "Uses collection title, link, and image by default."
+        },
         { "type": "text", "id": "title", "label": "Card title override" },
         { "type": "text", "id": "subtitle", "label": "Subtitle override" },
-        { "type": "image_picker", "id": "image", "label": "Image override" },
+        { "type": "image_picker", "id": "image", "label": "Image override", "info": "Overrides the collection image." },
         { "type": "checkbox", "id": "show_count", "label": "Show product count", "default": true },
         { "type": "url", "id": "link_override", "label": "Link override" },
         {
