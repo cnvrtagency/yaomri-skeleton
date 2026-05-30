@@ -23,7 +23,7 @@
     {%- elsif fallback_menu != blank and fallback_menu.links.size > 0 -%}
       {%- for link in fallback_menu.links -%}
         <li class="yaomri-mega__item yaomri-mega__item--link">
-          <a class="yaomri-header__nav-link yaomri-mega__top-link" href="{{ link.url }}">
+          <a class="yaomri-header__nav-link cnvrt-header__nav-link yaomri-mega__top-link" href="{{ link.url }}">
             <span>{{ link.title }}</span>
           </a>
         </li>

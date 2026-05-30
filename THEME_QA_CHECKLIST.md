@@ -74,6 +74,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Header stack transition easing controls hide/show feel (Smooth/Snappy/Linear/Ease).
 - Scroll down past threshold hides both announcement + header together.
 - Scroll back to top shows the shared stack again with no jump.
+- Header Phase 4 alias migration keeps legacy `yaomri-header*` and `yaomri-header-stack*` behavior active while `cnvrt-header*` classes and `--cnvrt-header-*` variables are introduced as compatibility aliases.
 - In fade-away mode, solid-after-scroll styles are suppressed while hiding/hidden so there is no white/solid flash.
 - Transparent logo and transparent mobile logo swap correctly in transparent state and fall back correctly when blank.
 - Transparent header colour scheme Light/Dark/Custom resolves expected icon/link/logo visibility.

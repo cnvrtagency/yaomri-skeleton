@@ -14,7 +14,7 @@ Current state:
 3. Major architectural debt remains in naming and section ownership patterns (Ya Omri-branded class system and mixed responsive conventions).
 4. Homepage is minimal and predictable (`templates/index.json` has only `single-image-hero` and `collection-cards` in this snapshot).
 5. Header/mobile drawer/mega menu stack behavior is now feature-complete for fade-away, mobile/desktop thresholds, easing, and duration, including solid-state suppression in fade-away mode.
-6. Namespace migration is now complete through three sections: announcement (`yaomri-announcement*`/`yab-*`), collection cards (`cc-*`), and Single Image Hero (`yaomri-single-hero*`/`ysh-*`) with compatibility aliasing to `cnvrt-announcement*`, `cnvrt-collection-cards*` and `cnvrt-single-hero*` classes/variables.
+6. Namespace migration is now complete through four sections: announcement (`yaomri-announcement*`/`yab-*`), collection cards (`cc-*`), Single Image Hero (`yaomri-single-hero*`/`ysh-*`), and Header stack (`yaomri-header*`/`yaomri-header-stack*`) with compatibility aliasing to `cnvrt-announcement*`, `cnvrt-collection-cards*`, `cnvrt-single-hero*`, and `cnvrt-header*` classes/variables.
 
 ## B. Critical launch blockers
 
@@ -110,15 +110,19 @@ Current state:
 ## H. Header/navigation risk report
 
 1. Ownership and structure
-   - Shared wrapper in `layout/theme.liquid` remains correct:
-     - `<div class="yaomri-header-stack" data-yaomri-header-group>`
+- Shared wrapper in `layout/theme.liquid` remains correct:
+  - `<div class="yaomri-header-stack cnvrt-header-stack" data-yaomri-header-group data-cnvrt-header-group>`
      - contains announcement-bar, header, mega-menu, mobile-menu (via `sections 'header-group'`).
 2. Fade-away behavior
-   - JS (`assets/yaomri-header-state.js`) now:
-     - uses desktop/mobile thresholds based on viewport
-     - suppresses `header.is-scrolled` while hide is active in fade-away mode
-     - keeps always-visible behavior unchanged.
-   - CSS uses stack-level transition vars + opacity+transform only, no max-height collapse.
+- JS (`assets/yaomri-header-state.js`) now:
+  - uses desktop/mobile thresholds based on viewport
+  - suppresses `header.is-scrolled` while hide is active in fade-away mode
+  - keeps always-visible behavior unchanged.
+- `cnvrt` aliases are now supported in the same ownership pipeline:
+  - JS reads both legacy `data-header-stack-*` and `data-cnvrt-header-stack-*`.
+  - CSS and JS recognise both `yaomri-header-stack*` and `cnvrt-header-stack*`.
+  - `--cnvrt-header-stack-transition-*` are primary timing variables with `--yaomri-*` compatibility fallback.
+  - CSS uses stack-level transition vars + opacity+transform only, no max-height collapse.
 3. Solid-after-scroll interaction
    - Solid state is prevented during hide/hidden transitions in fade-away mode to avoid flash.
    - Transparent state visuals and color switching are still active in always-visible mode.
@@ -167,7 +171,7 @@ Current state:
    - `yaomri-`: very high concentration (core styling, all major nav/header/hero components)
   - `ysh-`: Single Image Hero system (already paired with `cnvrt-single-hero*` in phase 3 aliases)
    - `yh-`: header-level tokens/variables
-   - `ym-`: header/inline variables
+  - `ym-`: header/inline variables (paired with header migration work; mega-menu still pending)
   - `yab-`: announcement local variants (already paired with `cnvrt-announcement*` in phase 1 aliases)
   - `cc-`: collection cards system (paired with `cnvrt-collection-cards*` in phase 2 aliases)
    - `mdrawer-`: mobile drawer system
@@ -175,15 +179,16 @@ Current state:
    - These prefixes are functionally stable but brand-specific for distribution readiness.
    - Blind global renaming would break section/JS/css selectors immediately.
 3. Recommended migration approach
-   - Introduce neutral aliases where feasible, then migrate per section:
-     1. Add dual selectors in CSS/JS (`yaomri-*` + `cnvrt-*`) or data attributes to preserve behavior.
-     2. Update sections one-at-a-time starting with low-traffic utility sections.
+- Introduce neutral aliases where feasible, then migrate per section:
+  1. Add dual selectors in CSS/JS (`yaomri-*` + `cnvrt-*`) or data attributes to preserve behavior.
+  2. Update sections one-at-a-time starting with low-traffic utility sections.
      3. Announcement bar aliases are complete and provide a validated phase-1 template.
-     4. After migration and QA, remove aliases.
+     4. Header stack aliases are now complete (phase 4) and documented.
+     5. After migration and QA, remove aliases.
 4. Preserve data attributes
-   - Keep `[data-yaomri-header-group]` or migrate intentionally with compatibility shim.
+ - Keep `[data-yaomri-header-group]`, `[data-cnvrt-header-group]`, and migrate intentionally with compatibility shim.
 5. Suggested end-state convention
-   - Use `cnvrt-` for new code, keep legacy shims during migration.
+  - Use `cnvrt-` for new code, keep legacy shims during migration.
 
 ## L. What not to touch yet
 

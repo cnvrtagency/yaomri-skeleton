@@ -22,6 +22,7 @@ Status values:
 - Header Liquid no longer reads removed section-level header style settings.
 - `sections/header-group.json` currently contains no known stale removed Header section settings.
 - Mobile drawer demo menu behavior has been removed.
+- Header namespace migration (Phase 4): `sections/header.liquid` and `assets/yaomri-header-state.js` now emit/consume `--cnvrt-header-*` variables first, while keeping `--yh-*` and `--yaomri-header-stack-*` aliases for compatibility.
 - `snippets/css-variables.liquid` no longer references legacy `settings.site_content_width`.
 - `snippets/mobile-drawer.liquid` no longer references missing `settings.social_instagram_link`.
 - `close_delay` remains as `Hover close delay`; keep an eye on whether merchants actually need it.
@@ -269,7 +270,7 @@ Status values:
 ## Announcement Bar Settings
 
 Announcement bar settings and blocks are owned by `sections/announcement-bar.liquid` and rendered as a standalone section in `sections/header-group.json` above Header.
-Header remains a separate section (`sections/header.liquid`). Shared stack behavior is coordinated by a dedicated wrapper around the header group in `layout/theme.liquid` (`[data-yaomri-header-group]` + `.yaomri-header-stack`), not by moving announcement markup into Header or using header-only offsets.
+Header remains a separate section (`sections/header.liquid`). Shared stack behavior is coordinated by a dedicated wrapper around the header group in `layout/theme.liquid` (`[data-yaomri-header-group]` + `[data-cnvrt-header-group]`, `.yaomri-header-stack` + `.cnvrt-header-stack`), not by moving announcement markup into Header or using header-only offsets.
 
 | Setting ID | Current label | Location | Type | Default | Owner | What it controls | Where it is used | CSS variable | Status | Suggested label | Suggested help text | Notes/conflicts |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|

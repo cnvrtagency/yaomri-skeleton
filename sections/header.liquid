@@ -27,10 +27,12 @@
   endunless
   assign country_selector_show_currency = settings.country_selector_show_currency
   capture country_selector_class
-    echo 'yaomri-header__country-selector yaomri-header__country-selector--'
+    echo 'yaomri-header__country-selector cnvrt-header__country-selector yaomri-header__country-selector--'
+    echo country_selector_style
+    echo ' cnvrt-header__country-selector--'
     echo country_selector_style
     if country_selector_show_currency
-      echo ' yaomri-header__country-selector--currency'
+      echo ' yaomri-header__country-selector--currency cnvrt-header__country-selector--currency'
     endif
   endcapture
   assign country_selector_class = country_selector_class | strip
@@ -134,6 +136,15 @@
   unless header_stack_transition_easing == 'ease' or header_stack_transition_easing == 'smooth' or header_stack_transition_easing == 'snappy' or header_stack_transition_easing == 'linear'
     assign header_stack_transition_easing = 'smooth'
   endunless
+  assign header_stack_transition_easing_value = 'cubic-bezier(0.22, 1, 0.36, 1)'
+  case header_stack_transition_easing
+    when 'ease'
+      assign header_stack_transition_easing_value = 'ease'
+    when 'snappy'
+      assign header_stack_transition_easing_value = 'cubic-bezier(0.4, 0, 0.2, 1)'
+    when 'linear'
+      assign header_stack_transition_easing_value = 'linear'
+  endcase
   assign current_country_name = localization.country.name
   if current_country_name == blank
     assign current_country_name = localization.country.iso_code
@@ -189,7 +200,7 @@
 {%- endif -%}
 
 <header
-  class="yaomri-header full-width yaomri-header--layout-{{ resolved_layout }} yaomri-header--width-{{ header_width_mode }} yaomri-header--collapse-{{ nav_collapse_width }}{% unless show_bottom_border %} yaomri-header--no-border{% endunless %}{% if transparent_header_active %} yaomri-header--transparent-active{% endif %}{% if enable_sticky %} yaomri-header--sticky-enabled{% endif %}"
+  class="yaomri-header cnvrt-header full-width yaomri-header--layout-{{ resolved_layout }} cnvrt-header--layout-{{ resolved_layout }} yaomri-header--width-{{ header_width_mode }} cnvrt-header--width-{{ header_width_mode }} yaomri-header--collapse-{{ nav_collapse_width }} cnvrt-header--collapse-{{ nav_collapse_width }}{% unless show_bottom_border %} yaomri-header--no-border cnvrt-header--no-border{% endunless %}{% if transparent_header_active %} yaomri-header--transparent-active cnvrt-header--transparent-active{% endif %}{% if enable_sticky %} yaomri-header--sticky-enabled cnvrt-header--sticky-enabled{% endif %}"
   role="banner"
   aria-label="Site header"
   id="SiteHeader"
@@ -197,60 +208,111 @@
   data-transparent-active="{% if transparent_header_active %}true{% else %}false{% endif %}"
   data-transparent-solid-after-scroll="{% if transparent_header_solid_after_scroll %}true{% else %}false{% endif %}"
   data-header-stack-scroll-behavior="{{ header_stack_scroll_behavior }}"
+  data-cnvrt-header-stack-scroll-behavior="{{ header_stack_scroll_behavior }}"
   data-header-stack-scroll-threshold="{{ header_stack_scroll_threshold }}"
+  data-cnvrt-header-stack-scroll-threshold="{{ header_stack_scroll_threshold }}"
   data-header-stack-scroll-threshold-mobile="{{ header_stack_scroll_threshold_mobile }}"
+  data-cnvrt-header-stack-scroll-threshold-mobile="{{ header_stack_scroll_threshold_mobile }}"
   data-header-stack-transition="{{ header_stack_transition }}"
+  data-cnvrt-header-stack-transition="{{ header_stack_transition }}"
   data-header-stack-transition-duration="{{ header_stack_transition_duration }}"
+  data-cnvrt-header-stack-transition-duration="{{ header_stack_transition_duration }}"
   data-header-stack-transition-easing="{{ header_stack_transition_easing }}"
+  data-cnvrt-header-stack-transition-easing="{{ header_stack_transition_easing }}"
   data-header-desktop-padding="{{ header_desktop_padding }}"
   style="
-    --yh-bg: {{ header_background }};
-    --yh-fg: {{ header_foreground }};
-    --yh-border: {{ header_border }};
-    --yh-shadow: {{ header_shadow_value }};
-    --yh-custom-content-width: {{ header_custom_width }}px;
-    --yh-desktop-padding: {{ header_desktop_padding }}px;
-    --yh-mobile-padding: {{ header_mobile_padding }}px;
-    --yh-desktop-height: {{ desktop_header_height }}px;
-    --yh-mobile-height: {{ mobile_header_height }}px;
-    --yh-desktop-logo-width: {{ desktop_logo_width }}px;
-    --yh-mobile-logo-width: {{ mobile_logo_width }}px;
-    --yh-icon-size: {{ icon_size }}px;
-    --yh-icon-button-desktop: {{ icon_button_size_desktop }}px;
-    --yh-icon-button-mobile: {{ icon_button_size_mobile }}px;
-    --yh-desktop-icon-gap: {{ desktop_icon_gap }}px;
-    --yh-mobile-icon-gap: {{ mobile_icon_gap }}px;
-    --yh-nav-size: {{ nav_text_size }}px;
-    --yh-nav-gap: {{ nav_gap }}px;
-    --yh-cart-count-bg: {{ cart_count_background }};
-    --yh-cart-count-text: {{ cart_count_text }};
-    --yh-cart-count-size: {{ cart_count_size }}px;
-    --yh-cart-count-font-size: {{ cart_count_text_size }}px;
-    --yh-cart-count-offset-x: {{ cart_count_offset_x }}px;
-    --yh-cart-count-offset-y: {{ cart_count_offset_y }}px;
-    --yh-country-bg-normal: {{ country_selector_background }};
-    --yh-country-border-normal: {{ country_selector_border }};
-    --yh-country-text-normal: {{ country_selector_text }};
-    --yh-country-bg: var(--yh-country-bg-normal);
-    --yh-country-border: var(--yh-country-border-normal);
-    --yh-country-text: var(--yh-country-text-normal);
-    --yh-country-height: {{ country_selector_height }}px;
-    --yh-transparent-text: {{ transparent_header_resolved_text }};
-    --yh-transparent-bg-opacity: {{ transparent_header_bg_opacity }};
-    --yh-transparent-border: {{ transparent_header_border }};
-    --yh-solid-after-scroll-bg: {{ transparent_header_solid_background }};
-    --yh-solid-after-scroll-text: {{ transparent_header_solid_text }};
+    --cnvrt-header-bg: {{ header_background }};
+    --cnvrt-header-fg: {{ header_foreground }};
+    --cnvrt-header-border: {{ header_border }};
+    --cnvrt-header-shadow: {{ header_shadow_value }};
+    --cnvrt-header-custom-content-width: {{ header_custom_width }}px;
+    --cnvrt-header-desktop-padding: {{ header_desktop_padding }}px;
+    --cnvrt-header-mobile-padding: {{ header_mobile_padding }}px;
+    --cnvrt-header-desktop-height: {{ desktop_header_height }}px;
+    --cnvrt-header-mobile-height: {{ mobile_header_height }}px;
+    --cnvrt-header-desktop-logo-width: {{ desktop_logo_width }}px;
+    --cnvrt-header-mobile-logo-width: {{ mobile_logo_width }}px;
+    --cnvrt-header-icon-size: {{ icon_size }}px;
+    --cnvrt-header-icon-button-desktop: {{ icon_button_size_desktop }}px;
+    --cnvrt-header-icon-button-mobile: {{ icon_button_size_mobile }}px;
+    --cnvrt-header-desktop-icon-gap: {{ desktop_icon_gap }}px;
+    --cnvrt-header-mobile-icon-gap: {{ mobile_icon_gap }}px;
+    --cnvrt-header-nav-size: {{ nav_text_size }}px;
+    --cnvrt-header-nav-gap: {{ nav_gap }}px;
+    --cnvrt-header-cart-count-bg: {{ cart_count_background }};
+    --cnvrt-header-cart-count-text: {{ cart_count_text }};
+    --cnvrt-header-cart-count-size: {{ cart_count_size }}px;
+    --cnvrt-header-cart-count-font-size: {{ cart_count_text_size }}px;
+    --cnvrt-header-cart-count-offset-x: {{ cart_count_offset_x }}px;
+    --cnvrt-header-cart-count-offset-y: {{ cart_count_offset_y }}px;
+    --cnvrt-header-country-bg-normal: {{ country_selector_background }};
+    --cnvrt-header-country-border-normal: {{ country_selector_border }};
+    --cnvrt-header-country-text-normal: {{ country_selector_text }};
+    --cnvrt-header-country-bg: var(--cnvrt-header-country-bg-normal);
+    --cnvrt-header-country-border: var(--cnvrt-header-country-border-normal);
+    --cnvrt-header-country-text: var(--cnvrt-header-country-text-normal);
+    --cnvrt-header-country-height: {{ country_selector_height }}px;
+    --cnvrt-header-transparent-text: {{ transparent_header_resolved_text }};
+    --cnvrt-header-transparent-bg-opacity: {{ transparent_header_bg_opacity }};
+    --cnvrt-header-transparent-border: {{ transparent_header_border }};
+    --cnvrt-header-solid-after-scroll-bg: {{ transparent_header_solid_background }};
+    --cnvrt-header-solid-after-scroll-text: {{ transparent_header_solid_text }};
+    --cnvrt-header-stack-transition-duration: {{ header_stack_transition_duration }}ms;
+    --cnvrt-header-stack-transition-easing: {{ header_stack_transition_easing_value }};
+    --cnvrt-header-stack-scroll-threshold-desktop: {{ header_stack_scroll_threshold }};
+    --cnvrt-header-stack-scroll-threshold-mobile: {{ header_stack_scroll_threshold_mobile }};
+
+    --yh-bg: var(--cnvrt-header-bg);
+    --yh-fg: var(--cnvrt-header-fg);
+    --yh-border: var(--cnvrt-header-border);
+    --yh-shadow: var(--cnvrt-header-shadow);
+    --yh-custom-content-width: var(--cnvrt-header-custom-content-width);
+    --yh-desktop-padding: var(--cnvrt-header-desktop-padding);
+    --yh-mobile-padding: var(--cnvrt-header-mobile-padding);
+    --yh-desktop-height: var(--cnvrt-header-desktop-height);
+    --yh-mobile-height: var(--cnvrt-header-mobile-height);
+    --yh-desktop-logo-width: var(--cnvrt-header-desktop-logo-width);
+    --yh-mobile-logo-width: var(--cnvrt-header-mobile-logo-width);
+    --yh-icon-size: var(--cnvrt-header-icon-size);
+    --yh-icon-button-desktop: var(--cnvrt-header-icon-button-desktop);
+    --yh-icon-button-mobile: var(--cnvrt-header-icon-button-mobile);
+    --yh-desktop-icon-gap: var(--cnvrt-header-desktop-icon-gap);
+    --yh-mobile-icon-gap: var(--cnvrt-header-mobile-icon-gap);
+    --yh-nav-size: var(--cnvrt-header-nav-size);
+    --yh-nav-gap: var(--cnvrt-header-nav-gap);
+    --yh-cart-count-bg: var(--cnvrt-header-cart-count-bg);
+    --yh-cart-count-text: var(--cnvrt-header-cart-count-text);
+    --yh-cart-count-size: var(--cnvrt-header-cart-count-size);
+    --yh-cart-count-font-size: var(--cnvrt-header-cart-count-font-size);
+    --yh-cart-count-offset-x: var(--cnvrt-header-cart-count-offset-x);
+    --yh-cart-count-offset-y: var(--cnvrt-header-cart-count-offset-y);
+    --yh-country-bg-normal: var(--cnvrt-header-country-bg-normal);
+    --yh-country-border-normal: var(--cnvrt-header-country-border-normal);
+    --yh-country-text-normal: var(--cnvrt-header-country-text-normal);
+    --yh-country-bg: var(--cnvrt-header-country-bg);
+    --yh-country-border: var(--cnvrt-header-country-border);
+    --yh-country-text: var(--cnvrt-header-country-text);
+    --yh-country-height: var(--cnvrt-header-country-height);
+    --yh-transparent-text: var(--cnvrt-header-transparent-text);
+    --yh-transparent-bg-opacity: var(--cnvrt-header-transparent-bg-opacity);
+    --yh-transparent-border: var(--cnvrt-header-transparent-border);
+    --yh-solid-after-scroll-bg: var(--cnvrt-header-solid-after-scroll-bg);
+    --yh-solid-after-scroll-text: var(--cnvrt-header-solid-after-scroll-text);
+    --yaomri-header-stack-transition-duration: var(--cnvrt-header-stack-transition-duration);
+    --yaomri-header-stack-transition-easing: var(--cnvrt-header-stack-transition-easing);
+    --yaomri-header-stack-scroll-threshold-desktop: var(--cnvrt-header-stack-scroll-threshold-desktop);
+    --yaomri-header-stack-scroll-threshold-mobile: var(--cnvrt-header-stack-scroll-threshold-mobile);
   "
   {{ section.shopify_attributes }}
 >
   {%- capture logo_markup -%}
-    <a href="{{ routes.root_url }}" class="yaomri-header__logo-link" aria-label="{{ shop.name | escape }}">
+    <a href="{{ routes.root_url }}" class="yaomri-header__logo-link cnvrt-header__logo-link" aria-label="{{ shop.name | escape }}">
       {%- if desktop_logo != blank -%}
         {{
           desktop_logo
           | image_url: width: 800
           | image_tag:
-            class: 'yaomri-header__logo-image',
+            class: 'yaomri-header__logo-image cnvrt-header__logo-image',
             widths: '120, 160, 200, 240, 300, 360, 420, 520, 680, 800',
             sizes: '(min-width: 990px) var(--yh-desktop-logo-width), var(--yh-mobile-logo-width)',
             loading: 'eager',
@@ -261,7 +323,7 @@
             transparent_logo
             | image_url: width: 800
             | image_tag:
-              class: 'yaomri-header__logo-image yaomri-header__logo-image--transparent',
+              class: 'yaomri-header__logo-image cnvrt-header__logo-image yaomri-header__logo-image--transparent cnvrt-header__logo-image--transparent',
               widths: '120, 160, 200, 240, 300, 360, 420, 520, 680, 800',
               sizes: '(min-width: 990px) var(--yh-desktop-logo-width), var(--yh-mobile-logo-width)',
               loading: 'eager',
@@ -269,19 +331,19 @@
           }}
         {%- endif -%}
       {%- else -%}
-        <span class="yaomri-header__shop-name">{{ shop.name }}</span>
+        <span class="yaomri-header__shop-name cnvrt-header__shop-name">{{ shop.name }}</span>
       {%- endif -%}
     </a>
   {%- endcapture -%}
 
   {%- capture mobile_logo_markup -%}
-    <a href="{{ routes.root_url }}" class="yaomri-header__logo-link yaomri-header__logo-link--mobile" aria-label="{{ shop.name | escape }}">
+    <a href="{{ routes.root_url }}" class="yaomri-header__logo-link cnvrt-header__logo-link yaomri-header__logo-link--mobile cnvrt-header__logo-link--mobile" aria-label="{{ shop.name | escape }}">
       {%- if mobile_logo != blank -%}
         {{
           mobile_logo
           | image_url: width: 640
           | image_tag:
-            class: 'yaomri-header__logo-image',
+            class: 'yaomri-header__logo-image cnvrt-header__logo-image',
             widths: '100, 140, 180, 220, 280, 360, 480, 640',
             sizes: '(max-width: 989px) var(--yh-mobile-logo-width), var(--yh-desktop-logo-width)',
             loading: 'eager',
@@ -292,7 +354,7 @@
             transparent_mobile_logo
             | image_url: width: 640
             | image_tag:
-              class: 'yaomri-header__logo-image yaomri-header__logo-image--transparent',
+              class: 'yaomri-header__logo-image cnvrt-header__logo-image yaomri-header__logo-image--transparent cnvrt-header__logo-image--transparent',
               widths: '100, 140, 180, 220, 280, 360, 480, 640',
               sizes: '(max-width: 989px) var(--yh-mobile-logo-width), var(--yh-desktop-logo-width)',
               loading: 'eager',
@@ -300,7 +362,7 @@
           }}
         {%- endif -%}
       {%- else -%}
-        <span class="yaomri-header__shop-name">{{ shop.name }}</span>
+        <span class="yaomri-header__shop-name cnvrt-header__shop-name">{{ shop.name }}</span>
       {%- endif -%}
     </a>
   {%- endcapture -%}
@@ -310,16 +372,16 @@
   {%- endcapture -%}
 
   {%- capture actions_markup -%}
-    <div class="yaomri-header__actions">
+    <div class="yaomri-header__actions cnvrt-header__actions">
       {%- if show_country_selector and localization.available_countries.size > 1 -%}
         {%- form 'localization', id: 'HeaderCountryForm', class: country_selector_class -%}
           <label class="visually-hidden" for="HeaderCountrySelector">Country/region</label>
-          <span class="yaomri-header__country-current" aria-hidden="true">
+          <span class="yaomri-header__country-current cnvrt-header__country-current" aria-hidden="true">
             {{ current_country_label }}
           </span>
           <select
             id="HeaderCountrySelector"
-            class="yaomri-header__country-select"
+            class="yaomri-header__country-select cnvrt-header__country-select"
             name="country_code"
             aria-label="Country/region"
             onchange="this.form.submit()"
@@ -346,35 +408,35 @@
         {%- endform -%}
       {%- endif -%}
 
-      <a class="yaomri-header__icon" href="{{ routes.search_url }}" aria-label="Search">
+      <a class="yaomri-header__icon cnvrt-header__icon" href="{{ routes.search_url }}" aria-label="Search">
         {% render 'icon-yaomri-search' %}
       </a>
 
       {%- if show_account_icon and shop.customer_accounts_enabled -%}
-        <a class="yaomri-header__icon" href="{{ routes.account_url }}" aria-label="Account">
+        <a class="yaomri-header__icon cnvrt-header__icon" href="{{ routes.account_url }}" aria-label="Account">
           {% render 'icon-yaomri-account' %}
         </a>
       {%- endif -%}
 
       {%- if show_wishlist_icon -%}
-        <a class="yaomri-header__icon" href="{{ wishlist_url }}" aria-label="Wishlist">
+        <a class="yaomri-header__icon cnvrt-header__icon" href="{{ wishlist_url }}" aria-label="Wishlist">
           {% render 'icon-yaomri-heart' %}
         </a>
       {%- endif -%}
 
       {%- if show_cart_icon -%}
-        <a class="yaomri-header__icon yaomri-header__cart" href="{{ routes.cart_url }}" aria-label="Cart">
+        <a class="yaomri-header__icon cnvrt-header__icon yaomri-header__cart cnvrt-header__cart" href="{{ routes.cart_url }}" aria-label="Cart">
           {% render 'icon-yaomri-cart' %}
           {%- if cart.item_count > 0 -%}
-            <span id="cart-icon-bubble" class="yaomri-header__cart-count">{{ cart.item_count }}</span>
+            <span id="cart-icon-bubble" class="yaomri-header__cart-count cnvrt-header__cart-count">{{ cart.item_count }}</span>
           {%- endif -%}
         </a>
       {%- endif -%}
     </div>
   {%- endcapture -%}
 
-  <div class="yaomri-header__desktop">
-    <div class="yaomri-header__desktop-left">
+  <div class="yaomri-header__desktop cnvrt-header__desktop">
+    <div class="yaomri-header__desktop-left cnvrt-header__desktop-left">
       {%- if resolved_layout == 'logo_left_nav_center_actions_right' -%}
         {{ logo_markup }}
       {%- elsif resolved_layout == 'nav_left_logo_center_actions_right' -%}
@@ -382,7 +444,7 @@
       {%- endif -%}
     </div>
 
-    <div class="yaomri-header__desktop-centre">
+    <div class="yaomri-header__desktop-centre cnvrt-header__desktop-centre">
       {%- if resolved_layout == 'logo_left_nav_center_actions_right' -%}
         {{ nav_markup }}
       {%- else -%}
@@ -390,15 +452,15 @@
       {%- endif -%}
     </div>
 
-    <div class="yaomri-header__desktop-right">
+    <div class="yaomri-header__desktop-right cnvrt-header__desktop-right">
       {{ actions_markup }}
     </div>
   </div>
 
-  <div class="yaomri-header__mobile">
-    <div class="yaomri-header__mobile-left">
+  <div class="yaomri-header__mobile cnvrt-header__mobile">
+    <div class="yaomri-header__mobile-left cnvrt-header__mobile-left">
       <button
-        class="yaomri-header__icon"
+        class="yaomri-header__icon cnvrt-header__icon"
         type="button"
         data-mdrawer-trigger
         aria-label="Open menu"
@@ -409,26 +471,26 @@
       </button>
     </div>
 
-    <div class="yaomri-header__mobile-center">
+    <div class="yaomri-header__mobile-center cnvrt-header__mobile-center">
       {{ mobile_logo_markup }}
     </div>
 
-    <div class="yaomri-header__mobile-right">
-      <a class="yaomri-header__icon" href="{{ routes.search_url }}" aria-label="Search">
+    <div class="yaomri-header__mobile-right cnvrt-header__mobile-right">
+      <a class="yaomri-header__icon cnvrt-header__icon" href="{{ routes.search_url }}" aria-label="Search">
         {% render 'icon-yaomri-search' %}
       </a>
 
       {%- if show_wishlist_icon -%}
-        <a class="yaomri-header__icon yaomri-header__mobile-optional" href="{{ wishlist_url }}" aria-label="Wishlist">
+        <a class="yaomri-header__icon cnvrt-header__icon yaomri-header__mobile-optional cnvrt-header__mobile-optional" href="{{ wishlist_url }}" aria-label="Wishlist">
           {% render 'icon-yaomri-heart' %}
         </a>
       {%- endif -%}
 
       {%- if show_cart_icon -%}
-        <a class="yaomri-header__icon yaomri-header__cart" href="{{ routes.cart_url }}" aria-label="Cart">
+        <a class="yaomri-header__icon cnvrt-header__icon yaomri-header__cart cnvrt-header__cart" href="{{ routes.cart_url }}" aria-label="Cart">
           {% render 'icon-yaomri-cart' %}
           {%- if cart.item_count > 0 -%}
-            <span class="yaomri-header__cart-count">{{ cart.item_count }}</span>
+            <span class="yaomri-header__cart-count cnvrt-header__cart-count">{{ cart.item_count }}</span>
           {%- endif -%}
         </a>
       {%- endif -%}

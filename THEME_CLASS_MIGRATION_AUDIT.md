@@ -42,9 +42,9 @@ Notes:
 
 ### 1) `assets/yaomri-header-state.js`
 
-- Class selectors: `.yaomri-header-stack`, `.yaomri-header-stack--overlay`, `.yaomri-header-stack--fade`, `.yaomri-header-stack--slide`, `.yaomri-header-stack--fade-slide`, `.is-hidden-after-scroll`, `.yaomri-header`, `.yaomri-mega-panels`, `.mdrawer`
-- Data attributes: `[data-yaomri-header-group]`, plus header data attributes read from `sections/header.liquid` (`data-header-stack-*`, `data-transparent-*`, `data-transparent-active`)
-- CSS custom props written: `--yaomri-header-stack-transition-duration`, `--yaomri-header-stack-transition-easing`
+- Class selectors: `.yaomri-header-stack`, `.cnvrt-header-stack`, `.yaomri-header-stack--overlay`, `.cnvrt-header-stack--overlay`, `.yaomri-header-stack--fade`, `.cnvrt-header-stack--fade`, `.yaomri-header-stack--slide`, `.cnvrt-header-stack--slide`, `.yaomri-header-stack--fade-slide`, `.cnvrt-header-stack--fade-slide`, `.is-hidden-after-scroll`, `.yaomri-header`, `.cnvrt-header`, `.yaomri-mega-panels`, `.mdrawer`
+- Data attributes: `[data-yaomri-header-group]`, `[data-cnvrt-header-group]`, plus header data attributes read from `sections/header.liquid` (`data-header-stack-*`, `data-cnvrt-header-stack-*`, `data-transparent-*`, `data-transparent-active`)
+- CSS custom props written: `--cnvrt-header-stack-transition-duration`, `--cnvrt-header-stack-transition-easing` (with `--yaomri-` aliases for compatibility)
 - Events/targets: `scroll`, `resize`, `click`, `touchstart`, `keyup`, `shopify:section:*`, `DOMContentLoaded`
 - Risk if rename: **critical** unless alias layer exists, because it owns the shared stack show/hide behavior and header transparency state.
 
@@ -226,6 +226,8 @@ Announcement announcement bar now renders both legacy and neutral namespace clas
 - Files: `sections/header.liquid`, `assets/yaomri-header.css`, `assets/yaomri-header-state.js`
 - Risk: high
 - QA: stack transitions, transparent/solid states, country selector visuals, desktop/mobile header breakpoints
+- Status: Completed (compatibility alias phase)
+- Compatibility note: legacy `yaomri-header*`/`yaomri-header-stack` classes and `--yh-*`/`--yaomri-header-stack-*` variables remain as aliases while `cnvrt-header*` classes and `--cnvrt-header-*` variables are now used as primary.
 - Suggested commit: `feat: migrate header stack classes and data hooks behind compatibility layer`
 
 ### Phase 5 — Mega Menu
@@ -261,12 +263,13 @@ Announcement announcement bar now renders both legacy and neutral namespace clas
   - shared variable bridge patterns (new token resolves to old token).
 - In JS, query for old/new selectors in the same expression.
 
-### Current completed state (post Phase 3)
+### Current completed state (post Phase 4)
 
 - Announcement namespace migration is complete and stable.
 - Collection Cards namespace migration is now complete with compatibility aliases and compatibility `cc-*` retention.
 - Single Image Hero migration is now complete with compatibility aliases retained.
-- Next: header/mega/mobile drawer/next sections remain.
+- Phase 4 header migration is now complete with compatibility aliases.
+- Next: mega/mobile drawer/next sections remain.
 
 ## J. QA checklist for migration phase validation
 
