@@ -14,7 +14,7 @@ Current state:
 3. Major architectural debt remains in naming and section ownership patterns (Ya Omri-branded class system and mixed responsive conventions).
 4. Homepage is minimal and predictable (`templates/index.json` has only `single-image-hero` and `collection-cards` in this snapshot).
 5. Header/mobile drawer/mega menu stack behavior is now feature-complete for fade-away, mobile/desktop thresholds, easing, and duration, including solid-state suppression in fade-away mode.
-6. Announcement namespace migration phase 1 is complete: `cnvrt-announcement*` selectors and `--cnvrt-announcement-*` variables now coexist with legacy `yaomri*`/`yab-*`.
+6. Namespace migration phases are underway and stable: `cnvrt-announcement*` and `--cnvrt-announcement-*` coexist with legacy `yaomri*`/`yab-*`; `cnvrt-collection-cards*` selectors and `--cnvrt-collection-cards-*` / `--cnvrt-collection-card-*` variables now coexist with legacy `cc-*` and `--cc-*`.
 
 ## B. Critical launch blockers
 
@@ -168,8 +168,8 @@ Current state:
    - `ysh-`: single-image and shared typography blocks
    - `yh-`: header-level tokens/variables
    - `ym-`: header/inline variables
-   - `yab-`: announcement local variants (already paired with `cnvrt-announcement*` in phase 1 aliases)
-   - `cc-`: collection cards system
+  - `yab-`: announcement local variants (already paired with `cnvrt-announcement*` in phase 1 aliases)
+  - `cc-`: collection cards system (paired with `cnvrt-collection-cards*` in phase 2 aliases)
    - `mdrawer-`: mobile drawer system
 2. Current risk profile
    - These prefixes are functionally stable but brand-specific for distribution readiness.
@@ -214,5 +214,5 @@ Current state:
 6. Add lightweight runtime metric instrumentation for hero and carousel load interactions.
 7. Implement compatibility alias layer for class migration (`yaomri-*` -> neutral alias).
 8. Document the alias mapping in `THEME_SETTINGS_REGISTRY.md` and migration notes in `YAOMRI_BUILD_SPEC.md`.
-9. Migrate one section family (`collection-cards`) to neutral prefix while preserving behavior.
+9. Migrate one section family (`single-image-hero`) to neutral prefix while preserving behavior.
 10. Run second full audit pass and prepare launch readiness report for internal sign-off.

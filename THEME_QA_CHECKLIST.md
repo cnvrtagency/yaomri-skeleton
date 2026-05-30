@@ -294,6 +294,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 ## Collection Cards
 
 - Collection Cards section appears in Theme Editor.
+- Collection Cards Phase 2 migration keeps legacy `cc-*` classes/variables while adding compatibility `cnvrt-*` classes and `--cnvrt-*` variables.
 - Heading and optional heading subtitle render correctly in the section header row.
 - Heading/subtitle/arrows align on one clean row on desktop.
 - Mobile heading layout stacks cleanly and arrows do not crowd heading text.

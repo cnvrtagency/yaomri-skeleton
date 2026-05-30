@@ -209,7 +209,9 @@ Announcement announcement bar now renders both legacy and neutral namespace clas
 ### Phase 2 — Collection Cards
 - Files: `sections/collection-cards.liquid`, `assets/section-collection-cards.css`, `assets/section-collection-cards.js`
 - Risk: medium
+- Status: Completed (compatibility alias phase)
 - QA: arrow interactions, placeholders, responsive layout, links
+- Compatibility note: legacy `cc-*` classes and `--cc-*` variables remain as aliases while `cnvrt-*` and `--cnvrt-*` are now used as primary.
 - Suggested commit: `feat: migrate collection cards class namespace with compatibility selectors`
 
 ### Phase 3 — Single Image Hero
@@ -257,6 +259,12 @@ Announcement announcement bar now renders both legacy and neutral namespace clas
   - shared variable bridge patterns (new token resolves to old token).
 - In JS, query for old/new selectors in the same expression.
 
+### Current completed state (post Phase 2)
+
+- Announcement namespace migration is complete and stable.
+- Collection Cards namespace migration is now complete with compatibility aliases and compatibility `cc-*` retention.
+- Single Image Hero migration is next, then header/mega/drawer.
+
 ## J. QA checklist for migration phase validation
 
 - Global: no `shopify theme check` errors, no JS console errors in header/mobile/announcement flows.
@@ -274,4 +282,4 @@ Announcement announcement bar now renders both legacy and neutral namespace clas
 
 ## L. Suggested next Codex prompt
 
-"Implement compatibility namespace aliases for Announcement and Collection Cards (`yab-*`, `cc-*`) to `cnvrt-*`, then migrate both sections with automated snapshot and keyboard/scroll QA." 
+"Implement compatibility namespace aliases for Single Image Hero (`ysh-*`) classes and vars to `cnvrt-*`, then migrate those section classes with keyboard and responsive QA."
