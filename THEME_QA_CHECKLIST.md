@@ -231,6 +231,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Single Image Hero desktop horizontal position remains effective when text alignment changes.
 - Single Image Hero mobile horizontal position remains effective when text alignment changes.
 - Single Image Hero with Content width = Custom and Custom content width = `680px` visibly moves the content area for Left/Centre/Right positions.
+- Single Image Hero heading/paragraph/eyebrow blocks follow the same content-area placement and do not drift independently.
 - Single Image Hero Eyebrow typography controls (desktop/mobile font size, weight, letter spacing, uppercase) apply.
 - Single Image Hero Eyebrow line-height control applies.
 - Single Image Hero Eyebrow max width control applies.

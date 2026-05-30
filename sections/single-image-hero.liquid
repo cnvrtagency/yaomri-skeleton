@@ -18,54 +18,6 @@
   assign border_color = section.settings.border_color | default: '#e8e8e8'
   assign section_background = section.settings.section_background | default: 'var(--color-background)'
 
-  assign desktop_justify = 'start'
-  if desktop_horizontal == 'center'
-    assign desktop_justify = 'center'
-  elsif desktop_horizontal == 'right'
-    assign desktop_justify = 'end'
-  endif
-
-  assign desktop_align = 'center'
-  if desktop_vertical == 'top'
-    assign desktop_align = 'start'
-  elsif desktop_vertical == 'bottom'
-    assign desktop_align = 'end'
-  endif
-
-  assign desktop_text = 'left'
-  assign desktop_buttons_justify = 'flex-start'
-  if desktop_text_alignment == 'center'
-    assign desktop_text = 'center'
-    assign desktop_buttons_justify = 'center'
-  elsif desktop_text_alignment == 'right'
-    assign desktop_text = 'right'
-    assign desktop_buttons_justify = 'flex-end'
-  endif
-
-  assign mobile_justify = 'center'
-  if mobile_horizontal == 'left'
-    assign mobile_justify = 'start'
-  elsif mobile_horizontal == 'right'
-    assign mobile_justify = 'end'
-  endif
-
-  assign mobile_align = 'center'
-  if mobile_vertical == 'top'
-    assign mobile_align = 'start'
-  elsif mobile_vertical == 'bottom'
-    assign mobile_align = 'end'
-  endif
-
-  assign mobile_text = 'center'
-  assign mobile_buttons_justify = 'center'
-  if mobile_text_alignment == 'left'
-    assign mobile_text = 'left'
-    assign mobile_buttons_justify = 'flex-start'
-  elsif mobile_text_alignment == 'right'
-    assign mobile_text = 'right'
-    assign mobile_buttons_justify = 'flex-end'
-  endif
-
   assign section_width_value = 'var(--page-width)'
   if width_mode == 'full'
     assign section_width_value = 'none'
@@ -88,21 +40,13 @@
 -%}
 
 <section
-  class="yaomri-single-hero yaomri-single-hero--width-{{ width_mode }} yaomri-single-hero--content-width-{{ content_width_mode }} yaomri-single-hero--desktop-height-{{ desktop_height_mode }} yaomri-single-hero--mobile-height-{{ mobile_height_mode }}{% if section.settings.show_border %} yaomri-single-hero--border{% endif %} full-width"
+  class="yaomri-single-hero yaomri-single-hero--width-{{ width_mode }} yaomri-single-hero--content-width-{{ content_width_mode }} yaomri-single-hero--desktop-height-{{ desktop_height_mode }} yaomri-single-hero--mobile-height-{{ mobile_height_mode }} yaomri-single-hero--desktop-horizontal-{{ desktop_horizontal }} yaomri-single-hero--desktop-vertical-{{ desktop_vertical }} yaomri-single-hero--desktop-text-{{ desktop_text_alignment }} yaomri-single-hero--mobile-horizontal-{{ mobile_horizontal }} yaomri-single-hero--mobile-vertical-{{ mobile_vertical }} yaomri-single-hero--mobile-text-{{ mobile_text_alignment }}{% if section.settings.show_border %} yaomri-single-hero--border{% endif %} full-width"
   style="
     --ysh-section-width: {{ section_width_value }};
     --ysh-section-bg: {{ section_background }};
     --ysh-border-color: {{ border_color }};
     --ysh-overlay-color: {{ overlay_color }};
     --ysh-overlay-opacity: {{ overlay_opacity }};
-    --ysh-desktop-justify: {{ desktop_justify }};
-    --ysh-desktop-align: {{ desktop_align }};
-    --ysh-desktop-text-align: {{ desktop_text }};
-    --ysh-desktop-buttons-justify: {{ desktop_buttons_justify }};
-    --ysh-mobile-justify: {{ mobile_justify }};
-    --ysh-mobile-align: {{ mobile_align }};
-    --ysh-mobile-text-align: {{ mobile_text }};
-    --ysh-mobile-buttons-justify: {{ mobile_buttons_justify }};
     --ysh-content-width: {{ content_width_value }};
     --ysh-content-gap: {{ section.settings.content_gap }}px;
     --ysh-content-padding: {{ section.settings.content_padding }}px;
