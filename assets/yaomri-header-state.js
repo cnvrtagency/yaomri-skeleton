@@ -59,10 +59,13 @@
     );
     if (megaOpen) return true;
 
-    const drawerOpen = document.querySelector('.mdrawer.is-open');
+    const drawerOpen =
+      document.querySelector('.mdrawer.is-open, .cnvrt-drawer.is-open') ||
+      document.documentElement.classList.contains('mdrawer-open') ||
+      document.documentElement.classList.contains('cnvrt-drawer-open');
     if (drawerOpen) return true;
 
-    return document.documentElement.classList.contains('mdrawer-open');
+    return false;
   };
 
   const resolveHeaderDataAttr = (header, keys) => {

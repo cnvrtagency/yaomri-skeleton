@@ -1,99 +1,117 @@
-.yaomri-three-hero {
+.yaomri-three-hero,
+.cnvrt-three-hero {
   width: 100%;
-  margin-top: var(--yth-margin-top-desktop, 0);
-  margin-bottom: var(--yth-margin-bottom-desktop, 0);
-  background: var(--yth-section-bg, var(--color-background));
+  margin-top: var(--cnvrt-three-hero-margin-top-desktop, var(--yth-margin-top-desktop, 0));
+  margin-bottom: var(--cnvrt-three-hero-margin-bottom-desktop, var(--yth-margin-bottom-desktop, 0));
+  background: var(--cnvrt-three-hero-section-bg, var(--yth-section-bg, var(--color-background)));
 }
 
 .yaomri-three-hero,
-.yaomri-three-hero * {
+.cnvrt-three-hero,
+.yaomri-three-hero *,
+.cnvrt-three-hero * {
   box-sizing: border-box;
 }
 
-.yaomri-three-hero__frame {
+.yaomri-three-hero__frame,
+.cnvrt-three-hero__frame {
   width: 100%;
-  max-width: var(--yth-section-width, var(--page-width));
+  max-width: var(--cnvrt-three-hero-section-width, var(--yth-section-width, var(--page-width)));
   margin-inline: auto;
   padding:
-    var(--yth-padding-top-desktop, 0)
-    var(--yth-padding-right-desktop, 0)
-    var(--yth-padding-bottom-desktop, 0)
-    var(--yth-padding-left-desktop, 0);
+    var(--cnvrt-three-hero-padding-top-desktop, var(--yth-padding-top-desktop, 0))
+    var(--cnvrt-three-hero-padding-right-desktop, var(--yth-padding-right-desktop, 0))
+    var(--cnvrt-three-hero-padding-bottom-desktop, var(--yth-padding-bottom-desktop, 0))
+    var(--cnvrt-three-hero-padding-left-desktop, var(--yth-padding-left-desktop, 0));
 }
 
-.yaomri-three-hero--width-full .yaomri-three-hero__frame {
+.yaomri-three-hero--width-full .yaomri-three-hero__frame,
+.cnvrt-three-hero--width-full .cnvrt-three-hero__frame {
   max-width: none;
 }
 
-.yaomri-three-hero__cards {
+.yaomri-three-hero__cards,
+.cnvrt-three-hero__cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
 }
 
-.yaomri-three-hero__cards--count-1 {
+.yaomri-three-hero__cards--count-1,
+.cnvrt-three-hero__cards--count-1 {
   grid-template-columns: 1fr;
 }
 
-.yaomri-three-hero__cards--count-2 {
+.yaomri-three-hero__cards--count-2,
+.cnvrt-three-hero__cards--count-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.yaomri-three-hero__card {
+.yaomri-three-hero__card,
+.cnvrt-three-hero__card {
   position: relative;
-  min-height: var(--yth-height-desktop, 680px);
+  min-height: var(--cnvrt-three-hero-height-desktop, var(--yth-height-desktop, 680px));
   overflow: hidden;
   background: var(--color-sand, #f6f4ef);
   color: #fff;
 }
 
-.yaomri-three-hero--border .yaomri-three-hero__card {
+.yaomri-three-hero--border .yaomri-three-hero__card,
+.cnvrt-three-hero--border .cnvrt-three-hero__card {
   border: 1px solid var(--color-border, #e8e8e8);
 }
 
-.yaomri-three-hero__card-link {
+.yaomri-three-hero__card-link,
+.cnvrt-three-hero__card-link {
   display: block;
   color: inherit;
   text-decoration: none;
 }
 
 .yaomri-three-hero__media,
-.yaomri-three-hero__placeholder {
+.cnvrt-three-hero__media,
+.yaomri-three-hero__placeholder,
+.cnvrt-three-hero__placeholder {
   position: absolute;
   inset: 0;
 }
 
-.yaomri-three-hero__image {
+.yaomri-three-hero__image,
+.cnvrt-three-hero__image {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
-  object-position: var(--yth-image-position, center center);
+  object-position: var(--cnvrt-three-hero-image-position, var(--yth-image-position, center center));
 }
 
-.yaomri-three-hero__mobile-image {
+.yaomri-three-hero__mobile-image,
+.cnvrt-three-hero__mobile-image {
   display: none;
 }
 
-.yaomri-three-hero__overlay {
+.yaomri-three-hero__overlay,
+.cnvrt-three-hero__overlay {
   position: absolute;
   inset: 0;
-  background: var(--yth-overlay-color, #000);
-  opacity: var(--yth-overlay-opacity, 0);
+  background: var(--cnvrt-three-hero-overlay-color, var(--yth-overlay-color, #000));
+  opacity: var(--cnvrt-three-hero-overlay-opacity, var(--yth-overlay-opacity, 0));
   pointer-events: none;
 }
 
-.yaomri-three-hero__content {
+.yaomri-three-hero__content,
+.cnvrt-three-hero__content {
   position: relative;
   z-index: 1;
   display: grid;
   align-content: end;
-  min-height: var(--yth-height-desktop, 680px);
+  min-height: var(--cnvrt-three-hero-height-desktop, var(--yth-height-desktop, 680px));
   padding: clamp(1rem, 2.2vw, 2rem);
   color: inherit;
 }
 
-.yaomri-three-hero__eyebrow {
+.yaomri-three-hero__eyebrow,
+.cnvrt-three-hero__eyebrow {
   margin: 0 0 0.75rem;
   font-size: 0.72rem;
   font-style: italic;
@@ -103,7 +121,8 @@
   text-transform: uppercase;
 }
 
-.yaomri-three-hero__heading {
+.yaomri-three-hero__heading,
+.cnvrt-three-hero__heading {
   max-width: 10ch;
   margin: 0;
   font-size: clamp(1.65rem, 3.4vw, 3.8rem);
@@ -114,14 +133,16 @@
   text-transform: uppercase;
 }
 
-.yaomri-three-hero__text {
+.yaomri-three-hero__text,
+.cnvrt-three-hero__text {
   max-width: 30rem;
   margin: 1rem 0 0;
   font-size: 0.88rem;
   line-height: 1.45;
 }
 
-.yaomri-three-hero__button {
+.yaomri-three-hero__button,
+.cnvrt-three-hero__button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -142,11 +163,14 @@
 }
 
 .yaomri-three-hero__card-link:hover .yaomri-three-hero__button,
-.yaomri-three-hero__card-link:focus-visible .yaomri-three-hero__button {
+.yaomri-three-hero__card-link:focus-visible .yaomri-three-hero__button,
+.cnvrt-three-hero__card-link:hover .cnvrt-three-hero__button,
+.cnvrt-three-hero__card-link:focus-visible .cnvrt-three-hero__button {
   opacity: 0.72;
 }
 
-.yaomri-three-hero__placeholder {
+.yaomri-three-hero__placeholder,
+.cnvrt-three-hero__placeholder {
   display: grid;
   place-items: center;
   padding: 1rem;
@@ -154,7 +178,8 @@
   text-align: center;
 }
 
-.yaomri-three-hero__placeholder::before {
+.yaomri-three-hero__placeholder::before,
+.cnvrt-three-hero__placeholder::before {
   content: attr(data-label);
   max-width: 20rem;
   border: 1px dashed var(--color-border, #d8d8d8);
@@ -166,52 +191,63 @@
   text-transform: uppercase;
 }
 
-.yaomri-three-hero__card--placeholder {
+.yaomri-three-hero__card--placeholder,
+.cnvrt-three-hero__card--placeholder {
   color: var(--color-foreground, #111);
 }
 
 @media (max-width: 749px) {
-  .yaomri-three-hero {
-    margin-top: var(--yth-margin-top-mobile, 0);
-    margin-bottom: var(--yth-margin-bottom-mobile, 0);
+  .yaomri-three-hero,
+  .cnvrt-three-hero {
+    margin-top: var(--cnvrt-three-hero-margin-top-mobile, var(--yth-margin-top-mobile, 0));
+    margin-bottom: var(--cnvrt-three-hero-margin-bottom-mobile, var(--yth-margin-bottom-mobile, 0));
   }
 
-  .yaomri-three-hero__frame {
+  .yaomri-three-hero__frame,
+  .cnvrt-three-hero__frame {
     padding:
-      var(--yth-padding-top-mobile, 0)
-      var(--yth-padding-right-mobile, 0)
-      var(--yth-padding-bottom-mobile, 0)
-      var(--yth-padding-left-mobile, 0);
+      var(--cnvrt-three-hero-padding-top-mobile, var(--yth-padding-top-mobile, 0))
+      var(--cnvrt-three-hero-padding-right-mobile, var(--yth-padding-right-mobile, 0))
+      var(--cnvrt-three-hero-padding-bottom-mobile, var(--yth-padding-bottom-mobile, 0))
+      var(--cnvrt-three-hero-padding-left-mobile, var(--yth-padding-left-mobile, 0));
   }
 
-  .yaomri-three-hero__cards {
+  .yaomri-three-hero__cards,
+  .cnvrt-three-hero__cards {
     grid-template-columns: 1fr;
   }
 
   .yaomri-three-hero__card,
-  .yaomri-three-hero__content {
-    min-height: var(--yth-height-mobile, 560px);
+  .cnvrt-three-hero__card,
+  .yaomri-three-hero__content,
+  .cnvrt-three-hero__content {
+    min-height: var(--cnvrt-three-hero-height-mobile, var(--yth-height-mobile, 560px));
   }
 
-  .yaomri-three-hero__image--has-mobile {
+  .yaomri-three-hero__image--has-mobile,
+  .cnvrt-three-hero__image--has-mobile {
     display: none;
   }
 
-  .yaomri-three-hero__mobile-image {
+  .yaomri-three-hero__mobile-image,
+  .cnvrt-three-hero__mobile-image {
     display: block;
   }
 
-  .yaomri-three-hero__content {
+  .yaomri-three-hero__content,
+  .cnvrt-three-hero__content {
     padding: 1.25rem;
   }
 
-  .yaomri-three-hero__heading {
+  .yaomri-three-hero__heading,
+  .cnvrt-three-hero__heading {
     font-size: clamp(2rem, 12vw, 3.8rem);
   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .yaomri-three-hero__content {
+  .yaomri-three-hero__content,
+  .cnvrt-three-hero__content {
     animation: yaomri-three-hero-rise 520ms ease both;
   }
 

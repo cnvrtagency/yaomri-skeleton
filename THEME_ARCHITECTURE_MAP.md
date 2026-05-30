@@ -342,7 +342,7 @@ Judgement:
 
 ## Cart
 
-Owned by `sections/cart.liquid`, `assets/yaomri-cart.css`, and `assets/yaomri-cart.js`.
+Owned by `sections/cart.liquid`, `assets/yaomri-cart.css`, and `assets/yaomri-cart.js` with compatibility aliases for `cnvrt-cart*`.
 
 Owns:
 - Cart page fallback rendering.
@@ -365,6 +365,7 @@ Must not be duplicated elsewhere:
 Current implementation:
 - Cart page is not clearly marked in code or settings as fallback-only.
 - `yaomri-cart.js` recalculates visible prices client-side but does not update Shopify cart state until form submit. That is acceptable for a fallback cart page but should not be mistaken for cart drawer behavior.
+- Cart namespace aliases are active: legacy `yaomri-cart*` remains in markup/CSS/JS while `cnvrt-cart*` aliases are present for migration safety.
 - A cart drawer is not built yet, which conflicts with the requested 7-day launch plan but not with the original build spec.
 
 Judgement:
@@ -401,7 +402,7 @@ Current implementation:
 - Single Image Hero has separate Section width and Content width controls. Section width owns the overall hero frame; Content width owns the text/button content area inside the hero.
 - Single Image Hero separates desktop/mobile content block position from desktop/mobile text alignment and supports desktop/mobile height modes.
 - `sections/three-card-hero.liquid` owns the 3-card editorial hero and its card blocks.
-- Styles are scoped under `.yaomri-single-hero` and `.yaomri-three-hero`.
+- Styles are scoped under `.yaomri-single-hero`/`.cnvrt-single-hero` and `.yaomri-three-hero`/`.cnvrt-three-hero` during compatibility migration.
 
 Judgement:
 - Keep Single Image Hero and 3-Card Hero separate. Shopify does not hide irrelevant settings in a layout-switch section, so separate sections are clearer for merchants.
@@ -409,7 +410,7 @@ Judgement:
 
 ## Footer
 
-Owned by `sections/footer.liquid`.
+Owned by `sections/footer.liquid` with compatibility aliases for `cnvrt-footer*`.
 
 Owns:
 - Footer menu.
@@ -427,6 +428,7 @@ Must not be duplicated elsewhere:
 Current implementation:
 - Footer is still mostly Skeleton default and uses translation labels.
 - Footer CSS is inline inside the section. That is acceptable for Skeleton default but not ideal for reusable Ya Omri architecture.
+- Footer namespace aliases are active: legacy `site-footer`/`footer__*` classes remain while `cnvrt-footer*` aliases are present for migration safety.
 
 Judgement:
 - Footer is half-built and needs a launch pass.

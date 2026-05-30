@@ -251,6 +251,7 @@
     --cnvrt-header-country-bg: var(--cnvrt-header-country-bg-normal);
     --cnvrt-header-country-border: var(--cnvrt-header-country-border-normal);
     --cnvrt-header-country-text: var(--cnvrt-header-country-text-normal);
+    --cnvrt-header-country-text-solid: var(--cnvrt-header-solid-after-scroll-text);
     --cnvrt-header-country-height: {{ country_selector_height }}px;
     --cnvrt-header-transparent-text: {{ transparent_header_resolved_text }};
     --cnvrt-header-transparent-bg-opacity: {{ transparent_header_bg_opacity }};
@@ -292,6 +293,7 @@
     --yh-country-bg: var(--cnvrt-header-country-bg);
     --yh-country-border: var(--cnvrt-header-country-border);
     --yh-country-text: var(--cnvrt-header-country-text);
+    --yh-country-text-solid: var(--cnvrt-header-country-text-solid);
     --yh-country-height: var(--cnvrt-header-country-height);
     --yh-transparent-text: var(--cnvrt-header-transparent-text);
     --yh-transparent-bg-opacity: var(--cnvrt-header-transparent-bg-opacity);
@@ -463,6 +465,7 @@
         class="yaomri-header__icon cnvrt-header__icon"
         type="button"
         data-mdrawer-trigger
+        data-cnvrt-drawer-trigger
         aria-label="Open menu"
         aria-expanded="false"
         aria-controls="MobileDrawer"

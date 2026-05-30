@@ -242,18 +242,23 @@ Announcement announcement bar now renders both legacy and neutral namespace clas
 - Files: `sections/header.liquid`, `snippets/mobile-drawer.liquid`, `assets/mobile-drawer.css`, `assets/mobile-drawer.js`
 - Risk: high (a11y/focus)
 - QA: aria-expanded, open/close, Escape, focus restore, drill nav
+- Status: Completed (compatibility alias phase)
+- Compatibility note: legacy `mdrawer*` classes/data attributes and `--mdrawer-*` variables remain as aliases while `cnvrt-drawer*` classes/data attributes are active as primary.
 - Suggested commit: `feat: migrate mobile drawer selectors with accessibility-safe compatibility layer`
 
 ### Phase 7 — Cart
 - Files: `sections/cart.liquid`, `assets/yaomri-cart.css`, `assets/yaomri-cart.js`
 - Risk: low-medium
 - QA: quantity updates, totals, accessibility semantics
+- Status: Completed (compatibility alias phase)
+- Compatibility note: legacy `yaomri-cart*` classes remain as aliases while `cnvrt-cart*` classes are active as primary.
 - Suggested commit: `refactor: align cart class namespace for CNVRT system`
 
 ### Phase 8 — Docs + Registry cleanup
 - Files: `THEME_CLASS_MIGRATION_AUDIT.md`, `THEME_SETTINGS_REGISTRY.md` (status notes), `THEME_QA_CHECKLIST.md`
 - Risk: low
 - QA: docs consistency and migration status checklist
+- Status: Completed
 - Suggested commit: `docs: complete namespace migration inventory and rollout plan`
 
 ## I. Compatibility alias strategy
@@ -265,13 +270,17 @@ Announcement announcement bar now renders both legacy and neutral namespace clas
   - shared variable bridge patterns (new token resolves to old token).
 - In JS, query for old/new selectors in the same expression.
 
-### Current completed state (post Phase 4)
+### Current completed state (post Phase 8)
 
 - Announcement namespace migration is complete and stable.
 - Collection Cards namespace migration is now complete with compatibility aliases and compatibility `cc-*` retention.
 - Single Image Hero migration is now complete with compatibility aliases retained.
-- Phase 4 header migration is now complete with compatibility aliases.
-- Next: mega/mobile drawer/next sections remain.
+- Header migration is complete with compatibility aliases.
+- Mega menu migration is complete with compatibility aliases.
+- Mobile drawer migration is complete with compatibility aliases.
+- Cart migration is complete with compatibility aliases.
+- Footer and Three Card Hero alias migration are complete with compatibility aliases.
+- Deferred for later cleanup: `icon-yaomri-*` snippet naming and other non-component utility/icon namespace refactors.
 
 ## J. QA checklist for migration phase validation
 
@@ -290,4 +299,4 @@ Announcement announcement bar now renders both legacy and neutral namespace clas
 
 ## L. Suggested next Codex prompt
 
-"Implement compatibility namespace migration for Header Core while preserving `data-yaomri-header-group` and interactive contracts for mega/mobile."
+"Run post-migration cleanup planning for eventual alias removal (`yaomri-*`, `y*` vars, `mdrawer-*`, `cc-*`) after QA sign-off, while preserving settings IDs and stable data attributes."

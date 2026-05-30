@@ -1,16 +1,16 @@
 (function () {
-  var drawer = document.querySelector("[data-mdrawer]");
+  var drawer = document.querySelector("[data-mdrawer], [data-cnvrt-drawer]");
   if (!drawer) return;
 
-  var panel = drawer.querySelector(".mdrawer__panel");
-  var drawerHeader = drawer.querySelector("[data-mdrawer-header]");
-  var titleNode = drawer.querySelector("[data-mdrawer-title]");
-  var backButton = drawer.querySelector("[data-mdrawer-back]");
-  var closeButtons = drawer.querySelectorAll("[data-mdrawer-close]");
-  var triggers = document.querySelectorAll("[data-mdrawer-trigger]");
-  var drillButtons = drawer.querySelectorAll("[data-mdrawer-drill]");
-  var views = drawer.querySelectorAll("[data-mdrawer-view]");
-  var rootView = drawer.querySelector('[data-mdrawer-view="root"]');
+  var panel = drawer.querySelector(".mdrawer__panel, .cnvrt-drawer__panel");
+  var drawerHeader = drawer.querySelector("[data-mdrawer-header], [data-cnvrt-drawer-header]");
+  var titleNode = drawer.querySelector("[data-mdrawer-title], [data-cnvrt-drawer-title]");
+  var backButton = drawer.querySelector("[data-mdrawer-back], [data-cnvrt-drawer-back]");
+  var closeButtons = drawer.querySelectorAll("[data-mdrawer-close], [data-cnvrt-drawer-close]");
+  var triggers = document.querySelectorAll("[data-mdrawer-trigger], [data-cnvrt-drawer-trigger]");
+  var drillButtons = drawer.querySelectorAll("[data-mdrawer-drill], [data-cnvrt-drawer-drill]");
+  var views = drawer.querySelectorAll("[data-mdrawer-view], [data-cnvrt-drawer-view]");
+  var rootView = drawer.querySelector('[data-mdrawer-view="root"], [data-cnvrt-drawer-view="root"]');
   var rootTitle = titleNode ? titleNode.textContent : "Menu";
   var activeTrigger = null;
   var viewStack = ["root"];
@@ -21,14 +21,25 @@
     });
   }
 
+  function getAttributeFrom(node, names) {
+    for (var i = 0; i < names.length; i += 1) {
+      var value = node.getAttribute(names[i]);
+      if (value !== null && value !== "") return value;
+    }
+    return "";
+  }
+
   function getView(name) {
-    return drawer.querySelector('[data-mdrawer-view="' + name + '"]');
+    return drawer.querySelector(
+      '[data-mdrawer-view="' + name + '"], [data-cnvrt-drawer-view="' + name + '"]'
+    );
   }
 
   function setView(name, options) {
     var animateFromRight = options && options.reverse ? -1 : 1;
     views.forEach(function (view) {
-      var isTarget = view.getAttribute("data-mdrawer-view") === name;
+      var viewName = getAttributeFrom(view, ["data-mdrawer-view", "data-cnvrt-drawer-view"]);
+      var isTarget = viewName === name;
       view.classList.toggle("is-active", isTarget);
       if (isTarget) {
         view.style.transform = "translateX(0)";
@@ -45,10 +56,10 @@
         titleNode.textContent = rootTitle;
       } else {
         var sourceButton = drawer.querySelector(
-          '[data-target="' + name + '"][data-title]'
+          '[data-target="' + name + '"][data-title], [data-cnvrt-target="' + name + '"][data-cnvrt-title]'
         );
         titleNode.textContent = sourceButton
-          ? sourceButton.getAttribute("data-title")
+          ? getAttributeFrom(sourceButton, ["data-title", "data-cnvrt-title"])
           : rootTitle;
       }
     }
@@ -79,6 +90,7 @@
     drawer.setAttribute("aria-hidden", "false");
     drawer.classList.add("is-open");
     document.documentElement.classList.add("mdrawer-open");
+    document.documentElement.classList.add("cnvrt-drawer-open");
     restoreRootView();
     syncDrawerTriggerExpanded(true);
 
@@ -91,6 +103,7 @@
     drawer.setAttribute("aria-hidden", "true");
     drawer.classList.remove("is-open");
     document.documentElement.classList.remove("mdrawer-open");
+    document.documentElement.classList.remove("cnvrt-drawer-open");
     restoreRootView();
     syncDrawerTriggerExpanded(false);
     syncDrawerDrillExpanded(null);
@@ -101,7 +114,8 @@
 
   function syncDrawerDrillExpanded(viewName) {
     drillButtons.forEach(function (button) {
-      button.setAttribute("aria-expanded", button.getAttribute("data-target") === viewName ? "true" : "false");
+      var target = getAttributeFrom(button, ["data-target", "data-cnvrt-target"]);
+      button.setAttribute("aria-expanded", target === viewName ? "true" : "false");
     });
   }
 
@@ -145,7 +159,7 @@
 
   drillButtons.forEach(function (button) {
     button.addEventListener("click", function () {
-      var target = button.getAttribute("data-target");
+      var target = getAttributeFrom(button, ["data-target", "data-cnvrt-target"]);
       if (!target || !getView(target)) return;
       viewStack.push(target);
       setView(target);

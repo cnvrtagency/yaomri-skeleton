@@ -126,7 +126,7 @@
   box-shadow: var(--cnvrt-header-shadow, none);
   --cnvrt-header-country-bg: var(--cnvrt-header-country-bg-normal, var(--color-background));
   --cnvrt-header-country-border: var(--cnvrt-header-country-border-normal, var(--color-border));
-  --cnvrt-header-country-text: var(--cnvrt-header-country-text-normal, currentColor);
+  --cnvrt-header-country-text: var(--cnvrt-header-country-text-solid, var(--cnvrt-header-country-text-normal, currentColor));
 }
 
 .yaomri-header--transparent-active:not(.is-scrolled).yaomri-header--no-border,

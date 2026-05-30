@@ -14,7 +14,7 @@ Current state:
 3. Major architectural debt remains in naming and section ownership patterns (Ya Omri-branded class system and mixed responsive conventions).
 4. Homepage is minimal and predictable (`templates/index.json` has only `single-image-hero` and `collection-cards` in this snapshot).
 5. Header/mobile drawer/mega menu stack behavior is now feature-complete for fade-away, mobile/desktop thresholds, easing, and duration, including solid-state suppression in fade-away mode.
-6. Namespace migration is now complete through five sections: announcement (`yaomri-announcement*`/`yab-*`), collection cards (`cc-*`), Single Image Hero (`yaomri-single-hero*`/`ysh-*`), Header stack (`yaomri-header*`/`yaomri-header-stack*`), and Mega menu (`yaomri-mega*`/`ym-*`) with compatibility aliasing to `cnvrt-announcement*`, `cnvrt-collection-cards*`, `cnvrt-single-hero*`, `cnvrt-header*`, and `cnvrt-mega*` classes/variables.
+6. Namespace migration is now complete through the remaining alias phases: announcement (`yaomri-announcement*`/`yab-*`), collection cards (`cc-*`), Single Image Hero (`yaomri-single-hero*`/`ysh-*`), Header stack (`yaomri-header*`/`yaomri-header-stack*`), Mega menu (`yaomri-mega*`/`ym-*`), mobile drawer (`mdrawer*`), cart (`yaomri-cart*`), footer (`site-footer`/`footer__*`) and 3-card hero (`yaomri-three-hero*`/`yth-*`) with compatibility aliasing to CNVRT namespaces.
 
 ## B. Critical launch blockers
 
@@ -40,7 +40,7 @@ Current state:
 ## D. Medium-priority cleanup
 
 1. Reduce mixed prefix friction while preserving current UI:
-   - `yaomri-`, `ysh-`, `yh-`, `ym-`, `yab-`, `mdrawer-`, `cc-` are all present and tied to different systems.
+   - legacy prefixes are still present as compatibility aliases: `yaomri-`, `ysh-`, `yh-`, `ym-`, `yab-`, `mdrawer-`, `cc-`, `yth-`.
 2. Consolidate asset ownership for header/nav interaction logic and avoid duplicated state toggles in both JS and CSS for similar features.
 3. Add schema comment consistency and help text for global/section settings with legacy values that remain hidden.
 4. Replace repeated inline style declarations with centralized variables where applicable.
@@ -129,7 +129,7 @@ Current state:
 4. Interaction safety
    - Basic overlay safety is present: open mega menu or mobile drawer keeps stack from immediately hiding.
 5. Mega/drawer/caraousel risks
-   - Mobile drawer and mega menu JS run from separate files and continue to use own classes (`mdrawer`, `yaomri-mega*`), requiring careful class updates if naming migration begins.
+   - Mobile drawer and mega menu JS run from separate files and now accept legacy + CNVRT aliases; future cleanup still needs careful de-aliasing plans.
    - Announcement carousel remains independent and should be re-tested if stack hide interactions are altered.
 
 ## I. Homepage section audit
@@ -174,7 +174,7 @@ Current state:
   - `ym-`: header/inline variables (paired with header migration work; mega-menu still pending)
   - `yab-`: announcement local variants (already paired with `cnvrt-announcement*` in phase 1 aliases)
   - `cc-`: collection cards system (paired with `cnvrt-collection-cards*` in phase 2 aliases)
-   - `mdrawer-`: mobile drawer system
+   - `mdrawer-`: mobile drawer system (now compatibility-only alongside `cnvrt-drawer*`)
 2. Current risk profile
    - These prefixes are functionally stable but brand-specific for distribution readiness.
    - Blind global renaming would break section/JS/css selectors immediately.

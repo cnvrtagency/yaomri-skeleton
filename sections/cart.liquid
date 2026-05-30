@@ -9,53 +9,53 @@
 <script src="{{ 'yaomri-cart.js' | asset_url }}" defer></script>
 
 <section
-  class="yaomri-cart"
+  class="yaomri-cart cnvrt-cart"
   data-money-format="{{ shop.money_format | escape }}"
   data-currency-code="{{ cart.currency.iso_code }}"
   {{ section.shopify_attributes }}
 >
   {%- if cart.item_count == 0 -%}
-    <div class="yaomri-cart__empty">
-      <div class="yaomri-cart__empty-icon" aria-hidden="true">
+    <div class="yaomri-cart__empty cnvrt-cart__empty">
+      <div class="yaomri-cart__empty-icon cnvrt-cart__empty-icon" aria-hidden="true">
         {% render 'icon-yaomri-cart' %}
       </div>
-      <h1 class="yaomri-cart__empty-heading">{{ section.settings.empty_heading }}</h1>
-      <p class="yaomri-cart__empty-text">{{ section.settings.empty_text }}</p>
-      <a class="yaomri-cart__button yaomri-cart__button--primary" href="{{ section.settings.continue_link | default: '/collections/all' }}">
+      <h1 class="yaomri-cart__empty-heading cnvrt-cart__empty-heading">{{ section.settings.empty_heading }}</h1>
+      <p class="yaomri-cart__empty-text cnvrt-cart__empty-text">{{ section.settings.empty_text }}</p>
+      <a class="yaomri-cart__button cnvrt-cart__button yaomri-cart__button--primary cnvrt-cart__button--primary" href="{{ section.settings.continue_link | default: '/collections/all' }}">
         Continue shopping
       </a>
     </div>
   {%- else -%}
-    <h1 class="yaomri-cart__heading">
-      <span class="yaomri-cart__heading-icon" aria-hidden="true">{% render 'icon-yaomri-cart' %}</span>
+    <h1 class="yaomri-cart__heading cnvrt-cart__heading">
+      <span class="yaomri-cart__heading-icon cnvrt-cart__heading-icon" aria-hidden="true">{% render 'icon-yaomri-cart' %}</span>
       <span>{{ section.settings.heading }}</span>
     </h1>
 
     <form action="{{ routes.cart_url }}" method="post" novalidate>
       {%- if section.settings.show_shipping_message and section.settings.shipping_message != blank -%}
-        <div class="yaomri-cart__shipping-message" role="status">
-          <span class="yaomri-cart__shipping-copy">{{ section.settings.shipping_message }}</span>
-          <span class="yaomri-cart__shipping-bar" aria-hidden="true"><span></span></span>
+        <div class="yaomri-cart__shipping-message cnvrt-cart__shipping-message" role="status">
+          <span class="yaomri-cart__shipping-copy cnvrt-cart__shipping-copy">{{ section.settings.shipping_message }}</span>
+          <span class="yaomri-cart__shipping-bar cnvrt-cart__shipping-bar" aria-hidden="true"><span></span></span>
         </div>
       {%- endif -%}
 
-      <div class="yaomri-cart__layout">
-        <div class="yaomri-cart__items" role="table" aria-label="Cart items">
+      <div class="yaomri-cart__layout cnvrt-cart__layout">
+        <div class="yaomri-cart__items cnvrt-cart__items" role="table" aria-label="Cart items">
           {%- for item in cart.items -%}
             <article
-              class="yaomri-cart__item"
+              class="yaomri-cart__item cnvrt-cart__item"
               role="row"
               data-line-item
               data-unit-price="{{ item.final_price }}"
               data-original-unit-price="{{ item.original_price }}"
             >
-              <a class="yaomri-cart__item-media" href="{{ item.url }}" aria-label="{{ item.product.title | escape }}">
+              <a class="yaomri-cart__item-media cnvrt-cart__item-media" href="{{ item.url }}" aria-label="{{ item.product.title | escape }}">
                 {%- if item.image -%}
                   {{
                     item.image
                     | image_url: width: 420
                     | image_tag:
-                      class: 'yaomri-cart__item-image',
+                      class: 'yaomri-cart__item-image cnvrt-cart__item-image',
                       widths: '120, 180, 240, 320, 420',
                       sizes: '(min-width: 990px) 140px, 30vw',
                       loading: 'lazy',
@@ -64,52 +64,52 @@
                 {%- endif -%}
               </a>
 
-              <div class="yaomri-cart__item-content">
-                <div class="yaomri-cart__item-top">
+              <div class="yaomri-cart__item-content cnvrt-cart__item-content">
+                <div class="yaomri-cart__item-top cnvrt-cart__item-top">
                   <div>
-                    <a class="yaomri-cart__item-title" href="{{ item.url }}">{{ item.product.title }}</a>
+                    <a class="yaomri-cart__item-title cnvrt-cart__item-title" href="{{ item.url }}">{{ item.product.title }}</a>
 
                     {%- if item.product.has_only_default_variant == false -%}
-                      <ul class="yaomri-cart__meta-list" role="list">
+                      <ul class="yaomri-cart__meta-list cnvrt-cart__meta-list" role="list">
                         {%- for option in item.options_with_values -%}
                           <li>
-                            <span class="yaomri-cart__meta-key">{{ option.name }}</span>
-                            <span class="yaomri-cart__meta-value">{{ option.value }}</span>
+                            <span class="yaomri-cart__meta-key cnvrt-cart__meta-key">{{ option.name }}</span>
+                            <span class="yaomri-cart__meta-value cnvrt-cart__meta-value">{{ option.value }}</span>
                           </li>
                         {%- endfor -%}
                       </ul>
                     {%- endif -%}
 
                     {%- if item.selling_plan_allocation != blank -%}
-                      <p class="yaomri-cart__meta">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                      <p class="yaomri-cart__meta cnvrt-cart__meta">{{ item.selling_plan_allocation.selling_plan.name }}</p>
                     {%- endif -%}
                   </div>
 
-                  <div class="yaomri-cart__prices">
-                    <p class="yaomri-cart__price-label">Price</p>
+                  <div class="yaomri-cart__prices cnvrt-cart__prices">
+                    <p class="yaomri-cart__price-label cnvrt-cart__price-label">Price</p>
                     {%- if item.original_price != item.final_price -%}
-                      <s class="yaomri-cart__price-compare">{{ item.original_price | money }}</s>
+                      <s class="yaomri-cart__price-compare cnvrt-cart__price-compare">{{ item.original_price | money }}</s>
                     {%- endif -%}
-                    <p class="yaomri-cart__price">{{ item.final_price | money }}</p>
+                    <p class="yaomri-cart__price cnvrt-cart__price">{{ item.final_price | money }}</p>
                   </div>
                 </div>
 
                 {%- if item.line_level_discount_allocations.size > 0 -%}
-                  <ul class="yaomri-cart__discounts" role="list">
+                  <ul class="yaomri-cart__discounts cnvrt-cart__discounts" role="list">
                     {%- for discount in item.line_level_discount_allocations -%}
                       <li>{{ discount.discount_application.title }} (-{{ discount.amount | money }})</li>
                     {%- endfor -%}
                   </ul>
                 {%- endif -%}
 
-                <div class="yaomri-cart__item-bottom">
-                  <div class="yaomri-cart__quantity">
-                    <label class="yaomri-cart__quantity-label" for="CartQuantity-{{ forloop.index }}">
+                <div class="yaomri-cart__item-bottom cnvrt-cart__item-bottom">
+                  <div class="yaomri-cart__quantity cnvrt-cart__quantity">
+                    <label class="yaomri-cart__quantity-label cnvrt-cart__quantity-label" for="CartQuantity-{{ forloop.index }}">
                       Quantity
                     </label>
                     <input
                       id="CartQuantity-{{ forloop.index }}"
-                      class="yaomri-cart__quantity-input"
+                      class="yaomri-cart__quantity-input cnvrt-cart__quantity-input"
                       type="number"
                       name="updates[]"
                       data-quantity-input
@@ -121,16 +121,16 @@
                     >
                   </div>
 
-                  <a class="yaomri-cart__remove" href="{{ item.url_to_remove }}" aria-label="Remove {{ item.product.title | escape }}">
+                  <a class="yaomri-cart__remove cnvrt-cart__remove" href="{{ item.url_to_remove }}" aria-label="Remove {{ item.product.title | escape }}">
                     Remove
                   </a>
 
-                  <div class="yaomri-cart__line-total">
-                    <p class="yaomri-cart__line-total-label">Total</p>
+                  <div class="yaomri-cart__line-total cnvrt-cart__line-total">
+                    <p class="yaomri-cart__line-total-label cnvrt-cart__line-total-label">Total</p>
                     {%- if item.original_line_price != item.final_line_price -%}
-                      <s class="yaomri-cart__price-compare" data-line-compare-price>{{ item.original_line_price | money }}</s>
+                      <s class="yaomri-cart__price-compare cnvrt-cart__price-compare" data-line-compare-price>{{ item.original_line_price | money }}</s>
                     {%- endif -%}
-                    <p class="yaomri-cart__line-price" data-line-price>{{ item.final_line_price | money }}</p>
+                    <p class="yaomri-cart__line-price cnvrt-cart__line-price" data-line-price>{{ item.final_line_price | money }}</p>
                   </div>
                 </div>
               </div>
@@ -138,12 +138,12 @@
           {%- endfor -%}
         </div>
 
-        <aside class="yaomri-cart__summary" aria-label="Order summary">
-          <div class="yaomri-cart__summary-card">
-            <h2 class="yaomri-cart__summary-heading">{{ section.settings.summary_heading }}</h2>
+        <aside class="yaomri-cart__summary cnvrt-cart__summary" aria-label="Order summary">
+          <div class="yaomri-cart__summary-card cnvrt-cart__summary-card">
+            <h2 class="yaomri-cart__summary-heading cnvrt-cart__summary-heading">{{ section.settings.summary_heading }}</h2>
 
             {%- if cart.cart_level_discount_applications.size > 0 -%}
-              <ul class="yaomri-cart__discounts yaomri-cart__discounts--summary" role="list">
+              <ul class="yaomri-cart__discounts cnvrt-cart__discounts yaomri-cart__discounts--summary cnvrt-cart__discounts--summary" role="list">
                 {%- for discount in cart.cart_level_discount_applications -%}
                   <li>
                     <span>{{ discount.title }}</span>
@@ -153,27 +153,27 @@
               </ul>
             {%- endif -%}
 
-            <div class="yaomri-cart__summary-row">
+            <div class="yaomri-cart__summary-row cnvrt-cart__summary-row">
               <span>Subtotal</span>
               <strong data-cart-subtotal>{{ cart.total_price | money }}</strong>
             </div>
 
-            <p class="yaomri-cart__summary-note">Taxes and shipping calculated at checkout.</p>
+            <p class="yaomri-cart__summary-note cnvrt-cart__summary-note">Taxes and shipping calculated at checkout.</p>
 
             {%- if section.settings.show_trust_text -%}
-              <p class="yaomri-cart__summary-trust">{{ section.settings.trust_text }}</p>
+              <p class="yaomri-cart__summary-trust cnvrt-cart__summary-trust">{{ section.settings.trust_text }}</p>
             {%- endif -%}
 
-            <div class="yaomri-cart__summary-actions">
-              <button class="yaomri-cart__button yaomri-cart__button--secondary" type="submit" name="update">
+            <div class="yaomri-cart__summary-actions cnvrt-cart__summary-actions">
+              <button class="yaomri-cart__button cnvrt-cart__button yaomri-cart__button--secondary cnvrt-cart__button--secondary" type="submit" name="update">
                 Update cart
               </button>
-              <button class="yaomri-cart__button yaomri-cart__button--primary" type="submit" name="checkout">
+              <button class="yaomri-cart__button cnvrt-cart__button yaomri-cart__button--primary cnvrt-cart__button--primary" type="submit" name="checkout">
                 Checkout
               </button>
             </div>
 
-            <a class="yaomri-cart__continue" href="{{ section.settings.continue_link | default: '/collections/all' }}">
+            <a class="yaomri-cart__continue cnvrt-cart__continue" href="{{ section.settings.continue_link | default: '/collections/all' }}">
               Continue shopping
             </a>
           </div>

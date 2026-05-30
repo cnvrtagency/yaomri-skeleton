@@ -11,62 +11,68 @@
 
 <div
   id="MobileDrawer"
-  class="mdrawer"
+  class="mdrawer cnvrt-drawer"
   data-mdrawer
+  data-cnvrt-drawer
   aria-hidden="true"
   style="
     --paper: {{ section.settings.mobile_drawer_background }};
     --ink: {{ section.settings.mobile_drawer_text }};
+    --cnvrt-drawer-max-width: {{ section.settings.mobile_drawer_width }}px;
     --mdrawer-max-width: {{ section.settings.mobile_drawer_width }}px;
   "
 >
-  <button class="mdrawer__scrim" type="button" data-mdrawer-close aria-label="Close menu"></button>
+  <button class="mdrawer__scrim cnvrt-drawer__scrim" type="button" data-mdrawer-close data-cnvrt-drawer-close aria-label="Close menu"></button>
 
-  <aside class="mdrawer__panel" role="dialog" aria-modal="true"{% if has_drawer_title %} aria-labelledby="MobileDrawerTitle"{% else %} aria-label="Mobile menu"{% endif %} tabindex="-1">
-    <header class="mdrawer__header is-root{% unless has_drawer_title %} mdrawer__header--no-title{% endunless %}" data-mdrawer-header>
-      <button class="mdrawer__icon-btn mdrawer__back" type="button" data-mdrawer-back hidden aria-label="Back">
+  <aside class="mdrawer__panel cnvrt-drawer__panel" role="dialog" aria-modal="true"{% if has_drawer_title %} aria-labelledby="MobileDrawerTitle"{% else %} aria-label="Mobile menu"{% endif %} tabindex="-1">
+    <header class="mdrawer__header cnvrt-drawer__header is-root{% unless has_drawer_title %} mdrawer__header--no-title cnvrt-drawer__header--no-title{% endunless %}" data-mdrawer-header data-cnvrt-drawer-header>
+      <button class="mdrawer__icon-btn cnvrt-drawer__icon-btn mdrawer__back cnvrt-drawer__back" type="button" data-mdrawer-back data-cnvrt-drawer-back hidden aria-label="Back">
         {% render 'icon-yaomri-chevron-left' %}
       </button>
       {%- if has_drawer_title -%}
-        <h2 id="MobileDrawerTitle" class="mdrawer__title" data-mdrawer-title>{{ drawer_title }}</h2>
+        <h2 id="MobileDrawerTitle" class="mdrawer__title cnvrt-drawer__title" data-mdrawer-title data-cnvrt-drawer-title>{{ drawer_title }}</h2>
       {%- endif -%}
-      <button class="mdrawer__icon-btn mdrawer__close" type="button" data-mdrawer-close aria-label="Close menu">
+      <button class="mdrawer__icon-btn cnvrt-drawer__icon-btn mdrawer__close cnvrt-drawer__close" type="button" data-mdrawer-close data-cnvrt-drawer-close aria-label="Close menu">
         {% render 'icon-yaomri-close' %}
       </button>
     </header>
 
-    <div class="mdrawer__body">
-      <div class="mdrawer__view is-active" data-mdrawer-view="root">
+    <div class="mdrawer__body cnvrt-drawer__body">
+      <div class="mdrawer__view cnvrt-drawer__view is-active" data-mdrawer-view="root" data-cnvrt-drawer-view="root">
         {%- if section.settings.show_mobile_drawer_search -%}
-          <form class="mdrawer__search" action="{{ routes.search_url }}" method="get" role="search">
+          <form class="mdrawer__search cnvrt-drawer__search" action="{{ routes.search_url }}" method="get" role="search">
             <label class="visually-hidden" for="DrawerSearchInput">Search</label>
-            <span class="mdrawer__search-icon" aria-hidden="true">{% render 'icon-yaomri-search' %}</span>
+            <span class="mdrawer__search-icon cnvrt-drawer__search-icon" aria-hidden="true">{% render 'icon-yaomri-search' %}</span>
             <input id="DrawerSearchInput" type="search" name="q" placeholder="{{ search_placeholder | escape }}" autocomplete="off">
             <input type="hidden" name="options[prefix]" value="last">
           </form>
         {%- endif -%}
 
-        <nav class="mdrawer__nav" aria-label="Mobile menu">
-          <ul class="mdrawer__nav-list" role="list">
+        <nav class="mdrawer__nav cnvrt-drawer__nav" aria-label="Mobile menu">
+          <ul class="mdrawer__nav-list cnvrt-drawer__nav-list" role="list">
             {%- for link in drawer_menu.links -%}
               <li>
                 {%- if link.links.size > 0 -%}
                   {%- assign panel_id = 'panel-' | append: link.handle -%}
                   <button
-                    class="mdrawer__nav-item"
+                    class="mdrawer__nav-item cnvrt-drawer__nav-item"
                     type="button"
                     data-mdrawer-drill
+                    data-cnvrt-drawer-drill
                     data-target="{{ panel_id }}"
+                    data-cnvrt-target="{{ panel_id }}"
                     data-controls="drawer-panel-{{ panel_id }}"
+                    data-cnvrt-controls="drawer-panel-{{ panel_id }}"
                     aria-controls="drawer-panel-{{ panel_id }}"
                     aria-expanded="false"
                     data-title="{{ link.title | escape }}"
+                    data-cnvrt-title="{{ link.title | escape }}"
                   >
                     <span>{{ link.title }}</span>
-                    <span class="mdrawer__chevron" aria-hidden="true">{% render 'icon-yaomri-chevron-right' %}</span>
+                    <span class="mdrawer__chevron cnvrt-drawer__chevron" aria-hidden="true">{% render 'icon-yaomri-chevron-right' %}</span>
                   </button>
                 {%- else -%}
-                  <a class="mdrawer__nav-item" href="{{ link.url }}">{{ link.title }}</a>
+                  <a class="mdrawer__nav-item cnvrt-drawer__nav-item" href="{{ link.url }}">{{ link.title }}</a>
                 {%- endif -%}
               </li>
             {%- endfor -%}
@@ -90,27 +96,27 @@
                       assign footer_link = settings.wishlist_link | default: wishlist_url | default: '/pages/wishlist'
                     endif
                   -%}
-                  {%- if footer_label != blank and footer_link != blank -%}
-                    <a class="mdrawer__footer-item" href="{{ footer_link }}" {% if block.settings.open_new_window %}target="_blank" rel="noopener"{% endif %} {{ block.shopify_attributes }}>
+                    {%- if footer_label != blank and footer_link != blank -%}
+                    <a class="mdrawer__footer-item cnvrt-drawer__footer-item" href="{{ footer_link }}" {% if block.settings.open_new_window %}target="_blank" rel="noopener"{% endif %} {{ block.shopify_attributes }}>
                       {%- if footer_icon == 'account' and shop.customer_accounts_enabled -%}
-                        <span class="mdrawer__footer-icon" aria-hidden="true">{% render 'icon-yaomri-account' %}</span>
+                        <span class="mdrawer__footer-icon cnvrt-drawer__footer-icon" aria-hidden="true">{% render 'icon-yaomri-account' %}</span>
                       {%- elsif footer_icon == 'heart' -%}
-                        <span class="mdrawer__footer-icon" aria-hidden="true">{% render 'icon-yaomri-heart' %}</span>
+                        <span class="mdrawer__footer-icon cnvrt-drawer__footer-icon" aria-hidden="true">{% render 'icon-yaomri-heart' %}</span>
                       {%- endif -%}
                       <span>{{ footer_label }}</span>
                     </a>
                   {%- endif -%}
                 {%- when 'country_selector' -%}
                   {%- if localization.available_countries.size > 1 -%}
-                    {%- form 'localization', id: 'MobileDrawerCountryForm', class: 'mdrawer__country-form' -%}
+                    {%- form 'localization', id: 'MobileDrawerCountryForm', class: 'mdrawer__country-form cnvrt-drawer__country-form' -%}
                       {%- if block.settings.label != blank -%}
-                        <label class="mdrawer__country-label" for="MobileDrawerCountrySelector">{{ block.settings.label }}</label>
+                        <label class="mdrawer__country-label cnvrt-drawer__country-label" for="MobileDrawerCountrySelector">{{ block.settings.label }}</label>
                       {%- else -%}
                         <label class="visually-hidden" for="MobileDrawerCountrySelector">Country/region</label>
                       {%- endif -%}
                       <select
                         id="MobileDrawerCountrySelector"
-                        class="mdrawer__country-select"
+                        class="mdrawer__country-select cnvrt-drawer__country-select"
                         name="country_code"
                         aria-label="Country/region"
                         onchange="this.form.submit()"
@@ -128,23 +134,23 @@
                   {%- endif -%}
                 {%- when 'text_row' -%}
                   {%- if block.settings.label != blank or block.settings.text != blank -%}
-                    <p class="mdrawer__footer-text" {{ block.shopify_attributes }}>
+                    <p class="mdrawer__footer-text cnvrt-drawer__footer-text" {{ block.shopify_attributes }}>
                       {%- if block.settings.label != blank -%}<span>{{ block.settings.label }}</span>{%- endif -%}
                       {%- if block.settings.text != blank -%}<strong>{{ block.settings.text }}</strong>{%- endif -%}
                     </p>
                   {%- endif -%}
                 {%- when 'social_link' -%}
                   {%- if block.settings.label != blank and block.settings.link != blank -%}
-                    <a class="mdrawer__footer-item mdrawer__footer-item--social" href="{{ block.settings.link }}" {% if block.settings.open_new_window %}target="_blank" rel="noopener"{% endif %} {{ block.shopify_attributes }}>
+                    <a class="mdrawer__footer-item cnvrt-drawer__footer-item mdrawer__footer-item--social cnvrt-drawer__footer-item--social" href="{{ block.settings.link }}" {% if block.settings.open_new_window %}target="_blank" rel="noopener"{% endif %} {{ block.shopify_attributes }}>
                       <span>{{ block.settings.label }}</span>
                     </a>
                   {%- endif -%}
               {%- endcase -%}
             {%- endfor -%}
-          {%- endcapture -%}
+              {%- endcapture -%}
           {%- assign drawer_footer_content = drawer_footer_content | strip -%}
-          {%- if drawer_footer_content != blank -%}
-            <div class="mdrawer__footer" data-mdrawer-root-only>
+            {%- if drawer_footer_content != blank -%}
+            <div class="mdrawer__footer cnvrt-drawer__footer" data-mdrawer-root-only>
               {{ drawer_footer_content }}
             </div>
           {%- endif -%}
@@ -154,9 +160,9 @@
       {%- for link in drawer_menu.links -%}
         {%- if link.links.size > 0 -%}
           {%- assign panel_id = 'panel-' | append: link.handle -%}
-          <div class="mdrawer__view" data-mdrawer-view="{{ panel_id }}" id="drawer-panel-{{ panel_id }}">
-            <nav class="mdrawer__drill-nav" aria-label="{{ link.title | escape }}">
-              <ul class="mdrawer__drill-list" role="list">
+          <div class="mdrawer__view cnvrt-drawer__view" data-mdrawer-view="{{ panel_id }}" data-cnvrt-drawer-view="{{ panel_id }}" id="drawer-panel-{{ panel_id }}">
+            <nav class="mdrawer__drill-nav cnvrt-drawer__drill-nav" aria-label="{{ link.title | escape }}">
+              <ul class="mdrawer__drill-list cnvrt-drawer__drill-list" role="list">
                 {%- assign ungrouped_started = false -%}
                 {%- for child in link.links -%}
                   {%- assign parts = child.title | split: '/' -%}
@@ -169,15 +175,15 @@
 
                   {%- if group_name != blank -%}
                     {%- ifchanged group_name -%}
-                      <li class="mdrawer__group">{{ group_name }}</li>
+                      <li class="mdrawer__group cnvrt-drawer__group">{{ group_name }}</li>
                     {%- endifchanged -%}
                   {%- elsif ungrouped_started == false -%}
-                    <li class="mdrawer__group">Shop</li>
+                    <li class="mdrawer__group cnvrt-drawer__group">Shop</li>
                     {%- assign ungrouped_started = true -%}
                   {%- endif -%}
 
                   <li>
-                    <a class="mdrawer__drill-item" href="{{ child.url }}">
+                    <a class="mdrawer__drill-item cnvrt-drawer__drill-item" href="{{ child.url }}">
                       {{ item_label }}
                     </a>
                   </li>

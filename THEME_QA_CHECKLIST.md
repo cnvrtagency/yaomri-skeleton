@@ -103,6 +103,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Selector country list comes from Shopify `localization.available_countries`; the theme does not hardcode or limit the list.
 - Country selector style, height, and optional colours do not break header actions.
 - Transparent header mobile layout remains stable (menu, logo, search/wishlist/cart) and readable.
+- In transparent header mode, the country selector returns to solid-state contrast tokens once `.is-scrolled` is active.
 - Desktop action order is country selector, search, account, wishlist, cart.
 - Manual region/shipping labels are not present in Header settings.
 - Account icon respects Shopify customer-account availability.
@@ -188,6 +189,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 
 ## Mobile Menu
 
+- Mobile drawer Phase 6 alias migration keeps legacy `mdrawer*` behavior active while `cnvrt-drawer*` aliases are active.
 - Drawer opens from mobile header menu button.
 - Mobile drawer trigger reflects open/closed state through `aria-expanded`.
 - Drawer closes with close button.
@@ -219,6 +221,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 
 ## Cart
 
+- Cart Phase 7 alias migration keeps legacy `yaomri-cart*` behavior active while `cnvrt-cart*` aliases are active.
 - Empty state renders heading, body text, icon, and continue shopping link.
 - Item state renders item image, title, options, price, quantity, remove link, line total, and summary.
 - Quantity input recalculates visible line totals and subtotal.
@@ -237,6 +240,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - `templates/index.json` uses `single-image-hero`, not the old combined `hero` section.
 - Single Image Hero appears in the theme editor.
 - 3-Card Hero appears in the theme editor.
+- 3-Card Hero alias migration keeps legacy `yaomri-three-hero*`/`--yth-*` behavior active while `cnvrt-three-hero*`/`--cnvrt-three-hero-*` aliases are active.
 - Single Image Hero renders on desktop and mobile.
 - Single Image Hero mobile image overrides desktop image when provided.
 - Single Image Hero buttons render only when labels and links are set.
