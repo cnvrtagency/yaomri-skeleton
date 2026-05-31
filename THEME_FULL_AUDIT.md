@@ -27,6 +27,7 @@ Current state:
 16. Global typography system is now implemented with CNVRT font families/tokens, and Single Image Hero paragraph weight applies correctly to rich text paragraph tags; visual differences still depend on selected font support for specific weights.
 17. Reusable CNVRT product card foundation is now available as a snippet + component stylesheet with global Product cards settings.
 18. A dedicated `Featured collection` section now consumes the reusable product-card snippet for real products and provides grid/carousel container behavior without duplicating product-card logic.
+19. Typography control standardization is now active for key sections: Featured Collection (full section header typography), Collection Cards (section heading/subtitle typography), and Announcement Bar (standardized weight + line-height controls), all using section-local variables with global CNVRT fallbacks.
 
 ## B. Critical launch blockers
 

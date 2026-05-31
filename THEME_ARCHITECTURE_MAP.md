@@ -16,6 +16,10 @@ This is the control map for the Skeleton-based CNVRT theme. It is intentionally 
   - Theme settings > Typography owns base families, scale, and default weights/letter-spacing.
   - Sections keep local typography controls where already implemented (for example Single Image Hero and Collection Cards).
   - Section local typography should override globals only when set; otherwise global CNVRT typography tokens are the fallback layer.
+  - Standardized section-typography language is now active in key content sections:
+    - Featured Collection: eyebrow/heading/text/button typography groups.
+    - Collection Cards: section heading/subtitle typography group (separate from card title/meta).
+    - Announcement Bar: standardized weight + line-height controls.
 
 ## Reusable Product Card Component
 

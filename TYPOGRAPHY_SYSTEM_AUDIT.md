@@ -1,5 +1,39 @@
 # Typography System Audit
 
+## Standardization update (2026-05-31)
+
+A consistent CNVRT typography control pattern is now active across key sections:
+
+- Global defaults remain in Theme settings > Typography and are emitted via `snippets/css-variables.liquid`.
+- Section-level overrides now follow a consistent desktop/mobile + weight/line-height/letter-spacing/transform pattern where implemented.
+- Local section variables now fall back to global tokens.
+
+### Newly standardized sections
+
+1. `Featured collection`
+- Added a full Section header typography control set for:
+  - Eyebrow (size/weight/line-height/letter-spacing/transform/colour/max-width/margin-bottom)
+  - Heading (size/weight/line-height/letter-spacing/transform/colour/max-width/margin-bottom)
+  - Text (size/weight/line-height/letter-spacing/colour/max-width/margin-bottom)
+  - Action button typography (size/weight/letter-spacing/transform)
+- Added scoped variables: `--cnvrt-featured-collection-*`.
+
+2. `Collection cards`
+- Added section-header typography controls for heading + subtitle/text.
+- Card title/meta typography controls remain unchanged and separate.
+- Added scoped variables: `--cnvrt-collection-cards-heading-*` and `--cnvrt-collection-cards-text-*`.
+
+3. `Announcement bar`
+- Standardized typography control model by converting text weight to shared select options (`300/400/500/600/700/800`).
+- Added desktop/mobile line-height controls.
+- Runtime remains scoped to `--cnvrt-announcement-*` with global fallbacks.
+
+### Kept as-is (already aligned or intentionally detailed)
+
+- `Single Image Hero` keeps its block-level typography architecture and remains the most granular section.
+- Paragraph `Light / 300` behavior remains fixed and wired to rich text descendants.
+- `Header` and `Footer` remain global-typography-first with limited local sizing controls where required by component behavior.
+
 ## Implementation update (2026-05-31)
 
 The theme now uses a global CNVRT typography contract instead of only `type_primary_font`:

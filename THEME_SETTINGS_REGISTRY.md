@@ -36,6 +36,11 @@ Status values:
 - `snippets/css-variables.liquid` no longer references legacy `settings.site_content_width`.
 - `snippets/mobile-drawer.liquid` no longer references missing `settings.social_instagram_link`.
 - `close_delay` remains as `Hover close delay`; keep an eye on whether merchants actually need it.
+- Typography controls are now standardized across active merchandising sections:
+  - `sections/featured-collection.liquid` has a full Section header typography group (eyebrow/heading/text/button).
+  - `sections/collection-cards.liquid` has standardized section heading/subtitle typography controls (separate from card title/meta controls).
+  - `sections/announcement-bar.liquid` now uses shared weight options (`300` to `800`) and desktop/mobile line-height controls.
+  - Global typography fallback model remains: section variables -> global `--cnvrt-*` typography tokens.
 
 ## Product Cards (Global Theme Settings)
 

@@ -51,34 +51,49 @@
 .cnvrt-featured-collection__eyebrow {
   margin: 0;
   font-family: var(--cnvrt-font-accent-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
-  font-size: 0.66rem;
-  font-weight: var(--cnvrt-eyebrow-weight, 700);
-  letter-spacing: var(--cnvrt-eyebrow-letter-spacing, 0.08em);
-  line-height: 1.1;
-  text-transform: uppercase;
-  opacity: 0.8;
+  font-size: var(--cnvrt-featured-collection-eyebrow-size-desktop, 12px);
+  font-style: var(--cnvrt-font-accent-style, normal);
+  font-weight: var(--cnvrt-featured-collection-eyebrow-weight, var(--cnvrt-eyebrow-weight, 700));
+  letter-spacing: var(--cnvrt-featured-collection-eyebrow-letter-spacing, var(--cnvrt-eyebrow-letter-spacing, 0.08em));
+  line-height: var(--cnvrt-featured-collection-eyebrow-line-height, 1.1);
+  text-transform: var(--cnvrt-featured-collection-eyebrow-transform, var(--cnvrt-text-transform-default, uppercase));
+  color: var(--cnvrt-featured-collection-eyebrow-color, var(--cnvrt-featured-collection-text, var(--color-foreground)));
+  margin-bottom: var(--cnvrt-featured-collection-eyebrow-margin-bottom, 0);
+  max-width: var(--cnvrt-featured-collection-eyebrow-max-width, none);
 }
 
 .cnvrt-featured-collection__heading {
   margin: 0;
   font-family: var(--cnvrt-font-heading-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
   font-style: var(--cnvrt-font-heading-style, normal);
-  font-size: clamp(1.1rem, 2vw, 1.65rem);
-  font-weight: var(--cnvrt-heading-weight, 700);
-  letter-spacing: 0.03em;
-  line-height: var(--cnvrt-heading-line-height, 1.2);
-  text-transform: uppercase;
+  font-size: var(--cnvrt-featured-collection-heading-size-desktop, 26px);
+  font-weight: var(--cnvrt-featured-collection-heading-weight, var(--cnvrt-heading-weight, 700));
+  letter-spacing: var(--cnvrt-featured-collection-heading-letter-spacing, 0.03em);
+  line-height: var(--cnvrt-featured-collection-heading-line-height-desktop, var(--cnvrt-heading-line-height, 1.2));
+  text-transform: var(--cnvrt-featured-collection-heading-transform, var(--cnvrt-text-transform-default, uppercase));
+  color: var(--cnvrt-featured-collection-heading-color, var(--cnvrt-featured-collection-text, var(--color-foreground)));
+  margin-bottom: var(--cnvrt-featured-collection-heading-margin-bottom, 0);
+  max-width: var(--cnvrt-featured-collection-heading-max-width, none);
 }
 
 .cnvrt-featured-collection__text {
   margin: 0;
-  max-width: 52ch;
-  font-size: 0.9rem;
-  line-height: var(--cnvrt-body-line-height, 1.5);
+  max-width: var(--cnvrt-featured-collection-text-max-width, 52ch);
+  font-family: var(--cnvrt-font-body-family, var(--font-primary--family));
+  font-size: var(--cnvrt-featured-collection-text-size-desktop, var(--cnvrt-body-size-desktop, 14px));
+  font-weight: var(--cnvrt-featured-collection-text-weight, var(--cnvrt-body-weight, 400));
+  line-height: var(--cnvrt-featured-collection-text-line-height-desktop, var(--cnvrt-body-line-height, 1.5));
+  letter-spacing: var(--cnvrt-featured-collection-text-letter-spacing, 0);
+  color: var(--cnvrt-featured-collection-text-color, var(--cnvrt-featured-collection-text, var(--color-foreground)));
+  margin-bottom: var(--cnvrt-featured-collection-text-margin-bottom, 0);
 }
 
 .cnvrt-featured-collection__text p {
   margin: 0;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
 }
 
 .cnvrt-featured-collection__actions {
@@ -98,11 +113,11 @@
   color: inherit;
   text-decoration: none;
   font-family: var(--cnvrt-font-button-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
-  font-size: 0.71rem;
-  font-weight: var(--cnvrt-button-weight, 700);
-  letter-spacing: var(--cnvrt-button-letter-spacing, 0.08em);
+  font-size: var(--cnvrt-featured-collection-button-size, 11px);
+  font-weight: var(--cnvrt-featured-collection-button-weight, var(--cnvrt-button-weight, 700));
+  letter-spacing: var(--cnvrt-featured-collection-button-letter-spacing, var(--cnvrt-button-letter-spacing, 0.08em));
   line-height: 1;
-  text-transform: uppercase;
+  text-transform: var(--cnvrt-featured-collection-button-transform, var(--cnvrt-text-transform-default, uppercase));
 }
 
 .cnvrt-featured-collection__button:hover {
@@ -239,6 +254,20 @@
   .cnvrt-featured-collection__header {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .cnvrt-featured-collection__eyebrow {
+    font-size: var(--cnvrt-featured-collection-eyebrow-size-mobile, var(--cnvrt-featured-collection-eyebrow-size-desktop, 11px));
+  }
+
+  .cnvrt-featured-collection__heading {
+    font-size: var(--cnvrt-featured-collection-heading-size-mobile, var(--cnvrt-featured-collection-heading-size-desktop, 20px));
+    line-height: var(--cnvrt-featured-collection-heading-line-height-mobile, var(--cnvrt-featured-collection-heading-line-height-desktop, 1.25));
+  }
+
+  .cnvrt-featured-collection__text {
+    font-size: var(--cnvrt-featured-collection-text-size-mobile, var(--cnvrt-featured-collection-text-size-desktop, var(--cnvrt-body-size-mobile, 14px)));
+    line-height: var(--cnvrt-featured-collection-text-line-height-mobile, var(--cnvrt-featured-collection-text-line-height-desktop, var(--cnvrt-body-line-height, 1.6)));
   }
 }
 

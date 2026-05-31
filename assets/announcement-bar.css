@@ -23,7 +23,7 @@
   font-weight: var(--cnvrt-announcement-font-weight, var(--cnvrt-eyebrow-weight, 600));
   letter-spacing: var(--cnvrt-announcement-letter-spacing, var(--cnvrt-eyebrow-letter-spacing, 0.02em));
   text-transform: var(--cnvrt-announcement-text-transform, var(--cnvrt-text-transform-default, uppercase));
-  line-height: 1.2;
+  line-height: var(--cnvrt-announcement-line-height-desktop, 1.2);
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -207,6 +207,7 @@
     padding: var(--cnvrt-announcement-pad-block-mobile, 0)
       var(--cnvrt-announcement-pad-inline-mobile, 12px);
     font-size: var(--cnvrt-announcement-font-size-mobile, 11px);
+    line-height: var(--cnvrt-announcement-line-height-mobile, var(--cnvrt-announcement-line-height-desktop, 1.2));
   }
 
   .cnvrt-announcement__item--hide-mobile {

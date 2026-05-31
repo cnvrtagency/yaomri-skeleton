@@ -41,6 +41,19 @@ Use this before publishing and after any architecture-level change. Passing auto
   - 800 Extra bold
 - Single Image Hero rich text paragraphs inherit the selected paragraph weight (`.cnvrt-single-hero__text`, `.cnvrt-single-hero__text p`).
 - If selected font lacks a specific weight (for example 300), CSS still outputs that weight and browser fallback behavior is acceptable.
+- Featured Collection section header typography controls apply correctly:
+  - Eyebrow desktop/mobile size, weight, line-height, letter-spacing, transform, colour, max-width, margin-bottom.
+  - Heading desktop/mobile size, weight, line-height, letter-spacing, transform, colour, max-width, margin-bottom.
+  - Text desktop/mobile size, weight, line-height, letter-spacing, colour, max-width, margin-bottom.
+  - Button typography size/weight/letter-spacing/transform.
+- Collection Cards section heading typography controls apply correctly:
+  - Heading desktop/mobile size, weight, line-height, letter-spacing, transform, colour, max-width.
+  - Subtitle text desktop/mobile size, weight, line-height, letter-spacing, transform, colour, max-width.
+  - Card title/meta typography controls remain unchanged and still apply independently.
+- Announcement bar typography controls remain stable after standardization:
+  - Text weight options (`300` to `800`) apply correctly.
+  - Desktop/mobile line-height controls apply correctly.
+  - Static, carousel, and marquee modes keep readable line-height and no clipping.
 
 ### Product cards
 

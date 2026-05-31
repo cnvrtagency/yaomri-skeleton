@@ -176,6 +176,7 @@ Objective:
 
 Tasks:
 - Keep responsive layout contract centralized (`--page-width` + global `site_inset`) and avoid per-section hidden side padding hacks.
+- Keep CNVRT typography control language consistent across active sections (desktop/mobile size, weight, line-height, letter-spacing, transform) and use section-local variable -> global fallback wiring.
 - Replace default footer presentation with CNVRT styling.
 - Rename footer labels away from translation keys if needed.
 - Audit search template and search routes from header/mobile drawer.

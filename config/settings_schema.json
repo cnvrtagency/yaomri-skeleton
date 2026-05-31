@@ -216,7 +216,9 @@
         "default": "uppercase",
         "options": [
           { "value": "none", "label": "None" },
-          { "value": "uppercase", "label": "Uppercase" }
+          { "value": "uppercase", "label": "Uppercase" },
+          { "value": "lowercase", "label": "Lowercase" },
+          { "value": "capitalize", "label": "Capitalize" }
         ]
       }
     ]
