@@ -166,6 +166,9 @@
       "settings": {
         "mega_panel_width": 900,
         "panel_style_preset": "minimal",
+        "mega_panel_background": "",
+        "mega_panel_text": "",
+        "mega_panel_border": "",
         "mega_panel_shadow": "subtle",
         "heading_style": "bold",
         "close_delay": 250

@@ -18,13 +18,13 @@
             "text": "NEW SEASON",
             "eyebrow_size_desktop": 12,
             "eyebrow_size_mobile": 11,
-            "eyebrow_weight": "500",
+            "eyebrow_weight": "400",
             "eyebrow_line_height": 100,
             "eyebrow_letter_spacing": 6,
             "eyebrow_text_transform": "uppercase",
             "eyebrow_max_width": 0,
             "eyebrow_colour": "#ffffff",
-            "eyebrow_margin_bottom": 2
+            "eyebrow_margin_bottom": 8
           }
         },
         "heading": {
@@ -32,16 +32,16 @@
           "settings": {
             "heading_text": "Swimwear Made For Sun-Drenched Escapes",
             "heading_tag": "h1",
-            "heading_size_desktop": 52,
+            "heading_size_desktop": 51,
             "heading_size_mobile": 34,
             "heading_weight": "800",
-            "heading_line_height_desktop": 95,
+            "heading_line_height_desktop": 90,
             "heading_line_height_mobile": 105,
             "heading_letter_spacing": 0,
             "heading_text_transform": "uppercase",
-            "heading_colour": "",
-            "heading_max_width": 560,
-            "heading_margin_bottom": 0
+            "heading_colour": "#ffffff",
+            "heading_max_width": 540,
+            "heading_margin_bottom": 8
           }
         },
         "paragraph": {
@@ -51,11 +51,11 @@
             "text_size_desktop": 17,
             "text_size_mobile": 14,
             "text_weight": "300",
-            "text_line_height_desktop": 150,
+            "text_line_height_desktop": 140,
             "text_line_height_mobile": 140,
             "text_letter_spacing": 0,
             "text_colour": "",
-            "text_max_width": 600,
+            "text_max_width": 580,
             "text_margin_bottom": 0
           }
         },
@@ -73,7 +73,7 @@
             "button_weight": "700",
             "button_letter_spacing": 9,
             "button_text_transform": "uppercase",
-            "margin_top": 14
+            "margin_top": 12
           }
         }
       },

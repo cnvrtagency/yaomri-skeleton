@@ -11,6 +11,10 @@
   "current": {
     "logo": "shopify://shop_images/ya-omri-logo.svg",
     "transparent_logo": "shopify://shop_images/ya-omri-logo-white.png",
+    "type_primary_font": "inter_n4",
+    "type_heading_font": "inter_n9",
+    "product_card_show_sizes": true,
+    "product_card_text_alignment": "center",
     "country_selector_background": "rgba(0,0,0,0)",
     "country_selector_border": "#ffffff",
     "country_selector_text": "#ffffff",
