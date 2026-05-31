@@ -19,6 +19,15 @@ Recommended path:
 3. Migrate section-by-section in increasing isolation order.
 4. Remove old prefixes only after behavior and accessibility regression checks.
 
+### Runtime cleanup update (2026-05-31)
+
+- Legacy class aliases have been removed from active markup and primary CSS/JS selectors for migrated systems.
+- CNVRT classes are now the active runtime namespace.
+- Intentional carry-forwards:
+  - `icon-yaomri*` class namespace is deferred to a dedicated icon-system migration.
+  - legacy variable fallbacks (`--yab-*`, `--cc-*`, `--ysh-*`, `--yh-*`, `--ym-*`, `--yth-*`) remain where compatibility is still required.
+  - Shopify setting IDs were not renamed.
+
 ### Controlled cleanup pass (2026-05-30, post phase rollout)
 
 CNVRT is now the primary runtime namespace for migrated systems, with legacy namespaces intentionally retained as compatibility fallbacks.

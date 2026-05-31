@@ -1,16 +1,16 @@
 (function () {
-  var drawer = document.querySelector("[data-cnvrt-drawer], [data-mdrawer]");
+  var drawer = document.querySelector("[data-cnvrt-drawer]");
   if (!drawer) return;
 
-  var panel = drawer.querySelector(".cnvrt-drawer__panel, .mdrawer__panel");
-  var drawerHeader = drawer.querySelector("[data-cnvrt-drawer-header], [data-mdrawer-header]");
-  var titleNode = drawer.querySelector("[data-cnvrt-drawer-title], [data-mdrawer-title]");
-  var backButton = drawer.querySelector("[data-cnvrt-drawer-back], [data-mdrawer-back]");
-  var closeButtons = drawer.querySelectorAll("[data-cnvrt-drawer-close], [data-mdrawer-close]");
-  var triggers = document.querySelectorAll("[data-cnvrt-drawer-trigger], [data-mdrawer-trigger]");
-  var drillButtons = drawer.querySelectorAll("[data-cnvrt-drawer-drill], [data-mdrawer-drill]");
-  var views = drawer.querySelectorAll("[data-cnvrt-drawer-view], [data-mdrawer-view]");
-  var rootView = drawer.querySelector('[data-cnvrt-drawer-view="root"], [data-mdrawer-view="root"]');
+  var panel = drawer.querySelector(".cnvrt-drawer__panel");
+  var drawerHeader = drawer.querySelector("[data-cnvrt-drawer-header]");
+  var titleNode = drawer.querySelector("[data-cnvrt-drawer-title]");
+  var backButton = drawer.querySelector("[data-cnvrt-drawer-back]");
+  var closeButtons = drawer.querySelectorAll("[data-cnvrt-drawer-close]");
+  var triggers = document.querySelectorAll("[data-cnvrt-drawer-trigger]");
+  var drillButtons = drawer.querySelectorAll("[data-cnvrt-drawer-drill]");
+  var views = drawer.querySelectorAll("[data-cnvrt-drawer-view]");
+  var rootView = drawer.querySelector('[data-cnvrt-drawer-view="root"]');
   var rootTitle = titleNode ? titleNode.textContent : "Menu";
   var activeTrigger = null;
   var viewStack = ["root"];
@@ -21,24 +21,14 @@
     });
   }
 
-  function getAttributeFrom(node, names) {
-    for (var i = 0; i < names.length; i += 1) {
-      var value = node.getAttribute(names[i]);
-      if (value !== null && value !== "") return value;
-    }
-    return "";
-  }
-
   function getView(name) {
-    return drawer.querySelector(
-      '[data-cnvrt-drawer-view="' + name + '"], [data-mdrawer-view="' + name + '"]'
-    );
+    return drawer.querySelector('[data-cnvrt-drawer-view="' + name + '"]');
   }
 
   function setView(name, options) {
     var animateFromRight = options && options.reverse ? -1 : 1;
     views.forEach(function (view) {
-      var viewName = getAttributeFrom(view, ["data-mdrawer-view", "data-cnvrt-drawer-view"]);
+      var viewName = view.getAttribute("data-cnvrt-drawer-view");
       var isTarget = viewName === name;
       view.classList.toggle("is-active", isTarget);
       if (isTarget) {
@@ -55,11 +45,9 @@
       if (name === "root") {
         titleNode.textContent = rootTitle;
       } else {
-        var sourceButton = drawer.querySelector(
-          '[data-cnvrt-target="' + name + '"][data-cnvrt-title], [data-target="' + name + '"][data-title]'
-        );
+        var sourceButton = drawer.querySelector('[data-cnvrt-target="' + name + '"][data-cnvrt-title]');
         titleNode.textContent = sourceButton
-          ? getAttributeFrom(sourceButton, ["data-title", "data-cnvrt-title"])
+          ? sourceButton.getAttribute("data-cnvrt-title")
           : rootTitle;
       }
     }
@@ -89,7 +77,6 @@
     activeTrigger = trigger || null;
     drawer.setAttribute("aria-hidden", "false");
     drawer.classList.add("is-open");
-    document.documentElement.classList.add("mdrawer-open");
     document.documentElement.classList.add("cnvrt-drawer-open");
     restoreRootView();
     syncDrawerTriggerExpanded(true);
@@ -102,7 +89,6 @@
   function closeDrawer() {
     drawer.setAttribute("aria-hidden", "true");
     drawer.classList.remove("is-open");
-    document.documentElement.classList.remove("mdrawer-open");
     document.documentElement.classList.remove("cnvrt-drawer-open");
     restoreRootView();
     syncDrawerTriggerExpanded(false);
@@ -114,7 +100,7 @@
 
   function syncDrawerDrillExpanded(viewName) {
     drillButtons.forEach(function (button) {
-      var target = getAttributeFrom(button, ["data-target", "data-cnvrt-target"]);
+      var target = button.getAttribute("data-cnvrt-target");
       button.setAttribute("aria-expanded", target === viewName ? "true" : "false");
     });
   }
@@ -159,7 +145,7 @@
 
   drillButtons.forEach(function (button) {
     button.addEventListener("click", function () {
-      var target = getAttributeFrom(button, ["data-target", "data-cnvrt-target"]);
+      var target = button.getAttribute("data-cnvrt-target");
       if (!target || !getView(target)) return;
       viewStack.push(target);
       setView(target);

@@ -25,7 +25,7 @@
   const refreshElements = () => {
     nav = document.querySelector('[data-mega]');
     panelRoot = document.querySelector('[data-mega-panels]');
-    header = document.querySelector('.cnvrt-header, .yaomri-header');
+    header = document.querySelector('.cnvrt-header');
     closeDelay =
       Number(panelRoot?.getAttribute('data-close-delay')) ||
       Number(nav?.getAttribute('data-close-delay')) ||
@@ -55,7 +55,7 @@
   };
 
   const getHeaderBottom = () => {
-    const liveHeader = document.querySelector('.cnvrt-header, .yaomri-header');
+    const liveHeader = document.querySelector('.cnvrt-header');
     if (!liveHeader) return 0;
     const rect = liveHeader.getBoundingClientRect();
     return Math.max(0, rect.bottom);
@@ -76,7 +76,7 @@
 
   const closeAll = () => {
     clearCloseTimer();
-    nav?.querySelectorAll('.cnvrt-mega__item.is-open, .yaomri-mega__item.is-open').forEach((item) =>
+    nav?.querySelectorAll('.cnvrt-mega__item.is-open').forEach((item) =>
       item.classList.remove('is-open')
     );
     nav?.querySelectorAll('[data-dropdown-trigger], [data-mega-trigger]').forEach((trigger) => {
@@ -102,7 +102,7 @@
   const openDropdown = (item) => {
     if (!desktopQuery.matches || !nav || !item) return;
     clearCloseTimer();
-    nav.querySelectorAll('.cnvrt-mega__item.is-open, .yaomri-mega__item.is-open').forEach((openItem) => {
+    nav.querySelectorAll('.cnvrt-mega__item.is-open').forEach((openItem) => {
       if (openItem !== item) openItem.classList.remove('is-open');
     });
     nav.querySelectorAll('[data-dropdown-trigger], [data-mega-trigger]').forEach((trigger) => {
@@ -137,7 +137,7 @@
     syncPanelWidthVars();
     syncPanelPadding();
 
-    nav.querySelectorAll('.cnvrt-mega__item.is-open, .yaomri-mega__item.is-open').forEach((openItem) => {
+    nav.querySelectorAll('.cnvrt-mega__item.is-open').forEach((openItem) => {
       if (openItem !== item) openItem.classList.remove('is-open');
     });
     item.classList.add('is-open');

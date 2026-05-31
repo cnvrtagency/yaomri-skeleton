@@ -22,6 +22,8 @@ Current state:
 11. Legacy removal Phase 4 (Collection Cards markup only) is complete: `sections/collection-cards.liquid` now emits CNVRT collection-card classes only; collection CSS/JS/data selector fallbacks and `--cc-*` variable fallbacks are intentionally retained for one release.
 12. Legacy removal Phase 5 (Single Image Hero markup only) is complete: `sections/single-image-hero.liquid` now emits CNVRT single-hero classes only; hero CSS selector fallbacks and `--ysh-*` variable fallbacks are intentionally retained for one release.
 13. Three Card Hero section files exist and have presets, but the section is currently dormant in this store snapshot (not referenced in `templates/` or `config/settings_data.json`).
+14. Legacy class alias cleanup is now complete for active runtime markup/CSS/JS selectors; CNVRT classes are primary runtime hooks.
+15. Legacy-prefixed runtime remnants are limited to deferred icon classes (`icon-yaomri*`), utility skip-link class (`yaomri-skip-link`), and compatibility variable fallbacks.
 
 ## B. Critical launch blockers
 

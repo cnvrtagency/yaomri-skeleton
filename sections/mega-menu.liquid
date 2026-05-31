@@ -25,9 +25,9 @@
   assign heading_style = section.settings.heading_style | default: 'bold'
 -%}
 
-<div class="yaomri-mega-section cnvrt-mega-section" data-mega-section>
+<div class="cnvrt-mega-section" data-mega-section>
   <div
-    class="yaomri-mega-panels cnvrt-mega-panels yaomri-mega-panels--style-{{ panel_style_preset }} cnvrt-mega-panels--style-{{ panel_style_preset }} yaomri-mega-panels--heading-{{ heading_style }} cnvrt-mega-panels--heading-{{ heading_style }}"
+    class="cnvrt-mega-panels cnvrt-mega-panels--style-{{ panel_style_preset }} cnvrt-mega-panels--heading-{{ heading_style }}"
     data-mega-panels
     data-panel-width="{{ section.settings.mega_panel_width | default: 1200 }}"
     data-close-delay="{{ section.settings.close_delay | default: 250 }}"
@@ -56,7 +56,7 @@
     aria-hidden="true"
   >
     <button
-      class="yaomri-mega-panels__backdrop cnvrt-mega-panels__backdrop"
+      class="cnvrt-mega-panels__backdrop"
       type="button"
       data-mega-close
       aria-label="Close menu"

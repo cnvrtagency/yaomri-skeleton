@@ -21,7 +21,6 @@
 </footer>
 
 {% stylesheet %}
-  .site-footer,
   .cnvrt-footer {
     display: flex;
     justify-content: space-between;
@@ -33,13 +32,10 @@
     padding-inline: 0;
     gap: 0.75rem 1rem;
   }
-  .site-footer a,
   .cnvrt-footer a {
     text-decoration: none;
     color: var(--color-foreground);
   }
-  .site-footer .footer__links,
-  .site-footer .footer__payment,
   .cnvrt-footer .cnvrt-footer__links,
   .cnvrt-footer .cnvrt-footer__payment {
     display: flex;
@@ -48,15 +44,12 @@
   }
 
   @media (max-width: 749px) {
-    .site-footer,
     .cnvrt-footer {
       padding-inline: 0;
       margin-top: 1.5rem;
       gap: 0.6rem 0.85rem;
     }
 
-    .site-footer .footer__links,
-    .site-footer .footer__payment,
     .cnvrt-footer .cnvrt-footer__links,
     .cnvrt-footer .cnvrt-footer__payment {
       gap: 0.75rem;

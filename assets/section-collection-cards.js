@@ -1,11 +1,11 @@
 (() => {
   const init = (root) => {
-    if (!root || root.dataset.cnvrtCollectionCardsInit === 'true' || root.dataset.ccInit === 'true') return;
-    const track = root.querySelector('[data-cnvrt-track], [data-cc-track]');
+    if (!root || root.dataset.cnvrtCollectionCardsInit === 'true') return;
+    const track = root.querySelector('[data-cnvrt-track]');
     if (!track) return;
 
-    const prev = root.querySelector('[data-cnvrt-prev], [data-cc-prev]');
-    const next = root.querySelector('[data-cnvrt-next], [data-cc-next]');
+    const prev = root.querySelector('[data-cnvrt-prev]');
+    const next = root.querySelector('[data-cnvrt-next]');
     const step = () => Math.max(220, track.clientWidth * 0.8);
 
     prev?.addEventListener('click', () => {
@@ -17,12 +17,11 @@
     });
 
     root.dataset.cnvrtCollectionCardsInit = 'true';
-    root.dataset.ccInit = 'true';
   };
 
   const mount = (scope) => {
     const container = scope && scope.querySelectorAll ? scope : document;
-    container.querySelectorAll('.cnvrt-collection-cards, .cc-carousel').forEach(init);
+    container.querySelectorAll('.cnvrt-collection-cards').forEach(init);
   };
 
   if (document.readyState === 'loading') {

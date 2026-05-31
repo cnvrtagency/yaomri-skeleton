@@ -75,8 +75,8 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Header stack transition easing controls hide/show feel (Smooth/Snappy/Linear/Ease).
 - Scroll down past threshold hides both announcement + header together.
 - Scroll back to top shows the shared stack again with no jump.
-- Header Phase 4 alias migration keeps legacy `yaomri-header*` and `yaomri-header-stack*` behavior active while `cnvrt-header*` classes and `--cnvrt-header-*` variables are introduced as compatibility aliases.
-- Mega menu phase 5 alias migration keeps legacy `yaomri-mega*` behavior active while `cnvrt-mega*` classes and `--cnvrt-mega-*` variables are active as compatibility aliases.
+- Header runtime classes/selectors are CNVRT-first (`cnvrt-header*`, `cnvrt-header-stack*`) and still preserve expected behavior.
+- Mega menu runtime classes/selectors are CNVRT-first (`cnvrt-mega*`) and still preserve expected behavior.
 - In fade-away mode, solid-after-scroll styles are suppressed while hiding/hidden so there is no white/solid flash.
 - Transparent logo and transparent mobile logo swap correctly in transparent state and fall back correctly when blank.
 - Transparent header colour scheme Light/Dark/Custom resolves expected icon/link/logo visibility.
@@ -142,9 +142,8 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Marquee mode scrolls continuously without visible gaps.
 - Marquee pause on hover works when enabled.
 - Marquee respects `prefers-reduced-motion`.
-- Announcement Phase 3 legacy markup cleanup: `sections/announcement-bar.liquid` now renders CNVRT announcement classes in markup.
-- Announcement CSS/JS selector fallbacks and `--yab-*` variable fallbacks are intentionally retained for one release.
-- Next safe legacy alias-removal candidate remains pending QA sign-off.
+- Announcement runtime markup/CSS/JS selectors are CNVRT-first.
+- Announcement `--yab-*` variable fallbacks remain intentionally as compatibility aliases.
 - Announcement links are keyboard accessible.
 - Announcement control buttons expose clear accessible names.
 - Announcement item with no link renders plain text.
@@ -160,14 +159,14 @@ Use this before publishing and after any architecture-level change. Passing auto
 
 ## Mega Menu
 
-- Legacy `yaomri-mega*` and `--ym-*` variables continue to work as compatibility aliases while `cnvrt-mega*` selectors and `--cnvrt-mega-*` variables are introduced.
+- Mega runtime classes/selectors are CNVRT (`cnvrt-mega*`); `--ym-*` variable fallbacks remain as compatibility aliases.
 - Panel width `400px` visibly changes the white mega panel box.
 - Panel width `700px` visibly narrows the white mega panel box.
 - Panel width `1200px` visibly widens the white mega panel box.
 - Panel width `1500px` works and clamps safely on narrower viewports.
-- `.yaomri-mega-panels` remains positioning/backdrop only.
-- `.yaomri-mega-panel` paints the visible background, border, and shadow.
-- `.yaomri-mega-panel__inner` remains width `100%` inside the panel.
+- `.cnvrt-mega-panels` remains positioning/backdrop only.
+- `.cnvrt-mega-panel` paints the visible background, border, and shadow.
+- `.cnvrt-mega-panel__inner` remains width `100%` inside the panel.
 - Panel background/text/border/shadow settings affect the visible panel.
 - Panel style presets do not break 25/50/100 column layout.
 - Simple link behavior is unaffected by mega scripts.
@@ -192,8 +191,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 
 ## Mobile Menu
 
-- Mobile drawer Phase 6 alias migration keeps legacy `mdrawer*` behavior active while `cnvrt-drawer*` aliases are active.
-- CNVRT drawer hooks are primary in JS queries while `mdrawer*` hooks remain valid fallbacks.
+- Mobile drawer runtime markup/CSS/JS selectors are CNVRT-first (`cnvrt-drawer*`).
 - Drawer opens from mobile header menu button.
 - Mobile drawer trigger reflects open/closed state through `aria-expanded`.
 - Drawer closes with close button.
@@ -225,16 +223,9 @@ Use this before publishing and after any architecture-level change. Passing auto
 
 ## Cart
 
-- Cart Phase 7 alias migration keeps legacy `yaomri-cart*` behavior active while `cnvrt-cart*` aliases are active.
-- Cart runtime root lookup resolves `cnvrt-cart` first and still supports `yaomri-cart` fallback.
-- Cart Phase 1 legacy markup cleanup: `sections/cart.liquid` renders CNVRT cart classes only.
-- Cart CSS/JS legacy fallbacks remain intentionally active for one release (`assets/yaomri-cart.css`, `assets/yaomri-cart.js`).
-- Collection Cards Phase 4 legacy markup cleanup: `sections/collection-cards.liquid` renders CNVRT collection-card classes only.
-- Collection Cards CSS/JS/data and `--cc-*` variable fallbacks remain intentionally active for one release (`assets/section-collection-cards.css`, `assets/section-collection-cards.js`, `data-cc-*`).
-- Next legacy alias-removal candidate remains pending QA sign-off.
-- Footer Phase 2 legacy markup cleanup: `sections/footer.liquid` renders CNVRT footer classes only.
-- Footer CSS legacy fallback selectors remain intentionally active for one release.
-- Next legacy alias-removal candidate remains pending QA sign-off.
+- Cart runtime markup/CSS/JS selectors are CNVRT-first (`cnvrt-cart*`).
+- Collection Cards runtime markup/CSS/JS selectors are CNVRT-first (`cnvrt-collection-*`).
+- Footer runtime markup/CSS selectors are CNVRT-first (`cnvrt-footer*`).
 - Empty state renders heading, body text, icon, and continue shopping link.
 - Item state renders item image, title, options, price, quantity, remove link, line total, and summary.
 - Quantity input recalculates visible line totals and subtotal.
@@ -253,7 +244,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - `templates/index.json` uses `single-image-hero`, not the old combined `hero` section.
 - Single Image Hero appears in the theme editor.
 - 3-Card Hero appears in the theme editor.
-- 3-Card Hero alias migration keeps legacy `yaomri-three-hero*`/`--yth-*` behavior active while `cnvrt-three-hero*`/`--cnvrt-three-hero-*` aliases are active.
+- 3-Card Hero runtime classes/selectors are CNVRT-first (`cnvrt-three-hero*`); `--yth-*` variable fallbacks remain compatibility aliases.
 - Single Image Hero renders on desktop and mobile.
 - Single Image Hero mobile image overrides desktop image when provided.
 - Single Image Hero buttons render only when labels and links are set.
@@ -268,9 +259,8 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Single Image Hero mobile content horizontal position overrides desktop on mobile.
 - Single Image Hero mobile content vertical position overrides desktop on mobile.
 - Single Image Hero desktop/mobile text alignment changes text/buttons inside the content block.
-- Single Image Hero Phase 5 legacy markup cleanup: `sections/single-image-hero.liquid` renders CNVRT single-hero classes in markup.
-- Single Image Hero CSS selector fallbacks and `--ysh-*` variable fallbacks are intentionally retained for one release.
-- Next legacy alias-removal candidate remains pending QA sign-off.
+- Single Image Hero runtime markup/CSS selectors are CNVRT-first (`cnvrt-single-hero*`).
+- Single Image Hero `--ysh-*` variable fallbacks remain compatibility aliases.
 - Single Image Hero desktop text alignment does not change content-area placement.
 - Single Image Hero mobile text alignment does not change content-area placement.
 - Single Image Hero desktop horizontal position remains effective when text alignment changes.
@@ -317,7 +307,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 ## Collection Cards
 
 - Collection Cards section appears in Theme Editor.
-- Collection Cards Phase 2 migration keeps legacy `cc-*` classes/variables while adding compatibility `cnvrt-*` classes and `--cnvrt-*` variables.
+- Collection Cards runtime classes/selectors are CNVRT-first; `--cc-*` variable fallbacks remain compatibility aliases.
 - Heading and optional heading subtitle render correctly in the section header row.
 - Heading/subtitle/arrows align on one clean row on desktop.
 - Mobile heading layout stacks cleanly and arrows do not crowd heading text.

@@ -16,12 +16,12 @@
 
 {%- if block.type == 'base_item' -%}
   <li
-    class="yaomri-mega__item cnvrt-mega__item yaomri-mega__item--link cnvrt-mega__item--link"
+    class="cnvrt-mega__item cnvrt-mega__item--link"
     style="{{ item_style }}"
     {{ block.shopify_attributes }}
   >
     <a
-      class="yaomri-header__nav-link cnvrt-header__nav-link yaomri-mega__top-link cnvrt-mega__top-link"
+      class="cnvrt-header__nav-link cnvrt-mega__top-link"
       href="{{ item_url }}"
       {% if item_target == '_blank' %}target="_blank" rel="noopener"{% endif %}
       data-mega-link
@@ -29,7 +29,7 @@
       <span>{{ item_title }}</span>
       {%- if item_label != blank -%}
         <span
-          class="yaomri-mega__label cnvrt-mega__label"
+          class="cnvrt-mega__label"
           style="--cnvrt-mega-label-color: {{ block.settings.label_color }}; --ym-label-color: {{ block.settings.label_color }};"
         >
           {{ item_label }}
@@ -42,7 +42,7 @@
     assign dropdown_width = block.settings.dropdown_width | default: 260
     assign dropdown_style = item_style | append: '--cnvrt-mega-dropdown-width:' | append: dropdown_width | append: 'px; --ym-dropdown-width:' | append: dropdown_width | append: 'px;'
     assign dropdown_menu = blank
-    assign dropdown_panel_id = 'yaomri-mega-dropdown-' | append: block.id
+    assign dropdown_panel_id = 'cnvrt-mega-dropdown-' | append: block.id
     if block.settings.menu != blank
       assign dropdown_menu = linklists[block.settings.menu]
       if dropdown_menu != blank and dropdown_menu.links.size == 0
@@ -51,13 +51,13 @@
     endif
   -%}
   <li
-    class="yaomri-mega__item cnvrt-mega__item yaomri-mega__item--dropdown cnvrt-mega__item--dropdown yaomri-mega__item--{{ block.settings.dropdown_position | default: 'start' }} cnvrt-mega__item--{{ block.settings.dropdown_position | default: 'start' }}"
+    class="cnvrt-mega__item cnvrt-mega__item--dropdown cnvrt-mega__item--{{ block.settings.dropdown_position | default: 'start' }}"
     style="{{ dropdown_style }}"
     data-dropdown
     {{ block.shopify_attributes }}
   >
     <a
-      class="yaomri-header__nav-link cnvrt-header__nav-link yaomri-mega__top-link cnvrt-mega__top-link"
+      class="cnvrt-header__nav-link cnvrt-mega__top-link"
       href="{{ item_url }}"
       {% if item_target == '_blank' %}target="_blank" rel="noopener"{% endif %}
       data-dropdown-trigger
@@ -70,7 +70,7 @@
       <span>{{ item_title }}</span>
       {%- if item_label != blank -%}
         <span
-          class="yaomri-mega__label cnvrt-mega__label"
+          class="cnvrt-mega__label"
           style="--cnvrt-mega-label-color: {{ block.settings.label_color }}; --ym-label-color: {{ block.settings.label_color }};"
         >
           {{ item_label }}
@@ -79,13 +79,13 @@
     </a>
     {%- if dropdown_menu != blank -%}
       <div
-        class="yaomri-mega__dropdown-panel cnvrt-mega__dropdown-panel"
+        class="cnvrt-mega__dropdown-panel"
         data-dropdown-panel
         id="{{ dropdown_panel_id }}"
       >
-        <ul class="yaomri-mega__dropdown-list cnvrt-mega__dropdown-list" role="list">
+        <ul class="cnvrt-mega__dropdown-list" role="list">
           {%- for child in dropdown_menu.links -%}
-            <li class="yaomri-mega__dropdown-item cnvrt-mega__dropdown-item">
+            <li class="cnvrt-mega__dropdown-item">
               <a href="{{ child.url }}" data-mega-link>{{ child.title }}</a>
             </li>
           {%- endfor -%}
@@ -96,16 +96,16 @@
 {%- elsif block.type == 'mega_item' -%}
   {%- liquid
     assign mega_id = block.settings.mega_menu_id | strip
-    assign mega_panel_id = 'yaomri-mega-panel-' | append: mega_id
+    assign mega_panel_id = 'cnvrt-mega-panel-' | append: mega_id
   -%}
   <li
-    class="yaomri-mega__item cnvrt-mega__item yaomri-mega__item--mega cnvrt-mega__item--mega"
+    class="cnvrt-mega__item cnvrt-mega__item--mega"
     style="{{ item_style }}"
     data-mega-item
     {{ block.shopify_attributes }}
   >
     <a
-      class="yaomri-header__nav-link cnvrt-header__nav-link yaomri-mega__top-link cnvrt-mega__top-link"
+      class="cnvrt-header__nav-link cnvrt-mega__top-link"
       href="{{ item_url }}"
       {% if item_target == '_blank' %}target="_blank" rel="noopener"{% endif %}
       data-mega-trigger
@@ -118,7 +118,7 @@
       <span>{{ item_title }}</span>
       {%- if item_label != blank -%}
         <span
-          class="yaomri-mega__label cnvrt-mega__label"
+          class="cnvrt-mega__label"
           style="--cnvrt-mega-label-color: {{ block.settings.label_color }}; --ym-label-color: {{ block.settings.label_color }};"
         >
           {{ item_label }}

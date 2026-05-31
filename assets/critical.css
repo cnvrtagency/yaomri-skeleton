@@ -44,8 +44,8 @@ body {
   select,
   textarea,
   [role='button'],
-  .mdrawer__nav-item,
-  .mdrawer__drill-item
+  .cnvrt-drawer__nav-item,
+  .cnvrt-drawer__drill-item
 ):focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;

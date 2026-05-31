@@ -10,7 +10,8 @@ This is the control map for the Skeleton-based Ya Omri theme. It is intentionall
 - Theme settings own global brand, layout, colour, and header style defaults.
 - Sections own content and local behavior only.
 - Section group JSON can contain stale editor-saved settings; it must not be treated as schema truth.
-- CNVRT class/variable names are now the primary runtime contract; legacy Ya Omri-prefixed classes/variables remain as compatibility aliases until a dedicated alias-removal phase.
+- CNVRT class names are now the runtime contract; legacy-prefixed class aliases have been removed from active runtime markup/CSS/JS.
+- Legacy-prefixed variable fallbacks are still present where compatibility is required.
 
 ## Global Theme Settings
 
@@ -131,7 +132,7 @@ Must not be duplicated elsewhere:
 Current implementation:
 - Announcement is a standalone section in `sections/header-group.json` above Header.
 - Header and announcement stay separately editable in Theme Editor.
-- Frontend behavior is coordinated through a shared header-group wrapper in `layout/theme.liquid` (`[data-yaomri-header-group]` + `[data-cnvrt-header-group]`) and (`.yaomri-header-stack` + `.cnvrt-header-stack`), so the two sections move together in transparent/sticky mode.
+- Frontend behavior is coordinated through a shared header-group wrapper in `layout/theme.liquid` (`[data-cnvrt-header-group]`) and (`.cnvrt-header-stack`), so the two sections move together in transparent/sticky mode.
 - Header group order is: Announcement Bar, Header, Mega Menu, Mobile Menu.
 - Stack ownership moved to the wrapper level to avoid placing announcement-related transforms on the header section alone.
 - Skip link and main content landmark are wired in layout for keyboard-first navigation into the page flow.

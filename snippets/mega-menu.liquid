@@ -9,11 +9,11 @@
 -%}
 
 <nav
-  class="yaomri-header__nav cnvrt-header__nav yaomri-mega cnvrt-mega"
+  class="cnvrt-header__nav cnvrt-mega"
   aria-label="Primary"
   data-mega
 >
-  <ul class="yaomri-mega__list cnvrt-mega__list" role="list">
+  <ul class="cnvrt-mega__list" role="list">
     {%- if has_nav_blocks -%}
       {%- for block in section.blocks -%}
         {%- if block.type == 'base_item' or block.type == 'dropdown_item' or block.type == 'mega_item' -%}
@@ -22,9 +22,9 @@
       {%- endfor -%}
     {%- elsif fallback_menu != blank and fallback_menu.links.size > 0 -%}
       {%- for link in fallback_menu.links -%}
-        <li class="yaomri-mega__item cnvrt-mega__item yaomri-mega__item--link cnvrt-mega__item--link">
+        <li class="cnvrt-mega__item cnvrt-mega__item--link">
           <a
-            class="yaomri-header__nav-link cnvrt-header__nav-link yaomri-mega__top-link cnvrt-mega__top-link"
+            class="cnvrt-header__nav-link cnvrt-mega__top-link"
             href="{{ link.url }}"
           >
             <span>{{ link.title }}</span>

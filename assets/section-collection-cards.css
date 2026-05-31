@@ -1,4 +1,4 @@
-.cc-carousel, .cnvrt-collection-cards {
+.cnvrt-collection-cards {
   margin-top: var(--cnvrt-collection-cards-margin-top-desktop, var(--cc-margin-top-desktop, 0));
   margin-bottom: var(--cnvrt-collection-cards-margin-bottom-desktop, var(--cc-margin-bottom-desktop, 0));
   padding:
@@ -9,37 +9,36 @@
   background: var(--cnvrt-collection-cards-bg, var(--cc-bg, #fff));
 }
 
-.cc-carousel--border-top, .cnvrt-collection-cards--border-top {
+.cnvrt-collection-cards--border-top {
   border-top: 1px solid var(--cnvrt-collection-cards-border-color, var(--cc-border-color, #e8e8e8));
 }
 
-.cc-carousel, .cnvrt-collection-cards,
-.cc-carousel *, .cnvrt-collection-cards * {
+.cnvrt-collection-cards * {
   box-sizing: border-box;
 }
 
-.cc-carousel__inner, .cnvrt-collection-cards__inner {
+.cnvrt-collection-cards__inner {
   width: 100%;
   max-width: none;
   margin: 0 auto;
 }
 
-.cc-carousel--width-site .cc-carousel__inner, .cnvrt-collection-cards--width-site .cnvrt-collection-cards__inner {
+.cnvrt-collection-cards--width-site .cnvrt-collection-cards__inner {
   width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--page-width, 1200px));
   max-width: var(--page-width, 1200px);
 }
 
-.cc-carousel--width-custom .cc-carousel__inner, .cnvrt-collection-cards--width-custom .cnvrt-collection-cards__inner {
+.cnvrt-collection-cards--width-custom .cnvrt-collection-cards__inner {
   width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--cnvrt-collection-cards-custom-width, var(--cc-custom-width, 1200px)));
   max-width: var(--cnvrt-collection-cards-custom-width, var(--cc-custom-width, 1200px));
 }
 
-.cc-carousel--width-full .cc-carousel__inner, .cnvrt-collection-cards--width-full .cnvrt-collection-cards__inner {
+.cnvrt-collection-cards--width-full .cnvrt-collection-cards__inner {
   width: 100%;
   max-width: none;
 }
 
-.cc-carousel__head, .cnvrt-collection-cards__head {
+.cnvrt-collection-cards__head {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -47,7 +46,7 @@
   margin-bottom: 1.25rem;
 }
 
-.cc-carousel__heading-group, .cnvrt-collection-cards__heading-group {
+.cnvrt-collection-cards__heading-group {
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
@@ -55,7 +54,7 @@
   flex-wrap: wrap;
 }
 
-.cc-carousel__title, .cnvrt-collection-cards__title {
+.cnvrt-collection-cards__title {
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.1;
@@ -66,12 +65,12 @@
 }
 
 @media (min-width: 768px) {
-  .cc-carousel__title, .cnvrt-collection-cards__title {
+  .cnvrt-collection-cards__title {
     font-size: 1.5rem;
   }
 }
 
-.cc-carousel__subtitle, .cnvrt-collection-cards__subtitle {
+.cnvrt-collection-cards__subtitle {
   margin: 0;
   font-size: 0.75rem;
   line-height: 1.1;
@@ -81,22 +80,22 @@
   white-space: nowrap;
 }
 
-.cc-carousel__nav, .cnvrt-collection-cards__nav {
+.cnvrt-collection-cards__nav {
   display: flex;
   gap: 0.25rem;
   flex: 0 0 auto;
 }
 
-.cc-carousel--layout-grid .cc-carousel__nav, .cnvrt-collection-cards--layout-grid .cnvrt-collection-cards__nav {
+.cnvrt-collection-cards--layout-grid .cnvrt-collection-cards__nav {
   display: none;
 }
 
-.cc-carousel__nav.is-hidden, .cnvrt-collection-cards__nav.is-hidden {
+.cnvrt-collection-cards__nav.is-hidden {
   visibility: hidden;
   pointer-events: none;
 }
 
-.cc-carousel__btn, .cnvrt-collection-cards__button {
+.cnvrt-collection-cards__button {
   width: 2.25rem;
   height: 2.25rem;
   border: 1px solid var(--cnvrt-collection-cards-border-color, var(--cc-border-color, #e8e8e8));
@@ -107,16 +106,16 @@
   padding: 0;
 }
 
-.cc-carousel__btn:hover, .cnvrt-collection-cards__button:hover {
+.cnvrt-collection-cards__button:hover {
   background: rgb(17 17 17 / 0.05);
 }
 
-.cc-carousel__btn .icon-yaomri, .cnvrt-collection-cards__button .icon-yaomri {
+.cnvrt-collection-cards__button .icon-yaomri {
   width: 1rem;
   height: 1rem;
 }
 
-.cc-carousel__track, .cnvrt-collection-cards__track {
+.cnvrt-collection-cards__track {
   display: flex;
   width: 100%;
   max-width: 100%;
@@ -128,22 +127,22 @@
   -ms-overflow-style: none;
 }
 
-.cc-carousel__track::-webkit-scrollbar, .cnvrt-collection-cards__track::-webkit-scrollbar {
+.cnvrt-collection-cards__track::-webkit-scrollbar {
   display: none;
 }
 
-.cc-carousel__track--grid, .cnvrt-collection-cards__track--grid {
+.cnvrt-collection-cards__track--grid {
   overflow: visible;
   flex-wrap: wrap;
 }
 
 @media (min-width: 768px) {
-  .cc-carousel__track, .cnvrt-collection-cards__track {
+  .cnvrt-collection-cards__track {
     gap: var(--cnvrt-collection-cards-gap-desktop, var(--cc-gap-desktop, 16px));
   }
 }
 
-.cc-card, .cnvrt-collection-card {
+.cnvrt-collection-card {
   flex: 0 0 70%;
   scroll-snap-align: start;
   display: block;
@@ -151,19 +150,19 @@
   color: inherit;
 }
 
-.cc-carousel--layout-carousel .cc-card, .cnvrt-collection-cards--layout-carousel .cnvrt-collection-card {
+.cnvrt-collection-cards--layout-carousel .cnvrt-collection-card {
   flex-basis: calc(
     (100% - (var(--cnvrt-collection-cards-gap-mobile, var(--cc-gap-mobile, 12px)) * (var(--cnvrt-collection-cards-visible-mobile, var(--cc-cards-mobile, 1.2)) - 1))) /
       var(--cnvrt-collection-cards-visible-mobile, var(--cc-cards-mobile, 1.2))
   );
 }
 
-.cc-carousel__track--grid .cc-card, .cnvrt-collection-cards__track--grid .cnvrt-collection-card {
+.cnvrt-collection-cards__track--grid .cnvrt-collection-card {
   flex: 0 0 calc(50% - (var(--cnvrt-collection-cards-gap-mobile, var(--cc-gap-mobile, 12px)) / 2));
 }
 
 @media (min-width: 640px) {
-  .cc-carousel--layout-carousel .cc-card, .cnvrt-collection-cards--layout-carousel .cnvrt-collection-card {
+  .cnvrt-collection-cards--layout-carousel .cnvrt-collection-card {
     flex-basis: calc(
       (100% - (var(--cnvrt-collection-cards-gap-mobile, var(--cc-gap-mobile, 12px)) * (var(--cnvrt-collection-cards-visible-tablet, var(--cc-cards-tablet, 3)) - 1))) /
         var(--cnvrt-collection-cards-visible-tablet, var(--cc-cards-tablet, 3))
@@ -172,7 +171,7 @@
 }
 
 @media (min-width: 768px) {
-  .cc-carousel--layout-carousel .cc-card, .cnvrt-collection-cards--layout-carousel .cnvrt-collection-card {
+  .cnvrt-collection-cards--layout-carousel .cnvrt-collection-card {
     flex-basis: calc(
       (100% - (var(--cnvrt-collection-cards-gap-desktop, var(--cc-gap-desktop, 16px)) * (var(--cnvrt-collection-cards-visible-tablet, var(--cc-cards-tablet, 3)) - 1))) /
         var(--cnvrt-collection-cards-visible-tablet, var(--cc-cards-tablet, 3))
@@ -181,28 +180,27 @@
 }
 
 @media (min-width: 1024px) {
-  .cc-carousel--layout-carousel .cc-card, .cnvrt-collection-cards--layout-carousel .cnvrt-collection-card {
+  .cnvrt-collection-cards--layout-carousel .cnvrt-collection-card {
     flex-basis: calc(
       (100% - (var(--cnvrt-collection-cards-gap-desktop, var(--cc-gap-desktop, 16px)) * (var(--cnvrt-collection-cards-visible-desktop, var(--cc-cards-desktop, 4)) - 1))) /
         var(--cnvrt-collection-cards-visible-desktop, var(--cc-cards-desktop, 4))
     );
   }
 
-  .cc-carousel__track--grid .cc-card, .cnvrt-collection-cards__track--grid .cnvrt-collection-card {
+  .cnvrt-collection-cards__track--grid .cnvrt-collection-card {
     flex-basis: calc(25% - ((var(--cnvrt-collection-cards-gap-desktop, var(--cc-gap-desktop, 16px)) * 3) / 4));
   }
 }
 
-.cc-card__media, .cnvrt-collection-card__media {
+.cnvrt-collection-card__media {
   position: relative;
   overflow: hidden;
   aspect-ratio: var(--cnvrt-collection-cards-image-ratio, var(--cc-image-ratio, 4 / 5));
   background: #f3f1ec;
 }
 
-.cc-card__img,
 .cnvrt-collection-card__image,
-.cc-card__placeholder svg, .cnvrt-collection-card__placeholder svg {
+.cnvrt-collection-card__placeholder svg {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -211,14 +209,12 @@
   transition: transform 0.7s ease;
 }
 
-.cc-card--hover-subtle_zoom:hover .cc-card__img,
-.cc-card--hover-subtle_zoom:hover .cc-card__placeholder svg,
 .cnvrt-collection-card--hover-subtle-zoom:hover .cnvrt-collection-card__image,
 .cnvrt-collection-card--hover-subtle-zoom:hover .cnvrt-collection-card__placeholder svg {
   transform: scale(1.03);
 }
 
-.cc-card__overlay, .cnvrt-collection-card__overlay {
+.cnvrt-collection-card__overlay {
   position: absolute;
   inset: auto 0 0 0;
   padding: 1rem;
@@ -226,18 +222,18 @@
   color: var(--cnvrt-collection-card-title-color, var(--cc-title-color, #fff));
 }
 
-.cc-card--placeholder .cc-card__overlay, .cnvrt-collection-card--placeholder .cnvrt-collection-card__overlay {
+.cnvrt-collection-card--placeholder .cnvrt-collection-card__overlay {
   background: linear-gradient(to top, rgb(255 255 255 / 0.85), rgb(255 255 255 / 0.2));
   color: rgb(28 28 28 / 0.88);
 }
 
-.cc-card--placeholder .cc-card__title, .cnvrt-collection-card--placeholder .cnvrt-collection-card__title {
+.cnvrt-collection-card--placeholder .cnvrt-collection-card__title {
   font-style: normal;
   font-weight: 700;
   letter-spacing: 0.08em;
 }
 
-.cc-card__title, .cnvrt-collection-card__title {
+.cnvrt-collection-card__title {
   margin: 0;
   font-size: var(--cnvrt-collection-card-title-size-mobile, var(--cc-title-size-mobile, 14px));
   font-weight: var(--cnvrt-collection-card-title-weight, var(--cc-title-weight, 800));
@@ -249,12 +245,12 @@
 }
 
 @media (min-width: 768px) {
-  .cc-card__title, .cnvrt-collection-card__title {
+  .cnvrt-collection-card__title {
     font-size: var(--cnvrt-collection-card-title-size-desktop, var(--cc-title-size-desktop, 16px));
   }
 }
 
-.cc-card__count, .cnvrt-collection-card__meta {
+.cnvrt-collection-card__meta {
   margin: 0.25rem 0 0;
   font-size: var(--cnvrt-collection-card-meta-size-mobile, var(--cc-meta-size-mobile, 10px));
   font-weight: var(--cnvrt-collection-card-meta-weight, var(--cc-meta-weight, 600));
@@ -266,12 +262,12 @@
 }
 
 @media (min-width: 768px) {
-  .cc-card__count, .cnvrt-collection-card__meta {
+  .cnvrt-collection-card__meta {
     font-size: var(--cnvrt-collection-card-meta-size-desktop, var(--cc-meta-size-desktop, 11px));
   }
 }
 
-.cc-card__badge, .cnvrt-collection-card__badge {
+.cnvrt-collection-card__badge {
   position: absolute;
   z-index: 2;
   display: inline-flex;
@@ -287,13 +283,13 @@
   color: var(--cc-badge-text, #fff);
 }
 
-.cc-card__badge--top-left, .cnvrt-collection-card__badge--top-left { top: 0.75rem; left: 0.75rem; }
-.cc-card__badge--top-right, .cnvrt-collection-card__badge--top-right { top: 0.75rem; right: 0.75rem; }
-.cc-card__badge--bottom-left, .cnvrt-collection-card__badge--bottom-left { bottom: 0.75rem; left: 0.75rem; }
-.cc-card__badge--bottom-right, .cnvrt-collection-card__badge--bottom-right { bottom: 0.75rem; right: 0.75rem; }
+.cnvrt-collection-card__badge--top-left { top: 0.75rem; left: 0.75rem; }
+.cnvrt-collection-card__badge--top-right { top: 0.75rem; right: 0.75rem; }
+.cnvrt-collection-card__badge--bottom-left { bottom: 0.75rem; left: 0.75rem; }
+.cnvrt-collection-card__badge--bottom-right { bottom: 0.75rem; right: 0.75rem; }
 
 @media (max-width: 989px) {
-  .cc-carousel, .cnvrt-collection-cards {
+  .cnvrt-collection-cards {
     margin-top: var(--cnvrt-collection-cards-margin-top-mobile, var(--cc-margin-top-mobile, 0));
     margin-bottom: var(--cnvrt-collection-cards-margin-bottom-mobile, var(--cc-margin-bottom-mobile, 0));
     padding:
@@ -303,7 +299,7 @@
       var(--cnvrt-collection-cards-padding-left-mobile, var(--cc-padding-left-mobile, 0));
   }
 
-  .cc-carousel__head, .cnvrt-collection-cards__head {
+  .cnvrt-collection-cards__head {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
@@ -312,50 +308,50 @@
     margin-bottom: 1rem;
   }
 
-  .cc-carousel__heading-group, .cnvrt-collection-cards__heading-group {
+  .cnvrt-collection-cards__heading-group {
     display: block;
     min-width: 0;
   }
 
-  .cc-carousel__title, .cnvrt-collection-cards__title {
+  .cnvrt-collection-cards__title {
     display: block;
     line-height: 1.1;
     max-width: 100%;
     white-space: normal;
   }
 
-  .cc-carousel__subtitle, .cnvrt-collection-cards__subtitle {
+  .cnvrt-collection-cards__subtitle {
     display: block;
     margin-top: 0.35rem;
     white-space: normal;
   }
 
-  .cc-carousel__nav, .cnvrt-collection-cards__nav {
+  .cnvrt-collection-cards__nav {
     justify-self: end;
     align-self: start;
   }
 }
 
 @media (max-width: 430px) {
-  .cc-carousel__head, .cnvrt-collection-cards__head {
+  .cnvrt-collection-cards__head {
     align-items: start;
     column-gap: 0.6rem;
     row-gap: 0.45rem;
   }
 
-  .cc-carousel__heading-group, .cnvrt-collection-cards__heading-group {
+  .cnvrt-collection-cards__heading-group {
     line-height: 1.08;
   }
 
-  .cc-carousel__title, .cnvrt-collection-cards__title {
+  .cnvrt-collection-cards__title {
     font-size: 1.125rem;
   }
 
-  .cc-carousel__subtitle, .cnvrt-collection-cards__subtitle {
+  .cnvrt-collection-cards__subtitle {
     margin-top: 0.25rem;
   }
 
-  .cc-carousel__nav, .cnvrt-collection-cards__nav {
+  .cnvrt-collection-cards__nav {
     justify-self: end;
     align-self: end;
     justify-content: flex-end;
@@ -363,46 +359,46 @@
 }
 
 @media (max-width: 390px) {
-  .cc-carousel__title, .cnvrt-collection-cards__title {
+  .cnvrt-collection-cards__title {
     font-size: 1.05rem;
   }
 
-  .cc-carousel__subtitle, .cnvrt-collection-cards__subtitle {
+  .cnvrt-collection-cards__subtitle {
     margin-top: 0.2rem;
     font-size: 0.7rem;
   }
 
-  .cc-carousel__btn, .cnvrt-collection-cards__button {
+  .cnvrt-collection-cards__button {
     width: 2rem;
     height: 2rem;
   }
 
-  .cc-carousel__btn .icon-yaomri, .cnvrt-collection-cards__button .icon-yaomri {
+  .cnvrt-collection-cards__button .icon-yaomri {
     width: 0.9rem;
     height: 0.9rem;
   }
 }
 
 @media (max-width: 360px) {
-  .cc-carousel__heading-group, .cnvrt-collection-cards__heading-group {
+  .cnvrt-collection-cards__heading-group {
     min-width: 0;
   }
 
-  .cc-carousel__title,
-  .cc-carousel__subtitle, .cnvrt-collection-cards__subtitle {
+  .cnvrt-collection-cards__title,
+  .cnvrt-collection-cards__subtitle {
     white-space: normal;
   }
 
-  .cc-carousel__subtitle, .cnvrt-collection-cards__subtitle {
+  .cnvrt-collection-cards__subtitle {
     font-size: 0.68rem;
   }
 
-  .cc-carousel__btn, .cnvrt-collection-cards__button {
+  .cnvrt-collection-cards__button {
     width: 1.9rem;
     height: 1.9rem;
   }
 
-  .cc-carousel__btn .icon-yaomri, .cnvrt-collection-cards__button .icon-yaomri {
+  .cnvrt-collection-cards__button .icon-yaomri {
     width: 0.85rem;
     height: 0.85rem;
   }

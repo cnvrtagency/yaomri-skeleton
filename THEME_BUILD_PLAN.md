@@ -24,9 +24,9 @@ Do not build speculative storefront features before the launch-critical surfaces
 | Publish readiness | Not started | Needs unpublished theme push, editor setup, and final QA. |
 
 Naming migration status:
-- CNVRT namespace aliases are rolled out across Announcement, Collection Cards, Single Image Hero, Header/Header Stack, Mega Menu, Mobile Drawer, Cart, Footer, and 3-Card Hero.
-- Runtime hooks are now CNVRT-first with legacy fallback support.
-- Legacy alias removal is deferred until a dedicated regression pass.
+- CNVRT runtime classes/selectors are active across Announcement, Collection Cards, Single Image Hero, Header/Header Stack, Mega Menu, Mobile Drawer, Cart, Footer, and 3-Card Hero.
+- Legacy class aliases have been removed from active markup/CSS/JS selectors.
+- Deferred scope remains: icon namespace migration and legacy CSS variable fallback retirement.
 
 ## Day 1: Settings And Navigation Control Layer
 

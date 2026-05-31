@@ -19,8 +19,8 @@
 
 {%- if parent_id != blank and has_panel_content -%}
   <section
-    class="yaomri-mega-panel cnvrt-mega-panel{% if packery_enabled %} yaomri-mega-panel--packery cnvrt-mega-panel--packery{% else %} yaomri-mega-panel--rows cnvrt-mega-panel--rows{% endif %}"
-    id="yaomri-mega-panel-{{ parent_id }}"
+    class="cnvrt-mega-panel{% if packery_enabled %} cnvrt-mega-panel--packery{% else %} cnvrt-mega-panel--rows{% endif %}"
+    id="cnvrt-mega-panel-{{ parent_id }}"
     data-mega-panel
     data-mega-parent="{{ parent_id | escape }}"
     style="
@@ -30,8 +30,8 @@
     hidden
     {{ parent_block.shopify_attributes }}
   >
-    <div class="yaomri-mega-panel__inner cnvrt-mega-panel__inner">
-      <div class="yaomri-mega-panel__grid cnvrt-mega-panel__grid{% if packery_enabled %} yaomri-mega-panel__grid--packery cnvrt-mega-panel__grid--packery{% else %} yaomri-mega-panel__grid--rows cnvrt-mega-panel__grid--rows{% endif %}">
+    <div class="cnvrt-mega-panel__inner">
+      <div class="cnvrt-mega-panel__grid{% if packery_enabled %} cnvrt-mega-panel__grid--packery{% else %} cnvrt-mega-panel__grid--rows{% endif %}">
         {%- for block in all_blocks -%}
           {%- liquid
             assign child_parent_id = block.settings.parent_id | strip
@@ -73,7 +73,7 @@
               endif
             -%}
             <div
-              class="yaomri-mega-panel__column cnvrt-mega-panel__column yaomri-mega-panel__column--links cnvrt-mega-panel__column--links"
+              class="cnvrt-mega-panel__column cnvrt-mega-panel__column--links"
               style="
                 --cnvrt-mega-column-percent: {{ column_width_number }};
                 --cnvrt-mega-column-span: {{ column_span }};
@@ -89,7 +89,7 @@
               {%- if block.settings.heading != blank -%}
                 {%- if block.settings.heading_link != blank -%}
                   <a
-                    class="yaomri-mega-panel__heading-link cnvrt-mega-panel__heading-link"
+                    class="cnvrt-mega-panel__heading-link"
                     href="{{ block.settings.heading_link }}"
                     {% if heading_target == '_blank' %}target="_blank" rel="noopener"{% endif %}
                     data-mega-link
@@ -97,13 +97,13 @@
                     {{ block.settings.heading }}
                   </a>
                 {%- else -%}
-                  <p class="yaomri-mega-panel__heading cnvrt-mega-panel__heading">{{ block.settings.heading }}</p>
+                  <p class="cnvrt-mega-panel__heading">{{ block.settings.heading }}</p>
                 {%- endif -%}
               {%- endif -%}
               {%- if child_menu != blank -%}
-                <ul class="yaomri-mega-panel__links cnvrt-mega-panel__links" role="list">
+                <ul class="cnvrt-mega-panel__links" role="list">
                   {%- for link in child_menu.links -%}
-                    <li class="yaomri-mega-panel__link-item cnvrt-mega-panel__link-item">
+                    <li class="cnvrt-mega-panel__link-item">
                       <a href="{{ link.url }}" data-mega-link>{{ link.title }}</a>
                     </li>
                   {%- endfor -%}
@@ -136,7 +136,7 @@
               endcase
             -%}
             <article
-              class="yaomri-mega-panel__column cnvrt-mega-panel__column yaomri-mega-panel__column--tile cnvrt-mega-panel__column--tile"
+              class="cnvrt-mega-panel__column cnvrt-mega-panel__column--tile"
               style="
                 --cnvrt-mega-column-percent: {{ tile_width_number }};
                 --cnvrt-mega-column-span: {{ tile_column_span }};
@@ -147,7 +147,7 @@
             >
               {%- assign tile_url = block.settings.url | default: '#' -%}
               <a
-                class="yaomri-mega-panel__tile-link cnvrt-mega-panel__tile-link"
+                class="cnvrt-mega-panel__tile-link"
                 href="{{ tile_url }}"
                 data-mega-link
               >
@@ -156,22 +156,22 @@
                     block.settings.image
                     | image_url: width: 700
                     | image_tag:
-                      class: 'yaomri-mega-panel__tile-image cnvrt-mega-panel__tile-image',
+                      class: 'cnvrt-mega-panel__tile-image',
                       widths: '180,240,320,420,540,700',
                       sizes: '(min-width: 1024px) 240px, 100vw',
                       loading: 'lazy',
                       alt: block.settings.image_alt | default: block.settings.title
                   }}
                 {%- endif -%}
-                <span class="yaomri-mega-panel__tile-body cnvrt-mega-panel__tile-body">
+                <span class="cnvrt-mega-panel__tile-body">
                   {%- if block.settings.eyebrow != blank -%}
-                    <span class="yaomri-mega-panel__tile-eyebrow cnvrt-mega-panel__tile-eyebrow">{{ block.settings.eyebrow }}</span>
+                    <span class="cnvrt-mega-panel__tile-eyebrow">{{ block.settings.eyebrow }}</span>
                   {%- endif -%}
                   {%- if block.settings.title != blank -%}
-                    <span class="yaomri-mega-panel__tile-title cnvrt-mega-panel__tile-title">{{ block.settings.title }}</span>
+                    <span class="cnvrt-mega-panel__tile-title">{{ block.settings.title }}</span>
                   {%- endif -%}
                   {%- if block.settings.cta != blank -%}
-                    <span class="yaomri-mega-panel__tile-cta cnvrt-mega-panel__tile-cta">{{ block.settings.cta }}</span>
+                    <span class="cnvrt-mega-panel__tile-cta">{{ block.settings.cta }}</span>
                   {%- endif -%}
                 </span>
               </a>

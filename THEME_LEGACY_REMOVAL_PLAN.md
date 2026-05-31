@@ -11,6 +11,17 @@
 - Phase 4 is complete: legacy `cc-*` markup classes were removed from `sections/collection-cards.liquid`; CSS/JS/data and `--cc-*` variable fallbacks remain intentionally active for one release.
 - Phase 5 is complete: legacy `yaomri-single-hero*` markup classes were removed from `sections/single-image-hero.liquid`; hero CSS selector fallbacks and `--ysh-*` variable fallbacks remain intentionally active for one release.
 
+## Current status update (2026-05-31)
+
+- Legacy class aliases have now been removed from active runtime markup and primary CSS/JS selectors across Announcement Bar, Collection Cards, Single Image Hero, Header/Header Stack, Mega Menu, Mobile Drawer, Cart, Footer, and Three Card Hero.
+- CNVRT classes are the active runtime contract.
+- Remaining legacy references are intentionally retained where they are not class aliases:
+  - icon system: `icon-yaomri*` (deferred icon migration)
+  - utility skip-link class: `yaomri-skip-link` (kept as a stable utility hook)
+  - compatibility CSS variable fallbacks: `--yab-*`, `--cc-*`, `--ysh-*`, `--yh-*`, `--ym-*`, `--yth-*`
+  - legacy-prefixed asset filenames (non-runtime selector concern)
+- Setting IDs and schema keys were intentionally preserved.
+
 ## Prefix inventory (legacy readiness)
 
 | Prefix | Rendered in Liquid | Used in CSS | Used in JS | CNVRT equivalent exists | JS CNVRT-first | Safe to remove now | Risk | Recommended action | Class |

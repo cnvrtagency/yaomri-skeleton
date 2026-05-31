@@ -120,10 +120,10 @@
       </div>
       <div class="cnvrt-collection-cards__nav{% unless layout_mode == 'carousel' and show_arrows %} is-hidden{% endunless %}">
         {%- if layout_mode == 'carousel' and show_arrows -%}
-          <button type="button" class="cnvrt-collection-cards__button" data-cc-prev data-cnvrt-prev aria-label="Previous collection cards">
+          <button type="button" class="cnvrt-collection-cards__button" data-cnvrt-prev aria-label="Previous collection cards">
             {% render 'icon-yaomri-chevron-left' %}
           </button>
-          <button type="button" class="cnvrt-collection-cards__button" data-cc-next data-cnvrt-next aria-label="Next collection cards">
+          <button type="button" class="cnvrt-collection-cards__button" data-cnvrt-next aria-label="Next collection cards">
             {% render 'icon-yaomri-chevron-right' %}
           </button>
         {%- endif -%}
@@ -146,7 +146,6 @@
     {%- if valid_cards > 0 or request.design_mode -%}
       <div
         class="cnvrt-collection-cards__track{% if layout_mode == 'grid' %} cnvrt-collection-cards__track--grid{% endif %}"
-        data-cc-track
         data-cnvrt-track
       >
         {%- for block in section.blocks -%}

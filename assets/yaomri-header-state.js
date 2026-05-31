@@ -1,14 +1,9 @@
 (() => {
-  const GROUP_CLASS = 'yaomri-header-stack';
-  const GROUP_CLASS_CNVRT = 'cnvrt-header-stack';
-  const GROUP_OVERLAY_CLASS = 'yaomri-header-stack--overlay';
-  const GROUP_OVERLAY_CLASS_CNVRT = 'cnvrt-header-stack--overlay';
-  const GROUP_FADE_CLASS = 'yaomri-header-stack--fade';
-  const GROUP_SLIDE_CLASS = 'yaomri-header-stack--slide';
-  const GROUP_FADE_SLIDE_CLASS = 'yaomri-header-stack--fade-slide';
-  const GROUP_FADE_CLASS_CNVRT = 'cnvrt-header-stack--fade';
-  const GROUP_SLIDE_CLASS_CNVRT = 'cnvrt-header-stack--slide';
-  const GROUP_FADE_SLIDE_CLASS_CNVRT = 'cnvrt-header-stack--fade-slide';
+  const GROUP_CLASS = 'cnvrt-header-stack';
+  const GROUP_OVERLAY_CLASS = 'cnvrt-header-stack--overlay';
+  const GROUP_FADE_CLASS = 'cnvrt-header-stack--fade';
+  const GROUP_SLIDE_CLASS = 'cnvrt-header-stack--slide';
+  const GROUP_FADE_SLIDE_CLASS = 'cnvrt-header-stack--fade-slide';
   const HIDDEN_CLASS = 'is-hidden-after-scroll';
   const SCROLL_BEHAVIOR_ALWAYS_VISIBLE = 'always_visible';
   const SCROLL_BEHAVIOR_FADE_AWAY = 'fade_away_after_scroll';
@@ -38,13 +33,10 @@
     group.classList.remove(
       GROUP_FADE_CLASS,
       GROUP_SLIDE_CLASS,
-      GROUP_FADE_SLIDE_CLASS,
-      GROUP_FADE_CLASS_CNVRT,
-      GROUP_SLIDE_CLASS_CNVRT,
-      GROUP_FADE_SLIDE_CLASS_CNVRT
+      GROUP_FADE_SLIDE_CLASS
     );
     if (transitionClasses) {
-      group.classList.add(transitionClasses.primary, transitionClasses.secondary);
+      group.classList.add(transitionClasses.primary);
     }
   };
 
@@ -55,14 +47,13 @@
 
   const hasOpenOverlayInteraction = () => {
     const megaOpen = document.querySelector(
-      '.cnvrt-mega-panels.is-open, .yaomri-mega-panels.is-open, .cnvrt-mega__item.is-open, .yaomri-mega__item.is-open'
+      '.cnvrt-mega-panels.is-open, .cnvrt-mega__item.is-open'
     );
     if (megaOpen) return true;
 
     const drawerOpen =
-      document.querySelector('.cnvrt-drawer.is-open, .mdrawer.is-open') ||
-      document.documentElement.classList.contains('cnvrt-drawer-open') ||
-      document.documentElement.classList.contains('mdrawer-open');
+      document.querySelector('.cnvrt-drawer.is-open') ||
+      document.documentElement.classList.contains('cnvrt-drawer-open');
     if (drawerOpen) return true;
 
     return false;
@@ -78,14 +69,14 @@
 
   const findStackGroup = (header) => {
     if (!header) return null;
-    const explicitGroup = header.closest('[data-yaomri-header-group], [data-cnvrt-header-group]');
+    const explicitGroup = header.closest('[data-cnvrt-header-group]');
     if (explicitGroup) return explicitGroup;
 
     const themedGroup = header.closest('.shopify-section-group-header-group');
     if (themedGroup) return themedGroup;
 
     const headerSection = header.closest('[id^="shopify-section-"]') || header.parentElement;
-    const announcement = document.querySelector('.cnvrt-announcement, .yaomri-announcement');
+    const announcement = document.querySelector('.cnvrt-announcement');
     const announcementSection =
       announcement && (announcement.closest('[id^="shopify-section-"]') || announcement.parentElement);
 
@@ -112,12 +103,12 @@
   const resolveTransitionClass = (value) => {
     switch (value) {
       case 'fade':
-        return { primary: GROUP_FADE_CLASS, secondary: GROUP_FADE_CLASS_CNVRT };
+        return { primary: GROUP_FADE_CLASS };
       case 'slide':
-        return { primary: GROUP_SLIDE_CLASS, secondary: GROUP_SLIDE_CLASS_CNVRT };
+        return { primary: GROUP_SLIDE_CLASS };
       case 'fade_slide':
       default:
-        return { primary: GROUP_FADE_SLIDE_CLASS, secondary: GROUP_FADE_SLIDE_CLASS_CNVRT };
+        return { primary: GROUP_FADE_SLIDE_CLASS };
     }
   };
 
@@ -126,8 +117,7 @@
 
     const transparentActive = header.dataset.transparentActive === 'true';
     const stickyEnabled =
-      header.classList.contains('cnvrt-header--sticky-enabled') ||
-      header.classList.contains('yaomri-header--sticky-enabled');
+      header.classList.contains('cnvrt-header--sticky-enabled');
     const solidAfterScroll = header.dataset.transparentSolidAfterScroll === 'true';
     const stackBehavior = resolveHeaderDataAttr(header, [
       'headerStackScrollBehavior',
@@ -174,14 +164,11 @@
       isTransparentHeader && !(stackBehavior === SCROLL_BEHAVIOR_FADE_AWAY && shouldHideStack);
 
     if (group) {
-      group.classList.add(GROUP_CLASS, GROUP_CLASS_CNVRT);
+      group.classList.add(GROUP_CLASS);
       group.style.setProperty('--cnvrt-header-stack-transition-duration', `${stackTransitionDuration}ms`);
       group.style.setProperty('--cnvrt-header-stack-transition-easing', stackTransitionEasing);
-      group.style.setProperty('--yaomri-header-stack-transition-duration', `${stackTransitionDuration}ms`);
-      group.style.setProperty('--yaomri-header-stack-transition-easing', stackTransitionEasing);
       const isStickyOverlay = transparentActive && stickyEnabled;
       group.classList.toggle(GROUP_OVERLAY_CLASS, isStickyOverlay);
-      group.classList.toggle(GROUP_OVERLAY_CLASS_CNVRT, isStickyOverlay);
       const transitionClass = resolveTransitionClass(stackTransition);
       cleanTransitionClass(
         group,
@@ -208,7 +195,7 @@
       if (rafId) return;
       rafId = window.requestAnimationFrame(() => {
         rafId = null;
-        const activeHeader = document.querySelector('.cnvrt-header, .yaomri-header');
+        const activeHeader = document.querySelector('.cnvrt-header');
         if (!activeHeader) return;
         const group = findStackGroup(activeHeader);
         applyState(activeHeader, group);

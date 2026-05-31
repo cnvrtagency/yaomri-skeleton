@@ -27,12 +27,10 @@
   endunless
   assign country_selector_show_currency = settings.country_selector_show_currency
   capture country_selector_class
-    echo 'yaomri-header__country-selector cnvrt-header__country-selector yaomri-header__country-selector--'
-    echo country_selector_style
-    echo ' cnvrt-header__country-selector--'
+    echo 'cnvrt-header__country-selector cnvrt-header__country-selector--'
     echo country_selector_style
     if country_selector_show_currency
-      echo ' yaomri-header__country-selector--currency cnvrt-header__country-selector--currency'
+      echo ' cnvrt-header__country-selector--currency'
     endif
   endcapture
   assign country_selector_class = country_selector_class | strip
@@ -200,7 +198,7 @@
 {%- endif -%}
 
 <header
-  class="yaomri-header cnvrt-header full-width yaomri-header--layout-{{ resolved_layout }} cnvrt-header--layout-{{ resolved_layout }} yaomri-header--width-{{ header_width_mode }} cnvrt-header--width-{{ header_width_mode }} yaomri-header--collapse-{{ nav_collapse_width }} cnvrt-header--collapse-{{ nav_collapse_width }}{% unless show_bottom_border %} yaomri-header--no-border cnvrt-header--no-border{% endunless %}{% if transparent_header_active %} yaomri-header--transparent-active cnvrt-header--transparent-active{% endif %}{% if enable_sticky %} yaomri-header--sticky-enabled cnvrt-header--sticky-enabled{% endif %}"
+  class="cnvrt-header full-width cnvrt-header--layout-{{ resolved_layout }} cnvrt-header--width-{{ header_width_mode }} cnvrt-header--collapse-{{ nav_collapse_width }}{% unless show_bottom_border %} cnvrt-header--no-border{% endunless %}{% if transparent_header_active %} cnvrt-header--transparent-active{% endif %}{% if enable_sticky %} cnvrt-header--sticky-enabled{% endif %}"
   role="banner"
   aria-label="Site header"
   id="SiteHeader"
@@ -302,13 +300,13 @@
   {{ section.shopify_attributes }}
 >
   {%- capture logo_markup -%}
-    <a href="{{ routes.root_url }}" class="yaomri-header__logo-link cnvrt-header__logo-link" aria-label="{{ shop.name | escape }}">
+    <a href="{{ routes.root_url }}" class="cnvrt-header__logo-link" aria-label="{{ shop.name | escape }}">
       {%- if desktop_logo != blank -%}
         {{
           desktop_logo
           | image_url: width: 800
           | image_tag:
-            class: 'yaomri-header__logo-image cnvrt-header__logo-image',
+            class: 'cnvrt-header__logo-image',
             widths: '120, 160, 200, 240, 300, 360, 420, 520, 680, 800',
             sizes: '(min-width: 990px) var(--yh-desktop-logo-width), var(--yh-mobile-logo-width)',
             loading: 'eager',
@@ -319,7 +317,7 @@
             transparent_logo
             | image_url: width: 800
             | image_tag:
-              class: 'yaomri-header__logo-image cnvrt-header__logo-image yaomri-header__logo-image--transparent cnvrt-header__logo-image--transparent',
+              class: 'cnvrt-header__logo-image cnvrt-header__logo-image--transparent',
               widths: '120, 160, 200, 240, 300, 360, 420, 520, 680, 800',
               sizes: '(min-width: 990px) var(--yh-desktop-logo-width), var(--yh-mobile-logo-width)',
               loading: 'eager',
@@ -327,19 +325,19 @@
           }}
         {%- endif -%}
       {%- else -%}
-        <span class="yaomri-header__shop-name cnvrt-header__shop-name">{{ shop.name }}</span>
+        <span class="cnvrt-header__shop-name">{{ shop.name }}</span>
       {%- endif -%}
     </a>
   {%- endcapture -%}
 
   {%- capture mobile_logo_markup -%}
-    <a href="{{ routes.root_url }}" class="yaomri-header__logo-link cnvrt-header__logo-link yaomri-header__logo-link--mobile cnvrt-header__logo-link--mobile" aria-label="{{ shop.name | escape }}">
+    <a href="{{ routes.root_url }}" class="cnvrt-header__logo-link cnvrt-header__logo-link--mobile" aria-label="{{ shop.name | escape }}">
       {%- if mobile_logo != blank -%}
         {{
           mobile_logo
           | image_url: width: 640
           | image_tag:
-            class: 'yaomri-header__logo-image cnvrt-header__logo-image',
+            class: 'cnvrt-header__logo-image',
             widths: '100, 140, 180, 220, 280, 360, 480, 640',
             sizes: '(max-width: 989px) var(--yh-mobile-logo-width), var(--yh-desktop-logo-width)',
             loading: 'eager',
@@ -350,7 +348,7 @@
             transparent_mobile_logo
             | image_url: width: 640
             | image_tag:
-              class: 'yaomri-header__logo-image cnvrt-header__logo-image yaomri-header__logo-image--transparent cnvrt-header__logo-image--transparent',
+              class: 'cnvrt-header__logo-image cnvrt-header__logo-image--transparent',
               widths: '100, 140, 180, 220, 280, 360, 480, 640',
               sizes: '(max-width: 989px) var(--yh-mobile-logo-width), var(--yh-desktop-logo-width)',
               loading: 'eager',
@@ -358,7 +356,7 @@
           }}
         {%- endif -%}
       {%- else -%}
-        <span class="yaomri-header__shop-name cnvrt-header__shop-name">{{ shop.name }}</span>
+        <span class="cnvrt-header__shop-name">{{ shop.name }}</span>
       {%- endif -%}
     </a>
   {%- endcapture -%}
@@ -368,16 +366,16 @@
   {%- endcapture -%}
 
   {%- capture actions_markup -%}
-    <div class="yaomri-header__actions cnvrt-header__actions">
+    <div class="cnvrt-header__actions">
       {%- if show_country_selector and localization.available_countries.size > 1 -%}
         {%- form 'localization', id: 'HeaderCountryForm', class: country_selector_class -%}
           <label class="visually-hidden" for="HeaderCountrySelector">Country/region</label>
-          <span class="yaomri-header__country-current cnvrt-header__country-current" aria-hidden="true">
+          <span class="cnvrt-header__country-current" aria-hidden="true">
             {{ current_country_label }}
           </span>
           <select
             id="HeaderCountrySelector"
-            class="yaomri-header__country-select cnvrt-header__country-select"
+            class="cnvrt-header__country-select"
             name="country_code"
             aria-label="Country/region"
             onchange="this.form.submit()"
@@ -404,35 +402,35 @@
         {%- endform -%}
       {%- endif -%}
 
-      <a class="yaomri-header__icon cnvrt-header__icon" href="{{ routes.search_url }}" aria-label="Search">
+      <a class="cnvrt-header__icon" href="{{ routes.search_url }}" aria-label="Search">
         {% render 'icon-yaomri-search' %}
       </a>
 
       {%- if show_account_icon and shop.customer_accounts_enabled -%}
-        <a class="yaomri-header__icon cnvrt-header__icon" href="{{ routes.account_url }}" aria-label="Account">
+        <a class="cnvrt-header__icon" href="{{ routes.account_url }}" aria-label="Account">
           {% render 'icon-yaomri-account' %}
         </a>
       {%- endif -%}
 
       {%- if show_wishlist_icon -%}
-        <a class="yaomri-header__icon cnvrt-header__icon" href="{{ wishlist_url }}" aria-label="Wishlist">
+        <a class="cnvrt-header__icon" href="{{ wishlist_url }}" aria-label="Wishlist">
           {% render 'icon-yaomri-heart' %}
         </a>
       {%- endif -%}
 
       {%- if show_cart_icon -%}
-        <a class="yaomri-header__icon cnvrt-header__icon yaomri-header__cart cnvrt-header__cart" href="{{ routes.cart_url }}" aria-label="Cart">
+        <a class="cnvrt-header__icon cnvrt-header__cart" href="{{ routes.cart_url }}" aria-label="Cart">
           {% render 'icon-yaomri-cart' %}
           {%- if cart.item_count > 0 -%}
-            <span id="cart-icon-bubble" class="yaomri-header__cart-count cnvrt-header__cart-count">{{ cart.item_count }}</span>
+            <span id="cart-icon-bubble" class="cnvrt-header__cart-count">{{ cart.item_count }}</span>
           {%- endif -%}
         </a>
       {%- endif -%}
     </div>
   {%- endcapture -%}
 
-  <div class="yaomri-header__desktop cnvrt-header__desktop">
-    <div class="yaomri-header__desktop-left cnvrt-header__desktop-left">
+  <div class="cnvrt-header__desktop">
+    <div class="cnvrt-header__desktop-left">
       {%- if resolved_layout == 'logo_left_nav_center_actions_right' -%}
         {{ logo_markup }}
       {%- elsif resolved_layout == 'nav_left_logo_center_actions_right' -%}
@@ -440,7 +438,7 @@
       {%- endif -%}
     </div>
 
-    <div class="yaomri-header__desktop-centre cnvrt-header__desktop-centre">
+    <div class="cnvrt-header__desktop-centre">
       {%- if resolved_layout == 'logo_left_nav_center_actions_right' -%}
         {{ nav_markup }}
       {%- else -%}
@@ -448,17 +446,16 @@
       {%- endif -%}
     </div>
 
-    <div class="yaomri-header__desktop-right cnvrt-header__desktop-right">
+    <div class="cnvrt-header__desktop-right">
       {{ actions_markup }}
     </div>
   </div>
 
-  <div class="yaomri-header__mobile cnvrt-header__mobile">
-    <div class="yaomri-header__mobile-left cnvrt-header__mobile-left">
+  <div class="cnvrt-header__mobile">
+    <div class="cnvrt-header__mobile-left">
       <button
-        class="yaomri-header__icon cnvrt-header__icon"
+        class="cnvrt-header__icon"
         type="button"
-        data-mdrawer-trigger
         data-cnvrt-drawer-trigger
         aria-label="Open menu"
         aria-expanded="false"
@@ -468,26 +465,26 @@
       </button>
     </div>
 
-    <div class="yaomri-header__mobile-center cnvrt-header__mobile-center">
+    <div class="cnvrt-header__mobile-center">
       {{ mobile_logo_markup }}
     </div>
 
-    <div class="yaomri-header__mobile-right cnvrt-header__mobile-right">
-      <a class="yaomri-header__icon cnvrt-header__icon" href="{{ routes.search_url }}" aria-label="Search">
+    <div class="cnvrt-header__mobile-right">
+      <a class="cnvrt-header__icon" href="{{ routes.search_url }}" aria-label="Search">
         {% render 'icon-yaomri-search' %}
       </a>
 
       {%- if show_wishlist_icon -%}
-        <a class="yaomri-header__icon cnvrt-header__icon yaomri-header__mobile-optional cnvrt-header__mobile-optional" href="{{ wishlist_url }}" aria-label="Wishlist">
+        <a class="cnvrt-header__icon cnvrt-header__mobile-optional" href="{{ wishlist_url }}" aria-label="Wishlist">
           {% render 'icon-yaomri-heart' %}
         </a>
       {%- endif -%}
 
       {%- if show_cart_icon -%}
-        <a class="yaomri-header__icon cnvrt-header__icon yaomri-header__cart cnvrt-header__cart" href="{{ routes.cart_url }}" aria-label="Cart">
+        <a class="cnvrt-header__icon cnvrt-header__cart" href="{{ routes.cart_url }}" aria-label="Cart">
           {% render 'icon-yaomri-cart' %}
           {%- if cart.item_count > 0 -%}
-            <span class="yaomri-header__cart-count cnvrt-header__cart-count">{{ cart.item_count }}</span>
+            <span class="cnvrt-header__cart-count">{{ cart.item_count }}</span>
           {%- endif -%}
         </a>
       {%- endif -%}

@@ -27,6 +27,7 @@ Status values:
 - Cart namespace migration (Phase 7): `sections/cart.liquid`, `assets/yaomri-cart.css`, and `assets/yaomri-cart.js` now support `cnvrt-cart*` aliases while keeping `yaomri-cart*` compatibility hooks.
 - Footer and 3-Card Hero alias migration pass is active: new `cnvrt-footer*` and `cnvrt-three-hero*` aliases are present while legacy classes/vars remain for compatibility.
 - Controlled cleanup pass: runtime JS now prefers CNVRT selectors/data hooks first and keeps legacy hooks as fallbacks; no Shopify setting IDs were renamed and no compatibility data attributes were removed.
+- Legacy class alias cleanup pass is complete for active runtime classes/selectors; deferred legacy scope is now icon classes plus compatibility variable fallbacks only.
 - `snippets/css-variables.liquid` no longer references legacy `settings.site_content_width`.
 - `snippets/mobile-drawer.liquid` no longer references missing `settings.social_instagram_link`.
 - `close_delay` remains as `Hover close delay`; keep an eye on whether merchants actually need it.
