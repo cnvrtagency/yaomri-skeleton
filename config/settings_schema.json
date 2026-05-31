@@ -386,6 +386,10 @@
     "name": "Header",
     "settings": [
       {
+        "type": "header",
+        "content": "Header layout"
+      },
+      {
         "type": "select",
         "id": "desktop_layout",
         "label": "Desktop layout",
@@ -482,6 +486,18 @@
         "step": 2,
         "unit": "px",
         "default": 74
+      },
+      {
+        "type": "header",
+        "content": "Logo"
+      },
+      {
+        "type": "paragraph",
+        "content": "Logo images and logo widths are managed in Theme settings > Brand."
+      },
+      {
+        "type": "header",
+        "content": "Navigation"
       },
       {
         "type": "range",
@@ -592,6 +608,14 @@
         ]
       },
       {
+        "type": "header",
+        "content": "Advanced"
+      },
+      {
+        "type": "paragraph",
+        "content": "Custom shadow controls below only apply when Header shadow is set to Custom."
+      },
+      {
         "type": "range",
         "id": "header_shadow_opacity",
         "label": "Shadow opacity",
@@ -625,10 +649,18 @@
         "default": 24
       },
       {
+        "type": "header",
+        "content": "Scroll behaviour"
+      },
+      {
         "type": "checkbox",
         "id": "enable_sticky",
         "label": "Sticky header",
         "default": true
+      },
+      {
+        "type": "header",
+        "content": "Transparent header"
       },
       {
         "type": "select",
@@ -701,7 +733,7 @@
       {
         "type": "select",
         "id": "header_stack_scroll_behavior",
-        "label": "Header stack scroll behavior",
+        "label": "Header stack behaviour on scroll",
         "default": "always_visible",
         "options": [
           {
@@ -801,6 +833,10 @@
         "type": "color",
         "id": "transparent_header_solid_text_colour",
         "label": "Solid header text/icon colour after scroll"
+      },
+      {
+        "type": "header",
+        "content": "Header actions"
       },
       {
         "type": "range",
@@ -930,6 +966,10 @@
         "step": 1,
         "unit": "px",
         "default": 5
+      },
+      {
+        "type": "header",
+        "content": "Country selector"
       },
       {
         "type": "checkbox",

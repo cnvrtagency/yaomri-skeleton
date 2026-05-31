@@ -647,20 +647,8 @@
       "default": false
     },
     {
-      "type": "color",
-      "id": "border_color",
-      "label": "Border colour",
-      "default": "#e8e8e8"
-    },
-    {
-      "type": "color",
-      "id": "section_background",
-      "label": "Section background",
-      "default": "#ffffff"
-    },
-    {
       "type": "header",
-      "content": "Image"
+      "content": "Media"
     },
     {
       "type": "image_picker",
@@ -702,68 +690,8 @@
       ]
     },
     {
-      "type": "color",
-      "id": "overlay_color",
-      "label": "Image overlay colour",
-      "default": "#000000"
-    },
-    {
-      "type": "range",
-      "id": "overlay_opacity",
-      "label": "Image overlay opacity",
-      "min": 0,
-      "max": 80,
-      "step": 5,
-      "unit": "%",
-      "default": 20
-    },
-    {
       "type": "header",
       "content": "Content position"
-    },
-    {
-      "type": "select",
-      "id": "content_width",
-      "label": "Content width",
-      "default": "medium",
-      "info": "Controls the width of the hero text/button content box. Use Medium or Custom for clear left/centre/right positioning. Site width is very wide, so horizontal position may appear subtle.",
-      "options": [
-        {
-          "value": "narrow",
-          "label": "Narrow"
-        },
-        {
-          "value": "medium",
-          "label": "Medium"
-        },
-        {
-          "value": "wide",
-          "label": "Wide"
-        },
-        {
-          "value": "site",
-          "label": "Site width (very wide)"
-        },
-        {
-          "value": "full",
-          "label": "Full width"
-        },
-        {
-          "value": "custom",
-          "label": "Custom width"
-        }
-      ]
-    },
-    {
-      "type": "range",
-      "id": "custom_content_width",
-      "label": "Custom content width",
-      "min": 280,
-      "max": 1800,
-      "step": 20,
-      "unit": "px",
-      "default": 720,
-      "info": "Only applies when Content width is Custom width."
     },
     {
       "type": "select",
@@ -890,6 +818,90 @@
       ]
     },
     {
+      "type": "header",
+      "content": "Content width"
+    },
+    {
+      "type": "select",
+      "id": "content_width",
+      "label": "Content width",
+      "default": "medium",
+      "info": "Controls the width of the hero text/button content box. Use Medium or Custom for clear left/centre/right positioning. Site width is very wide, so horizontal position may appear subtle.",
+      "options": [
+        {
+          "value": "narrow",
+          "label": "Narrow"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        },
+        {
+          "value": "site",
+          "label": "Site width (very wide)"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        },
+        {
+          "value": "custom",
+          "label": "Custom width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "custom_content_width",
+      "label": "Custom content width",
+      "min": 280,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "default": 720,
+      "info": "Only applies when Content width is Custom width."
+    },
+    {
+      "type": "header",
+      "content": "Colours / overlay"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border colour",
+      "default": "#e8e8e8"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Image overlay colour",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Image overlay opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
       "type": "range",
       "id": "content_gap",
       "label": "Content gap",
@@ -911,7 +923,15 @@
     },
     {
       "type": "header",
-      "content": "Advanced spacing"
+      "content": "Blocks"
+    },
+    {
+      "type": "paragraph",
+      "content": "Add and arrange Eyebrow, Heading, Paragraph, Buttons, Custom HTML/Liquid, and Image pin blocks below."
+    },
+    {
+      "type": "header",
+      "content": "Advanced"
     },
     {
       "type": "range",

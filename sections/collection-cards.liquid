@@ -300,8 +300,8 @@
     { "type": "header", "content": "Content" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Shop by collection" },
     { "type": "text", "id": "heading_subtitle", "label": "Heading subtitle", "default": "Curated edits" },
+
     { "type": "header", "content": "Layout" },
-    { "type": "checkbox", "id": "show_arrows", "label": "Show arrows", "default": true },
     {
       "type": "select",
       "id": "layout_mode",
@@ -324,9 +324,8 @@
       ]
     },
     { "type": "range", "id": "custom_section_width", "label": "Custom section width", "min": 720, "max": 2200, "step": 20, "unit": "px", "default": 1500 },
-    { "type": "color", "id": "background_color", "label": "Background colour", "default": "#ffffff" },
-    { "type": "checkbox", "id": "border_top", "label": "Border top", "default": true },
-    { "type": "color", "id": "border_color", "label": "Border colour", "default": "#e8e8e8" },
+
+    { "type": "header", "content": "Cards" },
     {
       "type": "select",
       "id": "card_image_ratio",
@@ -349,8 +348,17 @@
         { "value": "subtle_zoom", "label": "Subtle zoom" }
       ]
     },
-    { "type": "range", "id": "gap_desktop", "label": "Gap desktop", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 16 },
-    { "type": "range", "id": "gap_mobile", "label": "Gap mobile", "min": 0, "max": 28, "step": 1, "unit": "px", "default": 12 },
+    { "type": "checkbox", "id": "show_count_default", "label": "Show product count by default", "default": true },
+    {
+      "type": "checkbox",
+      "id": "use_first_product_image",
+      "label": "Use first product image when collection image is missing",
+      "default": true,
+      "info": "Collection image is used first. If unavailable, the first product image can be used as a fallback."
+    },
+
+    { "type": "header", "content": "Carousel / grid" },
+    { "type": "checkbox", "id": "show_arrows", "label": "Show arrows", "default": true },
     {
       "type": "select",
       "id": "carousel_cards_desktop",
@@ -386,15 +394,10 @@
         { "value": "2", "label": "2" }
       ]
     },
-    { "type": "checkbox", "id": "show_count_default", "label": "Show product count by default", "default": true },
-    {
-      "type": "checkbox",
-      "id": "use_first_product_image",
-      "label": "Use first product image when collection image is missing",
-      "default": true,
-      "info": "Collection image is used first. If unavailable, the first product image can be used as a fallback."
-    },
-    { "type": "header", "content": "Card title typography" },
+    { "type": "range", "id": "gap_desktop", "label": "Gap desktop", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 16 },
+    { "type": "range", "id": "gap_mobile", "label": "Gap mobile", "min": 0, "max": 28, "step": 1, "unit": "px", "default": 12 },
+
+    { "type": "header", "content": "Card text" },
     { "type": "range", "id": "card_title_size_desktop", "label": "Card title size desktop", "min": 12, "max": 32, "step": 1, "unit": "px", "default": 16 },
     { "type": "range", "id": "card_title_size_mobile", "label": "Card title size mobile", "min": 11, "max": 24, "step": 1, "unit": "px", "default": 14 },
     { "type": "select", "id": "card_title_weight", "label": "Card title weight", "default": "800", "options": [{ "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "Semibold" }, { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra bold" }] },
@@ -410,6 +413,11 @@
     { "type": "range", "id": "card_meta_letter_spacing", "label": "Card meta letter spacing", "min": -10, "max": 40, "step": 1, "unit": "em", "default": 18 },
     { "type": "select", "id": "card_meta_transform", "label": "Card meta text transform", "default": "uppercase", "options": [{ "value": "none", "label": "None" }, { "value": "uppercase", "label": "Uppercase" }, { "value": "lowercase", "label": "Lowercase" }, { "value": "capitalize", "label": "Capitalize" }] },
     { "type": "color", "id": "card_meta_color", "label": "Card meta colour", "default": "#ffffff" },
+
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "background_color", "label": "Background colour", "default": "#ffffff" },
+    { "type": "checkbox", "id": "border_top", "label": "Border top", "default": true },
+    { "type": "color", "id": "border_color", "label": "Border colour", "default": "#e8e8e8" },
 
     { "type": "header", "content": "Spacing" },
     { "type": "range", "id": "padding_top_desktop", "label": "Padding top desktop", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 0 },

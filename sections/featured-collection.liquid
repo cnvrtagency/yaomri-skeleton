@@ -163,15 +163,6 @@
       ]
     },
     {
-      "type": "range",
-      "id": "products_to_show",
-      "label": "Products to show",
-      "min": 2,
-      "max": 24,
-      "step": 1,
-      "default": 8
-    },
-    {
       "type": "select",
       "id": "section_width",
       "label": "Section width",
@@ -192,8 +183,27 @@
       "default": 1400,
       "unit": "px"
     },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Header alignment",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Centre" }
+      ]
+    },
 
-    { "type": "header", "content": "Grid" },
+    { "type": "header", "content": "Products" },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 2,
+      "max": 24,
+      "step": 1,
+      "default": 8
+    },
     {
       "type": "select",
       "id": "columns_desktop",
@@ -272,6 +282,31 @@
       "label": "Show carousel arrows",
       "default": true
     },
+    { "type": "header", "content": "Colours" },
+    {
+      "type": "color",
+      "id": "background_colour",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_colour",
+      "label": "Text colour",
+      "default": "#111111"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_border",
+      "label": "Show top border",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "border_colour",
+      "label": "Border colour",
+      "default": "#e8e8e8"
+    },
     { "type": "header", "content": "Spacing" },
     {
       "type": "range",
@@ -332,32 +367,6 @@
       "step": 4,
       "default": 32,
       "unit": "px"
-    },
-
-    { "type": "header", "content": "Colours" },
-    {
-      "type": "color",
-      "id": "background_colour",
-      "label": "Section background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "text_colour",
-      "label": "Text colour",
-      "default": "#111111"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_top_border",
-      "label": "Show top border",
-      "default": false
-    },
-    {
-      "type": "color",
-      "id": "border_colour",
-      "label": "Border colour",
-      "default": "#e8e8e8"
     }
   ],
   "presets": [
