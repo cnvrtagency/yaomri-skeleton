@@ -88,7 +88,7 @@
   --cnvrt-header-current-fg: var(--cnvrt-header-fg);
   --cnvrt-mega-link-color: currentColor;
   --cnvrt-header-country-bg: transparent;
-  --cnvrt-header-country-border: transparent;
+  --cnvrt-header-country-border: var(--cnvrt-header-country-border-normal, var(--color-border));
   --cnvrt-header-country-text: var(--cnvrt-header-transparent-text, #fff);
 }
 
