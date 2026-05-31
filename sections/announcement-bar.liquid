@@ -258,6 +258,10 @@
   "name": "Announcement bar",
   "settings": [
     {
+      "type": "header",
+      "content": "Content"
+    },
+    {
       "type": "checkbox",
       "id": "enable_announcement_bar",
       "label": "Show announcement bar",
@@ -273,6 +277,10 @@
         { "value": "carousel", "label": "Carousel" },
         { "value": "marquee", "label": "Marquee" }
       ]
+    },
+    {
+      "type": "header",
+      "content": "Layout"
     },
     {
       "type": "select",
@@ -295,30 +303,6 @@
       "step": 20,
       "unit": "px",
       "default": 1200
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background colour",
-      "default": "#f6f4ef"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text colour",
-      "default": "#111111"
-    },
-    {
-      "type": "color",
-      "id": "border_color",
-      "label": "Border colour",
-      "default": "#e8e8e8"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_bottom_border",
-      "label": "Show bottom border",
-      "default": false
     },
     {
       "type": "range",
@@ -359,6 +343,40 @@
       "step": 2,
       "unit": "px",
       "default": 12
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_block",
+      "label": "Padding top/bottom desktop",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_block",
+      "label": "Padding top/bottom mobile",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Gap between items",
+      "min": 8,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Typography"
     },
     {
       "type": "range",
@@ -437,34 +455,32 @@
       ]
     },
     {
-      "type": "range",
-      "id": "item_gap",
-      "label": "Gap between items",
-      "min": 8,
-      "max": 72,
-      "step": 2,
-      "unit": "px",
-      "default": 24
+      "type": "header",
+      "content": "Colours"
     },
     {
-      "type": "range",
-      "id": "desktop_padding_block",
-      "label": "Padding top/bottom desktop",
-      "min": 0,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 0
+      "type": "color",
+      "id": "background_color",
+      "label": "Background colour",
+      "default": "#f6f4ef"
     },
     {
-      "type": "range",
-      "id": "mobile_padding_block",
-      "label": "Padding top/bottom mobile",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "default": 0
+      "type": "color",
+      "id": "text_color",
+      "label": "Text colour",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border colour",
+      "default": "#e8e8e8"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_border",
+      "label": "Show bottom border",
+      "default": false
     },
     {
       "type": "header",

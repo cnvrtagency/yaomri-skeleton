@@ -53,6 +53,99 @@
     ]
   },
   {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "select",
+        "id": "site_width_mode",
+        "label": "Site width mode",
+        "default": "boxed",
+        "options": [
+          {
+            "value": "boxed",
+            "label": "Boxed"
+          },
+          {
+            "value": "full",
+            "label": "Full width"
+          },
+          {
+            "value": "custom",
+            "label": "Custom"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "custom_site_content_width",
+        "label": "Custom site width",
+        "info": "Only applies when Site width mode is set to Custom.",
+        "min": 1000,
+        "max": 1800,
+        "step": 20,
+        "unit": "px",
+        "default": 1200
+      },
+      {
+        "type": "range",
+        "id": "site_inset",
+        "label": "Site inset",
+        "info": "Adds left/right breathing room to site-width content across all breakpoints. Set to 0 for edge-to-edge layouts.",
+        "min": 0,
+        "max": 60,
+        "step": 2,
+        "unit": "px",
+        "default": 20
+      }
+    ]
+  },
+  {
+    "name": "t:general.colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "default": "#FFFFFF",
+        "label": "Page background"
+      },
+      {
+        "type": "color",
+        "id": "foreground_color",
+        "default": "#1a1a1a",
+        "label": "Text colour"
+      },
+      {
+        "type": "color",
+        "id": "sand_color",
+        "default": "#f6f4ef",
+        "label": "Soft background",
+        "info": "Used for gentle surfaces such as search fields and subtle menu backgrounds."
+      },
+      {
+        "type": "color",
+        "id": "muted_color",
+        "default": "#737373",
+        "label": "Muted text"
+      },
+      {
+        "type": "color",
+        "id": "border_color",
+        "default": "#e8e8e8",
+        "label": "Border colour"
+      },
+      {
+        "type": "range",
+        "id": "input_corner_radius",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "unit": "px",
+        "label": "t:labels.input_corner_radius",
+        "default": 0
+      }
+    ]
+  },
+  {
     "name": "t:general.typography",
     "settings": [
       {
@@ -129,12 +222,30 @@
         "label": "Body weight",
         "default": "400",
         "options": [
-          { "value": "300", "label": "Light" },
-          { "value": "400", "label": "Regular" },
-          { "value": "500", "label": "Medium" },
-          { "value": "600", "label": "Semibold" },
-          { "value": "700", "label": "Bold" },
-          { "value": "800", "label": "Extra bold" }
+          {
+            "value": "300",
+            "label": "Light"
+          },
+          {
+            "value": "400",
+            "label": "Regular"
+          },
+          {
+            "value": "500",
+            "label": "Medium"
+          },
+          {
+            "value": "600",
+            "label": "Semibold"
+          },
+          {
+            "value": "700",
+            "label": "Bold"
+          },
+          {
+            "value": "800",
+            "label": "Extra bold"
+          }
         ]
       },
       {
@@ -143,12 +254,30 @@
         "label": "Heading base weight",
         "default": "700",
         "options": [
-          { "value": "300", "label": "Light" },
-          { "value": "400", "label": "Regular" },
-          { "value": "500", "label": "Medium" },
-          { "value": "600", "label": "Semibold" },
-          { "value": "700", "label": "Bold" },
-          { "value": "800", "label": "Extra bold" }
+          {
+            "value": "300",
+            "label": "Light"
+          },
+          {
+            "value": "400",
+            "label": "Regular"
+          },
+          {
+            "value": "500",
+            "label": "Medium"
+          },
+          {
+            "value": "600",
+            "label": "Semibold"
+          },
+          {
+            "value": "700",
+            "label": "Bold"
+          },
+          {
+            "value": "800",
+            "label": "Extra bold"
+          }
         ]
       },
       {
@@ -167,12 +296,30 @@
         "label": "Button weight",
         "default": "700",
         "options": [
-          { "value": "300", "label": "Light" },
-          { "value": "400", "label": "Regular" },
-          { "value": "500", "label": "Medium" },
-          { "value": "600", "label": "Semibold" },
-          { "value": "700", "label": "Bold" },
-          { "value": "800", "label": "Extra bold" }
+          {
+            "value": "300",
+            "label": "Light"
+          },
+          {
+            "value": "400",
+            "label": "Regular"
+          },
+          {
+            "value": "500",
+            "label": "Medium"
+          },
+          {
+            "value": "600",
+            "label": "Semibold"
+          },
+          {
+            "value": "700",
+            "label": "Bold"
+          },
+          {
+            "value": "800",
+            "label": "Extra bold"
+          }
         ]
       },
       {
@@ -191,12 +338,30 @@
         "label": "Eyebrow weight",
         "default": "700",
         "options": [
-          { "value": "300", "label": "Light" },
-          { "value": "400", "label": "Regular" },
-          { "value": "500", "label": "Medium" },
-          { "value": "600", "label": "Semibold" },
-          { "value": "700", "label": "Bold" },
-          { "value": "800", "label": "Extra bold" }
+          {
+            "value": "300",
+            "label": "Light"
+          },
+          {
+            "value": "400",
+            "label": "Regular"
+          },
+          {
+            "value": "500",
+            "label": "Medium"
+          },
+          {
+            "value": "600",
+            "label": "Semibold"
+          },
+          {
+            "value": "700",
+            "label": "Bold"
+          },
+          {
+            "value": "800",
+            "label": "Extra bold"
+          }
         ]
       },
       {
@@ -215,159 +380,391 @@
         "label": "Default accent transform",
         "default": "uppercase",
         "options": [
-          { "value": "none", "label": "None" },
-          { "value": "uppercase", "label": "Uppercase" },
-          { "value": "lowercase", "label": "Lowercase" },
-          { "value": "capitalize", "label": "Capitalize" }
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "uppercase",
+            "label": "Uppercase"
+          },
+          {
+            "value": "lowercase",
+            "label": "Lowercase"
+          },
+          {
+            "value": "capitalize",
+            "label": "Capitalize"
+          }
         ]
       }
     ]
   },
   {
-    "name": "Layout",
+    "name": "Section headings",
     "settings": [
       {
+        "type": "header",
+        "content": "Eyebrow"
+      },
+      {
+        "type": "range",
+        "id": "section_heading_eyebrow_size_desktop",
+        "label": "Eyebrow size desktop",
+        "min": 10,
+        "max": 40,
+        "step": 1,
+        "unit": "px",
+        "default": 12
+      },
+      {
+        "type": "range",
+        "id": "section_heading_eyebrow_size_mobile",
+        "label": "Eyebrow size mobile",
+        "min": 10,
+        "max": 32,
+        "step": 1,
+        "unit": "px",
+        "default": 11
+      },
+      {
         "type": "select",
-        "id": "site_width_mode",
-        "label": "Site width mode",
-        "default": "boxed",
+        "id": "section_heading_eyebrow_weight",
+        "label": "Eyebrow weight",
+        "default": "600",
         "options": [
           {
-            "value": "boxed",
-            "label": "Boxed"
+            "value": "300",
+            "label": "Light"
           },
           {
-            "value": "full",
-            "label": "Full width"
+            "value": "400",
+            "label": "Regular"
           },
           {
-            "value": "custom",
-            "label": "Custom"
+            "value": "500",
+            "label": "Medium"
+          },
+          {
+            "value": "600",
+            "label": "Semibold"
+          },
+          {
+            "value": "700",
+            "label": "Bold"
+          },
+          {
+            "value": "800",
+            "label": "Extra bold"
           }
         ]
       },
       {
         "type": "range",
-        "id": "custom_site_content_width",
-        "label": "Custom site width",
-        "info": "Only applies when Site width mode is set to Custom.",
-        "min": 1000,
-        "max": 1800,
-        "step": 20,
-        "unit": "px",
-        "default": 1200
+        "id": "section_heading_eyebrow_line_height",
+        "label": "Eyebrow line height",
+        "min": 80,
+        "max": 220,
+        "step": 5,
+        "unit": "%",
+        "default": 100
       },
       {
         "type": "range",
-        "id": "site_inset",
-        "label": "Site inset",
-        "info": "Adds left/right breathing room to site-width content across all breakpoints. Set to 0 for edge-to-edge layouts.",
-        "min": 0,
-        "max": 60,
-        "step": 2,
+        "id": "section_heading_eyebrow_letter_spacing",
+        "label": "Eyebrow letter spacing",
+        "min": -10,
+        "max": 30,
+        "step": 1,
         "unit": "px",
-        "default": 20
-      }
-    ]
-  },
-  {
-    "name": "Product cards",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "product_card_show_vendor",
-        "label": "Show vendor",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "product_card_show_sizes",
-        "label": "Show sizes available",
-        "default": false
-      },
-      {
-        "type": "text",
-        "id": "product_card_size_option_name",
-        "label": "Size option name",
-        "default": "Size",
-        "info": "Enter the exact product option name used for sizes, for example Size, Waist Size, or Clothing Size. This is case-insensitive. The size row only displays when the product has a matching option."
+        "default": 2
       },
       {
         "type": "select",
-        "id": "product_card_image_hover",
-        "label": "Image hover behaviour",
-        "default": "second_image",
+        "id": "section_heading_eyebrow_transform",
+        "label": "Eyebrow text transform",
+        "default": "uppercase",
         "options": [
           {
             "value": "none",
             "label": "None"
           },
           {
-            "value": "second_image",
-            "label": "Second image on hover"
+            "value": "uppercase",
+            "label": "Uppercase"
+          },
+          {
+            "value": "lowercase",
+            "label": "Lowercase"
+          },
+          {
+            "value": "capitalize",
+            "label": "Capitalize"
           }
         ]
       },
       {
+        "type": "color",
+        "id": "section_heading_eyebrow_colour",
+        "label": "Eyebrow colour",
+        "default": "#111111"
+      },
+      {
+        "type": "range",
+        "id": "section_heading_eyebrow_margin_bottom",
+        "label": "Eyebrow margin bottom",
+        "min": 0,
+        "max": 80,
+        "step": 2,
+        "unit": "px",
+        "default": 8
+      },
+      {
+        "type": "header",
+        "content": "Heading"
+      },
+      {
+        "type": "range",
+        "id": "section_heading_size_desktop",
+        "label": "Heading size desktop",
+        "min": 16,
+        "max": 96,
+        "step": 1,
+        "unit": "px",
+        "default": 32
+      },
+      {
+        "type": "range",
+        "id": "section_heading_size_mobile",
+        "label": "Heading size mobile",
+        "min": 16,
+        "max": 80,
+        "step": 1,
+        "unit": "px",
+        "default": 24
+      },
+      {
         "type": "select",
-        "id": "product_card_image_ratio",
-        "label": "Image ratio",
-        "default": "portrait",
+        "id": "section_heading_weight",
+        "label": "Heading weight",
+        "default": "700",
         "options": [
           {
-            "value": "adapt",
-            "label": "Adapt to image"
+            "value": "300",
+            "label": "Light"
           },
           {
-            "value": "square",
-            "label": "Square"
+            "value": "400",
+            "label": "Regular"
           },
           {
-            "value": "portrait",
-            "label": "Portrait"
+            "value": "500",
+            "label": "Medium"
           },
           {
-            "value": "landscape",
-            "label": "Landscape"
+            "value": "600",
+            "label": "Semibold"
+          },
+          {
+            "value": "700",
+            "label": "Bold"
+          },
+          {
+            "value": "800",
+            "label": "Extra bold"
           }
         ]
       },
       {
-        "type": "checkbox",
-        "id": "product_card_enable_hover_zoom",
-        "label": "Enable image hover zoom",
-        "default": false
+        "type": "range",
+        "id": "section_heading_line_height_desktop",
+        "label": "Heading line height desktop",
+        "min": 80,
+        "max": 220,
+        "step": 5,
+        "unit": "%",
+        "default": 105
+      },
+      {
+        "type": "range",
+        "id": "section_heading_line_height_mobile",
+        "label": "Heading line height mobile",
+        "min": 80,
+        "max": 220,
+        "step": 5,
+        "unit": "%",
+        "default": 110
+      },
+      {
+        "type": "range",
+        "id": "section_heading_letter_spacing",
+        "label": "Heading letter spacing",
+        "min": -10,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 0
       },
       {
         "type": "select",
-        "id": "product_card_action_layout",
-        "label": "Product card action layout",
-        "default": "below_info",
+        "id": "section_heading_transform",
+        "label": "Heading text transform",
+        "default": "uppercase",
         "options": [
           {
-            "value": "below_info",
-            "label": "Show button below info"
+            "value": "none",
+            "label": "None"
           },
           {
-            "value": "image_hover",
-            "label": "Show button on image hover"
+            "value": "uppercase",
+            "label": "Uppercase"
           },
           {
-            "value": "hidden",
-            "label": "Hide button"
+            "value": "lowercase",
+            "label": "Lowercase"
+          },
+          {
+            "value": "capitalize",
+            "label": "Capitalize"
           }
         ]
       },
       {
-        "type": "checkbox",
-        "id": "product_card_show_wishlist",
-        "label": "Show wishlist button",
-        "default": true
+        "type": "color",
+        "id": "section_heading_colour",
+        "label": "Heading colour",
+        "default": "#111111"
+      },
+      {
+        "type": "range",
+        "id": "section_heading_max_width",
+        "label": "Heading max width",
+        "min": 0,
+        "max": 1200,
+        "step": 20,
+        "unit": "px",
+        "default": 760
+      },
+      {
+        "type": "range",
+        "id": "section_heading_margin_bottom",
+        "label": "Heading margin bottom",
+        "min": 0,
+        "max": 80,
+        "step": 2,
+        "unit": "px",
+        "default": 12
+      },
+      {
+        "type": "header",
+        "content": "Description text"
+      },
+      {
+        "type": "paragraph",
+        "content": "Controls the optional supporting copy shown below section headings."
+      },
+      {
+        "type": "range",
+        "id": "section_heading_text_size_desktop",
+        "label": "Description size desktop",
+        "min": 10,
+        "max": 32,
+        "step": 1,
+        "unit": "px",
+        "default": 15
+      },
+      {
+        "type": "range",
+        "id": "section_heading_text_size_mobile",
+        "label": "Description size mobile",
+        "min": 10,
+        "max": 28,
+        "step": 1,
+        "unit": "px",
+        "default": 14
       },
       {
         "type": "select",
-        "id": "product_card_text_alignment",
-        "label": "Product card text alignment",
+        "id": "section_heading_text_weight",
+        "label": "Description weight",
+        "default": "400",
+        "options": [
+          {
+            "value": "300",
+            "label": "Light"
+          },
+          {
+            "value": "400",
+            "label": "Regular"
+          },
+          {
+            "value": "500",
+            "label": "Medium"
+          },
+          {
+            "value": "600",
+            "label": "Semibold"
+          },
+          {
+            "value": "700",
+            "label": "Bold"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "section_heading_text_line_height_desktop",
+        "label": "Description line height desktop",
+        "min": 100,
+        "max": 220,
+        "step": 5,
+        "unit": "%",
+        "default": 150
+      },
+      {
+        "type": "range",
+        "id": "section_heading_text_line_height_mobile",
+        "label": "Description line height mobile",
+        "min": 100,
+        "max": 220,
+        "step": 5,
+        "unit": "%",
+        "default": 145
+      },
+      {
+        "type": "range",
+        "id": "section_heading_text_letter_spacing",
+        "label": "Description letter spacing",
+        "min": -10,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 0
+      },
+      {
+        "type": "color",
+        "id": "section_heading_text_colour",
+        "label": "Description colour",
+        "default": "#555555"
+      },
+      {
+        "type": "range",
+        "id": "section_heading_text_max_width",
+        "label": "Description max width",
+        "min": 0,
+        "max": 1200,
+        "step": 20,
+        "unit": "px",
+        "default": 680
+      },
+      {
+        "type": "header",
+        "content": "Layout"
+      },
+      {
+        "type": "select",
+        "id": "section_heading_alignment",
+        "label": "Alignment",
         "default": "left",
         "options": [
           {
@@ -379,6 +776,26 @@
             "label": "Centre"
           }
         ]
+      },
+      {
+        "type": "range",
+        "id": "section_heading_margin_bottom_desktop",
+        "label": "Section heading margin bottom desktop",
+        "min": 0,
+        "max": 120,
+        "step": 2,
+        "unit": "px",
+        "default": 24
+      },
+      {
+        "type": "range",
+        "id": "section_heading_margin_bottom_mobile",
+        "label": "Section heading margin bottom mobile",
+        "min": 0,
+        "max": 120,
+        "step": 2,
+        "unit": "px",
+        "default": 18
       }
     ]
   },
@@ -409,7 +826,7 @@
         "type": "link_list",
         "id": "header_menu",
         "label": "Fallback desktop menu",
-        "info": "Used only when the Header section has no navigation blocks."
+        "info": "Used only when Header navigation blocks are empty."
       },
       {
         "type": "select",
@@ -445,8 +862,8 @@
       {
         "type": "select",
         "id": "nav_collapse_width",
-        "label": "Mobile menu breakpoint",
-        "info": "Below this width, the desktop header switches to the mobile hamburger layout.",
+        "label": "Desktop/mobile switch width",
+        "info": "Viewport width where desktop navigation switches to the mobile header.",
         "default": "1100",
         "options": [
           {
@@ -510,17 +927,46 @@
         "default": 12
       },
       {
+        "type": "range",
+        "id": "header_nav_size_mobile",
+        "label": "Mobile navigation text size",
+        "info": "Controls mobile navigation text in the drawer and mobile header selector.",
+        "min": 10,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 13
+      },
+      {
         "type": "select",
         "id": "nav_text_weight",
         "label": "Desktop navigation text weight",
         "default": "800",
         "options": [
-          { "value": "300", "label": "Light" },
-          { "value": "400", "label": "Regular" },
-          { "value": "500", "label": "Medium" },
-          { "value": "600", "label": "Semibold" },
-          { "value": "700", "label": "Bold" },
-          { "value": "800", "label": "Extra bold" }
+          {
+            "value": "300",
+            "label": "Light"
+          },
+          {
+            "value": "400",
+            "label": "Regular"
+          },
+          {
+            "value": "500",
+            "label": "Medium"
+          },
+          {
+            "value": "600",
+            "label": "Semibold"
+          },
+          {
+            "value": "700",
+            "label": "Bold"
+          },
+          {
+            "value": "800",
+            "label": "Extra bold"
+          }
         ]
       },
       {
@@ -539,10 +985,22 @@
         "label": "Desktop navigation text transform",
         "default": "uppercase",
         "options": [
-          { "value": "none", "label": "None" },
-          { "value": "uppercase", "label": "Uppercase" },
-          { "value": "lowercase", "label": "Lowercase" },
-          { "value": "capitalize", "label": "Capitalize" }
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "uppercase",
+            "label": "Uppercase"
+          },
+          {
+            "value": "lowercase",
+            "label": "Lowercase"
+          },
+          {
+            "value": "capitalize",
+            "label": "Capitalize"
+          }
         ]
       },
       {
@@ -554,6 +1012,10 @@
         "step": 2,
         "unit": "px",
         "default": 24
+      },
+      {
+        "type": "header",
+        "content": "Visual style"
       },
       {
         "type": "color",
@@ -606,233 +1068,6 @@
             "label": "Custom"
           }
         ]
-      },
-      {
-        "type": "header",
-        "content": "Advanced"
-      },
-      {
-        "type": "paragraph",
-        "content": "Custom shadow controls below only apply when Header shadow is set to Custom."
-      },
-      {
-        "type": "range",
-        "id": "header_shadow_opacity",
-        "label": "Shadow opacity",
-        "info": "Only applies when Header shadow is set to Custom.",
-        "min": 0,
-        "max": 40,
-        "step": 1,
-        "unit": "%",
-        "default": 10
-      },
-      {
-        "type": "range",
-        "id": "header_shadow_offset_y",
-        "label": "Shadow vertical offset",
-        "info": "Only applies when Header shadow is set to Custom.",
-        "min": 0,
-        "max": 30,
-        "step": 1,
-        "unit": "px",
-        "default": 8
-      },
-      {
-        "type": "range",
-        "id": "header_shadow_blur",
-        "label": "Shadow blur",
-        "info": "Only applies when Header shadow is set to Custom.",
-        "min": 0,
-        "max": 80,
-        "step": 1,
-        "unit": "px",
-        "default": 24
-      },
-      {
-        "type": "header",
-        "content": "Scroll behaviour"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_sticky",
-        "label": "Sticky header",
-        "default": true
-      },
-      {
-        "type": "header",
-        "content": "Transparent header"
-      },
-      {
-        "type": "select",
-        "id": "transparent_header_mode",
-        "label": "Transparent header",
-        "default": "homepage",
-        "options": [
-          {
-            "value": "off",
-            "label": "Off"
-          },
-          {
-            "value": "homepage",
-            "label": "Homepage only"
-          },
-          {
-            "value": "all",
-            "label": "All pages"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "transparent_header_colour_scheme",
-        "label": "Transparent header colour scheme",
-        "default": "light",
-        "options": [
-          {
-            "value": "light",
-            "label": "Light text"
-          },
-          {
-            "value": "dark",
-            "label": "Dark text"
-          },
-          {
-            "value": "custom",
-            "label": "Custom"
-          }
-        ]
-      },
-      {
-        "type": "color",
-        "id": "transparent_header_text_colour",
-        "label": "Transparent header text/icon colour",
-        "default": "#ffffff"
-      },
-      {
-        "type": "range",
-        "id": "transparent_header_background_opacity",
-        "label": "Transparent header background opacity",
-        "min": 0,
-        "max": 100,
-        "step": 1,
-        "unit": "%",
-        "default": 0
-      },
-      {
-        "type": "color",
-        "id": "transparent_header_border_colour",
-        "label": "Transparent header border colour",
-        "default": "#00000000"
-      },
-      {
-        "type": "checkbox",
-        "id": "transparent_header_solid_after_scroll",
-        "label": "Use solid header after scroll",
-        "default": true
-      },
-      {
-        "type": "select",
-        "id": "header_stack_scroll_behavior",
-        "label": "Header stack behaviour on scroll",
-        "default": "always_visible",
-        "options": [
-          {
-            "value": "always_visible",
-            "label": "Always visible"
-          },
-          {
-            "value": "fade_away_after_scroll",
-            "label": "Fade away after scroll"
-          }
-        ]
-      },
-      {
-        "type": "range",
-        "id": "header_stack_scroll_threshold",
-        "label": "Header stack fade threshold - desktop",
-        "info": "Scroll distance before the announcement/header stack fades away on desktop.",
-        "min": 0,
-        "max": 200,
-        "step": 2,
-        "unit": "px",
-        "default": 40
-      },
-      {
-        "type": "range",
-        "id": "header_stack_scroll_threshold_mobile",
-        "label": "Header stack fade threshold - mobile",
-        "info": "Scroll distance before the announcement/header stack fades away on mobile.",
-        "min": 0,
-        "max": 200,
-        "step": 2,
-        "unit": "px",
-        "default": 24
-      },
-      {
-        "type": "select",
-        "id": "header_stack_transition",
-        "label": "Header stack transition",
-        "default": "fade_slide",
-        "options": [
-          {
-            "value": "fade",
-            "label": "Fade"
-          },
-          {
-            "value": "slide",
-            "label": "Slide"
-          },
-          {
-            "value": "fade_slide",
-            "label": "Fade + slide"
-          }
-        ]
-      },
-      {
-        "type": "range",
-        "id": "header_stack_transition_duration",
-        "label": "Header stack transition duration",
-        "info": "Controls how quickly the announcement/header stack fades or slides away after scrolling.",
-        "min": 100,
-        "max": 1200,
-        "step": 50,
-        "unit": "ms",
-        "default": 350
-      },
-      {
-        "type": "select",
-        "id": "header_stack_transition_easing",
-        "label": "Header stack transition easing",
-        "default": "smooth",
-        "info": "Controls how softly the announcement/header stack fades or slides.",
-        "options": [
-          {
-            "value": "ease",
-            "label": "Ease"
-          },
-          {
-            "value": "smooth",
-            "label": "Smooth"
-          },
-          {
-            "value": "snappy",
-            "label": "Snappy"
-          },
-          {
-            "value": "linear",
-            "label": "Linear"
-          }
-        ]
-      },
-      {
-        "type": "color",
-        "id": "transparent_header_solid_background",
-        "label": "Solid header background after scroll"
-      },
-      {
-        "type": "color",
-        "id": "transparent_header_solid_text_colour",
-        "label": "Solid header text/icon colour after scroll"
       },
       {
         "type": "header",
@@ -1013,7 +1248,8 @@
       {
         "type": "color",
         "id": "country_selector_text",
-        "label": "Country selector text colour"
+        "label": "Country selector text colour",
+        "info": "Applies to normal and solid scrolled states. Transparent state follows transparent header text colour."
       },
       {
         "type": "range",
@@ -1026,164 +1262,689 @@
         "default": 48
       },
       {
+        "type": "header",
+        "content": "Transparent header"
+      },
+      {
+        "type": "select",
+        "id": "transparent_header_mode",
+        "label": "Transparent header",
+        "default": "homepage",
+        "options": [
+          {
+            "value": "off",
+            "label": "Off"
+          },
+          {
+            "value": "homepage",
+            "label": "Homepage only"
+          },
+          {
+            "value": "all",
+            "label": "All pages"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "transparent_header_colour_scheme",
+        "label": "Transparent header colour scheme",
+        "default": "light",
+        "options": [
+          {
+            "value": "light",
+            "label": "Light text"
+          },
+          {
+            "value": "dark",
+            "label": "Dark text"
+          },
+          {
+            "value": "custom",
+            "label": "Custom"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "id": "transparent_header_text_colour",
+        "label": "Transparent header text/icon colour",
+        "default": "#ffffff"
+      },
+      {
+        "type": "range",
+        "id": "transparent_header_background_opacity",
+        "label": "Transparent header background opacity",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "default": 0
+      },
+      {
+        "type": "color",
+        "id": "transparent_header_border_colour",
+        "label": "Transparent header border colour",
+        "default": "#00000000"
+      },
+      {
+        "type": "checkbox",
+        "id": "transparent_header_solid_after_scroll",
+        "label": "Use solid header after scroll",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "transparent_header_solid_background",
+        "label": "Solid header background after scroll"
+      },
+      {
+        "type": "color",
+        "id": "transparent_header_solid_text_colour",
+        "label": "Solid header text/icon colour after scroll"
+      },
+      {
+        "type": "header",
+        "content": "Scroll behaviour"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_sticky",
+        "label": "Sticky header",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "header_stack_scroll_behavior",
+        "label": "Header stack behaviour on scroll",
+        "default": "always_visible",
+        "options": [
+          {
+            "value": "always_visible",
+            "label": "Always visible"
+          },
+          {
+            "value": "fade_away_after_scroll",
+            "label": "Fade away after scroll"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "header_stack_scroll_threshold",
+        "label": "Header stack fade threshold - desktop",
+        "info": "Scroll distance before the announcement/header stack fades away on desktop.",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "default": 40
+      },
+      {
+        "type": "range",
+        "id": "header_stack_scroll_threshold_mobile",
+        "label": "Header stack fade threshold - mobile",
+        "info": "Scroll distance before the announcement/header stack fades away on mobile.",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "default": 24
+      },
+      {
+        "type": "select",
+        "id": "header_stack_transition",
+        "label": "Header stack transition",
+        "default": "fade_slide",
+        "options": [
+          {
+            "value": "fade",
+            "label": "Fade"
+          },
+          {
+            "value": "slide",
+            "label": "Slide"
+          },
+          {
+            "value": "fade_slide",
+            "label": "Fade + slide"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "header_stack_transition_duration",
+        "label": "Header stack transition duration",
+        "info": "Controls how quickly the announcement/header stack fades or slides away after scrolling.",
+        "min": 100,
+        "max": 1200,
+        "step": 50,
+        "unit": "ms",
+        "default": 350
+      },
+      {
+        "type": "select",
+        "id": "header_stack_transition_easing",
+        "label": "Header stack transition easing",
+        "default": "smooth",
+        "info": "Controls how softly the announcement/header stack fades or slides.",
+        "options": [
+          {
+            "value": "ease",
+            "label": "Ease"
+          },
+          {
+            "value": "smooth",
+            "label": "Smooth"
+          },
+          {
+            "value": "snappy",
+            "label": "Snappy"
+          },
+          {
+            "value": "linear",
+            "label": "Linear"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Advanced"
+      },
+      {
+        "type": "paragraph",
+        "content": "Custom shadow controls below only apply when Header shadow is set to Custom."
+      },
+      {
+        "type": "range",
+        "id": "header_shadow_opacity",
+        "label": "Custom shadow opacity",
+        "info": "Only used when Header shadow is set to Custom.",
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "unit": "%",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "header_shadow_offset_y",
+        "label": "Custom shadow vertical offset",
+        "info": "Only used when Header shadow is set to Custom.",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 8
+      },
+      {
+        "type": "range",
+        "id": "header_shadow_blur",
+        "label": "Custom shadow blur",
+        "info": "Only used when Header shadow is set to Custom.",
+        "min": 0,
+        "max": 80,
+        "step": 1,
+        "unit": "px",
+        "default": 24
+      },
+      {
         "type": "paragraph",
         "content": "These controls set global defaults for the CNVRT header."
       }
     ]
   },
   {
-    "name": "Section headings",
+    "name": "Product cards",
     "settings": [
-      { "type": "header", "content": "Eyebrow" },
-      { "type": "range", "id": "section_heading_eyebrow_size_desktop", "label": "Eyebrow size desktop", "min": 10, "max": 40, "step": 1, "unit": "px", "default": 12 },
-      { "type": "range", "id": "section_heading_eyebrow_size_mobile", "label": "Eyebrow size mobile", "min": 10, "max": 32, "step": 1, "unit": "px", "default": 11 },
       {
-        "type": "select",
-        "id": "section_heading_eyebrow_weight",
-        "label": "Eyebrow weight",
-        "default": "600",
-        "options": [
-          { "value": "300", "label": "Light" },
-          { "value": "400", "label": "Regular" },
-          { "value": "500", "label": "Medium" },
-          { "value": "600", "label": "Semibold" },
-          { "value": "700", "label": "Bold" },
-          { "value": "800", "label": "Extra bold" }
-        ]
+        "type": "header",
+        "content": "Card content and behaviour"
       },
-      { "type": "range", "id": "section_heading_eyebrow_line_height", "label": "Eyebrow line height", "min": 80, "max": 220, "step": 5, "unit": "%", "default": 100 },
-      { "type": "range", "id": "section_heading_eyebrow_letter_spacing", "label": "Eyebrow letter spacing", "min": -10, "max": 30, "step": 1, "unit": "px", "default": 2 },
       {
-        "type": "select",
-        "id": "section_heading_eyebrow_transform",
-        "label": "Eyebrow text transform",
-        "default": "uppercase",
-        "options": [
-          { "value": "none", "label": "None" },
-          { "value": "uppercase", "label": "Uppercase" },
-          { "value": "lowercase", "label": "Lowercase" },
-          { "value": "capitalize", "label": "Capitalize" }
-        ]
+        "type": "checkbox",
+        "id": "product_card_show_vendor",
+        "label": "Show vendor",
+        "default": true
       },
-      { "type": "color", "id": "section_heading_eyebrow_colour", "label": "Eyebrow colour", "default": "#111111" },
-      { "type": "range", "id": "section_heading_eyebrow_margin_bottom", "label": "Eyebrow margin bottom", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 8 },
-
-      { "type": "header", "content": "Heading" },
-      { "type": "range", "id": "section_heading_size_desktop", "label": "Heading size desktop", "min": 16, "max": 96, "step": 1, "unit": "px", "default": 32 },
-      { "type": "range", "id": "section_heading_size_mobile", "label": "Heading size mobile", "min": 16, "max": 80, "step": 1, "unit": "px", "default": 24 },
       {
-        "type": "select",
-        "id": "section_heading_weight",
-        "label": "Heading weight",
-        "default": "700",
-        "options": [
-          { "value": "300", "label": "Light" },
-          { "value": "400", "label": "Regular" },
-          { "value": "500", "label": "Medium" },
-          { "value": "600", "label": "Semibold" },
-          { "value": "700", "label": "Bold" },
-          { "value": "800", "label": "Extra bold" }
-        ]
+        "type": "checkbox",
+        "id": "product_card_show_sizes",
+        "label": "Show sizes available",
+        "default": false
       },
-      { "type": "range", "id": "section_heading_line_height_desktop", "label": "Heading line height desktop", "min": 80, "max": 220, "step": 5, "unit": "%", "default": 105 },
-      { "type": "range", "id": "section_heading_line_height_mobile", "label": "Heading line height mobile", "min": 80, "max": 220, "step": 5, "unit": "%", "default": 110 },
-      { "type": "range", "id": "section_heading_letter_spacing", "label": "Heading letter spacing", "min": -10, "max": 30, "step": 1, "unit": "px", "default": 0 },
       {
-        "type": "select",
-        "id": "section_heading_transform",
-        "label": "Heading text transform",
-        "default": "uppercase",
-        "options": [
-          { "value": "none", "label": "None" },
-          { "value": "uppercase", "label": "Uppercase" },
-          { "value": "lowercase", "label": "Lowercase" },
-          { "value": "capitalize", "label": "Capitalize" }
-        ]
+        "type": "text",
+        "id": "product_card_size_option_name",
+        "label": "Size option name",
+        "default": "Size",
+        "info": "Enter the exact product option name used for sizes, for example Size, Waist Size, or Clothing Size. This is case-insensitive. The size row only displays when the product has a matching option."
       },
-      { "type": "color", "id": "section_heading_colour", "label": "Heading colour", "default": "#111111" },
-      { "type": "range", "id": "section_heading_max_width", "label": "Heading max width", "min": 0, "max": 1200, "step": 20, "unit": "px", "default": 760 },
-      { "type": "range", "id": "section_heading_margin_bottom", "label": "Heading margin bottom", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 12 },
-
-      { "type": "header", "content": "Text / subtitle" },
-      { "type": "range", "id": "section_heading_text_size_desktop", "label": "Text size desktop", "min": 10, "max": 32, "step": 1, "unit": "px", "default": 15 },
-      { "type": "range", "id": "section_heading_text_size_mobile", "label": "Text size mobile", "min": 10, "max": 28, "step": 1, "unit": "px", "default": 14 },
       {
         "type": "select",
-        "id": "section_heading_text_weight",
-        "label": "Text weight",
-        "default": "400",
-        "options": [
-          { "value": "300", "label": "Light" },
-          { "value": "400", "label": "Regular" },
-          { "value": "500", "label": "Medium" },
-          { "value": "600", "label": "Semibold" },
-          { "value": "700", "label": "Bold" }
-        ]
-      },
-      { "type": "range", "id": "section_heading_text_line_height_desktop", "label": "Text line height desktop", "min": 100, "max": 220, "step": 5, "unit": "%", "default": 150 },
-      { "type": "range", "id": "section_heading_text_line_height_mobile", "label": "Text line height mobile", "min": 100, "max": 220, "step": 5, "unit": "%", "default": 145 },
-      { "type": "range", "id": "section_heading_text_letter_spacing", "label": "Text letter spacing", "min": -10, "max": 20, "step": 1, "unit": "px", "default": 0 },
-      { "type": "color", "id": "section_heading_text_colour", "label": "Text colour", "default": "#555555" },
-      { "type": "range", "id": "section_heading_text_max_width", "label": "Text max width", "min": 0, "max": 1200, "step": 20, "unit": "px", "default": 680 },
-
-      { "type": "header", "content": "Layout" },
-      {
-        "type": "select",
-        "id": "section_heading_alignment",
-        "label": "Alignment",
+        "id": "product_card_text_alignment",
+        "label": "Product card text alignment",
         "default": "left",
         "options": [
-          { "value": "left", "label": "Left" },
-          { "value": "center", "label": "Centre" }
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Centre"
+          }
         ]
       },
-      { "type": "range", "id": "section_heading_margin_bottom_desktop", "label": "Section heading margin bottom desktop", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 24 },
-      { "type": "range", "id": "section_heading_margin_bottom_mobile", "label": "Section heading margin bottom mobile", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 18 }
-    ]
-  },
-  {
-    "name": "t:general.colors",
-    "settings": [
       {
-        "type": "color",
-        "id": "background_color",
-        "default": "#FFFFFF",
-        "label": "Page background"
+        "type": "header",
+        "content": "Images"
       },
       {
-        "type": "color",
-        "id": "foreground_color",
-        "default": "#1a1a1a",
-        "label": "Text colour"
+        "type": "select",
+        "id": "product_card_image_hover",
+        "label": "Image hover behaviour",
+        "default": "second_image",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "second_image",
+            "label": "Second image on hover"
+          }
+        ]
       },
       {
-        "type": "color",
-        "id": "sand_color",
-        "default": "#f6f4ef",
-        "label": "Soft background",
-        "info": "Used for gentle surfaces such as search fields and subtle menu backgrounds."
+        "type": "select",
+        "id": "product_card_image_ratio",
+        "label": "Image ratio",
+        "default": "portrait",
+        "options": [
+          {
+            "value": "adapt",
+            "label": "Adapt to image"
+          },
+          {
+            "value": "square",
+            "label": "Square"
+          },
+          {
+            "value": "portrait",
+            "label": "Portrait"
+          },
+          {
+            "value": "landscape",
+            "label": "Landscape"
+          }
+        ]
       },
       {
-        "type": "color",
-        "id": "muted_color",
-        "default": "#737373",
-        "label": "Muted text"
+        "type": "checkbox",
+        "id": "product_card_enable_hover_zoom",
+        "label": "Enable image hover zoom",
+        "default": false
       },
       {
-        "type": "color",
-        "id": "border_color",
-        "default": "#e8e8e8",
-        "label": "Border colour"
+        "type": "header",
+        "content": "Actions"
+      },
+      {
+        "type": "select",
+        "id": "product_card_action_layout",
+        "label": "Product card action layout",
+        "default": "below_info",
+        "options": [
+          {
+            "value": "below_info",
+            "label": "Show button below info"
+          },
+          {
+            "value": "image_hover",
+            "label": "Show button on image hover"
+          },
+          {
+            "value": "hidden",
+            "label": "Hide button"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "product_card_show_wishlist",
+        "label": "Show wishlist button",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Typography"
+      },
+      {
+        "type": "paragraph",
+        "content": "These settings style vendor, title, price, size row and action button text across all product cards."
       },
       {
         "type": "range",
-        "id": "input_corner_radius",
-        "min": 0,
-        "max": 10,
+        "id": "product_card_vendor_size",
+        "label": "Vendor size",
+        "min": 10,
+        "max": 24,
         "step": 1,
         "unit": "px",
-        "label": "t:labels.input_corner_radius",
-        "default": 0
+        "default": 11
+      },
+      {
+        "type": "select",
+        "id": "product_card_vendor_weight",
+        "label": "Vendor weight",
+        "default": "500",
+        "options": [
+          {
+            "value": "300",
+            "label": "Light"
+          },
+          {
+            "value": "400",
+            "label": "Regular"
+          },
+          {
+            "value": "500",
+            "label": "Medium"
+          },
+          {
+            "value": "600",
+            "label": "Semibold"
+          },
+          {
+            "value": "700",
+            "label": "Bold"
+          },
+          {
+            "value": "800",
+            "label": "Extra bold"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "product_card_vendor_letter_spacing",
+        "label": "Vendor letter spacing",
+        "min": -10,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 1
+      },
+      {
+        "type": "select",
+        "id": "product_card_vendor_transform",
+        "label": "Vendor text transform",
+        "default": "uppercase",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "uppercase",
+            "label": "Uppercase"
+          },
+          {
+            "value": "lowercase",
+            "label": "Lowercase"
+          },
+          {
+            "value": "capitalize",
+            "label": "Capitalize"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "product_card_title_size",
+        "label": "Title size",
+        "min": 12,
+        "max": 36,
+        "step": 1,
+        "unit": "px",
+        "default": 14
+      },
+      {
+        "type": "select",
+        "id": "product_card_title_weight",
+        "label": "Title weight",
+        "default": "700",
+        "options": [
+          {
+            "value": "300",
+            "label": "Light"
+          },
+          {
+            "value": "400",
+            "label": "Regular"
+          },
+          {
+            "value": "500",
+            "label": "Medium"
+          },
+          {
+            "value": "600",
+            "label": "Semibold"
+          },
+          {
+            "value": "700",
+            "label": "Bold"
+          },
+          {
+            "value": "800",
+            "label": "Extra bold"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "product_card_title_line_height",
+        "label": "Title line height",
+        "min": 100,
+        "max": 180,
+        "step": 5,
+        "unit": "%",
+        "default": 125
+      },
+      {
+        "type": "range",
+        "id": "product_card_title_letter_spacing",
+        "label": "Title letter spacing",
+        "min": -10,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 1
+      },
+      {
+        "type": "select",
+        "id": "product_card_title_transform",
+        "label": "Title text transform",
+        "default": "uppercase",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "uppercase",
+            "label": "Uppercase"
+          },
+          {
+            "value": "lowercase",
+            "label": "Lowercase"
+          },
+          {
+            "value": "capitalize",
+            "label": "Capitalize"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "product_card_price_size",
+        "label": "Price size",
+        "min": 10,
+        "max": 28,
+        "step": 1,
+        "unit": "px",
+        "default": 13
+      },
+      {
+        "type": "select",
+        "id": "product_card_price_weight",
+        "label": "Price weight",
+        "default": "600",
+        "options": [
+          {
+            "value": "300",
+            "label": "Light"
+          },
+          {
+            "value": "400",
+            "label": "Regular"
+          },
+          {
+            "value": "500",
+            "label": "Medium"
+          },
+          {
+            "value": "600",
+            "label": "Semibold"
+          },
+          {
+            "value": "700",
+            "label": "Bold"
+          },
+          {
+            "value": "800",
+            "label": "Extra bold"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "product_card_sizes_size",
+        "label": "Sizes row size",
+        "min": 10,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "default": 11
+      },
+      {
+        "type": "select",
+        "id": "product_card_sizes_weight",
+        "label": "Sizes row weight",
+        "default": "500",
+        "options": [
+          {
+            "value": "300",
+            "label": "Light"
+          },
+          {
+            "value": "400",
+            "label": "Regular"
+          },
+          {
+            "value": "500",
+            "label": "Medium"
+          },
+          {
+            "value": "600",
+            "label": "Semibold"
+          },
+          {
+            "value": "700",
+            "label": "Bold"
+          },
+          {
+            "value": "800",
+            "label": "Extra bold"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "product_card_button_size",
+        "label": "Button text size",
+        "min": 10,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "default": 12
+      },
+      {
+        "type": "select",
+        "id": "product_card_button_weight",
+        "label": "Button text weight",
+        "default": "700",
+        "options": [
+          {
+            "value": "300",
+            "label": "Light"
+          },
+          {
+            "value": "400",
+            "label": "Regular"
+          },
+          {
+            "value": "500",
+            "label": "Medium"
+          },
+          {
+            "value": "600",
+            "label": "Semibold"
+          },
+          {
+            "value": "700",
+            "label": "Bold"
+          },
+          {
+            "value": "800",
+            "label": "Extra bold"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "product_card_button_letter_spacing",
+        "label": "Button letter spacing",
+        "min": -10,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 8
+      },
+      {
+        "type": "select",
+        "id": "product_card_button_transform",
+        "label": "Button text transform",
+        "default": "uppercase",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "uppercase",
+            "label": "Uppercase"
+          },
+          {
+            "value": "lowercase",
+            "label": "Lowercase"
+          },
+          {
+            "value": "capitalize",
+            "label": "Capitalize"
+          }
+        ]
       }
     ]
   }

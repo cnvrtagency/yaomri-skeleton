@@ -348,13 +348,13 @@
         { "value": "subtle_zoom", "label": "Subtle zoom" }
       ]
     },
-    { "type": "checkbox", "id": "show_count_default", "label": "Show product count by default", "default": true },
+    { "type": "checkbox", "id": "show_count_default", "label": "Show product count by default", "info": "Applies to cards unless overridden per card block.", "default": true },
     {
       "type": "checkbox",
       "id": "use_first_product_image",
-      "label": "Use first product image when collection image is missing",
+      "label": "Use first product image as fallback",
       "default": true,
-      "info": "Collection image is used first. If unavailable, the first product image can be used as a fallback."
+      "info": "Uses the first product image when the collection image is missing."
     },
 
     { "type": "header", "content": "Carousel / grid" },
@@ -405,7 +405,7 @@
     { "type": "range", "id": "card_title_letter_spacing", "label": "Card title letter spacing", "min": -10, "max": 40, "step": 1, "unit": "em", "default": 0 },
     { "type": "select", "id": "card_title_transform", "label": "Card title text transform", "default": "uppercase", "options": [{ "value": "none", "label": "None" }, { "value": "uppercase", "label": "Uppercase" }, { "value": "lowercase", "label": "Lowercase" }, { "value": "capitalize", "label": "Capitalize" }] },
     { "type": "color", "id": "card_title_color", "label": "Card title colour", "default": "#ffffff" },
-    { "type": "header", "content": "Card meta typography" },
+    { "type": "header", "content": "Card meta" },
     { "type": "range", "id": "card_meta_size_desktop", "label": "Card meta size desktop", "min": 10, "max": 24, "step": 1, "unit": "px", "default": 11 },
     { "type": "range", "id": "card_meta_size_mobile", "label": "Card meta size mobile", "min": 10, "max": 20, "step": 1, "unit": "px", "default": 10 },
     { "type": "select", "id": "card_meta_weight", "label": "Card meta weight", "default": "600", "options": [{ "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "Semibold" }, { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra bold" }] },
