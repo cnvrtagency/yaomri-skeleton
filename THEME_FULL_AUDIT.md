@@ -20,6 +20,7 @@ Current state:
 9. Legacy removal Phase 2 (footer markup only) is complete: `sections/footer.liquid` now emits CNVRT footer classes only; footer CSS legacy fallback selectors are intentionally retained for one release.
 10. Legacy removal Phase 3 (announcement markup only) is complete: `sections/announcement-bar.liquid` now emits CNVRT announcement classes only; announcement CSS/JS selector fallbacks and `--yab-*` variable fallbacks are intentionally retained for one release.
 11. Legacy removal Phase 4 (Collection Cards markup only) is complete: `sections/collection-cards.liquid` now emits CNVRT collection-card classes only; collection CSS/JS/data selector fallbacks and `--cc-*` variable fallbacks are intentionally retained for one release.
+12. Legacy removal Phase 5 (Single Image Hero markup only) is complete: `sections/single-image-hero.liquid` now emits CNVRT single-hero classes only; hero CSS selector fallbacks and `--ysh-*` variable fallbacks are intentionally retained for one release.
 
 ## B. Critical launch blockers
 
@@ -174,7 +175,7 @@ Current state:
 
 1. Prefix inventory (large-theme presence)
    - `yaomri-`: very high concentration (core styling, all major nav/header/hero components)
-  - `ysh-`: Single Image Hero system (already paired with `cnvrt-single-hero*` in phase 3 aliases)
+  - `ysh-`: Single Image Hero variable system (`--ysh-*`) retained as compatibility fallback after Phase 5 markup cleanup
    - `yh-`: header-level tokens/variables
   - `ym-`: header/inline variables (paired with header migration work; mega-menu still pending)
   - `yab-`: announcement local variants (already paired with `cnvrt-announcement*` in phase 1 aliases)

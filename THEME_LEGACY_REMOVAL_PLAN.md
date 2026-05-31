@@ -9,6 +9,7 @@
 - Phase 2 is complete: legacy footer markup aliases (`site-footer`, `footer__*`) were removed from `sections/footer.liquid`; footer CSS legacy fallbacks remain intentionally active for one release.
 - Phase 3 is complete: legacy `yaomri-announcement*` markup classes were removed from `sections/announcement-bar.liquid`; CSS/JS and `--yab-*` variable fallbacks remain intentionally active for one release.
 - Phase 4 is complete: legacy `cc-*` markup classes were removed from `sections/collection-cards.liquid`; CSS/JS/data and `--cc-*` variable fallbacks remain intentionally active for one release.
+- Phase 5 is complete: legacy `yaomri-single-hero*` markup classes were removed from `sections/single-image-hero.liquid`; hero CSS selector fallbacks and `--ysh-*` variable fallbacks remain intentionally active for one release.
 
 ## Prefix inventory (legacy readiness)
 
@@ -53,16 +54,16 @@
 - Class: **C**.
 
 ### 3) Single Image Hero
-- Liquid: dual class layer + `--ysh-*` compatibility vars.
+- Liquid: CNVRT single-hero classes are now primary in markup; legacy `--ysh-*` compatibility vars remain emitted.
 - CSS: legacy fallback vars and legacy selector coverage still active.
 - JS: none.
 - CNVRT equivalent: yes.
 - JS prefers CNVRT: N/A.
-- Remove legacy markup classes now: **No**.
+- Remove legacy markup classes now: **Completed in Phase 5 (markup-only)**.
 - Remove legacy CSS aliases now: **No**.
 - Keep old vars: **Yes** (`--ysh-*`).
 - Risk: **Medium**.
-- Action: keep aliases until selector parity + visual QA pass.
+- Action: keep CSS selector fallbacks and variable compatibility aliases for one release; next removal candidate remains pending QA sign-off.
 - Class: **B**.
 
 ### 4) Three Card Hero
@@ -153,7 +154,8 @@
 3. Footer markup-only legacy aliases (`site-footer`, `footer__*`) in `sections/footer.liquid` were safe and have now been removed (Phase 2 complete).
 4. Announcement markup-only `yaomri-announcement*` aliases in `sections/announcement-bar.liquid` were safe and have now been removed (Phase 3 complete).
 5. Collection Cards markup-only `cc-*` aliases in `sections/collection-cards.liquid` were safe and have now been removed (Phase 4 complete).
-6. No additional runtime legacy class/var alias is globally safe for immediate removal across all components.
+6. Single Image Hero markup-only `yaomri-single-hero*` aliases in `sections/single-image-hero.liquid` were safe and have now been removed (Phase 5 complete).
+7. No additional runtime legacy class/var alias is globally safe for immediate removal across all components.
 
 ## Keep-temporarily list (B)
 1. `yab-*` (Announcement vars)
@@ -189,7 +191,7 @@
    - `YAOMRI_BUILD_SPEC.md`
 
 ## First removal target recommendation
-- **Completed runtime removal phases:** Cart markup aliases (Phase 1), Footer markup aliases (Phase 2), Announcement markup aliases (Phase 3), Collection Cards markup aliases (Phase 4).
+- **Completed runtime removal phases:** Cart markup aliases (Phase 1), Footer markup aliases (Phase 2), Announcement markup aliases (Phase 3), Collection Cards markup aliases (Phase 4), Single Image Hero markup aliases (Phase 5).
 - Scope:
   1. Removed `yaomri-cart*` classes from `sections/cart.liquid` only.
   2. Kept `cnvrt-cart*` classes.
@@ -201,6 +203,8 @@
   8. Kept announcement CSS/JS selector fallbacks and `--yab-*` variable fallbacks for one release.
   9. Removed `cc-*` classes from `sections/collection-cards.liquid`.
   10. Kept collection-cards CSS/JS/data selector fallbacks and `--cc-*` variable fallbacks for one release.
+  11. Removed `yaomri-single-hero*` classes from `sections/single-image-hero.liquid`.
+  12. Kept single-image-hero CSS selector fallbacks and `--ysh-*` variable fallbacks for one release.
 - Why these phases: isolated/low-coupling markup-only cleanups with no selector/runtime removals.
 - Next candidate: pending QA sign-off.
 

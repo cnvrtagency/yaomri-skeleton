@@ -46,7 +46,7 @@
 -%}
 
 <section
-  class="yaomri-single-hero cnvrt-single-hero yaomri-single-hero--width-{{ width_mode }} cnvrt-single-hero--width-{{ width_mode }} yaomri-single-hero--content-width-{{ content_width_mode }} cnvrt-single-hero--content-width-{{ content_width_mode }} yaomri-single-hero--desktop-height-{{ desktop_height_mode }} cnvrt-single-hero--desktop-height-{{ desktop_height_mode }} yaomri-single-hero--mobile-height-{{ mobile_height_mode }} cnvrt-single-hero--mobile-height-{{ mobile_height_mode }} yaomri-single-hero--desktop-horizontal-{{ desktop_horizontal }} cnvrt-single-hero--desktop-horizontal-{{ desktop_horizontal }} yaomri-single-hero--desktop-vertical-{{ desktop_vertical }} cnvrt-single-hero--desktop-vertical-{{ desktop_vertical }} yaomri-single-hero--desktop-text-{{ desktop_text_alignment }} cnvrt-single-hero--desktop-text-{{ desktop_text_alignment }} yaomri-single-hero--mobile-horizontal-{{ mobile_horizontal }} cnvrt-single-hero--mobile-horizontal-{{ mobile_horizontal }} yaomri-single-hero--mobile-vertical-{{ mobile_vertical }} cnvrt-single-hero--mobile-vertical-{{ mobile_vertical }} yaomri-single-hero--mobile-text-{{ mobile_text_alignment }} cnvrt-single-hero--mobile-text-{{ mobile_text_alignment }}{% if section.settings.show_border %} yaomri-single-hero--border cnvrt-single-hero--border{% endif %} full-width"
+  class="cnvrt-single-hero cnvrt-single-hero--width-{{ width_mode }} cnvrt-single-hero--content-width-{{ content_width_mode }} cnvrt-single-hero--desktop-height-{{ desktop_height_mode }} cnvrt-single-hero--mobile-height-{{ mobile_height_mode }} cnvrt-single-hero--desktop-horizontal-{{ desktop_horizontal }} cnvrt-single-hero--desktop-vertical-{{ desktop_vertical }} cnvrt-single-hero--desktop-text-{{ desktop_text_alignment }} cnvrt-single-hero--mobile-horizontal-{{ mobile_horizontal }} cnvrt-single-hero--mobile-vertical-{{ mobile_vertical }} cnvrt-single-hero--mobile-text-{{ mobile_text_alignment }}{% if section.settings.show_border %} cnvrt-single-hero--border{% endif %} full-width"
   style="
     --cnvrt-single-hero-section-width: {{ section_width_value }};
     --cnvrt-single-hero-section-bg: {{ section_background }};
@@ -73,13 +73,13 @@
   "
   {{ section.shopify_attributes }}
 >
-  <div class="yaomri-single-hero__frame cnvrt-single-hero__frame">
-    <div class="yaomri-single-hero__stage cnvrt-single-hero__stage" style="--cnvrt-single-hero-image-position: {{ section.settings.image_position }};">
-      <div class="yaomri-single-hero__media cnvrt-single-hero__media">
+  <div class="cnvrt-single-hero__frame">
+    <div class="cnvrt-single-hero__stage" style="--cnvrt-single-hero-image-position: {{ section.settings.image_position }};">
+      <div class="cnvrt-single-hero__media">
         {%- if section.settings.desktop_image != blank -%}
-          {%- assign image_class = 'yaomri-single-hero__image cnvrt-single-hero__image' -%}
+          {%- assign image_class = 'cnvrt-single-hero__image' -%}
           {%- if section.settings.mobile_image != blank -%}
-            {%- assign image_class = image_class | append: ' yaomri-single-hero__image--has-mobile cnvrt-single-hero__image--has-mobile' -%}
+            {%- assign image_class = image_class | append: ' cnvrt-single-hero__image--has-mobile' -%}
           {%- endif -%}
           {{
             section.settings.desktop_image
@@ -92,7 +92,7 @@
               alt: section.settings.desktop_image.alt | default: shop.name | escape
           }}
         {%- else -%}
-          <div class="yaomri-single-hero__placeholder cnvrt-single-hero__placeholder" data-label="Add hero image"></div>
+          <div class="cnvrt-single-hero__placeholder" data-label="Add hero image"></div>
         {%- endif -%}
 
         {%- if section.settings.mobile_image != blank -%}
@@ -100,7 +100,7 @@
             section.settings.mobile_image
             | image_url: width: 1200
             | image_tag:
-              class: 'yaomri-single-hero__image cnvrt-single-hero__image yaomri-single-hero__mobile-image cnvrt-single-hero__mobile-image',
+              class: 'cnvrt-single-hero__image cnvrt-single-hero__mobile-image',
               widths: '360, 540, 720, 900, 1200',
               sizes: '100vw',
               loading: 'eager',
@@ -109,11 +109,11 @@
         {%- endif -%}
       </div>
 
-      <div class="yaomri-single-hero__overlay cnvrt-single-hero__overlay"></div>
+      <div class="cnvrt-single-hero__overlay"></div>
 
-      <div class="yaomri-single-hero__content-positioner cnvrt-single-hero__content-positioner">
-        <div class="yaomri-single-hero__content cnvrt-single-hero__content">
-          <div class="yaomri-single-hero__content-stack cnvrt-single-hero__content-stack">
+      <div class="cnvrt-single-hero__content-positioner">
+        <div class="cnvrt-single-hero__content">
+          <div class="cnvrt-single-hero__content-stack">
             {%- for block in section.blocks -%}
               {%- case block.type -%}
               {%- when 'eyebrow' -%}
@@ -208,11 +208,11 @@
                     endcapture
                   -%}
                   <div
-                    class="yaomri-single-hero__block cnvrt-single-hero__block yaomri-single-hero__eyebrow-block cnvrt-single-hero__eyebrow-block"
+                    class="cnvrt-single-hero__block cnvrt-single-hero__eyebrow-block"
                     style="{{ text_style }}"
                     {{ block.shopify_attributes }}
                   >
-                    <p class="yaomri-single-hero__eyebrow cnvrt-single-hero__eyebrow">{{ block.settings.text }}</p>
+                    <p class="cnvrt-single-hero__eyebrow">{{ block.settings.text }}</p>
                   </div>
                 {%- endif -%}
 
@@ -313,14 +313,14 @@
                     endcapture
                   -%}
                   <div
-                    class="yaomri-single-hero__block cnvrt-single-hero__block yaomri-single-hero__heading-block cnvrt-single-hero__heading-block"
+                    class="cnvrt-single-hero__block cnvrt-single-hero__heading-block"
                     style="{{ heading_style }}"
                     {{ block.shopify_attributes }}
                   >
                     {%- if block.settings.heading_tag == 'h2' -%}
-                      <h2 class="yaomri-single-hero__heading cnvrt-single-hero__heading">{{ heading_text }}</h2>
+                      <h2 class="cnvrt-single-hero__heading">{{ heading_text }}</h2>
                     {%- else -%}
-                      <h1 class="yaomri-single-hero__heading cnvrt-single-hero__heading">{{ heading_text }}</h1>
+                      <h1 class="cnvrt-single-hero__heading">{{ heading_text }}</h1>
                     {%- endif -%}
                   </div>
                 {%- endif -%}
@@ -410,11 +410,11 @@
                     endcapture
                   -%}
                   <div
-                    class="yaomri-single-hero__block cnvrt-single-hero__block yaomri-single-hero__paragraph-block cnvrt-single-hero__paragraph-block"
+                    class="cnvrt-single-hero__block cnvrt-single-hero__paragraph-block"
                     style="{{ paragraph_style }}"
                     {{ block.shopify_attributes }}
                   >
-                    <div class="yaomri-single-hero__text cnvrt-single-hero__text">{{ block.settings.text }}</div>
+                    <div class="cnvrt-single-hero__text">{{ block.settings.text }}</div>
                   </div>
                 {%- endif -%}
 
@@ -428,7 +428,7 @@
                     assign button_text_transform = block.settings.button_text_transform | default: 'uppercase'
                   -%}
                   <div
-                    class="yaomri-single-hero__block cnvrt-single-hero__block yaomri-single-hero__button-block cnvrt-single-hero__button-block"
+                    class="cnvrt-single-hero__block cnvrt-single-hero__button-block"
                     style="
                       --cnvrt-single-hero-block-margin-top: {{ block.settings.margin_top }}px;
                       --cnvrt-single-hero-button-size: {{ button_size }}px;
@@ -439,7 +439,7 @@
                     {{ block.shopify_attributes }}
                   >
                   <a
-                      class="yaomri-single-hero__button cnvrt-single-hero__button yaomri-single-hero__button--{{ block.settings.style }} cnvrt-single-hero__button--{{ block.settings.style }}{% if block.settings.full_width_mobile %} yaomri-single-hero__button--mobile-full cnvrt-single-hero__button--mobile-full{% endif %}"
+                      class="cnvrt-single-hero__button cnvrt-single-hero__button--{{ block.settings.style }}{% if block.settings.full_width_mobile %} cnvrt-single-hero__button--mobile-full{% endif %}"
                       href="{{ block.settings.link }}"
                       {% if block.settings.open_new_window %}target="_blank" rel="noopener noreferrer"{% endif %}
                     >
@@ -466,7 +466,7 @@
                 -%}
                 {%- if has_primary or has_secondary -%}
                   <div
-                    class="yaomri-single-hero__block cnvrt-single-hero__block yaomri-single-hero__buttons cnvrt-single-hero__buttons{% if block.settings.stack_on_mobile %} yaomri-single-hero__buttons--stack-mobile cnvrt-single-hero__buttons--stack-mobile{% endif %}"
+                    class="cnvrt-single-hero__block cnvrt-single-hero__buttons{% if block.settings.stack_on_mobile %} cnvrt-single-hero__buttons--stack-mobile{% endif %}"
                     style="
                       --cnvrt-single-hero-block-margin-top: {{ block.settings.margin_top }}px;
                       --cnvrt-single-hero-button-size: {{ button_size }}px;
@@ -477,12 +477,12 @@
                     {{ block.shopify_attributes }}
                   >
                     {%- if has_primary -%}
-                      <a class="yaomri-single-hero__button cnvrt-single-hero__button yaomri-single-hero__button--{{ block.settings.primary_style }} cnvrt-single-hero__button--{{ block.settings.primary_style }}" href="{{ block.settings.primary_link }}">
+                      <a class="cnvrt-single-hero__button cnvrt-single-hero__button--{{ block.settings.primary_style }}" href="{{ block.settings.primary_link }}">
                         <span>{{ block.settings.primary_label }}</span>
                       </a>
                     {%- endif -%}
                     {%- if has_secondary -%}
-                      <a class="yaomri-single-hero__button cnvrt-single-hero__button yaomri-single-hero__button--{{ block.settings.secondary_style }} cnvrt-single-hero__button--{{ block.settings.secondary_style }}" href="{{ block.settings.secondary_link }}">
+                      <a class="cnvrt-single-hero__button cnvrt-single-hero__button--{{ block.settings.secondary_style }}" href="{{ block.settings.secondary_link }}">
                         <span>{{ block.settings.secondary_label }}</span>
                       </a>
                     {%- endif -%}
@@ -491,14 +491,14 @@
 
               {%- when 'custom_html' -%}
                 {%- if block.settings.html != blank -%}
-                  <div class="yaomri-single-hero__block cnvrt-single-hero__block yaomri-single-hero__custom-html cnvrt-single-hero__custom-html" {{ block.shopify_attributes }}>
+                  <div class="cnvrt-single-hero__block cnvrt-single-hero__custom-html" {{ block.shopify_attributes }}>
                     {{ block.settings.html }}
                   </div>
                 {%- endif -%}
 
               {%- when 'custom_liquid' -%}
                 {%- if block.settings.liquid != blank -%}
-                  <div class="yaomri-single-hero__block cnvrt-single-hero__block yaomri-single-hero__custom-liquid cnvrt-single-hero__custom-liquid" {{ block.shopify_attributes }}>
+                  <div class="cnvrt-single-hero__block cnvrt-single-hero__custom-liquid" {{ block.shopify_attributes }}>
                     {{ block.settings.liquid }}
                   </div>
                 {%- endif -%}
@@ -522,7 +522,7 @@
             endif
           -%}
           <{{ pin_tag }}
-            class="yaomri-single-hero__pin cnvrt-single-hero__pin yaomri-single-hero__pin--{{ block.settings.pin_style }} cnvrt-single-hero__pin--{{ block.settings.pin_style }}{% unless block.settings.show_on_mobile %} yaomri-single-hero__pin--hide-mobile cnvrt-single-hero__pin--hide-mobile{% endunless %}"
+            class="cnvrt-single-hero__pin cnvrt-single-hero__pin--{{ block.settings.pin_style }}{% unless block.settings.show_on_mobile %} cnvrt-single-hero__pin--hide-mobile{% endunless %}"
             style="
               --cnvrt-single-hero-pin-x-desktop: {{ block.settings.position_x_desktop }}%;
               --cnvrt-single-hero-pin-y-desktop: {{ block.settings.position_y_desktop }}%;

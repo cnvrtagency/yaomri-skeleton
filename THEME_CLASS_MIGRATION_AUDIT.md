@@ -45,6 +45,7 @@ Runtime cleanup completed in this pass:
 4. Legacy class and variable aliases remain intentionally until a dedicated alias-removal phase.
 5. Cart Phase 1 legacy markup cleanup is complete: `sections/cart.liquid` now renders CNVRT cart classes only, while legacy CSS/JS fallbacks remain intentionally active for one release.
 6. Footer Phase 2 legacy markup cleanup is complete: `sections/footer.liquid` now renders CNVRT footer classes only, while legacy footer CSS fallback selectors remain intentionally active for one release.
+7. Single Image Hero Phase 5 legacy markup cleanup is complete: `sections/single-image-hero.liquid` now renders CNVRT single-hero classes only, while legacy hero CSS selector fallbacks and `--ysh-*` variable fallbacks remain intentionally active for one release.
 
 ## B. Prefix inventory
 
@@ -245,9 +246,9 @@ Announcement bar now renders CNVRT namespace classes in markup and keeps compati
 ### Phase 3 — Single Image Hero
 - Files: `sections/single-image-hero.liquid`, `assets/section-single-image-hero.css`
 - Risk: medium
-- Status: Completed (compatibility alias phase)
+- Status: Completed (compatibility alias phase + legacy markup cleanup phase)
 - QA: typography, layout modes, button/pin behavior, mobile overrides
-- Compatibility note: legacy `yaomri-single-hero*` classes and `--ysh-*` variables remain as aliases while `cnvrt-single-hero*` classes and `--cnvrt-single-hero-*` variables are now used as primary.
+- Compatibility note: `sections/single-image-hero.liquid` now emits CNVRT single-hero classes as primary in markup; legacy CSS selector aliases and `--ysh-*` variable fallbacks remain as compatibility for one release.
 - Suggested commit: `feat: migrate single-image-hero classes and css vars to cnvrt namespace`
 
 ### Phase 4 — Header Core
@@ -303,7 +304,7 @@ Announcement bar now renders CNVRT namespace classes in markup and keeps compati
 - Announcement namespace migration is complete and stable.
 - Announcement legacy markup aliases have been removed (Phase 3 legacy cleanup), with CSS/JS/`--yab-*` fallbacks retained for one release.
 - Collection Cards namespace migration is now complete; legacy `cc-*` markup aliases are removed (Phase 4 legacy cleanup) while CSS/JS/data/`--cc-*` fallbacks remain for one release.
-- Single Image Hero migration is now complete with compatibility aliases retained.
+- Single Image Hero namespace migration is complete and legacy markup aliases are removed (Phase 5 legacy cleanup); CSS selector aliases and `--ysh-*` variable fallbacks remain for one release.
 - Header migration is complete with compatibility aliases.
 - Mega menu migration is complete with compatibility aliases.
 - Mobile drawer migration is complete with compatibility aliases.
