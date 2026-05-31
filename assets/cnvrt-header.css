@@ -89,7 +89,7 @@
   --cnvrt-header-current-fg: var(--cnvrt-header-fg);
   --cnvrt-mega-link-color: currentColor;
   --cnvrt-header-country-bg: transparent;
-  --cnvrt-header-country-border: var(--cnvrt-header-country-border-normal, var(--color-border));
+  --cnvrt-header-country-border: currentColor;
   --cnvrt-header-country-text: var(--cnvrt-header-transparent-text, #fff);
 }
 
@@ -109,7 +109,7 @@
   color: var(--cnvrt-header-solid-after-scroll-text, var(--cnvrt-header-fg, var(--color-foreground)));
   box-shadow: var(--cnvrt-header-shadow, none);
   --cnvrt-header-country-bg: var(--cnvrt-header-country-bg-normal, var(--color-background));
-  --cnvrt-header-country-border: var(--cnvrt-header-country-border-solid, var(--cnvrt-header-solid-after-scroll-text, #111111));
+  --cnvrt-header-country-border: currentColor;
   --cnvrt-header-country-text: var(--cnvrt-header-country-text-solid, var(--cnvrt-header-country-text-normal, var(--cnvrt-header-fg, currentColor)));
 }
 
