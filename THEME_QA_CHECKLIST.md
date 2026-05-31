@@ -72,6 +72,26 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Focus-visible states are visible for wishlist, title link, and action button.
 - Reduced motion keeps product-card transitions minimal.
 
+### Featured collection section
+
+- Section appears in Theme Editor as `Featured collection`.
+- Collection picker loads products from the selected collection.
+- Grid layout renders product cards in configured desktop/tablet/mobile columns.
+- Carousel layout renders product cards in horizontal scroll-snap track.
+- Carousel arrows render only when enabled and scroll approximately one page.
+- Carousel remains swipeable/scrollable without JS.
+- Section uses `{% render 'product-card', product: product, section_id: section.id %}` for real products.
+- Section does not duplicate product-card business logic markup.
+- No collection selected in design mode shows editor-friendly empty state/placeholders.
+- No collection selected on storefront does not output a broken layout.
+- Empty selected collection shows readable empty state in editor.
+- Section width modes work: site/full/custom with global inset contract respected.
+- Gap and padding settings apply across breakpoints.
+- Header alignment setting (`left`/`center`) applies to heading group/actions.
+- CTA renders only when label and link are present.
+- No fake product links are introduced by empty/placeholder states.
+- Product-card global settings still control vendor/sizes/image hover/wishlist/action layout/text alignment.
+
 ### Brand
 
 - Desktop logo renders when `logo` is set.

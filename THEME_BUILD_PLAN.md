@@ -149,6 +149,10 @@ Tasks:
   - `snippets/product-card.liquid`
   - `assets/component-product-card.css`
   - Theme settings > `Product cards` (global controls only)
+- Done: add reusable `Featured collection` section using the shared product-card snippet:
+  - `sections/featured-collection.liquid`
+  - `assets/section-featured-collection.css`
+  - `assets/section-featured-collection.js` (carousel arrow enhancement only)
 - Audit current product template.
 - Ensure media, title, price, variants, quantity, add-to-cart, and basic product info work.
 - Audit current collection template.

@@ -25,6 +25,7 @@ The theme is small-to-medium in footprint and mostly follows a clean section-dri
 | `assets/mobile-drawer.css` | CSS | `sections/mobile-menu.liquid` | Always (header-group includes `mobile-menu`) | Global |
 | `assets/section-single-image-hero.css` | CSS | `sections/single-image-hero.liquid` | Loaded when `single-image-hero` section renders (`templates/index.json`) | Section-scoped |
 | `assets/section-collection-cards.css` | CSS | `sections/collection-cards.liquid` | Loaded when `collection-cards` section renders (`templates/index.json`) | Section-scoped |
+| `assets/section-featured-collection.css` | CSS | `sections/featured-collection.liquid` | Loaded when `featured-collection` section renders | Section-scoped |
 | `assets/section-three-card-hero.css` | CSS | `sections/three-card-hero.liquid` | No active template currently references this section type | Candidate cleanup / low-risk if section is disabled |
 | `assets/cnvrt-cart.css` | CSS | `sections/cart.liquid` | Loaded on cart template only | Section-scoped |
 | `assets/critical.css` (password/gift) | CSS | `layout/password.liquid`, `templates/gift_card.liquid` | Password layout / gift card template only | Keep |
@@ -37,6 +38,7 @@ The theme is small-to-medium in footprint and mostly follows a clean section-dri
 | `assets/announcement-bar.js` | JS | `sections/announcement-bar.liquid` | Global via header-group | Global |
 | `assets/mobile-drawer.js` | JS | `sections/mobile-menu.liquid` | Global via header-group | Global |
 | `assets/section-collection-cards.js` | JS | `sections/collection-cards.liquid` | Section-scoped on index where section appears | Section-scoped |
+| `assets/section-featured-collection.js` | JS | `sections/featured-collection.liquid` | Section-scoped where featured-collection renders | Section-scoped |
 | `assets/cnvrt-cart.js` | JS | `sections/cart.liquid` | Cart template only | Section-scoped |
 
 ### Media assets
@@ -55,6 +57,7 @@ The theme is small-to-medium in footprint and mostly follows a clean section-dri
 
 2. **Section/local CSS behavior**
 - `single-image-hero`, `collection-cards`, and `cart` include section-local stylesheet tags.
+- `featured-collection` includes its own section-local stylesheet and lightweight arrow script.
 - `collection`, `collections`, `custom-section`, `footer`, `search`, `404`, `article`, `blog`, `page`, `product` use inline `{% stylesheet %}` blocks (not external assets), which can increase HTML payload on those templates but are still scoped by section render.
 
 3. **Candidates for CSS audit cleanup**
@@ -71,7 +74,7 @@ The theme is small-to-medium in footprint and mostly follows a clean section-dri
 - This is expected and currently required for interaction continuity.
 
 2. **Section-local JS**
-- `section-collection-cards.js` and `cnvrt-cart.js` are loaded only when their sections are present.
+- `section-collection-cards.js`, `section-featured-collection.js`, and `cnvrt-cart.js` are loaded only when their sections are present.
 
 3. **No duplicate asset loads**
 - Each JS file is loaded once per theme render context via its section `script` tag.

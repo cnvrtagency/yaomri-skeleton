@@ -35,7 +35,8 @@ Integration contract:
 - Runtime hooks use CNVRT-only classes and data attributes:
   - `.cnvrt-product-card*`
   - `data-cnvrt-product-card*`
-- This task intentionally does **not** include collection grids/carousels, featured collection section, quick-view, filters, sorting, recommendations, or AJAX add-to-cart.
+- Product card logic is section-agnostic and is consumed by `Featured collection` for product rendering only.
+- Product card does not own collection filtering/sorting/recommendations or AJAX cart.
 
 ## Global Theme Settings
 
@@ -214,6 +215,31 @@ Current implementation:
 
 Judgement:
 - This is the launch-ready pattern for category merchandising sections; keep it simple and avoid adding styling bloat.
+
+### Featured Collection Section
+
+Owned by:
+- `sections/featured-collection.liquid`
+- `assets/section-featured-collection.css`
+- `assets/section-featured-collection.js`
+
+Owns:
+- Rendering products from one selected collection.
+- Grid or carousel layout container behavior.
+- Section header content (eyebrow, heading, text, optional CTA).
+- Section-level width, spacing, column/card counts, and border/background controls.
+- Lightweight carousel arrow controls (native scroll-snap + progressive enhancement JS).
+
+Must not own:
+- Product-card internals (badge/vendor/price/sizes/action logic).
+- Product filters/sorting/tabs/recommendations/search logic.
+- AJAX cart or wishlist persistence.
+
+Current implementation:
+- Every real product is rendered through `{% render 'product-card', product: product, section_id: section.id %}`.
+- Grid mode uses CSS Grid with responsive column settings.
+- Carousel mode uses native horizontal scroll-snap with optional arrows.
+- Empty/editor states are section-owned placeholders/messages only; no fake product links or duplicate card business logic.
 
 ### Theme Settings > Header
 

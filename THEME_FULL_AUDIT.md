@@ -25,7 +25,8 @@ Current state:
 14. Legacy class alias cleanup is now complete for active runtime markup/CSS/JS selectors; CNVRT classes are primary runtime hooks.
 15. Legacy-prefixed runtime remnants are limited to deferred icon classes (`cnvrt-icon*`), utility skip-link class (`cnvrt-skip-link`), and compatibility variable fallbacks.
 16. Global typography system is now implemented with CNVRT font families/tokens, and Single Image Hero paragraph weight applies correctly to rich text paragraph tags; visual differences still depend on selected font support for specific weights.
-17. Reusable CNVRT product card foundation is now available as a snippet + component stylesheet with global Product cards settings; integration into product/collection sections remains a separate scoped task.
+17. Reusable CNVRT product card foundation is now available as a snippet + component stylesheet with global Product cards settings.
+18. A dedicated `Featured collection` section now consumes the reusable product-card snippet for real products and provides grid/carousel container behavior without duplicating product-card logic.
 
 ## B. Critical launch blockers
 

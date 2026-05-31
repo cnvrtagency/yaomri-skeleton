@@ -59,6 +59,46 @@ Notes:
 - No Shopify setting IDs were renamed.
 - Product-card wishlist is a placeholder button only in v1 (no storage/account/app integration).
 
+## Featured Collection Section Settings
+
+Owner:
+- Section settings in `sections/featured-collection.liquid`
+- Runtime consumers: `assets/section-featured-collection.css` + `assets/section-featured-collection.js`
+
+Settings added:
+1. `collection`
+2. `heading`
+3. `eyebrow`
+4. `text`
+5. `cta_label`
+6. `cta_link`
+7. `layout` (`grid`/`carousel`)
+8. `products_to_show`
+9. `section_width`
+10. `custom_section_width`
+11. `columns_desktop`
+12. `columns_tablet`
+13. `columns_mobile`
+14. `carousel_cards_desktop`
+15. `carousel_cards_tablet`
+16. `carousel_cards_mobile`
+17. `show_arrows`
+18. `gap_desktop`
+19. `gap_mobile`
+20. `padding_top_desktop`
+21. `padding_bottom_desktop`
+22. `padding_top_mobile`
+23. `padding_bottom_mobile`
+24. `header_alignment`
+25. `background_colour`
+26. `text_colour`
+27. `show_top_border`
+28. `border_colour`
+
+Notes:
+- Section intentionally reuses global Theme settings > Product cards and does not add product-card override settings.
+- Section is scope-limited to one selected collection display only (no filters/sorting/recommendations).
+
 ## Global Theme Settings
 
 | Setting ID | Current label | Location | Type | Default | Owner | What it controls | Where it is used | CSS variable | Status | Suggested label | Suggested help text | Notes/conflicts |
