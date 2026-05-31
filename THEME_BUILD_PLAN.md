@@ -145,6 +145,10 @@ Objective:
 - Make shopping paths usable enough to launch.
 
 Tasks:
+- Done: add reusable CNVRT product card foundation:
+  - `snippets/product-card.liquid`
+  - `assets/component-product-card.css`
+  - Theme settings > `Product cards` (global controls only)
 - Audit current product template.
 - Ensure media, title, price, variants, quantity, add-to-cart, and basic product info work.
 - Audit current collection template.

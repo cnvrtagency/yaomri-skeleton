@@ -37,6 +37,28 @@ Status values:
 - `snippets/mobile-drawer.liquid` no longer references missing `settings.social_instagram_link`.
 - `close_delay` remains as `Hover close delay`; keep an eye on whether merchants actually need it.
 
+## Product Cards (Global Theme Settings)
+
+Owner:
+- Theme settings > `Product cards`
+- Runtime consumers: `snippets/product-card.liquid` + `assets/component-product-card.css`
+
+Settings added (scope-locked):
+1. `product_card_show_vendor` (`checkbox`, default `true`)
+2. `product_card_show_sizes` (`checkbox`, default `false`)
+3. `product_card_size_option_name` (`text`, default `Size`)
+4. `product_card_image_hover` (`select`, `none` / `second_image`, default `second_image`)
+5. `product_card_image_ratio` (`select`, `adapt` / `square` / `portrait` / `landscape`, default `portrait`)
+6. `product_card_enable_hover_zoom` (`checkbox`, default `false`)
+7. `product_card_action_layout` (`select`, `below_info` / `image_hover` / `hidden`, default `below_info`)
+8. `product_card_show_wishlist` (`checkbox`, default `true`)
+9. `product_card_text_alignment` (`select`, `left` / `center`, default `left`)
+
+Notes:
+- No additional product-card settings were introduced.
+- No Shopify setting IDs were renamed.
+- Product-card wishlist is a placeholder button only in v1 (no storage/account/app integration).
+
 ## Global Theme Settings
 
 | Setting ID | Current label | Location | Type | Default | Owner | What it controls | Where it is used | CSS variable | Status | Suggested label | Suggested help text | Notes/conflicts |

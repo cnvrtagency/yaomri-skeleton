@@ -1,0 +1,204 @@
+{%- if product != blank -%}
+  {%- liquid
+    assign card_product = product
+    assign resolved_lazy_load = lazy_load | default: true, allow_false: true
+    assign resolved_show_vendor = show_vendor | default: settings.product_card_show_vendor, allow_false: true
+    assign resolved_show_sizes = show_sizes | default: settings.product_card_show_sizes, allow_false: true
+    assign show_wishlist = settings.product_card_show_wishlist | default: true
+    assign image_hover_setting = settings.product_card_image_hover | default: 'second_image'
+    assign image_ratio = settings.product_card_image_ratio | default: 'portrait'
+    assign action_layout = settings.product_card_action_layout | default: 'below_info'
+    assign text_alignment = settings.product_card_text_alignment | default: 'left'
+    assign enable_hover_zoom = settings.product_card_enable_hover_zoom | default: false
+    assign featured_image = card_product.featured_image
+    assign secondary_image = blank
+
+    if image_hover_setting == 'second_image' and card_product.images.size > 1
+      assign secondary_image = card_product.images[1]
+    endif
+
+    assign image_loading = 'eager'
+    if resolved_lazy_load
+      assign image_loading = 'lazy'
+    endif
+
+    assign is_on_sale = false
+    if card_product.compare_at_price > card_product.price
+      assign is_on_sale = true
+    endif
+
+    assign card_classes = 'cnvrt-product-card'
+    case image_ratio
+      when 'adapt'
+        assign card_classes = card_classes | append: ' cnvrt-product-card--ratio-adapt'
+      when 'square'
+        assign card_classes = card_classes | append: ' cnvrt-product-card--ratio-square'
+      when 'landscape'
+        assign card_classes = card_classes | append: ' cnvrt-product-card--ratio-landscape'
+      else
+        assign card_classes = card_classes | append: ' cnvrt-product-card--ratio-portrait'
+    endcase
+
+    if text_alignment == 'center'
+      assign card_classes = card_classes | append: ' cnvrt-product-card--align-center'
+    else
+      assign card_classes = card_classes | append: ' cnvrt-product-card--align-left'
+    endif
+
+    if secondary_image != blank
+      assign card_classes = card_classes | append: ' cnvrt-product-card--hover-second-image'
+    endif
+
+    if enable_hover_zoom
+      assign card_classes = card_classes | append: ' cnvrt-product-card--hover-zoom'
+    endif
+
+    case action_layout
+      when 'image_hover'
+        assign card_classes = card_classes | append: ' cnvrt-product-card--action-image-hover'
+      when 'hidden'
+        assign card_classes = card_classes | append: ' cnvrt-product-card--action-hidden'
+      else
+        assign card_classes = card_classes | append: ' cnvrt-product-card--action-below-info'
+    endcase
+
+    if card_product.available == false
+      assign card_classes = card_classes | append: ' cnvrt-product-card--sold-out'
+    elsif is_on_sale
+      assign card_classes = card_classes | append: ' cnvrt-product-card--on-sale'
+    endif
+
+    assign size_option_name = settings.product_card_size_option_name | default: 'Size' | strip
+    assign size_option_name_downcase = size_option_name | downcase
+    assign size_option_index = -1
+    assign size_option_values = blank
+
+    if resolved_show_sizes and size_option_name_downcase != blank
+      for option in card_product.options_with_values
+        assign option_name_downcase = option.name | downcase | strip
+        if option_name_downcase == size_option_name_downcase
+          assign size_option_index = forloop.index0
+          assign size_option_values = option.values
+          break
+        endif
+      endfor
+    endif
+
+    capture action_markup
+      if card_product.available
+        if card_product.has_only_default_variant
+          echo '<form method="post" action="' | append: routes.cart_add_url | append: '" data-cnvrt-product-card-form>'
+          echo '<input type="hidden" name="id" value="' | append: card_product.selected_or_first_available_variant.id | append: '">'
+          echo '<button class="cnvrt-product-card__button" type="submit">Add to cart</button>'
+          echo '</form>'
+        else
+          echo '<a class="cnvrt-product-card__button" href="' | append: card_product.url | append: '">Choose options</a>'
+        endif
+      else
+        echo '<button class="cnvrt-product-card__button" type="button" disabled>Sold out</button>'
+      endif
+    endcapture
+  -%}
+
+  <article class="{{ card_classes }}" data-cnvrt-product-card {% if section_id != blank %}data-cnvrt-section-id="{{ section_id | escape }}"{% endif %}>
+    <div class="cnvrt-product-card__media">
+      <a href="{{ card_product.url }}" aria-label="{{ card_product.title | escape }}">
+        {%- if featured_image != blank -%}
+          {%- assign featured_alt = featured_image.alt | default: card_product.title | strip -%}
+          {{
+            featured_image
+            | image_url: width: 900
+            | image_tag:
+              class: 'cnvrt-product-card__image cnvrt-product-card__image--primary',
+              widths: '300,450,600,750,900',
+              sizes: '(min-width: 1200px) 25vw, (min-width: 750px) 33vw, 50vw',
+              loading: image_loading,
+              alt: featured_alt
+          }}
+          {%- if secondary_image != blank -%}
+            {%- assign secondary_alt = secondary_image.alt | default: card_product.title | strip -%}
+            {{
+              secondary_image
+              | image_url: width: 900
+              | image_tag:
+                class: 'cnvrt-product-card__image cnvrt-product-card__image--secondary',
+                widths: '300,450,600,750,900',
+                sizes: '(min-width: 1200px) 25vw, (min-width: 750px) 33vw, 50vw',
+                loading: image_loading,
+                alt: secondary_alt
+            }}
+          {%- endif -%}
+        {%- else -%}
+          <span class="cnvrt-product-card__placeholder">
+            {{ 'product-1' | placeholder_svg_tag: 'cnvrt-product-card__placeholder-svg' }}
+          </span>
+        {%- endif -%}
+      </a>
+
+      {%- if card_product.available == false -%}
+        <span class="cnvrt-product-card__badge">Sold out</span>
+      {%- elsif is_on_sale -%}
+        <span class="cnvrt-product-card__badge">Sale</span>
+      {%- endif -%}
+
+      {%- if show_wishlist -%}
+        <button class="cnvrt-product-card__wishlist" type="button" aria-label="Add to wishlist" data-cnvrt-product-card-wishlist>
+          ♡
+        </button>
+      {%- endif -%}
+
+      {%- if action_layout == 'image_hover' -%}
+        <div class="cnvrt-product-card__action cnvrt-product-card__action--overlay" data-cnvrt-product-card-action>
+          {{ action_markup }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="cnvrt-product-card__info">
+      {%- if resolved_show_vendor and card_product.vendor != blank -%}
+        <p class="cnvrt-product-card__vendor">{{ card_product.vendor }}</p>
+      {%- endif -%}
+
+      <h3 class="cnvrt-product-card__title">
+        <a href="{{ card_product.url }}">{{ card_product.title }}</a>
+      </h3>
+
+      <p class="cnvrt-product-card__price">
+        <span class="cnvrt-product-card__price-current">{{ card_product.price | money }}</span>
+        {%- if is_on_sale -%}
+          <span class="cnvrt-product-card__price-compare">{{ card_product.compare_at_price | money }}</span>
+        {%- endif -%}
+      </p>
+
+      {%- if resolved_show_sizes and size_option_index > -1 and size_option_values != blank and size_option_values.size > 0 -%}
+        <div class="cnvrt-product-card__sizes" aria-hidden="true">
+          {%- for size_value in size_option_values -%}
+            {%- liquid
+              assign size_is_available = false
+              for variant in card_product.variants
+                assign variant_size_value = variant.options[size_option_index]
+                if variant_size_value == size_value and variant.available
+                  assign size_is_available = true
+                  break
+                endif
+              endfor
+            -%}
+            <span class="cnvrt-product-card__size{% unless size_is_available %} is-unavailable{% endunless %}">
+              {{ size_value }}
+            </span>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if action_layout == 'below_info' -%}
+        <div class="cnvrt-product-card__action" data-cnvrt-product-card-action>
+          {{ action_markup }}
+        </div>
+      {%- elsif action_layout == 'image_hover' -%}
+        <div class="cnvrt-product-card__action cnvrt-product-card__action--mobile" data-cnvrt-product-card-action>
+          {{ action_markup }}
+        </div>
+      {%- endif -%}
+    </div>
+  </article>
+{%- endif -%}

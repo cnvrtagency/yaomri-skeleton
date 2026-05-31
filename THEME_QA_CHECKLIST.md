@@ -42,6 +42,36 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Single Image Hero rich text paragraphs inherit the selected paragraph weight (`.cnvrt-single-hero__text`, `.cnvrt-single-hero__text p`).
 - If selected font lacks a specific weight (for example 300), CSS still outputs that weight and browser fallback behavior is acceptable.
 
+### Product cards
+
+- Theme settings > Product cards group is present with exactly 9 settings.
+- Snippet render API works: `{% render 'product-card', product: product %}`.
+- Card runtime hooks are CNVRT-only (`.cnvrt-product-card*`, `data-cnvrt-product-card*`).
+- Product image links to product page and card is not fully wrapped in a single link.
+- Placeholder image renders when product has no featured image.
+- `product_card_image_hover = second_image` swaps to second image on hover when available.
+- `product_card_image_hover = none` keeps a single image.
+- Image ratio settings apply correctly: adapt/square/portrait/landscape.
+- Hover zoom applies only when `product_card_enable_hover_zoom` is enabled.
+- Sold-out badge renders when unavailable.
+- Sale badge renders when compare-at is greater than current price.
+- Sold-out badge takes priority over sale badge.
+- Wishlist placeholder button visibility follows `product_card_show_wishlist`.
+- Wishlist button has `type="button"` and label `Add to wishlist`.
+- Vendor visibility follows `product_card_show_vendor` and hides when vendor is blank.
+- Title is always shown and links to product page.
+- Price is always shown and compare-at is struck through on sale.
+- Sizes row only renders when `product_card_show_sizes` is enabled and option name matches case-insensitively.
+- Size availability row strikes through values where all variants for that size are unavailable.
+- Action layout `below_info` shows action below info.
+- Action layout `image_hover` shows overlay action on hover-capable devices and persistent fallback action on touch devices.
+- Action layout `hidden` hides action button.
+- Single variant available product submits standard form to `routes.cart_add_url`.
+- Multi-variant available product shows `Choose options` link to product page.
+- Sold-out products show disabled `Sold out` button.
+- Focus-visible states are visible for wishlist, title link, and action button.
+- Reduced motion keeps product-card transitions minimal.
+
 ### Brand
 
 - Desktop logo renders when `logo` is set.

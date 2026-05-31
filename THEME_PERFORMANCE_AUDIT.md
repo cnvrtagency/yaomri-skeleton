@@ -18,6 +18,7 @@ The theme is small-to-medium in footprint and mostly follows a clean section-dri
 |---|---|---|---|---|
 | `assets/critical.css` | CSS | `layout/theme.liquid`, `layout/password.liquid`, `templates/gift_card.liquid` | Global on all non-password/gift-card and password/gift-card pages where used | Keep (critical baseline) |
 | `assets/cnvrt-base.css` | CSS | `layout/theme.liquid` | Global on theme layout pages | Keep |
+| `assets/component-product-card.css` | CSS | `layout/theme.liquid` | Global on theme layout pages | Keep (reusable product-card foundation) |
 | `assets/cnvrt-header.css` | CSS | `sections/header.liquid` | Always because `header` is in `sections 'header-group'` for all templates | Global (critical visual system) |
 | `assets/mega-menu.css` | CSS | `sections/header.liquid` | Always (header-group includes `mega-menu`) | Global |
 | `assets/announcement-bar.css` | CSS | `sections/announcement-bar.liquid` | Always (header-group includes `announcement-bar`) | Global |
@@ -48,6 +49,7 @@ The theme is small-to-medium in footprint and mostly follows a clean section-dri
 ## CSS loading report
 1. **Global CSS behavior**
 - `layout/theme.liquid` loads `critical.css` (preloaded) and `cnvrt-base.css`.
+- `layout/theme.liquid` now also loads `component-product-card.css` globally so the reusable product-card snippet can be rendered from any section/template without missing styles.
 - Header-group is rendered on all pages via `{% sections 'header-group' %}`; therefore header, announcement-bar, mega-menu, and mobile-menu CSS/JS are effectively site-wide.
 - `layout/password.liquid` intentionally excludes `cnvrt-base.css` and header stack assets.
 

@@ -269,6 +269,118 @@
     ]
   },
   {
+    "name": "Product cards",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "product_card_show_vendor",
+        "label": "Show vendor",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "product_card_show_sizes",
+        "label": "Show sizes available",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "product_card_size_option_name",
+        "label": "Size option name",
+        "default": "Size",
+        "info": "Enter the exact product option name used for sizes, for example Size, Waist Size, or Clothing Size. This is case-insensitive. The size row only displays when the product has a matching option."
+      },
+      {
+        "type": "select",
+        "id": "product_card_image_hover",
+        "label": "Image hover behaviour",
+        "default": "second_image",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "second_image",
+            "label": "Second image on hover"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "product_card_image_ratio",
+        "label": "Image ratio",
+        "default": "portrait",
+        "options": [
+          {
+            "value": "adapt",
+            "label": "Adapt to image"
+          },
+          {
+            "value": "square",
+            "label": "Square"
+          },
+          {
+            "value": "portrait",
+            "label": "Portrait"
+          },
+          {
+            "value": "landscape",
+            "label": "Landscape"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "product_card_enable_hover_zoom",
+        "label": "Enable image hover zoom",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "product_card_action_layout",
+        "label": "Product card action layout",
+        "default": "below_info",
+        "options": [
+          {
+            "value": "below_info",
+            "label": "Show button below info"
+          },
+          {
+            "value": "image_hover",
+            "label": "Show button on image hover"
+          },
+          {
+            "value": "hidden",
+            "label": "Hide button"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "product_card_show_wishlist",
+        "label": "Show wishlist button",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "product_card_text_alignment",
+        "label": "Product card text alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Centre"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "name": "Header",
     "settings": [
       {

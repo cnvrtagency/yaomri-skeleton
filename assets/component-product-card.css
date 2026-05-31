@@ -1,0 +1,296 @@
+.cnvrt-product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  color: var(--color-foreground);
+  font-family: var(--cnvrt-font-body-family, var(--font-primary--family));
+}
+
+.cnvrt-product-card__media {
+  position: relative;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--color-sand, #f6f4ef) 88%, #000 12%);
+}
+
+.cnvrt-product-card--ratio-square .cnvrt-product-card__media {
+  aspect-ratio: 1 / 1;
+}
+
+.cnvrt-product-card--ratio-portrait .cnvrt-product-card__media {
+  aspect-ratio: 4 / 5;
+}
+
+.cnvrt-product-card--ratio-landscape .cnvrt-product-card__media {
+  aspect-ratio: 16 / 9;
+}
+
+.cnvrt-product-card--ratio-adapt .cnvrt-product-card__media {
+  aspect-ratio: auto;
+}
+
+.cnvrt-product-card__media > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.cnvrt-product-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transition: opacity 220ms ease, transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cnvrt-product-card--ratio-adapt .cnvrt-product-card__image {
+  height: auto;
+}
+
+.cnvrt-product-card__image--secondary {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cnvrt-product-card--hover-second-image:hover .cnvrt-product-card__image--primary,
+  .cnvrt-product-card--hover-second-image:focus-within .cnvrt-product-card__image--primary {
+    opacity: 0;
+  }
+
+  .cnvrt-product-card--hover-second-image:hover .cnvrt-product-card__image--secondary,
+  .cnvrt-product-card--hover-second-image:focus-within .cnvrt-product-card__image--secondary {
+    opacity: 1;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cnvrt-product-card--hover-zoom:hover .cnvrt-product-card__image,
+  .cnvrt-product-card--hover-zoom:focus-within .cnvrt-product-card__image {
+    transform: scale(1.035);
+  }
+}
+
+.cnvrt-product-card__placeholder,
+.cnvrt-product-card__placeholder-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cnvrt-product-card__badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.45rem;
+  padding: 0.2rem 0.55rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
+  font-size: 0.63rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cnvrt-product-card__wishlist {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.cnvrt-product-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+}
+
+.cnvrt-product-card__vendor {
+  margin: 0;
+  color: color-mix(in srgb, var(--color-foreground) 64%, #fff 36%);
+  font-family: var(--cnvrt-font-body-family, var(--font-primary--family));
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cnvrt-product-card__title {
+  margin: 0;
+  font-family: var(--cnvrt-font-heading-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
+  font-style: var(--cnvrt-font-heading-style, normal);
+  font-size: 0.86rem;
+  font-weight: var(--cnvrt-heading-weight, 700);
+  letter-spacing: 0.06em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.cnvrt-product-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cnvrt-product-card__title a:hover {
+  text-decoration: underline;
+}
+
+.cnvrt-product-card__price {
+  margin: 0;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  font-family: var(--cnvrt-font-body-family, var(--font-primary--family));
+  font-size: 0.8rem;
+  line-height: 1.25;
+}
+
+.cnvrt-product-card__price-current {
+  font-weight: 600;
+}
+
+.cnvrt-product-card__price-compare {
+  text-decoration: line-through;
+  color: color-mix(in srgb, var(--color-foreground) 60%, #fff 40%);
+  font-size: 0.74rem;
+}
+
+.cnvrt-product-card__sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.15rem;
+}
+
+.cnvrt-product-card__size {
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cnvrt-product-card__size.is-unavailable {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+.cnvrt-product-card__action {
+  margin-top: 0.35rem;
+}
+
+.cnvrt-product-card__button {
+  width: 100%;
+  min-height: 2.5rem;
+  border: 1px solid color-mix(in srgb, var(--color-foreground) 35%, transparent);
+  background: transparent;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.85rem;
+  font-family: var(--cnvrt-font-button-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
+  font-style: var(--cnvrt-font-button-style, normal);
+  font-size: 0.72rem;
+  font-weight: var(--cnvrt-button-weight, 700);
+  letter-spacing: var(--cnvrt-button-letter-spacing, 0.08em);
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.cnvrt-product-card__button:hover {
+  background: color-mix(in srgb, var(--color-foreground) 8%, transparent);
+}
+
+.cnvrt-product-card__button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.cnvrt-product-card--align-center .cnvrt-product-card__info {
+  align-items: center;
+  text-align: center;
+}
+
+.cnvrt-product-card--align-center .cnvrt-product-card__price,
+.cnvrt-product-card--align-center .cnvrt-product-card__sizes {
+  justify-content: center;
+}
+
+.cnvrt-product-card--align-left .cnvrt-product-card__info {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.cnvrt-product-card--align-left .cnvrt-product-card__price,
+.cnvrt-product-card--align-left .cnvrt-product-card__sizes {
+  justify-content: flex-start;
+}
+
+.cnvrt-product-card--action-image-hover .cnvrt-product-card__action--overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 3;
+  padding: 0.75rem;
+}
+
+.cnvrt-product-card--action-image-hover .cnvrt-product-card__action--mobile {
+  display: block;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cnvrt-product-card--action-image-hover .cnvrt-product-card__action--overlay {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 220ms ease, transform 260ms ease;
+  }
+
+  .cnvrt-product-card--action-image-hover:hover .cnvrt-product-card__action--overlay,
+  .cnvrt-product-card--action-image-hover:focus-within .cnvrt-product-card__action--overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .cnvrt-product-card--action-image-hover .cnvrt-product-card__action--mobile {
+    display: none;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cnvrt-product-card--action-image-hover .cnvrt-product-card__action--overlay {
+    display: none;
+  }
+}
+
+.cnvrt-product-card__wishlist:focus-visible,
+.cnvrt-product-card__title a:focus-visible,
+.cnvrt-product-card__button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cnvrt-product-card__image,
+  .cnvrt-product-card__action--overlay {
+    transition-duration: 1ms;
+  }
+}

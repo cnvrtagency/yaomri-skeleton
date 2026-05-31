@@ -17,6 +17,26 @@ This is the control map for the Skeleton-based CNVRT theme. It is intentionally 
   - Sections keep local typography controls where already implemented (for example Single Image Hero and Collection Cards).
   - Section local typography should override globals only when set; otherwise global CNVRT typography tokens are the fallback layer.
 
+## Reusable Product Card Component
+
+Owned by:
+- `snippets/product-card.liquid`
+- `assets/component-product-card.css`
+- Theme settings > `Product cards` in `config/settings_schema.json`
+
+Scope:
+- Reusable markup API: `{% render 'product-card', product: product %}`
+- Image-led, unboxed product card presentation.
+- Optional vendor line, size availability row, wishlist placeholder, and action layout modes.
+- No JavaScript in v1; behavior is CSS + Liquid only.
+
+Integration contract:
+- Global CSS is loaded from `layout/theme.liquid` so the snippet can be rendered from any section/template.
+- Runtime hooks use CNVRT-only classes and data attributes:
+  - `.cnvrt-product-card*`
+  - `data-cnvrt-product-card*`
+- This task intentionally does **not** include collection grids/carousels, featured collection section, quick-view, filters, sorting, recommendations, or AJAX add-to-cart.
+
 ## Global Theme Settings
 
 ### Brand
