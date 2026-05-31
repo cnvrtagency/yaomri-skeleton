@@ -21,6 +21,7 @@ Current state:
 10. Legacy removal Phase 3 (announcement markup only) is complete: `sections/announcement-bar.liquid` now emits CNVRT announcement classes only; announcement CSS/JS selector fallbacks and `--yab-*` variable fallbacks are intentionally retained for one release.
 11. Legacy removal Phase 4 (Collection Cards markup only) is complete: `sections/collection-cards.liquid` now emits CNVRT collection-card classes only; collection CSS/JS/data selector fallbacks and `--cc-*` variable fallbacks are intentionally retained for one release.
 12. Legacy removal Phase 5 (Single Image Hero markup only) is complete: `sections/single-image-hero.liquid` now emits CNVRT single-hero classes only; hero CSS selector fallbacks and `--ysh-*` variable fallbacks are intentionally retained for one release.
+13. Three Card Hero section files exist and have presets, but the section is currently dormant in this store snapshot (not referenced in `templates/` or `config/settings_data.json`).
 
 ## B. Critical launch blockers
 
@@ -154,6 +155,10 @@ Current state:
 4. Homepage launch readiness
    - Minimal current homepage means low structural risk but limited merchandising depth.
    - Missing extra hero/content composition coverage for broader merchant use-cases.
+5. Three Card Hero activation state
+   - `sections/three-card-hero.liquid` and `assets/section-three-card-hero.css` exist.
+   - The section is currently not active in templates/settings data.
+   - It remains addable in Theme Editor via section presets.
 
 ## J. Accessibility report
 

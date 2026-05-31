@@ -309,7 +309,8 @@ Announcement bar now renders CNVRT namespace classes in markup and keeps compati
 - Mega menu migration is complete with compatibility aliases.
 - Mobile drawer migration is complete with compatibility aliases.
 - Cart migration is complete with compatibility aliases.
-- Footer and Three Card Hero alias migration are complete with compatibility aliases.
+- Footer alias migration is complete with compatibility aliases.
+- Three Card Hero alias migration is complete with compatibility aliases, and the section is currently dormant (not referenced in `templates/` or `config/settings_data.json`) but remains addable via its section preset.
 - Deferred for later cleanup: `icon-yaomri-*` snippet naming and other non-component utility/icon namespace refactors.
 
 ## J. QA checklist for migration phase validation

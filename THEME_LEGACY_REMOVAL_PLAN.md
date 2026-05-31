@@ -70,6 +70,7 @@
 - Liquid: dual classes + `--yth-*` compatibility vars.
 - CSS: legacy fallback vars still consumed.
 - JS: none.
+- Activation status: dormant in current store config (`templates/` and `config/settings_data.json` have no `three-card-hero` references), but section is addable through presets in Theme Editor.
 - CNVRT equivalent: yes.
 - JS prefers CNVRT: N/A.
 - Remove legacy markup classes now: **No**.
