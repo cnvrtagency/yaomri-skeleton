@@ -229,19 +229,21 @@
 .cnvrt-single-hero__eyebrow {
   margin: 0;
   max-width: 100%;
+  font-family: var(--cnvrt-font-accent-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
   font-size: var(--cnvrt-single-hero-eyebrow-size-desktop, 0.72rem);
-  font-style: italic;
-  font-weight: var(--cnvrt-single-hero-eyebrow-weight, 800);
-  letter-spacing: var(--cnvrt-single-hero-eyebrow-letter-spacing, 0);
+  font-style: var(--cnvrt-font-accent-style, italic);
+  font-weight: var(--cnvrt-single-hero-eyebrow-weight, var(--cnvrt-eyebrow-weight, 800));
+  letter-spacing: var(--cnvrt-single-hero-eyebrow-letter-spacing, var(--cnvrt-eyebrow-letter-spacing, 0));
   line-height: var(--cnvrt-single-hero-eyebrow-line-height, 1);
-  text-transform: var(--cnvrt-single-hero-eyebrow-transform, none);
+  text-transform: var(--cnvrt-single-hero-eyebrow-transform, var(--cnvrt-text-transform-default, none));
 }
 
 .cnvrt-single-hero__heading {
   margin: 0;
+  font-family: var(--cnvrt-font-heading-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
   font-size: var(--cnvrt-single-hero-heading-size-desktop, 4.5rem);
-  font-style: italic;
-  font-weight: var(--cnvrt-single-hero-heading-weight, 800);
+  font-style: var(--cnvrt-font-heading-style, italic);
+  font-weight: var(--cnvrt-single-hero-heading-weight, var(--cnvrt-heading-weight, 800));
   letter-spacing: var(--cnvrt-single-hero-heading-letter-spacing, 0);
   line-height: var(--cnvrt-single-hero-heading-line-height-desktop, 1.05);
   text-transform: var(--cnvrt-single-hero-heading-transform, none);
@@ -251,12 +253,17 @@
 
 .cnvrt-single-hero__text {
   max-width: 100%;
+  font-family: var(--cnvrt-font-body-family, var(--font-primary--family));
   font-size: var(--cnvrt-single-hero-text-size-desktop, 1.125rem);
-  font-weight: var(--cnvrt-single-hero-text-weight, 400);
+  font-weight: var(--cnvrt-single-hero-text-weight, var(--cnvrt-body-weight, 400));
   line-height: var(--cnvrt-single-hero-text-line-height-desktop, 1.5);
   letter-spacing: var(--cnvrt-single-hero-text-letter-spacing, 0);
   text-wrap: pretty;
   text-align: inherit;
+}
+
+.cnvrt-single-hero__text p {
+  font-weight: var(--cnvrt-single-hero-text-weight, var(--cnvrt-body-weight, 400));
 }
 
 .cnvrt-single-hero__text > * {
@@ -300,13 +307,14 @@
   padding: 0.75rem 1.1rem;
   border: 1px solid currentColor;
   color: inherit;
+  font-family: var(--cnvrt-font-button-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
   font-size: var(--cnvrt-single-hero-button-size, 0.72rem);
-  font-style: italic;
-  font-weight: var(--cnvrt-single-hero-button-weight, 800);
-  letter-spacing: var(--cnvrt-single-hero-button-letter-spacing, 0.06em);
+  font-style: var(--cnvrt-font-button-style, italic);
+  font-weight: var(--cnvrt-single-hero-button-weight, var(--cnvrt-button-weight, 800));
+  letter-spacing: var(--cnvrt-single-hero-button-letter-spacing, var(--cnvrt-button-letter-spacing, 0.06em));
   line-height: 1;
   text-decoration: none;
-  text-transform: var(--cnvrt-single-hero-button-transform, uppercase);
+  text-transform: var(--cnvrt-single-hero-button-transform, var(--cnvrt-text-transform-default, uppercase));
 }
 
 .cnvrt-single-hero__button--primary {

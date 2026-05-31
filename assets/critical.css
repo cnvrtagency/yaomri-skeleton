@@ -123,7 +123,7 @@ p:empty {
 
 /** Theme styles below */
 body {
-  font-family: var(--font-primary--family);
+  font-family: var(--cnvrt-font-body-family, var(--font-primary--family));
   background-color: var(--color-background);
   color: var(--color-foreground);
 }

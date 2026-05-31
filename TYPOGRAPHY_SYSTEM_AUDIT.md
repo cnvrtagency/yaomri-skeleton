@@ -1,5 +1,46 @@
 # Typography System Audit
 
+## Implementation update (2026-05-31)
+
+The theme now uses a global CNVRT typography contract instead of only `type_primary_font`:
+
+- Added global Typography settings in `config/settings_schema.json`:
+  - `type_body_font`
+  - `type_heading_font`
+  - `type_button_font`
+  - `type_accent_font`
+  - `type_body_size_desktop`
+  - `type_body_size_mobile`
+  - `type_body_line_height`
+  - `type_body_weight`
+  - `type_heading_weight`
+  - `type_heading_line_height`
+  - `type_button_weight`
+  - `type_button_letter_spacing`
+  - `type_eyebrow_weight`
+  - `type_eyebrow_letter_spacing`
+  - `type_text_transform_default`
+- Added global typography variables in `snippets/css-variables.liquid`:
+  - `--cnvrt-font-body-family`
+  - `--cnvrt-font-heading-family`
+  - `--cnvrt-font-button-family`
+  - `--cnvrt-font-accent-family`
+  - `--cnvrt-body-size-desktop`
+  - `--cnvrt-body-size-mobile`
+  - `--cnvrt-body-line-height`
+  - `--cnvrt-body-weight`
+  - `--cnvrt-heading-weight`
+  - `--cnvrt-heading-line-height`
+  - `--cnvrt-button-weight`
+  - `--cnvrt-button-letter-spacing`
+  - `--cnvrt-eyebrow-weight`
+  - `--cnvrt-eyebrow-letter-spacing`
+- Font loading now attempts weights `300/400/500/600/700/800` for body/heading/button/accent families via `font_face`.
+- Limitation: visible differences still depend on whether the selected Shopify font actually provides that weight. CSS now outputs requested weights correctly.
+- Single Image Hero paragraph now explicitly applies selected weight to rich text container and paragraph tags:
+  - `.cnvrt-single-hero__text`
+  - `.cnvrt-single-hero__text p`
+
 ## Executive summary
 
 The theme currently has one advanced, granular typography implementation (`single-image-hero`) and several other sections with mostly hardcoded typography. The result is inconsistent merchant experience:

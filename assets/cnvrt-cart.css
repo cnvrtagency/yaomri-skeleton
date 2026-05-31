@@ -4,6 +4,8 @@
   padding: clamp(2rem, 4vw, 3.5rem) clamp(1rem, 2.2vw, 2rem);
   color: #111;
   background: #fff;
+  font-family: var(--cnvrt-font-body-family, var(--font-primary--family));
+  font-style: var(--cnvrt-font-body-style, normal);
 }
 
 .cnvrt-cart * {
@@ -19,12 +21,13 @@
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
+  font-family: var(--cnvrt-font-heading-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
   font-size: clamp(1.3rem, 1.8vw, 1.85rem);
-  font-style: italic;
-  font-weight: 800;
+  font-style: var(--cnvrt-font-heading-style, italic);
+  font-weight: var(--cnvrt-heading-weight, 800);
   line-height: 1.05;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
+  letter-spacing: var(--cnvrt-eyebrow-letter-spacing, 0.03em);
+  text-transform: var(--cnvrt-text-transform-default, uppercase);
 }
 
 .cnvrt-cart__heading-icon {
@@ -121,12 +124,13 @@
 .cnvrt-cart__item-title {
   display: inline-block;
   margin: 0 0 0.4rem;
+  font-family: var(--cnvrt-font-heading-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
   font-size: 0.86rem;
-  font-style: italic;
-  font-weight: 800;
+  font-style: var(--cnvrt-font-heading-style, italic);
+  font-weight: var(--cnvrt-heading-weight, 800);
   letter-spacing: 0.02em;
   line-height: 1.35;
-  text-transform: uppercase;
+  text-transform: var(--cnvrt-text-transform-default, uppercase);
   text-decoration: none;
 }
 
@@ -306,12 +310,12 @@
   border: 1px solid #111;
   border-radius: 0;
   padding: 0.72rem 1rem;
-  font: inherit;
+  font-family: var(--cnvrt-font-button-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
   font-size: 0.74rem;
-  font-style: italic;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-style: var(--cnvrt-font-button-style, italic);
+  font-weight: var(--cnvrt-button-weight, 700);
+  letter-spacing: var(--cnvrt-button-letter-spacing, 0.04em);
+  text-transform: var(--cnvrt-text-transform-default, uppercase);
   text-decoration: none;
   cursor: pointer;
 }

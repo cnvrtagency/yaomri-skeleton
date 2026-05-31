@@ -1,11 +1,12 @@
 {% style %}
-  {% # Loads all font variantions with display: swap %}
-  {{ settings.type_primary_font | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
-
   {%- liquid
+    assign primary_font = settings.type_primary_font
+    assign body_font = settings.type_body_font | default: primary_font
+    assign heading_font = settings.type_heading_font | default: body_font
+    assign button_font = settings.type_button_font | default: body_font
+    assign accent_font = settings.type_accent_font | default: body_font
+    assign typography_weights = '300,400,500,600,700,800' | split: ','
+
     assign site_width_mode = settings.site_width_mode | default: 'boxed'
     assign site_inset = settings.site_inset | default: 20
     if site_width_mode == 'full'
@@ -22,13 +23,78 @@
       assign resolved_page_width = '1200px'
       assign resolved_page_inset_effective = site_inset
     endif
-
   -%}
 
+  {%- for weight in typography_weights -%}
+    {%- assign body_weight_font = body_font | font_modify: 'weight', weight -%}
+    {%- if body_weight_font != blank -%}
+      {{ body_weight_font | font_face: font_display: 'swap' }}
+      {%- assign body_weight_font_italic = body_weight_font | font_modify: 'style', 'italic' -%}
+      {%- if body_weight_font_italic != blank -%}
+        {{ body_weight_font_italic | font_face: font_display: 'swap' }}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- for weight in typography_weights -%}
+    {%- assign heading_weight_font = heading_font | font_modify: 'weight', weight -%}
+    {%- if heading_weight_font != blank -%}
+      {{ heading_weight_font | font_face: font_display: 'swap' }}
+      {%- assign heading_weight_font_italic = heading_weight_font | font_modify: 'style', 'italic' -%}
+      {%- if heading_weight_font_italic != blank -%}
+        {{ heading_weight_font_italic | font_face: font_display: 'swap' }}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- for weight in typography_weights -%}
+    {%- assign button_weight_font = button_font | font_modify: 'weight', weight -%}
+    {%- if button_weight_font != blank -%}
+      {{ button_weight_font | font_face: font_display: 'swap' }}
+      {%- assign button_weight_font_italic = button_weight_font | font_modify: 'style', 'italic' -%}
+      {%- if button_weight_font_italic != blank -%}
+        {{ button_weight_font_italic | font_face: font_display: 'swap' }}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- for weight in typography_weights -%}
+    {%- assign accent_weight_font = accent_font | font_modify: 'weight', weight -%}
+    {%- if accent_weight_font != blank -%}
+      {{ accent_weight_font | font_face: font_display: 'swap' }}
+      {%- assign accent_weight_font_italic = accent_weight_font | font_modify: 'style', 'italic' -%}
+      {%- if accent_weight_font_italic != blank -%}
+        {{ accent_weight_font_italic | font_face: font_display: 'swap' }}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+
   :root {
-    --font-primary--family: {{ settings.type_primary_font.family }}, {{ settings.type_primary_font.fallback_families }};
-    --font-primary--style: {{ settings.type_primary_font.style }};
-    --font-primary--weight: {{ settings.type_primary_font.weight }};
+    --font-primary--family: {{ primary_font.family }}, {{ primary_font.fallback_families }};
+    --font-primary--style: {{ primary_font.style }};
+    --font-primary--weight: {{ primary_font.weight }};
+
+    --cnvrt-font-body-family: {{ body_font.family }}, {{ body_font.fallback_families }};
+    --cnvrt-font-body-style: {{ body_font.style }};
+    --cnvrt-font-heading-family: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+    --cnvrt-font-heading-style: {{ heading_font.style }};
+    --cnvrt-font-button-family: {{ button_font.family }}, {{ button_font.fallback_families }};
+    --cnvrt-font-button-style: {{ button_font.style }};
+    --cnvrt-font-accent-family: {{ accent_font.family }}, {{ accent_font.fallback_families }};
+    --cnvrt-font-accent-style: {{ accent_font.style }};
+
+    --cnvrt-body-size-desktop: {{ settings.type_body_size_desktop | default: 16 }}px;
+    --cnvrt-body-size-mobile: {{ settings.type_body_size_mobile | default: 15 }}px;
+    --cnvrt-body-line-height: {{ settings.type_body_line_height | default: 160 | divided_by: 100.0 }};
+    --cnvrt-body-weight: {{ settings.type_body_weight | default: '400' }};
+    --cnvrt-heading-weight: {{ settings.type_heading_weight | default: '700' }};
+    --cnvrt-heading-line-height: {{ settings.type_heading_line_height | default: 120 | divided_by: 100.0 }};
+    --cnvrt-button-weight: {{ settings.type_button_weight | default: '700' }};
+    --cnvrt-button-letter-spacing: {{ settings.type_button_letter_spacing | default: 4 | divided_by: 100.0 }}em;
+    --cnvrt-eyebrow-weight: {{ settings.type_eyebrow_weight | default: '700' }};
+    --cnvrt-eyebrow-letter-spacing: {{ settings.type_eyebrow_letter_spacing | default: 8 | divided_by: 100.0 }}em;
+    --cnvrt-text-transform-default: {{ settings.type_text_transform_default | default: 'uppercase' }};
+
     --page-width: {{ resolved_page_width }};
     --page-inset: {{ site_inset }}px;
     --page-inset-effective: {{ resolved_page_inset_effective }}px;

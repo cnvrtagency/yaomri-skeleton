@@ -24,6 +24,7 @@ Current state:
 13. Three Card Hero section files exist and have presets, but the section is currently dormant in this store snapshot (not referenced in `templates/` or `config/settings_data.json`).
 14. Legacy class alias cleanup is now complete for active runtime markup/CSS/JS selectors; CNVRT classes are primary runtime hooks.
 15. Legacy-prefixed runtime remnants are limited to deferred icon classes (`cnvrt-icon*`), utility skip-link class (`cnvrt-skip-link`), and compatibility variable fallbacks.
+16. Global typography system is now implemented with CNVRT font families/tokens, and Single Image Hero paragraph weight applies correctly to rich text paragraph tags; visual differences still depend on selected font support for specific weights.
 
 ## B. Critical launch blockers
 

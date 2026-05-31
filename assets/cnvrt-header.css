@@ -60,6 +60,7 @@
 .cnvrt-header {
   position: relative;
   z-index: 30;
+  font-family: var(--cnvrt-font-body-family, var(--font-primary--family));
   width: 100%;
   border-bottom: 1px solid var(--cnvrt-header-border, var(--color-border));
   background: var(--cnvrt-header-bg, var(--color-background));
@@ -230,12 +231,13 @@
   border: 1px solid var(--cnvrt-header-country-border, var(--color-border));
   background: var(--cnvrt-header-country-bg, var(--color-background));
   color: var(--cnvrt-header-country-text, currentColor);
+  font-family: var(--cnvrt-font-accent-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
   font-size: 0.72rem;
-  font-style: italic;
-  font-weight: 800;
+  font-style: var(--cnvrt-font-accent-style, italic);
+  font-weight: var(--cnvrt-eyebrow-weight, 800);
   line-height: 1;
-  letter-spacing: 0.01em;
-  text-transform: none;
+  letter-spacing: var(--cnvrt-eyebrow-letter-spacing, 0.01em);
+  text-transform: var(--cnvrt-text-transform-default, none);
   white-space: nowrap;
   flex: 0 0 auto;
   min-width: 0;
@@ -372,12 +374,13 @@
 }
 
 .cnvrt-header__shop-name {
+  font-family: var(--cnvrt-font-heading-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
   font-size: 1rem;
-  font-style: italic;
-  font-weight: 800;
+  font-style: var(--cnvrt-font-heading-style, italic);
+  font-weight: var(--cnvrt-heading-weight, 800);
   line-height: 1;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
+  letter-spacing: var(--cnvrt-eyebrow-letter-spacing, 0.01em);
+  text-transform: var(--cnvrt-text-transform-default, uppercase);
 }
 
 .cnvrt-header__icon {
@@ -440,11 +443,13 @@
 }
 
 .cnvrt-header__nav-link {
+  font-family: var(--cnvrt-font-accent-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
   font-size: var(--cnvrt-header-nav-size, 12px);
-  font-style: italic;
-  font-weight: 800;
+  font-style: var(--cnvrt-font-accent-style, italic);
+  font-weight: var(--cnvrt-eyebrow-weight, 800);
   line-height: 1;
-  text-transform: uppercase;
+  letter-spacing: var(--cnvrt-eyebrow-letter-spacing, 0.01em);
+  text-transform: var(--cnvrt-text-transform-default, uppercase);
   white-space: nowrap;
 }
 

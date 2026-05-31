@@ -12,6 +12,10 @@ This is the control map for the Skeleton-based CNVRT theme. It is intentionally 
 - Section group JSON can contain stale editor-saved settings; it must not be treated as schema truth.
 - CNVRT class names are now the runtime contract; legacy-prefixed class aliases have been removed from active runtime markup/CSS/JS.
 - Legacy-prefixed variable fallbacks are still present where compatibility is required.
+- Typography ownership is now global-first:
+  - Theme settings > Typography owns base families, scale, and default weights/letter-spacing.
+  - Sections keep local typography controls where already implemented (for example Single Image Hero and Collection Cards).
+  - Section local typography should override globals only when set; otherwise global CNVRT typography tokens are the fallback layer.
 
 ## Global Theme Settings
 

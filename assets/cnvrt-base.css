@@ -1,9 +1,42 @@
+.cnvrt-typography {
+  font-family: var(--cnvrt-font-body-family, var(--font-primary--family));
+}
+
+body {
+  font-family: var(--cnvrt-font-body-family, var(--font-primary--family));
+  font-style: var(--cnvrt-font-body-style, normal);
+  font-size: var(--cnvrt-body-size-desktop, 16px);
+  line-height: var(--cnvrt-body-line-height, 1.6);
+  font-weight: var(--cnvrt-body-weight, 400);
+}
+
+@media (max-width: 749px) {
+  body {
+    font-size: var(--cnvrt-body-size-mobile, 15px);
+  }
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--cnvrt-font-heading-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
+  font-style: var(--cnvrt-font-heading-style, normal);
+  font-weight: var(--cnvrt-heading-weight, 700);
+  line-height: var(--cnvrt-heading-line-height, 1.2);
+}
+
+:where(button, [type='button'], [type='submit'], [type='reset']) {
+  font-family: var(--cnvrt-font-button-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
+  font-style: var(--cnvrt-font-button-style, normal);
+  font-weight: var(--cnvrt-button-weight, 700);
+  letter-spacing: var(--cnvrt-button-letter-spacing, 0.04em);
+}
+
 .eyebrow {
+  font-family: var(--cnvrt-font-accent-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
   font-size: 0.7rem;
-  font-style: italic;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-style: var(--cnvrt-font-accent-style, italic);
+  font-weight: var(--cnvrt-eyebrow-weight, 800);
+  letter-spacing: var(--cnvrt-eyebrow-letter-spacing, 0.04em);
+  text-transform: var(--cnvrt-text-transform-default, uppercase);
 }
 
 .placeholder-img {

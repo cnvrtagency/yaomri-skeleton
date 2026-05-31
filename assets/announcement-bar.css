@@ -17,10 +17,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: var(--cnvrt-font-accent-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
+  font-style: var(--cnvrt-font-accent-style, normal);
   font-size: var(--cnvrt-announcement-font-size-desktop, 12px);
-  font-weight: var(--cnvrt-announcement-font-weight, 600);
-  letter-spacing: var(--cnvrt-announcement-letter-spacing, 0.02em);
-  text-transform: var(--cnvrt-announcement-text-transform, uppercase);
+  font-weight: var(--cnvrt-announcement-font-weight, var(--cnvrt-eyebrow-weight, 600));
+  letter-spacing: var(--cnvrt-announcement-letter-spacing, var(--cnvrt-eyebrow-letter-spacing, 0.02em));
+  text-transform: var(--cnvrt-announcement-text-transform, var(--cnvrt-text-transform-default, uppercase));
   line-height: 1.2;
   box-sizing: border-box;
   overflow: hidden;

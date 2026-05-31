@@ -64,6 +64,160 @@
         "id": "type_primary_font",
         "default": "work_sans_n4",
         "label": "t:general.primary"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "default": "work_sans_n4",
+        "label": "Body font"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_heading_font",
+        "default": "work_sans_n4",
+        "label": "Heading font"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_button_font",
+        "default": "work_sans_n4",
+        "label": "Button font"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_accent_font",
+        "default": "work_sans_n4",
+        "label": "Accent / eyebrow font"
+      },
+      {
+        "type": "header",
+        "content": "Global typography scale"
+      },
+      {
+        "type": "range",
+        "id": "type_body_size_desktop",
+        "label": "Body size desktop",
+        "min": 12,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "type_body_size_mobile",
+        "label": "Body size mobile",
+        "min": 12,
+        "max": 22,
+        "step": 1,
+        "unit": "px",
+        "default": 15
+      },
+      {
+        "type": "range",
+        "id": "type_body_line_height",
+        "label": "Body line height",
+        "min": 120,
+        "max": 200,
+        "step": 5,
+        "unit": "%",
+        "default": 160
+      },
+      {
+        "type": "select",
+        "id": "type_body_weight",
+        "label": "Body weight",
+        "default": "400",
+        "options": [
+          { "value": "300", "label": "Light" },
+          { "value": "400", "label": "Regular" },
+          { "value": "500", "label": "Medium" },
+          { "value": "600", "label": "Semibold" },
+          { "value": "700", "label": "Bold" },
+          { "value": "800", "label": "Extra bold" }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "type_heading_weight",
+        "label": "Heading base weight",
+        "default": "700",
+        "options": [
+          { "value": "300", "label": "Light" },
+          { "value": "400", "label": "Regular" },
+          { "value": "500", "label": "Medium" },
+          { "value": "600", "label": "Semibold" },
+          { "value": "700", "label": "Bold" },
+          { "value": "800", "label": "Extra bold" }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "type_heading_line_height",
+        "label": "Heading line height",
+        "min": 90,
+        "max": 160,
+        "step": 5,
+        "unit": "%",
+        "default": 120
+      },
+      {
+        "type": "select",
+        "id": "type_button_weight",
+        "label": "Button weight",
+        "default": "700",
+        "options": [
+          { "value": "300", "label": "Light" },
+          { "value": "400", "label": "Regular" },
+          { "value": "500", "label": "Medium" },
+          { "value": "600", "label": "Semibold" },
+          { "value": "700", "label": "Bold" },
+          { "value": "800", "label": "Extra bold" }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "type_button_letter_spacing",
+        "label": "Button letter spacing",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 4
+      },
+      {
+        "type": "select",
+        "id": "type_eyebrow_weight",
+        "label": "Eyebrow weight",
+        "default": "700",
+        "options": [
+          { "value": "300", "label": "Light" },
+          { "value": "400", "label": "Regular" },
+          { "value": "500", "label": "Medium" },
+          { "value": "600", "label": "Semibold" },
+          { "value": "700", "label": "Bold" },
+          { "value": "800", "label": "Extra bold" }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "type_eyebrow_letter_spacing",
+        "label": "Eyebrow letter spacing",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 8
+      },
+      {
+        "type": "select",
+        "id": "type_text_transform_default",
+        "label": "Default accent transform",
+        "default": "uppercase",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "uppercase", "label": "Uppercase" }
+        ]
       }
     ]
   },

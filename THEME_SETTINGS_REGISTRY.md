@@ -18,6 +18,11 @@ Status values:
 
 ## High-Risk Findings
 
+- Global typography system is now active under Theme settings > Typography with CNVRT tokens:
+  - Font families: `type_body_font`, `type_heading_font`, `type_button_font`, `type_accent_font`
+  - Scale/weights: `type_body_size_desktop`, `type_body_size_mobile`, `type_body_line_height`, `type_body_weight`, `type_heading_weight`, `type_heading_line_height`, `type_button_weight`, `type_button_letter_spacing`, `type_eyebrow_weight`, `type_eyebrow_letter_spacing`, `type_text_transform_default`
+  - Legacy `type_primary_font` remains as compatibility fallback.
+  - Font-weight visibility depends on chosen font family support for 300/400/500/600/700/800.
 - Header layout now matches `CNVRT_BUILD_SPEC.md`: two desktop layout options only.
 - Header Liquid no longer reads removed section-level header style settings.
 - `sections/header-group.json` currently contains no known stale removed Header section settings.

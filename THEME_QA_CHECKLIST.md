@@ -23,6 +23,25 @@ Use this before publishing and after any architecture-level change. Passing auto
 
 ## Theme Settings
 
+### Typography
+
+- Typography settings group is present and organised under Theme settings > Typography.
+- Body/Heading/Button/Accent font pickers render selected families.
+- Body font size desktop/mobile updates global body text scale.
+- Body line-height and body weight apply globally.
+- Heading base weight and line-height apply to heading elements where section-local overrides are not set.
+- Button weight and letter spacing apply to native button elements and section button controls without local override.
+- Eyebrow weight and letter spacing apply to accent/eyebrow typography fallback layer.
+- Single Image Hero paragraph `text_weight` values output correctly for all options:
+  - 300 Light
+  - 400 Regular
+  - 500 Medium
+  - 600 Semibold
+  - 700 Bold
+  - 800 Extra bold
+- Single Image Hero rich text paragraphs inherit the selected paragraph weight (`.cnvrt-single-hero__text`, `.cnvrt-single-hero__text p`).
+- If selected font lacks a specific weight (for example 300), CSS still outputs that weight and browser fallback behavior is acceptable.
+
 ### Brand
 
 - Desktop logo renders when `logo` is set.
