@@ -73,6 +73,11 @@
   --cnvrt-header-country-border-solid: var(--cnvrt-header-solid-after-scroll-text, #111111);
 }
 
+.cnvrt-header.cnvrt-header--no-border {
+  border-bottom-color: transparent;
+  border-bottom-width: 0;
+}
+
 .cnvrt-header--transparent-active {
   position: relative;
   z-index: 70;
@@ -111,10 +116,6 @@
   --cnvrt-header-country-bg: var(--cnvrt-header-country-bg-normal, var(--color-background));
   --cnvrt-header-country-border: currentColor;
   --cnvrt-header-country-text: var(--cnvrt-header-country-text-solid, var(--cnvrt-header-country-text-normal, var(--cnvrt-header-fg, currentColor)));
-}
-
-.cnvrt-header--transparent-active:not(.is-scrolled).cnvrt-header--no-border {
-  border-bottom-color: transparent;
 }
 
 .cnvrt-header a {

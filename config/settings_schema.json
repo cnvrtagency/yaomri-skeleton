@@ -411,7 +411,7 @@
         "type": "checkbox",
         "id": "show_bottom_border",
         "label": "Show header bottom border",
-        "default": true
+        "default": false
       },
       {
         "type": "select",
