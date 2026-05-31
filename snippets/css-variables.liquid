@@ -95,6 +95,39 @@
     --cnvrt-eyebrow-letter-spacing: {{ settings.type_eyebrow_letter_spacing | default: 8 | divided_by: 100.0 }}em;
     --cnvrt-text-transform-default: {{ settings.type_text_transform_default | default: 'uppercase' }};
 
+    --cnvrt-section-eyebrow-size-desktop: {{ settings.section_heading_eyebrow_size_desktop | default: 12 }}px;
+    --cnvrt-section-eyebrow-size-mobile: {{ settings.section_heading_eyebrow_size_mobile | default: 11 }}px;
+    --cnvrt-section-eyebrow-weight: {{ settings.section_heading_eyebrow_weight | default: '600' }};
+    --cnvrt-section-eyebrow-line-height: {{ settings.section_heading_eyebrow_line_height | default: 100 | divided_by: 100.0 }};
+    --cnvrt-section-eyebrow-letter-spacing: {{ settings.section_heading_eyebrow_letter_spacing | default: 2 }}px;
+    --cnvrt-section-eyebrow-transform: {{ settings.section_heading_eyebrow_transform | default: 'uppercase' }};
+    --cnvrt-section-eyebrow-colour: {{ settings.section_heading_eyebrow_colour | default: '#111111' }};
+    --cnvrt-section-eyebrow-margin-bottom: {{ settings.section_heading_eyebrow_margin_bottom | default: 8 }}px;
+
+    --cnvrt-section-heading-size-desktop: {{ settings.section_heading_size_desktop | default: 32 }}px;
+    --cnvrt-section-heading-size-mobile: {{ settings.section_heading_size_mobile | default: 24 }}px;
+    --cnvrt-section-heading-weight: {{ settings.section_heading_weight | default: '700' }};
+    --cnvrt-section-heading-line-height-desktop: {{ settings.section_heading_line_height_desktop | default: 105 | divided_by: 100.0 }};
+    --cnvrt-section-heading-line-height-mobile: {{ settings.section_heading_line_height_mobile | default: 110 | divided_by: 100.0 }};
+    --cnvrt-section-heading-letter-spacing: {{ settings.section_heading_letter_spacing | default: 0 }}px;
+    --cnvrt-section-heading-transform: {{ settings.section_heading_transform | default: 'uppercase' }};
+    --cnvrt-section-heading-colour: {{ settings.section_heading_colour | default: '#111111' }};
+    --cnvrt-section-heading-max-width: {{ settings.section_heading_max_width | default: 760 }}px;
+    --cnvrt-section-heading-margin-bottom: {{ settings.section_heading_margin_bottom | default: 12 }}px;
+
+    --cnvrt-section-text-size-desktop: {{ settings.section_heading_text_size_desktop | default: 15 }}px;
+    --cnvrt-section-text-size-mobile: {{ settings.section_heading_text_size_mobile | default: 14 }}px;
+    --cnvrt-section-text-weight: {{ settings.section_heading_text_weight | default: '400' }};
+    --cnvrt-section-text-line-height-desktop: {{ settings.section_heading_text_line_height_desktop | default: 150 | divided_by: 100.0 }};
+    --cnvrt-section-text-line-height-mobile: {{ settings.section_heading_text_line_height_mobile | default: 145 | divided_by: 100.0 }};
+    --cnvrt-section-text-letter-spacing: {{ settings.section_heading_text_letter_spacing | default: 0 }}px;
+    --cnvrt-section-text-colour: {{ settings.section_heading_text_colour | default: '#555555' }};
+    --cnvrt-section-text-max-width: {{ settings.section_heading_text_max_width | default: 680 }}px;
+
+    --cnvrt-section-heading-alignment: {{ settings.section_heading_alignment | default: 'left' }};
+    --cnvrt-section-heading-margin-bottom-desktop: {{ settings.section_heading_margin_bottom_desktop | default: 24 }}px;
+    --cnvrt-section-heading-margin-bottom-mobile: {{ settings.section_heading_margin_bottom_mobile | default: 18 }}px;
+
     --page-width: {{ resolved_page_width }};
     --page-inset: {{ site_inset }}px;
     --page-inset-effective: {{ resolved_page_inset_effective }}px;

@@ -49,7 +49,7 @@
 .cnvrt-collection-cards__heading-group {
   display: flex;
   align-items: baseline;
-  gap: var(--cnvrt-collection-cards-heading-gap, 0.5rem);
+  gap: 0.5rem;
   min-width: 0;
   flex-wrap: wrap;
 }
@@ -57,28 +57,28 @@
 .cnvrt-collection-cards__title {
   margin: 0;
   font-family: var(--cnvrt-font-heading-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
-  font-size: var(--cnvrt-collection-cards-heading-size-mobile, 18px);
-  line-height: var(--cnvrt-collection-cards-heading-line-height-mobile, 1.1);
-  text-transform: var(--cnvrt-collection-cards-heading-transform, var(--cnvrt-text-transform-default, uppercase));
+  font-size: var(--cnvrt-section-heading-size-mobile, 24px);
+  line-height: var(--cnvrt-section-heading-line-height-mobile, var(--cnvrt-heading-line-height, 1.1));
+  text-transform: var(--cnvrt-section-heading-transform, uppercase);
   font-style: var(--cnvrt-font-heading-style, italic);
-  font-weight: var(--cnvrt-collection-cards-heading-weight, var(--cnvrt-heading-weight, 800));
-  letter-spacing: var(--cnvrt-collection-cards-heading-letter-spacing, var(--cnvrt-eyebrow-letter-spacing, 0.01em));
-  color: var(--cnvrt-collection-cards-heading-color, var(--color-foreground));
-  max-width: var(--cnvrt-collection-cards-heading-max-width, none);
+  font-weight: var(--cnvrt-section-heading-weight, var(--cnvrt-heading-weight, 700));
+  letter-spacing: var(--cnvrt-section-heading-letter-spacing, 0);
+  color: var(--cnvrt-section-heading-colour, var(--color-foreground));
+  max-width: var(--cnvrt-section-heading-max-width, 760px);
   white-space: normal;
 }
 
 .cnvrt-collection-cards__subtitle {
   margin: 0;
   font-family: var(--cnvrt-font-body-family, var(--font-primary--family));
-  font-size: var(--cnvrt-collection-cards-text-size-mobile, 12px);
-  line-height: var(--cnvrt-collection-cards-text-line-height-mobile, var(--cnvrt-body-line-height, 1.3));
+  font-size: var(--cnvrt-section-text-size-mobile, 14px);
+  line-height: var(--cnvrt-section-text-line-height-mobile, var(--cnvrt-body-line-height, 1.45));
   font-style: normal;
-  font-weight: var(--cnvrt-collection-cards-text-weight, var(--cnvrt-body-weight, 600));
-  letter-spacing: var(--cnvrt-collection-cards-text-letter-spacing, 0);
-  text-transform: var(--cnvrt-collection-cards-text-transform, none);
-  color: var(--cnvrt-collection-cards-text-color, rgb(115 115 115));
-  max-width: var(--cnvrt-collection-cards-text-max-width, none);
+  font-weight: var(--cnvrt-section-text-weight, var(--cnvrt-body-weight, 400));
+  letter-spacing: var(--cnvrt-section-text-letter-spacing, 0);
+  text-transform: none;
+  color: var(--cnvrt-section-text-colour, rgb(115 115 115));
+  max-width: var(--cnvrt-section-text-max-width, 680px);
   white-space: normal;
 }
 
@@ -140,13 +140,13 @@
 
 @media (min-width: 768px) {
   .cnvrt-collection-cards__title {
-    font-size: var(--cnvrt-collection-cards-heading-size-desktop, 24px);
-    line-height: var(--cnvrt-collection-cards-heading-line-height-desktop, 1.1);
+    font-size: var(--cnvrt-section-heading-size-desktop, 32px);
+    line-height: var(--cnvrt-section-heading-line-height-desktop, var(--cnvrt-heading-line-height, 1.05));
   }
 
   .cnvrt-collection-cards__subtitle {
-    font-size: var(--cnvrt-collection-cards-text-size-desktop, 12px);
-    line-height: var(--cnvrt-collection-cards-text-line-height-desktop, var(--cnvrt-body-line-height, 1.3));
+    font-size: var(--cnvrt-section-text-size-desktop, 15px);
+    line-height: var(--cnvrt-section-text-line-height-desktop, var(--cnvrt-body-line-height, 1.5));
   }
 
   .cnvrt-collection-cards__track {

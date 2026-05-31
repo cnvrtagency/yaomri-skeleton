@@ -26,12 +26,14 @@ Use this before publishing and after any architecture-level change. Passing auto
 ### Typography
 
 - Typography settings group is present and organised under Theme settings > Typography.
+- Section headings settings group is present and organised under Theme settings > Section headings.
 - Body/Heading/Button/Accent font pickers render selected families.
 - Body font size desktop/mobile updates global body text scale.
 - Body line-height and body weight apply globally.
 - Heading base weight and line-height apply to heading elements where section-local overrides are not set.
 - Button weight and letter spacing apply to native button elements and section button controls without local override.
 - Eyebrow weight and letter spacing apply to accent/eyebrow typography fallback layer.
+- Header nav/menu typography remains Header-owned and does not change when Theme settings > Section headings values change.
 - Single Image Hero paragraph `text_weight` values output correctly for all options:
   - 300 Light
   - 400 Regular
@@ -41,15 +43,13 @@ Use this before publishing and after any architecture-level change. Passing auto
   - 800 Extra bold
 - Single Image Hero rich text paragraphs inherit the selected paragraph weight (`.cnvrt-single-hero__text`, `.cnvrt-single-hero__text p`).
 - If selected font lacks a specific weight (for example 300), CSS still outputs that weight and browser fallback behavior is acceptable.
-- Featured Collection section header typography controls apply correctly:
-  - Eyebrow desktop/mobile size, weight, line-height, letter-spacing, transform, colour, max-width, margin-bottom.
-  - Heading desktop/mobile size, weight, line-height, letter-spacing, transform, colour, max-width, margin-bottom.
-  - Text desktop/mobile size, weight, line-height, letter-spacing, colour, max-width, margin-bottom.
-  - Button typography size/weight/letter-spacing/transform.
-- Collection Cards section heading typography controls apply correctly:
-  - Heading desktop/mobile size, weight, line-height, letter-spacing, transform, colour, max-width.
-  - Subtitle text desktop/mobile size, weight, line-height, letter-spacing, transform, colour, max-width.
-  - Card title/meta typography controls remain unchanged and still apply independently.
+- Global Section headings controls apply correctly in standard heading blocks:
+  - Eyebrow desktop/mobile size, weight, line-height, letter-spacing, transform, colour, and margin.
+  - Heading desktop/mobile size, weight, line-height, letter-spacing, transform, colour, max-width, and margin.
+  - Text desktop/mobile size, weight, line-height, letter-spacing, colour, and max-width.
+  - Alignment and heading-stack bottom spacing.
+- Featured Collection and Collection Cards section headings consume global Section headings styling and keep section-level heading content only.
+- Collection Cards card title/meta typography controls remain unchanged and still apply independently.
 - Announcement bar typography controls remain stable after standardization:
   - Text weight options (`300` to `800`) apply correctly.
   - Desktop/mobile line-height controls apply correctly.
@@ -100,7 +100,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Empty selected collection shows readable empty state in editor.
 - Section width modes work: site/full/custom with global inset contract respected.
 - Gap and padding settings apply across breakpoints.
-- Header alignment setting (`left`/`center`) applies to heading group/actions.
+- Global Section heading alignment setting (`left`/`center`) applies to Featured Collection and Collection Cards heading groups.
 - CTA renders only when label and link are present.
 - No fake product links are introduced by empty/placeholder states.
 - Product-card global settings still control vendor/sizes/image hover/wishlist/action layout/text alignment.

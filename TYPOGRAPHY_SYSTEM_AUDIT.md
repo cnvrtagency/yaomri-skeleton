@@ -2,37 +2,26 @@
 
 ## Standardization update (2026-05-31)
 
-A consistent CNVRT typography control pattern is now active across key sections:
+The typography ownership model is now corrected:
 
-- Global defaults remain in Theme settings > Typography and are emitted via `snippets/css-variables.liquid`.
-- Section-level overrides now follow a consistent desktop/mobile + weight/line-height/letter-spacing/transform pattern where implemented.
-- Local section variables now fall back to global tokens.
+1. Theme settings > Typography
+- Owns global base typography only (body/heading/button/accent families + base size/weight/line-height defaults).
 
-### Newly standardized sections
+2. Theme settings > Header
+- Owns header/nav/menu typography behavior.
+- Header nav is decoupled from global eyebrow/section-heading typography tokens.
 
-1. `Featured collection`
-- Added a full Section header typography control set for:
-  - Eyebrow (size/weight/line-height/letter-spacing/transform/colour/max-width/margin-bottom)
-  - Heading (size/weight/line-height/letter-spacing/transform/colour/max-width/margin-bottom)
-  - Text (size/weight/line-height/letter-spacing/colour/max-width/margin-bottom)
-  - Action button typography (size/weight/letter-spacing/transform)
-- Added scoped variables: `--cnvrt-featured-collection-*`.
+3. Theme settings > Section headings
+- Owns reusable eyebrow/title/text section-heading styling for standard section headers.
+- Emits global `--cnvrt-section-*` variables.
 
-2. `Collection cards`
-- Added section-header typography controls for heading + subtitle/text.
-- Card title/meta typography controls remain unchanged and separate.
-- Added scoped variables: `--cnvrt-collection-cards-heading-*` and `--cnvrt-collection-cards-text-*`.
+4. Section settings
+- Standard sections (`Featured collection`, `Collection cards`) keep content fields only for heading stack content.
+- Section-heading styling controls were removed from these sections and routed to global Section headings.
 
-3. `Announcement bar`
-- Standardized typography control model by converting text weight to shared select options (`300/400/500/600/700/800`).
-- Added desktop/mobile line-height controls.
-- Runtime remains scoped to `--cnvrt-announcement-*` with global fallbacks.
-
-### Kept as-is (already aligned or intentionally detailed)
-
-- `Single Image Hero` keeps its block-level typography architecture and remains the most granular section.
-- Paragraph `Light / 300` behavior remains fixed and wired to rich text descendants.
-- `Header` and `Footer` remain global-typography-first with limited local sizing controls where required by component behavior.
+5. Exceptions
+- `Single Image Hero` remains a special block-driven typography system and keeps local block typography controls.
+- `Announcement bar` remains independent from Section headings and keeps local utility typography controls.
 
 ## Implementation update (2026-05-31)
 
@@ -82,7 +71,7 @@ The theme currently has one advanced, granular typography implementation (`singl
 1. Controls exist with different naming and units across sections.
 2. Some sections expose only presets or one-off text size sliders.
 3. Most typography in header/mega/mobile/cart/3-card hero is CSS-hardcoded and not merchant-controlled.
-4. Global typography is limited to one font picker (`type_primary_font`) and does not define reusable heading/body/button typography tokens.
+4. Legacy documentation below still contains some pre-migration entries and should be treated as historical; active runtime now uses CNVRT global typography tokens from Theme settings > Typography.
 
 This audit recommends a standardized, granular system without reducing control.
 
@@ -122,10 +111,10 @@ This audit recommends a standardized, granular system without reducing control.
 4. Global tokens do not cover heading/body/button weights, line-height, and letter spacing defaults.
 5. Repeated pattern components (eyebrow/heading/text/button) do not share a single naming contract across sections.
 
-Update note (May 30, 2026):
-- Reusable section-header infrastructure is currently deferred and no longer active in the runtime.
-- `snippets/section-header.liquid` and `assets/section-header.css` were removed from active use while we keep local heading systems for active sections.
-- Theme settings still include a `Section headers` group, but it is currently dormant until the reusable system is reintroduced with migration safeguards.
+Update note (May 31, 2026):
+- Reusable section-heading styling is active in Theme settings > Section headings (`section_heading_*`) and shared `.cnvrt-section-heading*` CSS.
+- `Featured collection` and `Collection cards` consume global section-heading styling and keep heading content fields local.
+- Header/nav/menu typography is explicitly routed to Theme settings > Header and no longer reads global eyebrow/section-heading tokens.
 - Single Image Hero Paragraph weight options now include Light (300) and Extra bold (800).
 - Single Image Hero paragraph rich text now inherits the selected paragraph font weight, so Light/300 produces an actual rendered change when the active font supports that weight.
 

@@ -36,11 +36,12 @@ Status values:
 - `snippets/css-variables.liquid` no longer references legacy `settings.site_content_width`.
 - `snippets/mobile-drawer.liquid` no longer references missing `settings.social_instagram_link`.
 - `close_delay` remains as `Hover close delay`; keep an eye on whether merchants actually need it.
-- Typography controls are now standardized across active merchandising sections:
-  - `sections/featured-collection.liquid` has a full Section header typography group (eyebrow/heading/text/button).
-  - `sections/collection-cards.liquid` has standardized section heading/subtitle typography controls (separate from card title/meta controls).
-  - `sections/announcement-bar.liquid` now uses shared weight options (`300` to `800`) and desktop/mobile line-height controls.
-  - Global typography fallback model remains: section variables -> global `--cnvrt-*` typography tokens.
+- Typography ownership is now corrected:
+  - Global base typography stays in Theme settings > Typography.
+  - Header/menu/nav typography stays in Theme settings > Header and no longer consumes global eyebrow tokens.
+  - Reusable section-heading styling is centralized in Theme settings > Section headings (`section_heading_*`).
+  - `Featured collection` and `Collection cards` now keep section-heading content only and consume global section-heading style tokens.
+  - `Announcement bar` remains independent and keeps utility-level local typography controls.
 
 ## Product Cards (Global Theme Settings)
 
@@ -460,45 +461,30 @@ Header remains a separate section (`sections/header.liquid`). Shared stack behav
 
 ## Reusable Section Header Pattern
 
-This reusable section-header system is now deferred.
+Reusable section-heading styling is active and global.
 
-- The `snippets/section-header.liquid` and `assets/section-header.css` runtime path was removed from active usage.
-- Active sections (`Collection Cards`, `Single Image Hero`, `Header`, etc.) do not depend on this system.
-- Theme settings remain documented for future activation and migration.
+- Owner: Theme settings > Section headings (`section_heading_*` IDs).
+- Runtime consumers:
+  - `snippets/css-variables.liquid` emits `--cnvrt-section-*` variables.
+  - `assets/cnvrt-base.css` provides the shared `.cnvrt-section-heading*` pattern.
+  - `sections/featured-collection.liquid` and `sections/collection-cards.liquid` consume the global styling contract.
+- Section settings for those sections now keep heading content fields only (eyebrow/title/text/CTA content), while heading style is global.
 
-### Theme Settings > Section headers (Deferred)
-
-Deferred setting IDs (no active section consumption today):
+### Theme Settings > Section headings (Active)
 
 | Setting ID | Current label | Location | Type | Default | Owner | What it controls | Where it is used | CSS variable | Status | Suggested label | Suggested help text | Notes/conflicts |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| section_header_preset | Default header preset | Theme settings > Section headers | select | minimal | Section headers | Global default section-header preset | n/a (deferred) | class modifier | deferred | Default header preset | Kept for future reusable section headers. | Defer until pattern is reintroduced. |
-| section_header_decorative_style | Default decorative style | Theme settings > Section headers | select | none | Section headers | Global default decorative style | n/a (deferred) | class modifier | deferred | Default decorative style | Kept for future reusable section headers. | Defer until pattern is reintroduced. |
-| section_header_eyebrow_size | Eyebrow size | Theme settings > Section headers | range | 12 | Section headers | Eyebrow size default | n/a (deferred) | `--yshd-eyebrow-size` | deferred | Eyebrow size | Kept for future reusable section headers. | |
-| section_header_eyebrow_weight | Eyebrow weight | Theme settings > Section headers | select | 700 | Section headers | Eyebrow weight default | n/a (deferred) | `--yshd-eyebrow-weight` | deferred | Eyebrow weight | Kept for future reusable section headers. | |
-| section_header_eyebrow_letter_spacing | Eyebrow letter spacing | Theme settings > Section headers | range | 6 | Section headers | Eyebrow tracking default | n/a (deferred) | `--yshd-eyebrow-letter-spacing` | deferred | Eyebrow letter spacing | Kept for future reusable section headers. | |
-| section_header_eyebrow_transform | Eyebrow text transform | Theme settings > Section headers | select | uppercase | Section headers | Eyebrow casing default | n/a (deferred) | `--yshd-eyebrow-transform` | deferred | Eyebrow text transform | Kept for future reusable section headers. | |
-| section_header_heading_size_desktop | Heading size desktop | Theme settings > Section headers | range | 48 | Section headers | Heading desktop size default | n/a (deferred) | `--yshd-heading-size-desktop` | deferred | Heading size desktop | Kept for future reusable section headers. | |
-| section_header_heading_size_mobile | Heading size mobile | Theme settings > Section headers | range | 32 | Section headers | Heading mobile size default | n/a (deferred) | `--yshd-heading-size-mobile` | deferred | Heading size mobile | Kept for future reusable section headers. | |
-| section_header_heading_weight | Heading weight | Theme settings > Section headers | select | 700 | Section headers | Heading weight default | n/a (deferred) | `--yshd-heading-weight` | deferred | Heading weight | Kept for future reusable section headers. | |
-| section_header_heading_line_height | Heading line height | Theme settings > Section headers | range | 105 | Section headers | Heading line-height default | n/a (deferred) | `--yshd-heading-line-height` | deferred | Heading line height | Kept for future reusable section headers. | |
-| section_header_heading_letter_spacing | Heading letter spacing | Theme settings > Section headers | range | 0 | Section headers | Heading tracking default | n/a (deferred) | `--yshd-heading-letter-spacing` | deferred | Heading letter spacing | Kept for future reusable section headers. | Stored as `0.01em` increments. |
-| section_header_heading_transform | Heading text transform | Theme settings > Section headers | select | none | Section headers | Heading casing default | n/a (deferred) | `--yshd-heading-transform` | deferred | Heading text transform | Kept for future reusable section headers. | |
-| section_header_text_size_desktop | Text size desktop | Theme settings > Section headers | range | 16 | Section headers | Body text desktop size default | n/a (deferred) | `--yshd-text-size-desktop` | deferred | Text size desktop | Kept for future reusable section headers. | |
-| section_header_text_size_mobile | Text size mobile | Theme settings > Section headers | range | 15 | Section headers | Body text mobile size default | n/a (deferred) | `--yshd-text-size-mobile` | deferred | Text size mobile | Kept for future reusable section headers. | |
-| section_header_text_weight | Text weight | Theme settings > Section headers | select | 400 | Section headers | Body text weight default | n/a (deferred) | `--yshd-text-weight` | deferred | Text weight | Kept for future reusable section headers. | |
-| section_header_text_line_height | Text line height | Theme settings > Section headers | range | 150 | Section headers | Body text line-height default | n/a (deferred) | `--yshd-text-line-height` | deferred | Text line height | Kept for future reusable section headers. | |
-| section_header_text_max_width | Text max width | Theme settings > Section headers | range | 760 | Section headers | Body text max width default | n/a (deferred) | `--yshd-text-max-width` | deferred | Text max width | Kept for future reusable section headers. | |
-| section_header_eyebrow_color | Eyebrow colour | Theme settings > Section headers | color | blank | Section headers | Eyebrow colour default | n/a (deferred) | `--yshd-eyebrow-color` | deferred | Eyebrow colour | Kept for future reusable section headers. | Blank inherits section text colour. |
-| section_header_heading_color | Heading colour | Theme settings > Section headers | color | blank | Section headers | Heading colour default | n/a (deferred) | `--yshd-heading-color` | deferred | Heading colour | Kept for future reusable section headers. | Blank inherits section text colour. |
-| section_header_text_color | Text colour | Theme settings > Section headers | color | blank | Section headers | Text colour default | n/a (deferred) | `--yshd-text-color` | deferred | Text colour | Kept for future reusable section headers. | Blank inherits global foreground. |
-| section_header_rule_color | Decorative line colour | Theme settings > Section headers | color | blank | Section headers | Decorative rule colour default | n/a (deferred) | `--yshd-rule-color` | deferred | Decorative line colour | Kept for future reusable section headers. | Blank inherits global border colour. |
-| section_header_cta_color | CTA colour | Theme settings > Section headers | color | blank | Section headers | CTA colour default | n/a (deferred) | `--yshd-cta-color` | deferred | CTA colour | Kept for future reusable section headers. | Blank inherits section text colour. |
-| section_header_margin_bottom_desktop | Header margin bottom desktop | Theme settings > Section headers | range | 24 | Section headers | Global bottom spacing below section header on desktop | n/a (deferred) | `--yshd-margin-bottom-desktop` | deferred | Header margin bottom desktop | Kept for future reusable section headers. | |
-| section_header_margin_bottom_mobile | Header margin bottom mobile | Theme settings > Section headers | range | 18 | Section headers | Global bottom spacing below section header on mobile | n/a (deferred) | `--yshd-margin-bottom-mobile` | deferred | Header margin bottom mobile | Kept for future reusable section headers. | |
-| section_header_eyebrow_margin_bottom | Eyebrow margin bottom | Theme settings > Section headers | range | 8 | Section headers | Global eyebrow bottom margin | n/a (deferred) | `--yshd-eyebrow-margin-bottom` | deferred | Eyebrow margin bottom | Kept for future reusable section headers. | |
-| section_header_heading_margin_bottom | Heading margin bottom | Theme settings > Section headers | range | 10 | Section headers | Global heading bottom margin | n/a (deferred) | `--yshd-heading-margin-bottom` | deferred | Heading margin bottom | Kept for future reusable section headers. | |
-| section_header_text_margin_bottom | Text margin bottom | Theme settings > Section headers | range | 0 | Section headers | Global body text bottom margin | n/a (deferred) | `--yshd-text-margin-bottom` | deferred | Text margin bottom | Kept for future reusable section headers. | |
+| section_heading_eyebrow_size_desktop | Eyebrow size desktop | Theme settings > Section headings | range | 12 | Section headings | Eyebrow size on desktop | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-eyebrow-size-desktop` | keep | Eyebrow size desktop | Default eyebrow size used by standard section heading blocks on desktop. | |
+| section_heading_eyebrow_size_mobile | Eyebrow size mobile | Theme settings > Section headings | range | 11 | Section headings | Eyebrow size on mobile | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-eyebrow-size-mobile` | keep | Eyebrow size mobile | Default eyebrow size used by standard section heading blocks on mobile. | |
+| section_heading_eyebrow_weight | Eyebrow weight | Theme settings > Section headings | select | 600 | Section headings | Eyebrow weight | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-eyebrow-weight` | keep | Eyebrow weight | Default eyebrow weight for standard section headings. | |
+| section_heading_size_desktop | Heading size desktop | Theme settings > Section headings | range | 32 | Section headings | Heading size on desktop | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-heading-size-desktop` | keep | Heading size desktop | Default section title size used by standard section headings on desktop. | Section headings render as `h2` in section markup. |
+| section_heading_size_mobile | Heading size mobile | Theme settings > Section headings | range | 24 | Section headings | Heading size on mobile | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-heading-size-mobile` | keep | Heading size mobile | Default section title size used by standard section headings on mobile. | |
+| section_heading_weight | Heading weight | Theme settings > Section headings | select | 700 | Section headings | Heading weight | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-heading-weight` | keep | Heading weight | Default section title weight for standard section headings. | |
+| section_heading_text_size_desktop | Text size desktop | Theme settings > Section headings | range | 15 | Section headings | Optional heading text size on desktop | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-text-size-desktop` | keep | Text size desktop | Default supporting text size for section heading blocks on desktop. | |
+| section_heading_text_size_mobile | Text size mobile | Theme settings > Section headings | range | 14 | Section headings | Optional heading text size on mobile | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-text-size-mobile` | keep | Text size mobile | Default supporting text size for section heading blocks on mobile. | |
+| section_heading_alignment | Section heading alignment | Theme settings > Section headings | select | left | Section headings | Default alignment for standard section heading blocks | `snippets/css-variables.liquid`, `assets/cnvrt-base.css`, section heading markup class modifiers | `--cnvrt-section-heading-alignment` | keep | Section heading alignment | Applies to standard section heading blocks globally. | Header/nav/menu alignment remains header-owned. |
+| section_heading_margin_bottom_desktop | Section heading margin bottom desktop | Theme settings > Section headings | range | 24 | Section headings | Spacing below heading stack on desktop | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-heading-margin-bottom-desktop` | keep | Section heading margin bottom desktop | Default spacing below section heading blocks on desktop. | |
+| section_heading_margin_bottom_mobile | Section heading margin bottom mobile | Theme settings > Section headings | range | 18 | Section headings | Spacing below heading stack on mobile | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-heading-margin-bottom-mobile` | keep | Section heading margin bottom mobile | Default spacing below section heading blocks on mobile. | |
 
 | Setting ID | Current label | Location | Type | Default | Owner | What it controls | Where it is used | CSS variable | Status | Suggested label | Suggested help text | Notes/conflicts |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|

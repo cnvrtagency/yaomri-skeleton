@@ -494,6 +494,42 @@
         "default": 12
       },
       {
+        "type": "select",
+        "id": "nav_text_weight",
+        "label": "Desktop navigation text weight",
+        "default": "800",
+        "options": [
+          { "value": "300", "label": "Light" },
+          { "value": "400", "label": "Regular" },
+          { "value": "500", "label": "Medium" },
+          { "value": "600", "label": "Semibold" },
+          { "value": "700", "label": "Bold" },
+          { "value": "800", "label": "Extra bold" }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "nav_letter_spacing",
+        "label": "Desktop navigation letter spacing",
+        "min": -10,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 1
+      },
+      {
+        "type": "select",
+        "id": "nav_text_transform",
+        "label": "Desktop navigation text transform",
+        "default": "uppercase",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "uppercase", "label": "Uppercase" },
+          { "value": "lowercase", "label": "Lowercase" },
+          { "value": "capitalize", "label": "Capitalize" }
+        ]
+      },
+      {
         "type": "range",
         "id": "nav_gap",
         "label": "Desktop navigation spacing",
@@ -956,59 +992,18 @@
     ]
   },
   {
-    "name": "Section headers",
+    "name": "Section headings",
     "settings": [
-      {
-        "type": "header",
-        "content": "Layout and decorative style"
-      },
-      {
-        "type": "select",
-        "id": "section_header_preset",
-        "label": "Default header preset",
-        "default": "minimal",
-        "options": [
-          { "value": "minimal", "label": "Minimal" },
-          { "value": "editorial_underline", "label": "Editorial underline" },
-          { "value": "eyebrow_line", "label": "Eyebrow line" },
-          { "value": "split", "label": "Split" },
-          { "value": "centre_statement", "label": "Centre statement" }
-        ]
-      },
+      { "type": "header", "content": "Eyebrow" },
+      { "type": "range", "id": "section_heading_eyebrow_size_desktop", "label": "Eyebrow size desktop", "min": 10, "max": 40, "step": 1, "unit": "px", "default": 12 },
+      { "type": "range", "id": "section_heading_eyebrow_size_mobile", "label": "Eyebrow size mobile", "min": 10, "max": 32, "step": 1, "unit": "px", "default": 11 },
       {
         "type": "select",
-        "id": "section_header_decorative_style",
-        "label": "Default decorative style",
-        "default": "none",
-        "options": [
-          { "value": "none", "label": "None" },
-          { "value": "short_underline", "label": "Short underline" },
-          { "value": "half_underline", "label": "Half underline" },
-          { "value": "eyebrow_line", "label": "Eyebrow line" },
-          { "value": "side_rule", "label": "Side rule" },
-          { "value": "corner_accent", "label": "Corner accent" }
-        ]
-      },
-      {
-        "type": "header",
-        "content": "Typography"
-      },
-      {
-        "type": "range",
-        "id": "section_header_eyebrow_size",
-        "label": "Eyebrow size",
-        "min": 10,
-        "max": 24,
-        "step": 1,
-        "unit": "px",
-        "default": 12
-      },
-      {
-        "type": "select",
-        "id": "section_header_eyebrow_weight",
+        "id": "section_heading_eyebrow_weight",
         "label": "Eyebrow weight",
-        "default": "700",
+        "default": "600",
         "options": [
+          { "value": "300", "label": "Light" },
           { "value": "400", "label": "Regular" },
           { "value": "500", "label": "Medium" },
           { "value": "600", "label": "Semibold" },
@@ -1016,19 +1011,11 @@
           { "value": "800", "label": "Extra bold" }
         ]
       },
-      {
-        "type": "range",
-        "id": "section_header_eyebrow_letter_spacing",
-        "label": "Eyebrow letter spacing",
-        "min": -4,
-        "max": 24,
-        "step": 1,
-        "unit": "em",
-        "default": 6
-      },
+      { "type": "range", "id": "section_heading_eyebrow_line_height", "label": "Eyebrow line height", "min": 80, "max": 220, "step": 5, "unit": "%", "default": 100 },
+      { "type": "range", "id": "section_heading_eyebrow_letter_spacing", "label": "Eyebrow letter spacing", "min": -10, "max": 30, "step": 1, "unit": "px", "default": 2 },
       {
         "type": "select",
-        "id": "section_header_eyebrow_transform",
+        "id": "section_heading_eyebrow_transform",
         "label": "Eyebrow text transform",
         "default": "uppercase",
         "options": [
@@ -1038,32 +1025,19 @@
           { "value": "capitalize", "label": "Capitalize" }
         ]
       },
-      {
-        "type": "range",
-        "id": "section_header_heading_size_desktop",
-        "label": "Heading size desktop",
-        "min": 20,
-        "max": 110,
-        "step": 1,
-        "unit": "px",
-        "default": 48
-      },
-      {
-        "type": "range",
-        "id": "section_header_heading_size_mobile",
-        "label": "Heading size mobile",
-        "min": 18,
-        "max": 64,
-        "step": 1,
-        "unit": "px",
-        "default": 32
-      },
+      { "type": "color", "id": "section_heading_eyebrow_colour", "label": "Eyebrow colour", "default": "#111111" },
+      { "type": "range", "id": "section_heading_eyebrow_margin_bottom", "label": "Eyebrow margin bottom", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 8 },
+
+      { "type": "header", "content": "Heading" },
+      { "type": "range", "id": "section_heading_size_desktop", "label": "Heading size desktop", "min": 16, "max": 96, "step": 1, "unit": "px", "default": 32 },
+      { "type": "range", "id": "section_heading_size_mobile", "label": "Heading size mobile", "min": 16, "max": 80, "step": 1, "unit": "px", "default": 24 },
       {
         "type": "select",
-        "id": "section_header_heading_weight",
+        "id": "section_heading_weight",
         "label": "Heading weight",
         "default": "700",
         "options": [
+          { "value": "300", "label": "Light" },
           { "value": "400", "label": "Regular" },
           { "value": "500", "label": "Medium" },
           { "value": "600", "label": "Semibold" },
@@ -1071,31 +1045,14 @@
           { "value": "800", "label": "Extra bold" }
         ]
       },
-      {
-        "type": "range",
-        "id": "section_header_heading_line_height",
-        "label": "Heading line height",
-        "min": 80,
-        "max": 180,
-        "step": 5,
-        "unit": "%",
-        "default": 105
-      },
-      {
-        "type": "range",
-        "id": "section_header_heading_letter_spacing",
-        "label": "Heading letter spacing",
-        "min": -8,
-        "max": 20,
-        "step": 1,
-        "unit": "em",
-        "default": 0
-      },
+      { "type": "range", "id": "section_heading_line_height_desktop", "label": "Heading line height desktop", "min": 80, "max": 220, "step": 5, "unit": "%", "default": 105 },
+      { "type": "range", "id": "section_heading_line_height_mobile", "label": "Heading line height mobile", "min": 80, "max": 220, "step": 5, "unit": "%", "default": 110 },
+      { "type": "range", "id": "section_heading_letter_spacing", "label": "Heading letter spacing", "min": -10, "max": 30, "step": 1, "unit": "px", "default": 0 },
       {
         "type": "select",
-        "id": "section_header_heading_transform",
+        "id": "section_heading_transform",
         "label": "Heading text transform",
-        "default": "none",
+        "default": "uppercase",
         "options": [
           { "value": "none", "label": "None" },
           { "value": "uppercase", "label": "Uppercase" },
@@ -1103,117 +1060,45 @@
           { "value": "capitalize", "label": "Capitalize" }
         ]
       },
-      {
-        "type": "range",
-        "id": "section_header_text_size_desktop",
-        "label": "Text size desktop",
-        "min": 12,
-        "max": 32,
-        "step": 1,
-        "unit": "px",
-        "default": 16
-      },
-      {
-        "type": "range",
-        "id": "section_header_text_size_mobile",
-        "label": "Text size mobile",
-        "min": 12,
-        "max": 24,
-        "step": 1,
-        "unit": "px",
-        "default": 15
-      },
+      { "type": "color", "id": "section_heading_colour", "label": "Heading colour", "default": "#111111" },
+      { "type": "range", "id": "section_heading_max_width", "label": "Heading max width", "min": 0, "max": 1200, "step": 20, "unit": "px", "default": 760 },
+      { "type": "range", "id": "section_heading_margin_bottom", "label": "Heading margin bottom", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 12 },
+
+      { "type": "header", "content": "Text / subtitle" },
+      { "type": "range", "id": "section_heading_text_size_desktop", "label": "Text size desktop", "min": 10, "max": 32, "step": 1, "unit": "px", "default": 15 },
+      { "type": "range", "id": "section_heading_text_size_mobile", "label": "Text size mobile", "min": 10, "max": 28, "step": 1, "unit": "px", "default": 14 },
       {
         "type": "select",
-        "id": "section_header_text_weight",
+        "id": "section_heading_text_weight",
         "label": "Text weight",
         "default": "400",
         "options": [
           { "value": "300", "label": "Light" },
           { "value": "400", "label": "Regular" },
           { "value": "500", "label": "Medium" },
-          { "value": "600", "label": "Semibold" }
+          { "value": "600", "label": "Semibold" },
+          { "value": "700", "label": "Bold" }
         ]
       },
+      { "type": "range", "id": "section_heading_text_line_height_desktop", "label": "Text line height desktop", "min": 100, "max": 220, "step": 5, "unit": "%", "default": 150 },
+      { "type": "range", "id": "section_heading_text_line_height_mobile", "label": "Text line height mobile", "min": 100, "max": 220, "step": 5, "unit": "%", "default": 145 },
+      { "type": "range", "id": "section_heading_text_letter_spacing", "label": "Text letter spacing", "min": -10, "max": 20, "step": 1, "unit": "px", "default": 0 },
+      { "type": "color", "id": "section_heading_text_colour", "label": "Text colour", "default": "#555555" },
+      { "type": "range", "id": "section_heading_text_max_width", "label": "Text max width", "min": 0, "max": 1200, "step": 20, "unit": "px", "default": 680 },
+
+      { "type": "header", "content": "Layout" },
       {
-        "type": "range",
-        "id": "section_header_text_line_height",
-        "label": "Text line height",
-        "min": 100,
-        "max": 220,
-        "step": 5,
-        "unit": "%",
-        "default": 150
+        "type": "select",
+        "id": "section_heading_alignment",
+        "label": "Alignment",
+        "default": "left",
+        "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Centre" }
+        ]
       },
-      {
-        "type": "range",
-        "id": "section_header_text_max_width",
-        "label": "Text max width",
-        "min": 240,
-        "max": 1100,
-        "step": 10,
-        "unit": "px",
-        "default": 760
-      },
-      {
-        "type": "header",
-        "content": "Colours and spacing"
-      },
-      { "type": "color", "id": "section_header_eyebrow_color", "label": "Eyebrow colour" },
-      { "type": "color", "id": "section_header_heading_color", "label": "Heading colour" },
-      { "type": "color", "id": "section_header_text_color", "label": "Text colour" },
-      { "type": "color", "id": "section_header_rule_color", "label": "Decorative line colour" },
-      { "type": "color", "id": "section_header_cta_color", "label": "CTA colour" },
-      {
-        "type": "range",
-        "id": "section_header_margin_bottom_desktop",
-        "label": "Header margin bottom desktop",
-        "min": 0,
-        "max": 80,
-        "step": 2,
-        "unit": "px",
-        "default": 24
-      },
-      {
-        "type": "range",
-        "id": "section_header_margin_bottom_mobile",
-        "label": "Header margin bottom mobile",
-        "min": 0,
-        "max": 64,
-        "step": 2,
-        "unit": "px",
-        "default": 18
-      },
-      {
-        "type": "range",
-        "id": "section_header_eyebrow_margin_bottom",
-        "label": "Eyebrow margin bottom",
-        "min": 0,
-        "max": 40,
-        "step": 1,
-        "unit": "px",
-        "default": 8
-      },
-      {
-        "type": "range",
-        "id": "section_header_heading_margin_bottom",
-        "label": "Heading margin bottom",
-        "min": 0,
-        "max": 48,
-        "step": 1,
-        "unit": "px",
-        "default": 10
-      },
-      {
-        "type": "range",
-        "id": "section_header_text_margin_bottom",
-        "label": "Text margin bottom",
-        "min": 0,
-        "max": 48,
-        "step": 1,
-        "unit": "px",
-        "default": 0
-      }
+      { "type": "range", "id": "section_heading_margin_bottom_desktop", "label": "Section heading margin bottom desktop", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 24 },
+      { "type": "range", "id": "section_heading_margin_bottom_mobile", "label": "Section heading margin bottom mobile", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 18 }
     ]
   },
   {

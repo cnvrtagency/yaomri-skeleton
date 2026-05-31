@@ -67,6 +67,9 @@
   assign desktop_icon_gap = settings.desktop_icon_gap | default: 0
   assign mobile_icon_gap = settings.mobile_icon_gap | default: 0
   assign nav_text_size = settings.nav_text_size | default: 12
+  assign nav_text_weight = settings.nav_text_weight | default: '800'
+  assign nav_letter_spacing = settings.nav_letter_spacing | default: 1 | divided_by: 100.0
+  assign nav_text_transform = settings.nav_text_transform | default: 'uppercase'
   assign nav_gap = settings.nav_gap | default: 24
   assign cart_count_background = settings.cart_count_background | default: '#000000'
   assign cart_count_text = settings.cart_count_text | default: '#ffffff'
@@ -236,6 +239,9 @@
     --cnvrt-header-desktop-icon-gap: {{ desktop_icon_gap }}px;
     --cnvrt-header-mobile-icon-gap: {{ mobile_icon_gap }}px;
     --cnvrt-header-nav-size: {{ nav_text_size }}px;
+    --cnvrt-header-nav-weight: {{ nav_text_weight }};
+    --cnvrt-header-nav-letter-spacing: {{ nav_letter_spacing }}em;
+    --cnvrt-header-nav-transform: {{ nav_text_transform }};
     --cnvrt-header-nav-gap: {{ nav_gap }}px;
     --cnvrt-header-cart-count-bg: {{ cart_count_background }};
     --cnvrt-header-cart-count-text: {{ cart_count_text }};

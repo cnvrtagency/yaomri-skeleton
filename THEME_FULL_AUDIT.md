@@ -10,7 +10,7 @@ The header-stack patch is integrated and stable: announcement and header remain 
 
 Current state:
 1. No theme-check blockers.
-2. Reusable section-header system is currently deferred; orphaned assets were removed from runtime use.
+2. Reusable section-heading styling is now active globally via Theme settings > Section headings (`section_heading_*`) and shared `.cnvrt-section-heading*` CSS in `assets/cnvrt-base.css`.
 3. Major architectural debt remains in naming and section ownership patterns (CNVRT-branded class system and mixed responsive conventions).
 4. Homepage is minimal and predictable (`templates/index.json` has only `single-image-hero` and `collection-cards` in this snapshot).
 5. Header/mobile drawer/mega menu stack behavior is now feature-complete for fade-away, mobile/desktop thresholds, easing, and duration, including solid-state suppression in fade-away mode.
@@ -27,19 +27,22 @@ Current state:
 16. Global typography system is now implemented with CNVRT font families/tokens, and Single Image Hero paragraph weight applies correctly to rich text paragraph tags; visual differences still depend on selected font support for specific weights.
 17. Reusable CNVRT product card foundation is now available as a snippet + component stylesheet with global Product cards settings.
 18. A dedicated `Featured collection` section now consumes the reusable product-card snippet for real products and provides grid/carousel container behavior without duplicating product-card logic.
-19. Typography control standardization is now active for key sections: Featured Collection (full section header typography), Collection Cards (section heading/subtitle typography), and Announcement Bar (standardized weight + line-height controls), all using section-local variables with global CNVRT fallbacks.
+19. Typography ownership is now corrected: global base typography in Theme settings > Typography, header/nav/menu typography in Theme settings > Header, and reusable section-heading styling in Theme settings > Section headings; Featured Collection and Collection Cards now use global section-heading styles with section-level content only.
 
 ## B. Critical launch blockers
 
 1. No critical runtime blockers were found by theme check, but there are launch readiness gaps that should be addressed before release as a premium theme.
-2. Confirm deferred reusable systems are either fully removed or actively reintroduced before packaging (`section-header` system is currently deferred in docs and inactive).
+2. Keep reusable typography ownership explicit in docs and QA (Typography vs Header vs Section headings) so future section work does not reintroduce cross-coupled controls.
 3. Some sections still rely on hardcoded/brand-specific class/token systems that are not yet migration-ready for broad distribution.
 4. No end-to-end automated accessibility test harness is present for modal drawer focus trapping, mobile nav keyboard behavior, and announcement controls.
 5. `layouts` and section-specific assets are loaded per section with potential duplication; this is manageable now but may become a perf issue as content sections grow.
 
 ## C. High-priority fixes
 
-1. Keep deferred section-header assets out of active runtime paths and document clear migration criteria before reactivation.
+1. Keep the new typography ownership boundaries enforced in code review:
+   - Theme settings > Typography for base defaults only.
+   - Theme settings > Header for nav/menu typography.
+   - Theme settings > Section headings for reusable heading blocks.
 2. Continue hardening class/naming migration planning before external theme package distribution:
    - replace or aliases `cnvrt-*`/`yh-*` in future updates
    - preserve data attributes for JS compatibility.
@@ -124,16 +127,16 @@ Current state:
 
 1. Ownership and structure
 - Shared wrapper in `layout/theme.liquid` remains correct:
-  - `<div class="cnvrt-header-stack cnvrt-header-stack" data-cnvrt-header-group data-cnvrt-header-group>`
+  - `<div class="cnvrt-header-stack" data-cnvrt-header-group>`
      - contains announcement-bar, header, mega-menu, mobile-menu (via `sections 'header-group'`).
 2. Fade-away behavior
 - JS (`assets/cnvrt-header-state.js`) now:
   - uses desktop/mobile thresholds based on viewport
   - suppresses `header.is-scrolled` while hide is active in fade-away mode
   - keeps always-visible behavior unchanged.
-- `cnvrt` aliases are now supported in the same ownership pipeline:
-  - JS reads both legacy `data-header-stack-*` and `data-cnvrt-header-stack-*`.
-  - CSS and JS recognise both `cnvrt-header-stack*` and `cnvrt-header-stack*`.
+- Header stack ownership is CNVRT-first:
+  - JS reads `data-cnvrt-header-group` and stack behavior settings from header data attributes.
+  - CSS/JS share `cnvrt-header-stack*` state classes.
   - `--cnvrt-header-stack-transition-*` are primary timing variables with `--cnvrt-*` compatibility fallback.
   - CSS uses stack-level transition vars + opacity+transform only, no max-height collapse.
 3. Solid-after-scroll interaction

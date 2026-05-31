@@ -12,14 +12,13 @@ This is the control map for the Skeleton-based CNVRT theme. It is intentionally 
 - Section group JSON can contain stale editor-saved settings; it must not be treated as schema truth.
 - CNVRT class names are now the runtime contract; legacy-prefixed class aliases have been removed from active runtime markup/CSS/JS.
 - Legacy-prefixed variable fallbacks are still present where compatibility is required.
-- Typography ownership is now global-first:
-  - Theme settings > Typography owns base families, scale, and default weights/letter-spacing.
-  - Sections keep local typography controls where already implemented (for example Single Image Hero and Collection Cards).
-  - Section local typography should override globals only when set; otherwise global CNVRT typography tokens are the fallback layer.
-  - Standardized section-typography language is now active in key content sections:
-    - Featured Collection: eyebrow/heading/text/button typography groups.
-    - Collection Cards: section heading/subtitle typography group (separate from card title/meta).
-    - Announcement Bar: standardized weight + line-height controls.
+- Typography ownership is now split by responsibility:
+  - Theme settings > Typography owns global base typography tokens (body/heading/button/accent).
+  - Theme settings > Header owns header/nav/menu typography.
+  - Theme settings > Section headings owns reusable section-heading styling (eyebrow/title/text/alignment/spacing).
+  - Standard sections (`Featured collection`, `Collection cards`) keep heading content fields and consume global section-heading styling.
+  - `Single Image Hero` remains a special block-typography system with local controls.
+  - `Announcement bar` remains a utility component with local typography controls.
 
 ## Reusable Product Card Component
 
@@ -172,26 +171,29 @@ Judgement:
 ### Reusable Section Header Pattern
 
 Owned by:
-Deferred (not active) while we keep section-specific local heading implementations for launch.
+- Global settings in `config/settings_schema.json` (`section_heading_*`)
+- Global token output in `snippets/css-variables.liquid`
+- Reusable CSS pattern in `assets/cnvrt-base.css` (`.cnvrt-section-heading*`)
 
 Owns:
-- `n/a` in the active build (snippet and CSS have been removed from runtime use).
-- Planned reusable section-level editorial header UI for content sections.
-- Shared structure for eyebrow, heading, text, optional CTA, and width/alignment variants (future use).
+- Reusable heading-block typography for standard sections:
+  - eyebrow
+  - title (`h2` in section markup)
+  - optional text/subtitle
+  - alignment and heading-stack spacing
 
 Must not own:
-- Actual section settings schema for each consuming section.
-- Header/navigation logic.
-- Global typography tokens.
+- Header/nav/menu typography (owned by Theme settings > Header).
+- Hero block typography (owned by Single Image Hero block settings).
+- Product card internals.
 
 Current implementation:
-- The runtime owner remains local to each section (`Collection Cards` and `Single Image Hero`).
-- `snippets/section-header.liquid` and `assets/section-header.css` are not rendered in active sections.
-- Theme settings still include dormant `Section headers` defaults documented for future rollout.
-- Deferred system is intentionally not consuming any active section yet.
+- `Featured collection` and `Collection cards` now consume the shared `.cnvrt-section-heading*` pattern.
+- Local section heading style controls were removed from those sections.
+- Heading content remains section-owned and editable per section.
 
 Judgement:
-- Keep this system deferred until a dedicated migration pass. Current active sections keep local heading implementations.
+- This ownership is now launch-correct and predictable for merchants.
 
 ### Collection Cards Section
 
