@@ -312,8 +312,8 @@
         "card_meta_letter_spacing": 18,
         "card_meta_transform": "uppercase",
         "card_meta_color": "#ffffff",
-        "padding_top_desktop": 20,
-        "padding_bottom_desktop": 20,
+        "padding_top_desktop": 30,
+        "padding_bottom_desktop": 30,
         "padding_left_desktop": 0,
         "padding_right_desktop": 0,
         "padding_top_mobile": 0,
@@ -325,10 +325,45 @@
         "margin_top_mobile": 0,
         "margin_bottom_mobile": 0
       }
+    },
+    "featured_collection_jc7TQw": {
+      "type": "featured-collection",
+      "name": "Featured collection",
+      "settings": {
+        "collection": "the-amalfi-collection",
+        "heading": "Featured collection",
+        "eyebrow": "Shop the edit",
+        "text": "",
+        "cta_label": "View all",
+        "cta_link": "",
+        "layout": "grid",
+        "products_to_show": 8,
+        "section_width": "site",
+        "custom_section_width": 1400,
+        "columns_desktop": "4",
+        "columns_tablet": "3",
+        "columns_mobile": "2",
+        "carousel_cards_desktop": "4",
+        "carousel_cards_tablet": "3",
+        "carousel_cards_mobile": "2",
+        "show_arrows": true,
+        "gap_desktop": 16,
+        "gap_mobile": 4,
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 48,
+        "padding_top_mobile": 28,
+        "padding_bottom_mobile": 32,
+        "header_alignment": "left",
+        "background_colour": "#ffffff",
+        "text_colour": "#111111",
+        "show_top_border": false,
+        "border_colour": "#e8e8e8"
+      }
     }
   },
   "order": [
     "single_image_hero",
-    "collection_cards_aXzpjd"
+    "collection_cards_aXzpjd",
+    "featured_collection_jc7TQw"
   ]
 }
