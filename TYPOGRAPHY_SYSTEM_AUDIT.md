@@ -16,11 +16,11 @@ This audit recommends a standardized, granular system without reducing control.
 - `config/settings_schema.json`
 - `layout/theme.liquid`
 - `assets/critical.css`
-- `assets/yaomri-base.css`
-- `assets/yaomri-header.css`
+- `assets/cnvrt-base.css`
+- `assets/cnvrt-header.css`
 - `assets/mega-menu.css`
 - `assets/mobile-drawer.css`
-- `assets/yaomri-cart.css`
+- `assets/cnvrt-cart.css`
 - `assets/section-single-image-hero.css`
 - `assets/section-three-card-hero.css`
 - all section schema files and relevant snippets rendering text/headings/buttons:
@@ -61,8 +61,8 @@ Update note (May 30, 2026):
 | Setting ID | Label | Type | Range/default | Location | Controls | CSS var/class | Desktop/Mobile |
 |---|---|---|---|---|---|---|---|
 | `type_primary_font` | Primary font | `font_picker` | `work_sans_n4` | `config/settings_schema.json` | Global font family/style/weight seed | `--font-primary--*` via `snippets/css-variables.liquid` | Both |
-| `nav_text_size` | Desktop navigation text size | `range` | 10-18, step 1, default 12 | `config/settings_schema.json` | Header nav link size | `--yh-nav-size` -> `.yaomri-header__nav-link` | Desktop only |
-| `cart_count_text_size` | Cart count text size | `range` | 9-14, step 1, default 10 | `config/settings_schema.json` | Cart badge number text | `--yh-cart-count-font-size` | Both headers |
+| `nav_text_size` | Desktop navigation text size | `range` | 10-18, step 1, default 12 | `config/settings_schema.json` | Header nav link size | `--cnvrt-header-nav-size` -> `.cnvrt-header__nav-link` | Desktop only |
+| `cart_count_text_size` | Cart count text size | `range` | 9-14, step 1, default 10 | `config/settings_schema.json` | Cart badge number text | `--cnvrt-header-cart-count-font-size` | Both headers |
 
 ## Header section blocks (text content, not typography style)
 
@@ -75,8 +75,8 @@ Update note (May 30, 2026):
 
 | Setting ID | Label | Type | Range/default | Location | Controls | CSS var/class | Desktop/Mobile |
 |---|---|---|---|---|---|---|---|
-| `heading_style` | Link column heading style | `select` | `bold` | `sections/mega-menu.liquid` | Heading typography preset for mega column headings | `yaomri-mega-panels--heading-*` modifier | Desktop |
-| `font_size` (link column block) | Link text size | `range` | 11-18, step 1, default 13 | `sections/mega-menu.liquid` + `snippets/mega-menu-panel.liquid` | Link column text size | `--ym-column-size` -> `.yaomri-mega-panel__links a` | Desktop |
+| `heading_style` | Link column heading style | `select` | `bold` | `sections/mega-menu.liquid` | Heading typography preset for mega column headings | `cnvrt-mega-panels--heading-*` modifier | Desktop |
+| `font_size` (link column block) | Link text size | `range` | 11-18, step 1, default 13 | `sections/mega-menu.liquid` + `snippets/mega-menu-panel.liquid` | Link column text size | `--cnvrt-mega-column-size` -> `.cnvrt-mega-panel__links a` | Desktop |
 
 ## Mobile Menu section/footer blocks
 
@@ -86,53 +86,53 @@ No typography style controls. Typography is hardcoded in `assets/mobile-drawer.c
 
 | Setting ID | Label | Type | Default | Location | Controls | CSS var/class | Desktop/Mobile |
 |---|---|---|---|---|---|---|---|
-| `desktop_text_alignment` | Desktop text alignment | `select` | `left` | `sections/single-image-hero.liquid` | Text alignment | `--ysh-desktop-text-align` | Desktop |
-| `mobile_text_alignment` | Mobile text alignment | `select` | `center` | `sections/single-image-hero.liquid` | Text alignment | `--ysh-mobile-text-align` | Mobile |
-| `content_width` | Content width | `select` | `site` | `sections/single-image-hero.liquid` | Content text area width container | `--ysh-content-width` | Both |
-| `custom_content_width` | Custom content width | `range` | 280-1800, step 20, default 720 | `sections/single-image-hero.liquid` | Custom content text area width | `--ysh-content-width` | Both |
+| `desktop_text_alignment` | Desktop text alignment | `select` | `left` | `sections/single-image-hero.liquid` | Text alignment | `--cnvrt-single-hero-desktop-text-align` | Desktop |
+| `mobile_text_alignment` | Mobile text alignment | `select` | `center` | `sections/single-image-hero.liquid` | Text alignment | `--cnvrt-single-hero-mobile-text-align` | Mobile |
+| `content_width` | Content width | `select` | `site` | `sections/single-image-hero.liquid` | Content text area width container | `--cnvrt-single-hero-content-width` | Both |
+| `custom_content_width` | Custom content width | `range` | 280-1800, step 20, default 720 | `sections/single-image-hero.liquid` | Custom content text area width | `--cnvrt-single-hero-content-width` | Both |
 
 ## Single Image Hero blocks: Eyebrow (`type: eyebrow`)
 
 | Setting ID | Label | Type | Range/default | Controls | CSS var/class | Desktop/Mobile |
 |---|---|---|---|---|---|---|
-| `text` | Text | `text` | `NEW SEASON` | Eyebrow content | `.yaomri-single-hero__eyebrow` | Both |
-| `font_size_desktop` | Font size desktop | `range` | 10-40, step 1, default 12 | Eyebrow size | `--ysh-eyebrow-font-size-desktop` | Desktop |
-| `font_size_mobile` | Font size mobile | `range` | 10-40, step 1, default 11 | Eyebrow size | `--ysh-eyebrow-font-size-mobile` | Mobile |
-| `font_weight` | Font weight | `select` | default `700` | Eyebrow weight | `--ysh-eyebrow-font-weight` | Both |
-| `letter_spacing` | Letter spacing | `range` | 0-20, step 1, default 1 (px) | Eyebrow spacing | `--ysh-eyebrow-letter-spacing` | Both |
-| `uppercase` | Uppercase | `checkbox` | true | Eyebrow transform | `--ysh-eyebrow-uppercase` | Both |
-| `color` | Colour override | `color` | blank | Eyebrow color override | `--ysh-block-text-color` | Both |
-| `margin_bottom` | Margin bottom | `range` | 0-64, step 2, default 0 | Spacing after eyebrow | `--ysh-block-margin-bottom` | Both |
+| `text` | Text | `text` | `NEW SEASON` | Eyebrow content | `.cnvrt-single-hero__eyebrow` | Both |
+| `font_size_desktop` | Font size desktop | `range` | 10-40, step 1, default 12 | Eyebrow size | `--cnvrt-single-hero-eyebrow-font-size-desktop` | Desktop |
+| `font_size_mobile` | Font size mobile | `range` | 10-40, step 1, default 11 | Eyebrow size | `--cnvrt-single-hero-eyebrow-font-size-mobile` | Mobile |
+| `font_weight` | Font weight | `select` | default `700` | Eyebrow weight | `--cnvrt-single-hero-eyebrow-font-weight` | Both |
+| `letter_spacing` | Letter spacing | `range` | 0-20, step 1, default 1 (px) | Eyebrow spacing | `--cnvrt-single-hero-eyebrow-letter-spacing` | Both |
+| `uppercase` | Uppercase | `checkbox` | true | Eyebrow transform | `--cnvrt-single-hero-eyebrow-uppercase` | Both |
+| `color` | Colour override | `color` | blank | Eyebrow color override | `--cnvrt-single-hero-block-text-color` | Both |
+| `margin_bottom` | Margin bottom | `range` | 0-64, step 2, default 0 | Spacing after eyebrow | `--cnvrt-single-hero-block-margin-bottom` | Both |
 
 ## Single Image Hero blocks: Heading (`type: heading`)
 
 | Setting ID | Label | Type | Range/default | Controls | CSS var/class | Desktop/Mobile |
 |---|---|---|---|---|---|---|
-| `heading` | Heading text | `text` | default copy | Heading content | `.yaomri-single-hero__heading` | Both |
+| `heading` | Heading text | `text` | default copy | Heading content | `.cnvrt-single-hero__heading` | Both |
 | `heading_tag` | Heading tag | `select` | `h1` | Semantic tag | `<h1>/<h2>` | Both |
-| `font_size_desktop` | Font size desktop | `range` | 24-160, step 2, default 72 | Heading size | `--ysh-heading-font-size-desktop` | Desktop |
-| `font_size_mobile` | Font size mobile | `range` | 24-120, step 2, default 42 | Heading size | `--ysh-heading-font-size-mobile` | Mobile |
-| `font_weight` | Font weight | `select` | default `800` | Heading weight | `--ysh-heading-font-weight` | Both |
-| `line_height_desktop` | Line height desktop | `range` | 90-180, step 5, default 105 (%) | Heading line-height | `--ysh-heading-line-height-desktop` | Desktop |
-| `line_height_mobile` | Line height mobile | `range` | 90-180, step 5, default 115 (%) | Heading line-height | `--ysh-heading-line-height-mobile` | Mobile |
-| `letter_spacing` | Letter spacing | `range` | 0-8, step 1, default 0 (px) | Heading spacing | `--ysh-heading-letter-spacing` | Both |
-| `max_width` | Max width | `range` | 0-900, step 20, default 0 | Heading width constraint | `--ysh-block-max-width` | Both |
-| `color` | Colour override | `color` | blank | Heading color override | `--ysh-block-text-color` | Both |
-| `margin_bottom` | Margin bottom | `range` | 0-64, step 2, default 0 | Spacing after heading | `--ysh-block-margin-bottom` | Both |
+| `font_size_desktop` | Font size desktop | `range` | 24-160, step 2, default 72 | Heading size | `--cnvrt-single-hero-heading-font-size-desktop` | Desktop |
+| `font_size_mobile` | Font size mobile | `range` | 24-120, step 2, default 42 | Heading size | `--cnvrt-single-hero-heading-font-size-mobile` | Mobile |
+| `font_weight` | Font weight | `select` | default `800` | Heading weight | `--cnvrt-single-hero-heading-font-weight` | Both |
+| `line_height_desktop` | Line height desktop | `range` | 90-180, step 5, default 105 (%) | Heading line-height | `--cnvrt-single-hero-heading-line-height-desktop` | Desktop |
+| `line_height_mobile` | Line height mobile | `range` | 90-180, step 5, default 115 (%) | Heading line-height | `--cnvrt-single-hero-heading-line-height-mobile` | Mobile |
+| `letter_spacing` | Letter spacing | `range` | 0-8, step 1, default 0 (px) | Heading spacing | `--cnvrt-single-hero-heading-letter-spacing` | Both |
+| `max_width` | Max width | `range` | 0-900, step 20, default 0 | Heading width constraint | `--cnvrt-single-hero-block-max-width` | Both |
+| `color` | Colour override | `color` | blank | Heading color override | `--cnvrt-single-hero-block-text-color` | Both |
+| `margin_bottom` | Margin bottom | `range` | 0-64, step 2, default 0 | Spacing after heading | `--cnvrt-single-hero-block-margin-bottom` | Both |
 
 ## Single Image Hero blocks: Paragraph (`type: paragraph`)
 
 | Setting ID | Label | Type | Range/default | Controls | CSS var/class | Desktop/Mobile |
 |---|---|---|---|---|---|---|
-| `text` | Text | `richtext` | default copy | Paragraph content | `.yaomri-single-hero__text` | Both |
-| `font_size_desktop` | Font size desktop | `range` | 12-40, step 1, default 18 | Paragraph size | `--ysh-paragraph-font-size-desktop` | Desktop |
-| `font_size_mobile` | Font size mobile | `range` | 12-40, step 1, default 16 | Paragraph size | `--ysh-paragraph-font-size-mobile` | Mobile |
-| `font_weight` | Font weight | `select` | default `400` | Paragraph weight | `--ysh-paragraph-font-weight` | Both |
-| `line_height_desktop` | Line height desktop | `range` | 120-220, step 5, default 150 (%) | Paragraph line-height | `--ysh-paragraph-line-height-desktop` | Desktop |
-| `line_height_mobile` | Line height mobile | `range` | 120-220, step 5, default 160 (%) | Paragraph line-height | `--ysh-paragraph-line-height-mobile` | Mobile |
-| `max_width` | Max width | `range` | 0-900, step 20, default 0 | Paragraph width constraint | `--ysh-block-max-width` | Both |
-| `color` | Colour override | `color` | blank | Paragraph color override | `--ysh-block-text-color` | Both |
-| `margin_bottom` | Margin bottom | `range` | 0-64, step 2, default 0 | Spacing after paragraph | `--ysh-block-margin-bottom` | Both |
+| `text` | Text | `richtext` | default copy | Paragraph content | `.cnvrt-single-hero__text` | Both |
+| `font_size_desktop` | Font size desktop | `range` | 12-40, step 1, default 18 | Paragraph size | `--cnvrt-single-hero-paragraph-font-size-desktop` | Desktop |
+| `font_size_mobile` | Font size mobile | `range` | 12-40, step 1, default 16 | Paragraph size | `--cnvrt-single-hero-paragraph-font-size-mobile` | Mobile |
+| `font_weight` | Font weight | `select` | default `400` | Paragraph weight | `--cnvrt-single-hero-paragraph-font-weight` | Both |
+| `line_height_desktop` | Line height desktop | `range` | 120-220, step 5, default 150 (%) | Paragraph line-height | `--cnvrt-single-hero-paragraph-line-height-desktop` | Desktop |
+| `line_height_mobile` | Line height mobile | `range` | 120-220, step 5, default 160 (%) | Paragraph line-height | `--cnvrt-single-hero-paragraph-line-height-mobile` | Mobile |
+| `max_width` | Max width | `range` | 0-900, step 20, default 0 | Paragraph width constraint | `--cnvrt-single-hero-block-max-width` | Both |
+| `color` | Colour override | `color` | blank | Paragraph color override | `--cnvrt-single-hero-block-text-color` | Both |
+| `margin_bottom` | Margin bottom | `range` | 0-64, step 2, default 0 | Spacing after paragraph | `--cnvrt-single-hero-block-margin-bottom` | Both |
 
 ## Single Image Hero blocks: Button and Button group
 
@@ -144,7 +144,7 @@ No typography controls (only text content fields: eyebrow, heading, text, link l
 
 ## Cart section settings
 
-No typography style settings (text content only). Typography is hardcoded in `assets/yaomri-cart.css`.
+No typography style settings (text content only). Typography is hardcoded in `assets/cnvrt-cart.css`.
 
 ## Inconsistent naming table
 
@@ -186,11 +186,11 @@ Legend: `Y` implemented, `P` partial, `N` missing.
 ## Hardcoded typography by file (not editor-controllable)
 
 1. `assets/section-three-card-hero.css`: eyebrow, heading, text, button all hardcoded.
-2. `assets/yaomri-cart.css`: cart headings, body text, metadata, buttons hardcoded.
+2. `assets/cnvrt-cart.css`: cart headings, body text, metadata, buttons hardcoded.
 3. `assets/mobile-drawer.css`: drawer title/nav/group/footer/country selector typography hardcoded.
 4. `assets/mega-menu.css`: dropdown links, panel headings, tile eyebrow/title/cta mostly hardcoded (except link column size and heading style preset).
-5. `assets/yaomri-header.css`: shop name, nav link transform/weight/style hardcoded except `nav_text_size`.
-6. `assets/yaomri-base.css`: `.eyebrow` utility and placeholders hardcoded.
+5. `assets/cnvrt-header.css`: shop name, nav link transform/weight/style hardcoded except `nav_text_size`.
+6. `assets/cnvrt-base.css`: `.eyebrow` utility and placeholders hardcoded.
 
 ## Settings present but ineffective or misleading
 
@@ -207,7 +207,7 @@ Legend: `Y` implemented, `P` partial, `N` missing.
 
 ## Max-width control quality
 
-1. Single hero `heading.max_width` and `paragraph.max_width` now bind to actual elements via `--ysh-block-max-width` and are effective.
+1. Single hero `heading.max_width` and `paragraph.max_width` now bind to actual elements via `--cnvrt-single-hero-block-max-width` and are effective.
 2. Single hero `content_width` controls content area wrapper width; this is correct separation from section frame width.
 3. Other sections use hardcoded `max-width` in CSS (`10ch`, `30rem`, etc.) with no editor control, which is misleading for advanced merchants expecting parity.
 
@@ -360,12 +360,12 @@ Recommended shared classes:
 - `.theme-text`
 - `.theme-button`
 
-If keeping Ya Omri naming, define equivalents and a mapping layer:
+If keeping CNVRT naming, define equivalents and a mapping layer:
 
-- `.yaomri-typo-eyebrow`
-- `.yaomri-typo-heading`
-- `.yaomri-typo-text`
-- `.yaomri-typo-button`
+- `.cnvrt-typo-eyebrow`
+- `.cnvrt-typo-heading`
+- `.cnvrt-typo-text`
+- `.cnvrt-typo-button`
 
 Then sections compose these classes rather than duplicating full typography declarations.
 
@@ -411,7 +411,7 @@ Rule:
 ## Step-by-step implementation plan
 
 1. Add global typography tokens to `config/settings_schema.json` and `snippets/css-variables.liquid`.
-2. Create shared typography utility classes in `assets/yaomri-base.css`.
+2. Create shared typography utility classes in `assets/cnvrt-base.css`.
 3. Refactor `single-image-hero` setting IDs to standardized names with backward-compatible reads.
 4. Add missing controls to `single-image-hero`:
    - eyebrow line-height/max-width

@@ -5,8 +5,8 @@
   https://shopify.dev/docs/storefronts/themes/architecture/templates/cart
 {% endcomment %}
 
-{{ 'yaomri-cart.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'yaomri-cart.js' | asset_url }}" defer></script>
+{{ 'cnvrt-cart.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cnvrt-cart.js' | asset_url }}" defer></script>
 
 <section
   class="cnvrt-cart"
@@ -17,7 +17,7 @@
   {%- if cart.item_count == 0 -%}
     <div class="cnvrt-cart__empty">
       <div class="cnvrt-cart__empty-icon" aria-hidden="true">
-        {% render 'icon-yaomri-cart' %}
+        {% render 'icon-cnvrt-cart' %}
       </div>
       <h1 class="cnvrt-cart__empty-heading">{{ section.settings.empty_heading }}</h1>
       <p class="cnvrt-cart__empty-text">{{ section.settings.empty_text }}</p>
@@ -27,7 +27,7 @@
     </div>
   {%- else -%}
     <h1 class="cnvrt-cart__heading">
-      <span class="cnvrt-cart__heading-icon" aria-hidden="true">{% render 'icon-yaomri-cart' %}</span>
+      <span class="cnvrt-cart__heading-icon" aria-hidden="true">{% render 'icon-cnvrt-cart' %}</span>
       <span>{{ section.settings.heading }}</span>
     </h1>
 
@@ -185,7 +185,7 @@
 
 {% schema %}
 {
-  "name": "Ya Omri cart",
+  "name": "CNVRT cart",
   "settings": [
     {
       "type": "text",

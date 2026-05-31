@@ -13,7 +13,7 @@ body {
   min-height: 100svh;
 }
 
-.yaomri-skip-link {
+.cnvrt-skip-link {
   position: absolute;
   top: 0.7rem;
   left: 0.7rem;
@@ -32,8 +32,8 @@ body {
   transition: transform 120ms ease;
 }
 
-.yaomri-skip-link:focus,
-.yaomri-skip-link:focus-visible {
+.cnvrt-skip-link:focus,
+.cnvrt-skip-link:focus-visible {
   transform: translateY(0);
 }
 

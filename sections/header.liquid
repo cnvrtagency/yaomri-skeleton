@@ -1,7 +1,7 @@
-{{ 'yaomri-header.css' | asset_url | stylesheet_tag }}
+{{ 'cnvrt-header.css' | asset_url | stylesheet_tag }}
 {{ 'mega-menu.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'mega-menu.js' | asset_url }}" defer></script>
-<script src="{{ 'yaomri-header-state.js' | asset_url }}" defer></script>
+<script src="{{ 'cnvrt-header-state.js' | asset_url }}" defer></script>
 
 {%- liquid
   assign resolved_layout = settings.desktop_layout | default: 'logo_left_nav_center_actions_right'
@@ -258,44 +258,6 @@
     --cnvrt-header-stack-scroll-threshold-desktop: {{ header_stack_scroll_threshold }};
     --cnvrt-header-stack-scroll-threshold-mobile: {{ header_stack_scroll_threshold_mobile }};
 
-    --yh-bg: var(--cnvrt-header-bg);
-    --yh-fg: var(--cnvrt-header-fg);
-    --yh-border: var(--cnvrt-header-border);
-    --yh-shadow: var(--cnvrt-header-shadow);
-    --yh-custom-content-width: var(--cnvrt-header-custom-content-width);
-    --yh-desktop-padding: var(--cnvrt-header-desktop-padding);
-    --yh-mobile-padding: var(--cnvrt-header-mobile-padding);
-    --yh-desktop-height: var(--cnvrt-header-desktop-height);
-    --yh-mobile-height: var(--cnvrt-header-mobile-height);
-    --yh-desktop-logo-width: var(--cnvrt-header-desktop-logo-width);
-    --yh-mobile-logo-width: var(--cnvrt-header-mobile-logo-width);
-    --yh-icon-size: var(--cnvrt-header-icon-size);
-    --yh-icon-button-desktop: var(--cnvrt-header-icon-button-desktop);
-    --yh-icon-button-mobile: var(--cnvrt-header-icon-button-mobile);
-    --yh-desktop-icon-gap: var(--cnvrt-header-desktop-icon-gap);
-    --yh-mobile-icon-gap: var(--cnvrt-header-mobile-icon-gap);
-    --yh-nav-size: var(--cnvrt-header-nav-size);
-    --yh-nav-gap: var(--cnvrt-header-nav-gap);
-    --yh-cart-count-bg: var(--cnvrt-header-cart-count-bg);
-    --yh-cart-count-text: var(--cnvrt-header-cart-count-text);
-    --yh-cart-count-size: var(--cnvrt-header-cart-count-size);
-    --yh-cart-count-font-size: var(--cnvrt-header-cart-count-font-size);
-    --yh-cart-count-offset-x: var(--cnvrt-header-cart-count-offset-x);
-    --yh-cart-count-offset-y: var(--cnvrt-header-cart-count-offset-y);
-    --yh-country-bg-normal: var(--cnvrt-header-country-bg-normal);
-    --yh-country-border-normal: var(--cnvrt-header-country-border-normal);
-    --yh-country-text-normal: var(--cnvrt-header-country-text-normal);
-    --yh-country-text-solid: var(--cnvrt-header-country-text-solid);
-    --yh-country-height: var(--cnvrt-header-country-height);
-    --yh-transparent-text: var(--cnvrt-header-transparent-text);
-    --yh-transparent-bg-opacity: var(--cnvrt-header-transparent-bg-opacity);
-    --yh-transparent-border: var(--cnvrt-header-transparent-border);
-    --yh-solid-after-scroll-bg: var(--cnvrt-header-solid-after-scroll-bg);
-    --yh-solid-after-scroll-text: var(--cnvrt-header-solid-after-scroll-text);
-    --yaomri-header-stack-transition-duration: var(--cnvrt-header-stack-transition-duration);
-    --yaomri-header-stack-transition-easing: var(--cnvrt-header-stack-transition-easing);
-    --yaomri-header-stack-scroll-threshold-desktop: var(--cnvrt-header-stack-scroll-threshold-desktop);
-    --yaomri-header-stack-scroll-threshold-mobile: var(--cnvrt-header-stack-scroll-threshold-mobile);
   "
   {{ section.shopify_attributes }}
 >
@@ -308,7 +270,7 @@
           | image_tag:
             class: 'cnvrt-header__logo-image',
             widths: '120, 160, 200, 240, 300, 360, 420, 520, 680, 800',
-            sizes: '(min-width: 990px) var(--yh-desktop-logo-width), var(--yh-mobile-logo-width)',
+            sizes: '(min-width: 990px) var(--cnvrt-header-desktop-logo-width), var(--cnvrt-header-mobile-logo-width)',
             loading: 'eager',
             alt: desktop_logo.alt | default: shop.name | escape
         }}
@@ -319,7 +281,7 @@
             | image_tag:
               class: 'cnvrt-header__logo-image cnvrt-header__logo-image--transparent',
               widths: '120, 160, 200, 240, 300, 360, 420, 520, 680, 800',
-              sizes: '(min-width: 990px) var(--yh-desktop-logo-width), var(--yh-mobile-logo-width)',
+              sizes: '(min-width: 990px) var(--cnvrt-header-desktop-logo-width), var(--cnvrt-header-mobile-logo-width)',
               loading: 'eager',
               alt: transparent_logo.alt | default: shop.name | escape
           }}
@@ -339,7 +301,7 @@
           | image_tag:
             class: 'cnvrt-header__logo-image',
             widths: '100, 140, 180, 220, 280, 360, 480, 640',
-            sizes: '(max-width: 989px) var(--yh-mobile-logo-width), var(--yh-desktop-logo-width)',
+            sizes: '(max-width: 989px) var(--cnvrt-header-mobile-logo-width), var(--cnvrt-header-desktop-logo-width)',
             loading: 'eager',
             alt: mobile_logo.alt | default: shop.name | escape
         }}
@@ -350,7 +312,7 @@
             | image_tag:
               class: 'cnvrt-header__logo-image cnvrt-header__logo-image--transparent',
               widths: '100, 140, 180, 220, 280, 360, 480, 640',
-              sizes: '(max-width: 989px) var(--yh-mobile-logo-width), var(--yh-desktop-logo-width)',
+              sizes: '(max-width: 989px) var(--cnvrt-header-mobile-logo-width), var(--cnvrt-header-desktop-logo-width)',
               loading: 'eager',
               alt: transparent_mobile_logo.alt | default: shop.name | escape
           }}
@@ -403,24 +365,24 @@
       {%- endif -%}
 
       <a class="cnvrt-header__icon" href="{{ routes.search_url }}" aria-label="Search">
-        {% render 'icon-yaomri-search' %}
+        {% render 'icon-cnvrt-search' %}
       </a>
 
       {%- if show_account_icon and shop.customer_accounts_enabled -%}
         <a class="cnvrt-header__icon" href="{{ routes.account_url }}" aria-label="Account">
-          {% render 'icon-yaomri-account' %}
+          {% render 'icon-cnvrt-account' %}
         </a>
       {%- endif -%}
 
       {%- if show_wishlist_icon -%}
         <a class="cnvrt-header__icon" href="{{ wishlist_url }}" aria-label="Wishlist">
-          {% render 'icon-yaomri-heart' %}
+          {% render 'icon-cnvrt-heart' %}
         </a>
       {%- endif -%}
 
       {%- if show_cart_icon -%}
         <a class="cnvrt-header__icon cnvrt-header__cart" href="{{ routes.cart_url }}" aria-label="Cart">
-          {% render 'icon-yaomri-cart' %}
+          {% render 'icon-cnvrt-cart' %}
           {%- if cart.item_count > 0 -%}
             <span id="cart-icon-bubble" class="cnvrt-header__cart-count">{{ cart.item_count }}</span>
           {%- endif -%}
@@ -461,7 +423,7 @@
         aria-expanded="false"
         aria-controls="MobileDrawer"
       >
-        {% render 'icon-yaomri-menu' %}
+        {% render 'icon-cnvrt-menu' %}
       </button>
     </div>
 
@@ -471,18 +433,18 @@
 
     <div class="cnvrt-header__mobile-right">
       <a class="cnvrt-header__icon" href="{{ routes.search_url }}" aria-label="Search">
-        {% render 'icon-yaomri-search' %}
+        {% render 'icon-cnvrt-search' %}
       </a>
 
       {%- if show_wishlist_icon -%}
         <a class="cnvrt-header__icon cnvrt-header__mobile-optional" href="{{ wishlist_url }}" aria-label="Wishlist">
-          {% render 'icon-yaomri-heart' %}
+          {% render 'icon-cnvrt-heart' %}
         </a>
       {%- endif -%}
 
       {%- if show_cart_icon -%}
         <a class="cnvrt-header__icon cnvrt-header__cart" href="{{ routes.cart_url }}" aria-label="Cart">
-          {% render 'icon-yaomri-cart' %}
+          {% render 'icon-cnvrt-cart' %}
           {%- if cart.item_count > 0 -%}
             <span class="cnvrt-header__cart-count">{{ cart.item_count }}</span>
           {%- endif -%}
@@ -494,7 +456,7 @@
 
 {% schema %}
 {
-  "name": "Ya Omri header",
+  "name": "CNVRT header",
   "settings": [
     {
       "type": "paragraph",

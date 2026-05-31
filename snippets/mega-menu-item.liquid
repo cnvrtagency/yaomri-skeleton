@@ -8,7 +8,7 @@
 
   assign item_style = ''
   if block.settings.highlight_item and block.settings.highlight_color != blank
-    assign item_style = '--cnvrt-mega-link-color:' | append: block.settings.highlight_color | append: '; --ym-link-color:' | append: block.settings.highlight_color | append: ';'
+    assign item_style = '--cnvrt-mega-link-color:' | append: block.settings.highlight_color | append: '; --cnvrt-mega-link-color:' | append: block.settings.highlight_color | append: ';'
   endif
 
   assign item_label = block.settings.label_text
@@ -30,7 +30,7 @@
       {%- if item_label != blank -%}
         <span
           class="cnvrt-mega__label"
-          style="--cnvrt-mega-label-color: {{ block.settings.label_color }}; --ym-label-color: {{ block.settings.label_color }};"
+          style="--cnvrt-mega-label-color: {{ block.settings.label_color }}; --cnvrt-mega-label-color: {{ block.settings.label_color }};"
         >
           {{ item_label }}
         </span>
@@ -40,7 +40,7 @@
 {%- elsif block.type == 'dropdown_item' -%}
   {%- liquid
     assign dropdown_width = block.settings.dropdown_width | default: 260
-    assign dropdown_style = item_style | append: '--cnvrt-mega-dropdown-width:' | append: dropdown_width | append: 'px; --ym-dropdown-width:' | append: dropdown_width | append: 'px;'
+    assign dropdown_style = item_style | append: '--cnvrt-mega-dropdown-width:' | append: dropdown_width | append: 'px; --cnvrt-mega-dropdown-width:' | append: dropdown_width | append: 'px;'
     assign dropdown_menu = blank
     assign dropdown_panel_id = 'cnvrt-mega-dropdown-' | append: block.id
     if block.settings.menu != blank
@@ -71,7 +71,7 @@
       {%- if item_label != blank -%}
         <span
           class="cnvrt-mega__label"
-          style="--cnvrt-mega-label-color: {{ block.settings.label_color }}; --ym-label-color: {{ block.settings.label_color }};"
+          style="--cnvrt-mega-label-color: {{ block.settings.label_color }}; --cnvrt-mega-label-color: {{ block.settings.label_color }};"
         >
           {{ item_label }}
         </span>
@@ -119,7 +119,7 @@
       {%- if item_label != blank -%}
         <span
           class="cnvrt-mega__label"
-          style="--cnvrt-mega-label-color: {{ block.settings.label_color }}; --ym-label-color: {{ block.settings.label_color }};"
+          style="--cnvrt-mega-label-color: {{ block.settings.label_color }}; --cnvrt-mega-label-color: {{ block.settings.label_color }};"
         >
           {{ item_label }}
         </span>

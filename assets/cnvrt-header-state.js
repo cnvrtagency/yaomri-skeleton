@@ -188,7 +188,7 @@
   };
 
   const mount = () => {
-    if (document.body.dataset.yaomriHeaderStateInit === 'true') return;
+    if (document.body.dataset.cnvrtHeaderStateInit === 'true') return;
 
     let rafId = null;
     const queueApply = () => {
@@ -215,7 +215,7 @@
     document.addEventListener('shopify:section:unload', queueApply);
     document.addEventListener('shopify:block:select', queueApply);
 
-    document.body.dataset.yaomriHeaderStateInit = 'true';
+    document.body.dataset.cnvrtHeaderStateInit = 'true';
   };
 
   if (document.readyState === 'loading') {

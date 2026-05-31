@@ -45,24 +45,6 @@
     --cnvrt-three-hero-margin-top-mobile: {{ section.settings.margin_top_mobile }}px;
     --cnvrt-three-hero-margin-bottom-mobile: {{ section.settings.margin_bottom_mobile }}px;
 
-    --yth-section-width: var(--cnvrt-three-hero-section-width);
-    --yth-section-bg: var(--cnvrt-three-hero-section-bg);
-    --yth-overlay-color: var(--cnvrt-three-hero-overlay-color);
-    --yth-overlay-opacity: var(--cnvrt-three-hero-overlay-opacity);
-    --yth-height-desktop: var(--cnvrt-three-hero-height-desktop);
-    --yth-height-mobile: var(--cnvrt-three-hero-height-mobile);
-    --yth-padding-top-desktop: var(--cnvrt-three-hero-padding-top-desktop);
-    --yth-padding-bottom-desktop: var(--cnvrt-three-hero-padding-bottom-desktop);
-    --yth-padding-left-desktop: var(--cnvrt-three-hero-padding-left-desktop);
-    --yth-padding-right-desktop: var(--cnvrt-three-hero-padding-right-desktop);
-    --yth-padding-top-mobile: var(--cnvrt-three-hero-padding-top-mobile);
-    --yth-padding-bottom-mobile: var(--cnvrt-three-hero-padding-bottom-mobile);
-    --yth-padding-left-mobile: var(--cnvrt-three-hero-padding-left-mobile);
-    --yth-padding-right-mobile: var(--cnvrt-three-hero-padding-right-mobile);
-    --yth-margin-top-desktop: var(--cnvrt-three-hero-margin-top-desktop);
-    --yth-margin-bottom-desktop: var(--cnvrt-three-hero-margin-bottom-desktop);
-    --yth-margin-top-mobile: var(--cnvrt-three-hero-margin-top-mobile);
-    --yth-margin-bottom-mobile: var(--cnvrt-three-hero-margin-bottom-mobile);
   "
   {{ section.shopify_attributes }}
 >
@@ -86,7 +68,7 @@
           <{{ card_tag }}
             class="cnvrt-three-hero__card{% if block.settings.link != blank %} cnvrt-three-hero__card-link{% endif %}"
             {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %}
-            style="--cnvrt-three-hero-image-position: {{ card_position }}; --yth-image-position: var(--cnvrt-three-hero-image-position);"
+            style="--cnvrt-three-hero-image-position: {{ card_position }};"
             {{ block.shopify_attributes }}
           >
             <div class="cnvrt-three-hero__media">

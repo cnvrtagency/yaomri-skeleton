@@ -1,7 +1,7 @@
 # Theme Performance & Asset Audit
 
 Date: 2026-05-30
-Scope: `ya-omri-skeleton`
+Scope: `cnvrt-skeleton`
 Goal: identify safe performance/asset cleanup opportunities before future code changes.
 
 ## Executive summary
@@ -17,26 +17,26 @@ The theme is small-to-medium in footprint and mostly follows a clean section-dri
 | Asset | Type | Where loaded | Current load scope | Status |
 |---|---|---|---|---|
 | `assets/critical.css` | CSS | `layout/theme.liquid`, `layout/password.liquid`, `templates/gift_card.liquid` | Global on all non-password/gift-card and password/gift-card pages where used | Keep (critical baseline) |
-| `assets/yaomri-base.css` | CSS | `layout/theme.liquid` | Global on theme layout pages | Keep |
-| `assets/yaomri-header.css` | CSS | `sections/header.liquid` | Always because `header` is in `sections 'header-group'` for all templates | Global (critical visual system) |
+| `assets/cnvrt-base.css` | CSS | `layout/theme.liquid` | Global on theme layout pages | Keep |
+| `assets/cnvrt-header.css` | CSS | `sections/header.liquid` | Always because `header` is in `sections 'header-group'` for all templates | Global (critical visual system) |
 | `assets/mega-menu.css` | CSS | `sections/header.liquid` | Always (header-group includes `mega-menu`) | Global |
 | `assets/announcement-bar.css` | CSS | `sections/announcement-bar.liquid` | Always (header-group includes `announcement-bar`) | Global |
 | `assets/mobile-drawer.css` | CSS | `sections/mobile-menu.liquid` | Always (header-group includes `mobile-menu`) | Global |
 | `assets/section-single-image-hero.css` | CSS | `sections/single-image-hero.liquid` | Loaded when `single-image-hero` section renders (`templates/index.json`) | Section-scoped |
 | `assets/section-collection-cards.css` | CSS | `sections/collection-cards.liquid` | Loaded when `collection-cards` section renders (`templates/index.json`) | Section-scoped |
 | `assets/section-three-card-hero.css` | CSS | `sections/three-card-hero.liquid` | No active template currently references this section type | Candidate cleanup / low-risk if section is disabled |
-| `assets/yaomri-cart.css` | CSS | `sections/cart.liquid` | Loaded on cart template only | Section-scoped |
+| `assets/cnvrt-cart.css` | CSS | `sections/cart.liquid` | Loaded on cart template only | Section-scoped |
 | `assets/critical.css` (password/gift) | CSS | `layout/password.liquid`, `templates/gift_card.liquid` | Password layout / gift card template only | Keep |
 
 ### JS assets
 | Asset | Type | Where loaded | Current load scope | Status |
 |---|---|---|---|---|
 | `assets/mega-menu.js` | JS | `sections/header.liquid` | Global via header-group | Global |
-| `assets/yaomri-header-state.js` | JS | `sections/header.liquid` | Global via header-group | Global |
+| `assets/cnvrt-header-state.js` | JS | `sections/header.liquid` | Global via header-group | Global |
 | `assets/announcement-bar.js` | JS | `sections/announcement-bar.liquid` | Global via header-group | Global |
 | `assets/mobile-drawer.js` | JS | `sections/mobile-menu.liquid` | Global via header-group | Global |
 | `assets/section-collection-cards.js` | JS | `sections/collection-cards.liquid` | Section-scoped on index where section appears | Section-scoped |
-| `assets/yaomri-cart.js` | JS | `sections/cart.liquid` | Cart template only | Section-scoped |
+| `assets/cnvrt-cart.js` | JS | `sections/cart.liquid` | Cart template only | Section-scoped |
 
 ### Media assets
 | Asset | Type | Used where | Status |
@@ -47,9 +47,9 @@ The theme is small-to-medium in footprint and mostly follows a clean section-dri
 
 ## CSS loading report
 1. **Global CSS behavior**
-- `layout/theme.liquid` loads `critical.css` (preloaded) and `yaomri-base.css`.
+- `layout/theme.liquid` loads `critical.css` (preloaded) and `cnvrt-base.css`.
 - Header-group is rendered on all pages via `{% sections 'header-group' %}`; therefore header, announcement-bar, mega-menu, and mobile-menu CSS/JS are effectively site-wide.
-- `layout/password.liquid` intentionally excludes `yaomri-base.css` and header stack assets.
+- `layout/password.liquid` intentionally excludes `cnvrt-base.css` and header stack assets.
 
 2. **Section/local CSS behavior**
 - `single-image-hero`, `collection-cards`, and `cart` include section-local stylesheet tags.
@@ -69,7 +69,7 @@ The theme is small-to-medium in footprint and mostly follows a clean section-dri
 - This is expected and currently required for interaction continuity.
 
 2. **Section-local JS**
-- `section-collection-cards.js` and `yaomri-cart.js` are loaded only when their sections are present.
+- `section-collection-cards.js` and `cnvrt-cart.js` are loaded only when their sections are present.
 
 3. **No duplicate asset loads**
 - Each JS file is loaded once per theme render context via its section `script` tag.
@@ -122,7 +122,7 @@ These can be done with low risk:
 2. **Remove truly orphaned static assets** if merchant acceptance confirmed (no current dependencies)
    - `assets/icon-account.svg`, `assets/icon-cart.svg`, `assets/shoppy-x-ray.svg`.
 3. **Audit inline `stylesheet` usage** in non-critical sections (`collection`, `collections`, `footer`, `search`, `custom-section`) and migrate if repeatedly requested, but not required now.
-4. **Compress/optimize large static assets if size grows** (none currently urgent; `section-single-image-hero.css` and `yaomri-cart.css` are moderate but acceptable).
+4. **Compress/optimize large static assets if size grows** (none currently urgent; `section-single-image-hero.css` and `cnvrt-cart.css` are moderate but acceptable).
 
 ## Medium-risk optimization tasks
 1. **Defer non-critical header-side interactions**
@@ -136,7 +136,7 @@ These can be done with low risk:
 
 ## Deferred tasks (larger architectural work)
 1. Convert `header-group` JS into module-based controller with conditional loaders (menu vs scroll-only vs announcement-only).
-2. Split `yaomri-header.css` into smaller chunks once route/feature profiling confirms savings.
+2. Split `cnvrt-header.css` into smaller chunks once route/feature profiling confirms savings.
 3. Introduce explicit asset manifest/performance notes for each section to avoid ambiguity in active/inactive status.
 4. Replace static icon SVG asset files with inline snippets/ sprite strategy only after full visual QA.
 

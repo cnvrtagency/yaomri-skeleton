@@ -1,4 +1,4 @@
-# Ya Omri Responsive Layout System
+# CNVRT Responsive Layout System
 
 ## Purpose
 
@@ -76,8 +76,8 @@ For sections with section-level width controls:
 ## Transparent header + announcement interaction
 
 - Announcement and Header remain separate sections, but are coordinated as one stack through shared state on the common header-group wrapper.
-- The shared wrapper is the owner for hide/show control and uses `[data-yaomri-header-group]`, with the fallback `.shopify-section-group-header-group`.
-- In normal flow and transparent+sticky flow, the stack keeps announcement and header locked together by mutating wrapper classes only (`is-hidden-after-scroll`, `yaomri-header-stack--fade`, `yaomri-header-stack--slide`, `yaomri-header-stack--fade-slide`).
+- The shared wrapper is the owner for hide/show control and uses `[data-cnvrt-header-group]`, with the fallback `.shopify-section-group-header-group`.
+- In normal flow and transparent+sticky flow, the stack keeps announcement and header locked together by mutating wrapper classes only (`is-hidden-after-scroll`, `cnvrt-header-stack--fade`, `cnvrt-header-stack--slide`, `cnvrt-header-stack--fade-slide`).
 - `is-hidden-after-scroll` removes pointer events and animates opacity/transform so announcement/header do not overlap and no invisible tap blocker remains.
 - In normal flow and sticky-overlay flow, the shared stack animates with opacity/transform only (no shared max-height collapse).
 - Desktop/tablet and mobile use different thresholds for hide behavior:

@@ -1,13 +1,13 @@
-# YAOMRI Build Spec (Source of Truth)
+# CNVRT Build Spec (Source of Truth)
 
-This document is the implementation contract for all future Ya Omri Skeleton work.
+This document is the implementation contract for all future CNVRT Skeleton work.
 
 ## 1. Project direction
 
 - Shopify Skeleton is the base architecture.
 - Old Dawn repo is reference only.
 - Do not copy Dawn architecture.
-- Build clean Ya Omri theme architecture from Skeleton primitives.
+- Build clean CNVRT theme architecture from Skeleton primitives.
 
 ## 2. Final header model
 
@@ -111,7 +111,7 @@ Mobile:
 ## 9. Homepage direction
 
 - Remove Hello World from homepage template.
-- Build a clean Ya Omri homepage shell.
+- Build a clean CNVRT homepage shell.
 - Then implement in this order:
 1. Brand strip
 2. Promo banner
@@ -122,8 +122,8 @@ Mobile:
 ## 10. CSS architecture
 
 - `critical.css` remains Skeleton base.
-- `yaomri-base.css` holds global Ya Omri tokens/utilities.
-- `yaomri-header.css` is header-only.
+- `cnvrt-base.css` holds global CNVRT tokens/utilities.
+- `cnvrt-header.css` is header-only.
 - Future sections use scoped CSS or section-specific assets.
 - No Dawn classes.
 - No global `.header` selectors.

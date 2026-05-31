@@ -1,8 +1,8 @@
 .cnvrt-header-stack {
   position: relative;
-  --cnvrt-header-stack-transition-duration: var(--yaomri-header-stack-transition-duration, 350ms);
+  --cnvrt-header-stack-transition-duration: var(--cnvrt-header-stack-transition-duration, 350ms);
   --cnvrt-header-stack-transition-easing: var(
-    --yaomri-header-stack-transition-easing,
+    --cnvrt-header-stack-transition-easing,
     cubic-bezier(0.22, 1, 0.36, 1)
   );
   opacity: 1;
@@ -66,12 +66,9 @@
   color: var(--cnvrt-header-fg, var(--color-foreground));
   box-shadow: var(--cnvrt-header-shadow, none);
   transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-  --cnvrt-header-country-bg: var(--cnvrt-header-country-bg-normal, var(--yh-country-bg-normal, var(--color-background)));
-  --cnvrt-header-country-border: var(--cnvrt-header-country-border-normal, var(--yh-country-border-normal, var(--color-border)));
-  --cnvrt-header-country-text: var(--cnvrt-header-country-text-normal, var(--yh-country-text-normal, currentColor));
-  --yh-country-bg: var(--cnvrt-header-country-bg);
-  --yh-country-border: var(--cnvrt-header-country-border);
-  --yh-country-text: var(--cnvrt-header-country-text);
+  --cnvrt-header-country-bg: var(--cnvrt-header-country-bg-normal, var(--color-background));
+  --cnvrt-header-country-border: var(--cnvrt-header-country-border-normal, var(--color-border));
+  --cnvrt-header-country-text: var(--cnvrt-header-country-text-normal, currentColor);
 }
 
 .cnvrt-header--transparent-active {
@@ -84,18 +81,14 @@
 }
 
 .cnvrt-header--transparent-active:not(.is-scrolled) {
-  color: var(--cnvrt-header-transparent-text, var(--yh-transparent-text, #fff));
-  --cnvrt-header-fg: var(--cnvrt-header-transparent-text, var(--yh-transparent-text, #fff));
-  --cnvrt-header-current-fg: var(--cnvrt-header-transparent-text, var(--yh-transparent-text, #fff));
-  --yh-fg: var(--cnvrt-header-fg);
-  --yh-current-fg: var(--cnvrt-header-fg);
-  --ym-link-color: currentColor;
+  color: var(--cnvrt-header-transparent-text, #fff);
+  --cnvrt-header-fg: var(--cnvrt-header-transparent-text, #fff);
+  --cnvrt-header-current-fg: var(--cnvrt-header-transparent-text, #fff);
+  --cnvrt-header-current-fg: var(--cnvrt-header-fg);
+  --cnvrt-mega-link-color: currentColor;
   --cnvrt-header-country-bg: transparent;
-  --cnvrt-header-country-border: var(--cnvrt-header-transparent-border, var(--yh-transparent-border, transparent));
-  --cnvrt-header-country-text: var(--cnvrt-header-transparent-text, var(--yh-transparent-text, #fff));
-  --yh-country-bg: var(--cnvrt-header-country-bg);
-  --yh-country-border: var(--cnvrt-header-country-border);
-  --yh-country-text: var(--cnvrt-header-country-text);
+  --cnvrt-header-country-border: var(--cnvrt-header-transparent-border, transparent);
+  --cnvrt-header-country-text: var(--cnvrt-header-transparent-text, #fff);
 }
 
 .cnvrt-header--transparent-active:not(.is-scrolled) .cnvrt-header__nav-link,
@@ -109,7 +102,6 @@
 .cnvrt-header--transparent-active.is-scrolled {
   --cnvrt-header-fg: var(--cnvrt-header-solid-after-scroll-text, var(--color-foreground));
   --cnvrt-header-current-fg: var(--cnvrt-header-fg);
-  --yh-fg: var(--cnvrt-header-fg);
   border-bottom-color: var(--cnvrt-header-border, var(--color-border));
   background: var(--cnvrt-header-solid-after-scroll-bg, var(--cnvrt-header-bg, var(--color-background)));
   color: var(--cnvrt-header-solid-after-scroll-text, var(--cnvrt-header-fg, var(--color-foreground)));
@@ -117,9 +109,6 @@
   --cnvrt-header-country-bg: var(--cnvrt-header-country-bg-normal, var(--color-background));
   --cnvrt-header-country-border: var(--cnvrt-header-country-border-normal, var(--color-border));
   --cnvrt-header-country-text: var(--cnvrt-header-country-text-solid, var(--cnvrt-header-country-text-normal, var(--cnvrt-header-fg, currentColor)));
-  --yh-country-bg: var(--cnvrt-header-country-bg);
-  --yh-country-border: var(--cnvrt-header-country-border);
-  --yh-country-text: var(--cnvrt-header-country-text);
 }
 
 .cnvrt-header--transparent-active:not(.is-scrolled).cnvrt-header--no-border {
@@ -237,9 +226,9 @@
   height: var(--cnvrt-header-country-height, 48px);
   box-sizing: border-box;
   padding-inline: 0.56rem;
-  border: 1px solid var(--cnvrt-header-country-border, var(--yh-country-border, var(--color-border)));
-  background: var(--cnvrt-header-country-bg, var(--yh-country-bg, var(--color-background)));
-  color: var(--cnvrt-header-country-text, var(--yh-country-text, currentColor));
+  border: 1px solid var(--cnvrt-header-country-border, var(--color-border));
+  background: var(--cnvrt-header-country-bg, var(--color-background));
+  color: var(--cnvrt-header-country-text, currentColor);
   font-size: 0.72rem;
   font-style: italic;
   font-weight: 800;
@@ -284,7 +273,7 @@
   display: block;
   min-width: 0;
   max-width: calc(100% - 0.78rem);
-  color: var(--cnvrt-header-country-text, var(--yh-country-text, currentColor));
+  color: var(--cnvrt-header-country-text, currentColor);
   overflow: hidden;
   text-overflow: clip;
   text-transform: uppercase;
@@ -306,7 +295,7 @@
   border: 0;
   appearance: none;
   background: transparent;
-  color: var(--cnvrt-header-country-text, var(--yh-country-text, currentColor));
+  color: var(--cnvrt-header-country-text, currentColor);
   font: inherit;
   letter-spacing: inherit;
   text-transform: none;
@@ -408,7 +397,7 @@
   overflow: visible;
 }
 
-.cnvrt-header .icon-yaomri {
+.cnvrt-header .cnvrt-icon {
   display: block;
   width: var(--cnvrt-header-icon-size, 24px);
   height: var(--cnvrt-header-icon-size, 24px);

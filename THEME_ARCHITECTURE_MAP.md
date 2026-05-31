@@ -1,10 +1,10 @@
-# Ya Omri Theme Architecture Map
+# CNVRT Theme Architecture Map
 
-This is the control map for the Skeleton-based Ya Omri theme. It is intentionally opinionated: the point is to reduce duplicate settings, unclear ownership, and merchant-facing controls that are hard to explain.
+This is the control map for the Skeleton-based CNVRT theme. It is intentionally opinionated: the point is to reduce duplicate settings, unclear ownership, and merchant-facing controls that are hard to explain.
 
 ## Source Of Truth
 
-- `YAOMRI_BUILD_SPEC.md` is the product and architecture source of truth.
+- `CNVRT_BUILD_SPEC.md` is the product and architecture source of truth.
 - Shopify Skeleton is the base architecture.
 - The old Dawn repo is reference only and must not be copied.
 - Theme settings own global brand, layout, colour, and header style defaults.
@@ -298,7 +298,7 @@ Must not be duplicated elsewhere:
 - Panel ID connection controls.
 
 Current implementation:
-- Ownership is now clearer: `.yaomri-mega-panel` owns the visible panel width; `.yaomri-mega-panel__inner` is internal.
+- Ownership is now clearer: `.cnvrt-mega-panel` owns the visible panel width; `.cnvrt-mega-panel__inner` is internal.
 - The panel ID workflow is functional but merchant-unfriendly. Matching text IDs across Header and Mega Menu is fragile.
 - `close_delay` is too technical for most merchants and should likely be hidden, renamed, or removed for launch.
 - Image tile settings are launch-useful, but the tile content model is minimal.
@@ -344,7 +344,7 @@ Judgement:
 
 ## Cart
 
-Owned by `sections/cart.liquid`, `assets/yaomri-cart.css`, and `assets/yaomri-cart.js` with compatibility aliases for `cnvrt-cart*`.
+Owned by `sections/cart.liquid`, `assets/cnvrt-cart.css`, and `assets/cnvrt-cart.js` with compatibility aliases for `cnvrt-cart*`.
 
 Owns:
 - Cart page fallback rendering.
@@ -366,8 +366,8 @@ Must not be duplicated elsewhere:
 
 Current implementation:
 - Cart page is not clearly marked in code or settings as fallback-only.
-- `yaomri-cart.js` recalculates visible prices client-side but does not update Shopify cart state until form submit. That is acceptable for a fallback cart page but should not be mistaken for cart drawer behavior.
-- Cart namespace aliases are active: legacy `yaomri-cart*` remains in markup/CSS/JS while `cnvrt-cart*` aliases are present for migration safety.
+- `cnvrt-cart.js` recalculates visible prices client-side but does not update Shopify cart state until form submit. That is acceptable for a fallback cart page but should not be mistaken for cart drawer behavior.
+- Cart namespace aliases are active: legacy `cnvrt-cart*` remains in markup/CSS/JS while `cnvrt-cart*` aliases are present for migration safety.
 - A cart drawer is not built yet, which conflicts with the requested 7-day launch plan but not with the original build spec.
 
 Judgement:
@@ -404,7 +404,7 @@ Current implementation:
 - Single Image Hero has separate Section width and Content width controls. Section width owns the overall hero frame; Content width owns the text/button content area inside the hero.
 - Single Image Hero separates desktop/mobile content block position from desktop/mobile text alignment and supports desktop/mobile height modes.
 - `sections/three-card-hero.liquid` owns the 3-card editorial hero and its card blocks.
-- Styles are scoped under `.yaomri-single-hero`/`.cnvrt-single-hero` and `.yaomri-three-hero`/`.cnvrt-three-hero` during compatibility migration.
+- Styles are scoped under `.cnvrt-single-hero`/`.cnvrt-single-hero` and `.cnvrt-three-hero`/`.cnvrt-three-hero` during compatibility migration.
 
 Judgement:
 - Keep Single Image Hero and 3-Card Hero separate. Shopify does not hide irrelevant settings in a layout-switch section, so separate sections are clearer for merchants.
@@ -429,7 +429,7 @@ Must not be duplicated elsewhere:
 
 Current implementation:
 - Footer is still mostly Skeleton default and uses translation labels.
-- Footer CSS is inline inside the section. That is acceptable for Skeleton default but not ideal for reusable Ya Omri architecture.
+- Footer CSS is inline inside the section. That is acceptable for Skeleton default but not ideal for reusable CNVRT architecture.
 - Footer namespace aliases are active: legacy `site-footer`/`footer__*` classes remain while `cnvrt-footer*` aliases are present for migration safety.
 
 Judgement:
@@ -481,7 +481,7 @@ Recommendation:
 | Homepage | Half-built | Hello World is removed and Single Image Hero is active; remaining homepage launch sections still need to be built. |
 | Product page | Not started | Still default Skeleton unless separately changed. |
 | Collection page | Not started | Still default Skeleton unless separately changed. |
-| Search | Half-built | Basic search page exists; no Ya Omri QA pass. |
+| Search | Half-built | Basic search page exists; no CNVRT QA pass. |
 | Footer | Half-built | Skeleton default, not brand-ready. |
 | Theme editor UX | Needs cleanup | Labels and stale saved settings need tightening. |
 | Responsive QA | In progress | Responsive system contract is documented in `THEME_RESPONSIVE_SYSTEM.md`; modern sections are converging on shared width/inset rules. |

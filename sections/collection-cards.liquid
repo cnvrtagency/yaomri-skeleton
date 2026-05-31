@@ -48,65 +48,65 @@
   aria-label="{{ section.settings.heading | default: 'Collection cards' | escape }}"
   style="
     --cnvrt-collection-cards-container-width: {{ section_width_value }};
-    --cc-container-width: var(--cnvrt-collection-cards-container-width, {{ section_width_value }});
+    --cnvrt-collection-container-width: var(--cnvrt-collection-cards-container-width, {{ section_width_value }});
     --cnvrt-collection-cards-custom-width: {{ custom_section_width }}px;
-    --cc-custom-width: var(--cnvrt-collection-cards-custom-width, {{ custom_section_width }}px);
+    --cnvrt-collection-custom-width: var(--cnvrt-collection-cards-custom-width, {{ custom_section_width }}px);
     --cnvrt-collection-cards-bg: {{ section.settings.background_color }};
-    --cc-bg: var(--cnvrt-collection-cards-bg, {{ section.settings.background_color }});
+    --cnvrt-collection-bg: var(--cnvrt-collection-cards-bg, {{ section.settings.background_color }});
     --cnvrt-collection-cards-border-color: {{ section.settings.border_color }};
-    --cc-border-color: var(--cnvrt-collection-cards-border-color, {{ section.settings.border_color }});
+    --cnvrt-collection-border-color: var(--cnvrt-collection-cards-border-color, {{ section.settings.border_color }});
     --cnvrt-collection-cards-gap-desktop: {{ section.settings.gap_desktop }}px;
-    --cc-gap-desktop: var(--cnvrt-collection-cards-gap-desktop, {{ section.settings.gap_desktop }}px);
+    --cnvrt-collection-gap-desktop: var(--cnvrt-collection-cards-gap-desktop, {{ section.settings.gap_desktop }}px);
     --cnvrt-collection-cards-gap-mobile: {{ section.settings.gap_mobile }}px;
-    --cc-gap-mobile: var(--cnvrt-collection-cards-gap-mobile, {{ section.settings.gap_mobile }}px);
+    --cnvrt-collection-gap-mobile: var(--cnvrt-collection-cards-gap-mobile, {{ section.settings.gap_mobile }}px);
     --cnvrt-collection-cards-visible-desktop: {{ section.settings.carousel_cards_desktop | default: '4' }};
-    --cc-cards-desktop: var(--cnvrt-collection-cards-visible-desktop, {{ section.settings.carousel_cards_desktop | default: '4' }});
+    --cnvrt-collection-cards-desktop: var(--cnvrt-collection-cards-visible-desktop, {{ section.settings.carousel_cards_desktop | default: '4' }});
     --cnvrt-collection-cards-visible-tablet: {{ section.settings.carousel_cards_tablet | default: '3' }};
-    --cc-cards-tablet: var(--cnvrt-collection-cards-visible-tablet, {{ section.settings.carousel_cards_tablet | default: '3' }});
+    --cnvrt-collection-cards-tablet: var(--cnvrt-collection-cards-visible-tablet, {{ section.settings.carousel_cards_tablet | default: '3' }});
     --cnvrt-collection-cards-visible-mobile: {{ section.settings.carousel_cards_mobile | default: '1.2' }};
-    --cc-cards-mobile: var(--cnvrt-collection-cards-visible-mobile, {{ section.settings.carousel_cards_mobile | default: '1.2' }});
+    --cnvrt-collection-cards-mobile: var(--cnvrt-collection-cards-visible-mobile, {{ section.settings.carousel_cards_mobile | default: '1.2' }});
     --cnvrt-collection-cards-image-ratio: {{ ratio_value }};
-    --cc-image-ratio: var(--cnvrt-collection-cards-image-ratio, {{ ratio_value }});
+    --cnvrt-collection-image-ratio: var(--cnvrt-collection-cards-image-ratio, {{ ratio_value }});
     --cnvrt-collection-card-title-size-desktop: {{ section.settings.card_title_size_desktop }}px;
-    --cc-title-size-desktop: var(--cnvrt-collection-card-title-size-desktop, {{ section.settings.card_title_size_desktop }}px);
+    --cnvrt-collection-title-size-desktop: var(--cnvrt-collection-card-title-size-desktop, {{ section.settings.card_title_size_desktop }}px);
     --cnvrt-collection-card-title-size-mobile: {{ section.settings.card_title_size_mobile }}px;
-    --cc-title-size-mobile: var(--cnvrt-collection-card-title-size-mobile, {{ section.settings.card_title_size_mobile }}px);
+    --cnvrt-collection-title-size-mobile: var(--cnvrt-collection-card-title-size-mobile, {{ section.settings.card_title_size_mobile }}px);
     --cnvrt-collection-card-title-weight: {{ section.settings.card_title_weight }};
-    --cc-title-weight: var(--cnvrt-collection-card-title-weight, {{ section.settings.card_title_weight }});
+    --cnvrt-collection-title-weight: var(--cnvrt-collection-card-title-weight, {{ section.settings.card_title_weight }});
     --cnvrt-collection-card-title-line-height: {{ section.settings.card_title_line_height | divided_by: 100.0 }};
-    --cc-title-line-height: var(--cnvrt-collection-card-title-line-height, {{ section.settings.card_title_line_height | divided_by: 100.0 }});
+    --cnvrt-collection-title-line-height: var(--cnvrt-collection-card-title-line-height, {{ section.settings.card_title_line_height | divided_by: 100.0 }});
     --cnvrt-collection-card-title-letter-spacing: {{ section.settings.card_title_letter_spacing | divided_by: 100.0 }}em;
-    --cc-title-letter-spacing: var(--cnvrt-collection-card-title-letter-spacing, {{ section.settings.card_title_letter_spacing | divided_by: 100.0 }}em);
+    --cnvrt-collection-title-letter-spacing: var(--cnvrt-collection-card-title-letter-spacing, {{ section.settings.card_title_letter_spacing | divided_by: 100.0 }}em);
     --cnvrt-collection-card-title-transform: {{ section.settings.card_title_transform }};
-    --cc-title-transform: var(--cnvrt-collection-card-title-transform, {{ section.settings.card_title_transform }});
+    --cnvrt-collection-title-transform: var(--cnvrt-collection-card-title-transform, {{ section.settings.card_title_transform }});
     --cnvrt-collection-card-title-color: {{ section.settings.card_title_color }};
-    --cc-title-color: var(--cnvrt-collection-card-title-color, {{ section.settings.card_title_color }});
+    --cnvrt-collection-title-color: var(--cnvrt-collection-card-title-color, {{ section.settings.card_title_color }});
     --cnvrt-collection-card-meta-size-desktop: {{ section.settings.card_meta_size_desktop }}px;
-    --cc-meta-size-desktop: var(--cnvrt-collection-card-meta-size-desktop, {{ section.settings.card_meta_size_desktop }}px);
+    --cnvrt-collection-meta-size-desktop: var(--cnvrt-collection-card-meta-size-desktop, {{ section.settings.card_meta_size_desktop }}px);
     --cnvrt-collection-card-meta-size-mobile: {{ section.settings.card_meta_size_mobile }}px;
-    --cc-meta-size-mobile: var(--cnvrt-collection-card-meta-size-mobile, {{ section.settings.card_meta_size_mobile }}px);
+    --cnvrt-collection-meta-size-mobile: var(--cnvrt-collection-card-meta-size-mobile, {{ section.settings.card_meta_size_mobile }}px);
     --cnvrt-collection-card-meta-weight: {{ section.settings.card_meta_weight }};
-    --cc-meta-weight: var(--cnvrt-collection-card-meta-weight, {{ section.settings.card_meta_weight }});
+    --cnvrt-collection-meta-weight: var(--cnvrt-collection-card-meta-weight, {{ section.settings.card_meta_weight }});
     --cnvrt-collection-card-meta-line-height: {{ section.settings.card_meta_line_height | divided_by: 100.0 }};
-    --cc-meta-line-height: var(--cnvrt-collection-card-meta-line-height, {{ section.settings.card_meta_line_height | divided_by: 100.0 }});
+    --cnvrt-collection-meta-line-height: var(--cnvrt-collection-card-meta-line-height, {{ section.settings.card_meta_line_height | divided_by: 100.0 }});
     --cnvrt-collection-card-meta-letter-spacing: {{ section.settings.card_meta_letter_spacing | divided_by: 100.0 }}em;
-    --cc-meta-letter-spacing: var(--cnvrt-collection-card-meta-letter-spacing, {{ section.settings.card_meta_letter_spacing | divided_by: 100.0 }}em);
+    --cnvrt-collection-meta-letter-spacing: var(--cnvrt-collection-card-meta-letter-spacing, {{ section.settings.card_meta_letter_spacing | divided_by: 100.0 }}em);
     --cnvrt-collection-card-meta-transform: {{ section.settings.card_meta_transform }};
-    --cc-meta-transform: var(--cnvrt-collection-card-meta-transform, {{ section.settings.card_meta_transform }});
+    --cnvrt-collection-meta-transform: var(--cnvrt-collection-card-meta-transform, {{ section.settings.card_meta_transform }});
     --cnvrt-collection-card-meta-color: {{ section.settings.card_meta_color }};
-    --cc-meta-color: var(--cnvrt-collection-card-meta-color, {{ section.settings.card_meta_color }});
-    --cc-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
-    --cc-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
-    --cc-padding-left-desktop: {{ section.settings.padding_left_desktop }}px;
-    --cc-padding-right-desktop: {{ section.settings.padding_right_desktop }}px;
-    --cc-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
-    --cc-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
-    --cc-padding-left-mobile: {{ section.settings.padding_left_mobile }}px;
-    --cc-padding-right-mobile: {{ section.settings.padding_right_mobile }}px;
-    --cc-margin-top-desktop: {{ section.settings.margin_top_desktop }}px;
-    --cc-margin-bottom-desktop: {{ section.settings.margin_bottom_desktop }}px;
-    --cc-margin-top-mobile: {{ section.settings.margin_top_mobile }}px;
-    --cc-margin-bottom-mobile: {{ section.settings.margin_bottom_mobile }}px;
+    --cnvrt-collection-meta-color: var(--cnvrt-collection-card-meta-color, {{ section.settings.card_meta_color }});
+    --cnvrt-collection-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --cnvrt-collection-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --cnvrt-collection-padding-left-desktop: {{ section.settings.padding_left_desktop }}px;
+    --cnvrt-collection-padding-right-desktop: {{ section.settings.padding_right_desktop }}px;
+    --cnvrt-collection-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --cnvrt-collection-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --cnvrt-collection-padding-left-mobile: {{ section.settings.padding_left_mobile }}px;
+    --cnvrt-collection-padding-right-mobile: {{ section.settings.padding_right_mobile }}px;
+    --cnvrt-collection-margin-top-desktop: {{ section.settings.margin_top_desktop }}px;
+    --cnvrt-collection-margin-bottom-desktop: {{ section.settings.margin_bottom_desktop }}px;
+    --cnvrt-collection-margin-top-mobile: {{ section.settings.margin_top_mobile }}px;
+    --cnvrt-collection-margin-bottom-mobile: {{ section.settings.margin_bottom_mobile }}px;
   "
   {{ section.shopify_attributes }}
 >
@@ -121,10 +121,10 @@
       <div class="cnvrt-collection-cards__nav{% unless layout_mode == 'carousel' and show_arrows %} is-hidden{% endunless %}">
         {%- if layout_mode == 'carousel' and show_arrows -%}
           <button type="button" class="cnvrt-collection-cards__button" data-cnvrt-prev aria-label="Previous collection cards">
-            {% render 'icon-yaomri-chevron-left' %}
+            {% render 'icon-cnvrt-chevron-left' %}
           </button>
           <button type="button" class="cnvrt-collection-cards__button" data-cnvrt-next aria-label="Next collection cards">
-            {% render 'icon-yaomri-chevron-right' %}
+            {% render 'icon-cnvrt-chevron-right' %}
           </button>
         {%- endif -%}
       </div>
@@ -173,7 +173,7 @@
               <a
                 href="{{ card_link }}"
                 class="cnvrt-collection-card cnvrt-collection-card--hover-{{ hover_variant }}"
-                style="--cc-image-position: {{ block.settings.image_position | default: 'center center' }};"
+                style="--cnvrt-collection-image-position: {{ block.settings.image_position | default: 'center center' }};"
                 {{ block.shopify_attributes }}
                 {% if block.settings.open_new_window %}target="_blank" rel="noopener noreferrer"{% endif %}
                 aria-label="{{ card_title | escape }}"
@@ -183,10 +183,10 @@
                     <span
                       class="cnvrt-collection-card__badge cnvrt-collection-card__badge--{{ block.settings.badge_placement }}"
                       style="
-                        --cc-badge-text: {{ block.settings.badge_text_color }};
-                        --cc-badge-bg: {{ block.settings.badge_background_color }};
-                        --cc-badge-size: {{ block.settings.badge_font_size }}px;
-                        --cc-badge-transform: {{ block.settings.badge_text_transform }};
+                        --cnvrt-collection-badge-text: {{ block.settings.badge_text_color }};
+                        --cnvrt-collection-badge-bg: {{ block.settings.badge_background_color }};
+                        --cnvrt-collection-badge-size: {{ block.settings.badge_font_size }}px;
+                        --cnvrt-collection-badge-transform: {{ block.settings.badge_text_transform }};
                       "
                     >
                       {{ block.settings.badge_text }}
@@ -221,7 +221,7 @@
             {%- else -%}
               <article
                 class="cnvrt-collection-card cnvrt-collection-card--hover-{{ hover_variant }}"
-                style="--cc-image-position: {{ block.settings.image_position | default: 'center center' }};"
+                style="--cnvrt-collection-image-position: {{ block.settings.image_position | default: 'center center' }};"
                 {{ block.shopify_attributes }}
               >
                 <div class="cnvrt-collection-card__media">
@@ -229,10 +229,10 @@
                     <span
                       class="cnvrt-collection-card__badge cnvrt-collection-card__badge--{{ block.settings.badge_placement }}"
                       style="
-                        --cc-badge-text: {{ block.settings.badge_text_color }};
-                        --cc-badge-bg: {{ block.settings.badge_background_color }};
-                        --cc-badge-size: {{ block.settings.badge_font_size }}px;
-                        --cc-badge-transform: {{ block.settings.badge_text_transform }};
+                        --cnvrt-collection-badge-text: {{ block.settings.badge_text_color }};
+                        --cnvrt-collection-badge-bg: {{ block.settings.badge_background_color }};
+                        --cnvrt-collection-badge-size: {{ block.settings.badge_font_size }}px;
+                        --cnvrt-collection-badge-transform: {{ block.settings.badge_text_transform }};
                       "
                     >
                       {{ block.settings.badge_text }}

@@ -19,7 +19,7 @@
 
     {% # Load and preload the critical CSS %}
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
-    {{ 'yaomri-base.css' | asset_url | stylesheet_tag }}
+    {{ 'cnvrt-base.css' | asset_url | stylesheet_tag }}
 
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
@@ -28,7 +28,7 @@
   </head>
 
   <body>
-    <a class="yaomri-skip-link" href="#MainContent">Skip to content</a>
+    <a class="cnvrt-skip-link" href="#MainContent">Skip to content</a>
 
     <div class="cnvrt-header-stack" data-cnvrt-header-group>
       {% sections 'header-group' %}

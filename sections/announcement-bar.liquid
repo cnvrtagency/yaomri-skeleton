@@ -18,7 +18,7 @@
 {%- if is_enabled or request.design_mode -%}
 <section
   class="cnvrt-announcement full-width cnvrt-announcement--mode-{{ mode }} cnvrt-announcement--width-{{ width_mode }}{% if show_bottom_border %} cnvrt-announcement--with-border{% endif %}{% if marquee_pause_on_hover %} cnvrt-announcement--marquee-pause{% endif %}"
-  data-yaomri-announcement
+  data-cnvrt-announcement
   role="region"
   aria-label="Announcement bar"
   style="
@@ -39,23 +39,6 @@
     --cnvrt-announcement-text-transform: {{ section.settings.text_transform }};
     --cnvrt-announcement-item-gap: {{ section.settings.item_gap }}px;
     --cnvrt-announcement-marquee-duration: {{ marquee_speed }}s;
-    --yab-font-size-desktop: var(--cnvrt-announcement-font-size-desktop);
-    --yab-font-size-mobile: var(--cnvrt-announcement-font-size-mobile);
-    --yab-pad-inline-desktop: var(--cnvrt-announcement-pad-inline-desktop);
-    --yab-pad-inline-mobile: var(--cnvrt-announcement-pad-inline-mobile);
-    --yab-pad-block-desktop: var(--cnvrt-announcement-pad-block-desktop);
-    --yab-pad-block-mobile: var(--cnvrt-announcement-pad-block-mobile);
-    --yab-height-desktop: var(--cnvrt-announcement-height-desktop);
-    --yab-height-mobile: var(--cnvrt-announcement-height-mobile);
-    --yab-font-weight: var(--cnvrt-announcement-font-weight);
-    --yab-letter-spacing: var(--cnvrt-announcement-letter-spacing);
-    --yab-text-transform: var(--cnvrt-announcement-text-transform);
-    --yab-item-gap: var(--cnvrt-announcement-item-gap);
-    --yab-marquee-duration: var(--cnvrt-announcement-marquee-duration);
-    --yab-custom-width: var(--cnvrt-announcement-custom-width);
-    --yab-bg: var(--cnvrt-announcement-bg);
-    --yab-text: var(--cnvrt-announcement-text);
-    --yab-border: var(--cnvrt-announcement-border);
   "
   {{ section.shopify_attributes }}
 >
@@ -165,10 +148,10 @@
 
         {%- if show_arrows and valid_block_count > 1 -%}
           <button type="button" class="cnvrt-announcement__arrow cnvrt-announcement__arrow--prev" data-announcement-prev aria-label="Previous announcement">
-            {% render 'icon-yaomri-chevron-left' %}
+            {% render 'icon-cnvrt-chevron-left' %}
           </button>
           <button type="button" class="cnvrt-announcement__arrow cnvrt-announcement__arrow--next" data-announcement-next aria-label="Next announcement">
-            {% render 'icon-yaomri-chevron-right' %}
+            {% render 'icon-cnvrt-chevron-right' %}
           </button>
         {%- endif -%}
 

@@ -44,14 +44,14 @@
     if (!panelRoot) return;
     const panelWidth = getPanelWidth();
     panelRoot.style.setProperty('--cnvrt-mega-panel-width', `${panelWidth}px`);
-    panelRoot.style.setProperty('--ym-panel-width', `${panelWidth}px`);
+    panelRoot.style.setProperty('--cnvrt-mega-panel-width', `${panelWidth}px`);
   };
 
   const syncPanelPadding = () => {
     if (!panelRoot) return;
     const headerDesktopPadding = Number(header?.dataset.headerDesktopPadding) || 24;
     panelRoot.style.setProperty('--cnvrt-mega-content-padding', `${headerDesktopPadding}px`);
-    panelRoot.style.setProperty('--ym-content-padding', `${headerDesktopPadding}px`);
+    panelRoot.style.setProperty('--cnvrt-mega-content-padding', `${headerDesktopPadding}px`);
   };
 
   const getHeaderBottom = () => {
@@ -65,7 +65,7 @@
     if (!panelRoot) return;
     const top = getHeaderBottom();
     panelRoot.style.setProperty('--cnvrt-mega-panel-top', `${top}px`);
-    panelRoot.style.setProperty('--ym-panel-top', `${top}px`);
+    panelRoot.style.setProperty('--cnvrt-mega-panel-top', `${top}px`);
   };
 
   const clearCloseTimer = () => {

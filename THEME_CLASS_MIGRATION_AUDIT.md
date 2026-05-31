@@ -7,7 +7,7 @@ Scope: Pre-change namespace planning for sellable distribution
 
 The theme currently uses a stable but brand-forward naming system with multiple co-existing prefixes tied to historical ownership:
 
-- `yaomri-` / `yh-` / `ysh-` / `ym-` / `yab-` / `cc-` / `mdrawer-` / `icon-yaomri-`
+- `cnvrt-` / `yh-` / `ysh-` / `ym-` / `yab-` / `cc-` / `cnvrt-drawer-` / `icon-cnvrt-`
 - plus shared layout vars `--page-*`
 
 Migration to a neutral namespace is feasible, but a **single-pass rename is high risk** because several components are tightly coupled through selector + data attribute + script assumptions.
@@ -24,8 +24,8 @@ Recommended path:
 - Legacy class aliases have been removed from active markup and primary CSS/JS selectors for migrated systems.
 - CNVRT classes are now the active runtime namespace.
 - Intentional carry-forwards:
-  - `icon-yaomri*` class namespace is deferred to a dedicated icon-system migration.
-  - legacy variable fallbacks (`--yab-*`, `--cc-*`, `--ysh-*`, `--yh-*`, `--ym-*`, `--yth-*`) remain where compatibility is still required.
+  - `cnvrt-icon*` class namespace is deferred to a dedicated icon-system migration.
+  - legacy variable fallbacks (`--cnvrt-announcement-*`, `--cnvrt-collection-*`, `--cnvrt-single-hero-*`, `--cnvrt-header-*`, `--cnvrt-mega-*`, `--cnvrt-three-hero-*`) remain where compatibility is still required.
   - Shopify setting IDs were not renamed.
 
 ### Controlled cleanup pass (2026-05-30, post phase rollout)
@@ -36,15 +36,15 @@ Legacy prefix status after inventory:
 
 | Prefix | Current role | Classification |
 |---|---|---|
-| `yaomri-` | Legacy class aliases across migrated components | Keep as compatibility alias for now |
+| `cnvrt-` | Legacy class aliases across migrated components | Keep as compatibility alias for now |
 | `ysh-` | Single Image Hero legacy variable aliases | Keep as compatibility alias for now |
 | `yh-` | Header legacy variable aliases | Keep as compatibility alias for now |
 | `yab-` | Announcement legacy variable aliases | Keep as compatibility alias for now |
 | `ym-` | Mega menu legacy variable aliases + JS writes | Must keep (runtime compatibility) |
 | `cc-` | Collection Cards legacy class/data/var aliases | Must keep (runtime compatibility) |
-| `mdrawer-` | Drawer open-lock class + legacy selectors/data attrs | Must keep (runtime compatibility) |
+| `cnvrt-drawer-` | Drawer open-lock class + legacy selectors/data attrs | Must keep (runtime compatibility) |
 | `yth-` | 3-card hero legacy variable aliases | Keep as compatibility alias for now |
-| `icon-yaomri` | Icon snippet/class system | Deferred icon migration (do not rename yet) |
+| `cnvrt-icon` | Icon snippet/class system | Deferred icon migration (do not rename yet) |
 
 Runtime cleanup completed in this pass:
 
@@ -54,49 +54,49 @@ Runtime cleanup completed in this pass:
 4. Legacy class and variable aliases remain intentionally until a dedicated alias-removal phase.
 5. Cart Phase 1 legacy markup cleanup is complete: `sections/cart.liquid` now renders CNVRT cart classes only, while legacy CSS/JS fallbacks remain intentionally active for one release.
 6. Footer Phase 2 legacy markup cleanup is complete: `sections/footer.liquid` now renders CNVRT footer classes only, while legacy footer CSS fallback selectors remain intentionally active for one release.
-7. Single Image Hero Phase 5 legacy markup cleanup is complete: `sections/single-image-hero.liquid` now renders CNVRT single-hero classes only, while legacy hero CSS selector fallbacks and `--ysh-*` variable fallbacks remain intentionally active for one release.
+7. Single Image Hero Phase 5 legacy markup cleanup is complete: `sections/single-image-hero.liquid` now renders CNVRT single-hero classes only, while legacy hero CSS selector fallbacks and `--cnvrt-single-hero-*` variable fallbacks remain intentionally active for one release.
 
 ## B. Prefix inventory
 
 | Prefix | Where seen | Primary system/component | Artifact type | Dependency risk | Rename recommendation |
 |---|---|---|---|---|---|
-| `yaomri-` | `layout/`, `sections/`, `assets/`, `snippets/` (large footprint, e.g. `assets/yaomri-header.css`, `assets/section-single-image-hero.css`, `layout/theme.liquid`) | Shared global UI scaffolding (header stack, announcement, cart, mega, hero cards, drawer visuals) | CSS classes, some data attributes (`data-yaomri-header-group`), JS selectors | Very high | Keep now, migrate later with alias layer |
-| `yh-` | `sections/header.liquid`, `assets/yaomri-header.css` | Header visual tokens | CSS variables | High (wired inline from settings + consumed by CSS only) | Migrate after header migration plan with aliases |
+| `cnvrt-` | `layout/`, `sections/`, `assets/`, `snippets/` (large footprint, e.g. `assets/cnvrt-header.css`, `assets/section-single-image-hero.css`, `layout/theme.liquid`) | Shared global UI scaffolding (header stack, announcement, cart, mega, hero cards, drawer visuals) | CSS classes, some data attributes (`data-cnvrt-header-group`), JS selectors | Very high | Keep now, migrate later with alias layer |
+| `yh-` | `sections/header.liquid`, `assets/cnvrt-header.css` | Header visual tokens | CSS variables | High (wired inline from settings + consumed by CSS only) | Migrate after header migration plan with aliases |
 | `ysh-` | `sections/single-image-hero.liquid`, `assets/section-single-image-hero.css` | Single Image Hero system | CSS classes, vars | Medium-high (single component isolated) | Medium priority: migrate next wave |
 | `ym-` | `sections/mega-menu.liquid`, `assets/mega-menu.css`, `assets/mega-menu.js`, `snippets/mega-menu-*.liquid` | Mega menu system | CSS classes, vars, data attributes via JS | High (desktop + panel logic tightly coupled) | Migrate after class alias coverage is in place |
 | `yab-` | `sections/announcement-bar.liquid`, `assets/announcement-bar.css` | Announcement bar system | CSS classes, vars | Medium (isolated but in shared stack path) | Good candidate for early migration |
 | `cc-` | `sections/collection-cards.liquid`, `assets/section-collection-cards.css`, `assets/section-collection-cards.js` | Collection Cards | CSS classes, vars, data attributes | Medium (JS + CSS + section coupling, isolated) | Good candidate for early migration |
-| `mdrawer-` | `sections/header.liquid`, `snippets/mobile-drawer.liquid`, `assets/mobile-drawer.css`, `assets/mobile-drawer.js` | Mobile drawer | CSS classes, data attributes, JS selectors | Medium-high (keyboard/focus behavior + drawer lifecycle) | Migrate after drawer QA + alias layer |
-| `icon-yaomri-` | `snippets/icon-yaomri-*.liquid`, `sections/*` icon usages | Icon components and utility glyph classes | CSS classes only | Medium (purely visual, low behavioral risk) | Can migrate alongside component migration, but maintain alias during overlap |
+| `cnvrt-drawer-` | `sections/header.liquid`, `snippets/mobile-drawer.liquid`, `assets/mobile-drawer.css`, `assets/mobile-drawer.js` | Mobile drawer | CSS classes, data attributes, JS selectors | Medium-high (keyboard/focus behavior + drawer lifecycle) | Migrate after drawer QA + alias layer |
+| `icon-cnvrt-` | `snippets/icon-cnvrt-*.liquid`, `sections/*` icon usages | Icon components and utility glyph classes | CSS classes only | Medium (purely visual, low behavioral risk) | Can migrate alongside component migration, but maintain alias during overlap |
 | `--page-` | `snippets/css-variables.liquid`, `assets/*.css`, `sections/*` | Global responsive/layout tokens | CSS variables | Medium (global behavior) | Keep existing; add neutral aliases only if needed |
 | `data-*` without prefix | `data-label`, `data-target`, `data-controls` etc | Native interop / legacy snippet patterns | Data attributes | Medium | Leave unless explicitly coupled to external integrations |
 
 Notes:
 - No strong evidence for other brand-like prefixes beyond those above.
-- `data-yaomri-header-group` is currently a critical anchor for stack coordination and should be preserved/aliased, not removed.
+- `data-cnvrt-header-group` is currently a critical anchor for stack coordination and should be preserved/aliased, not removed.
 
 ## C. JS selector + dependency map
 
-### 1) `assets/yaomri-header-state.js`
+### 1) `assets/cnvrt-header-state.js`
 
-- Class selectors: `.yaomri-header-stack`, `.cnvrt-header-stack`, `.yaomri-header-stack--overlay`, `.cnvrt-header-stack--overlay`, `.yaomri-header-stack--fade`, `.cnvrt-header-stack--fade`, `.yaomri-header-stack--slide`, `.cnvrt-header-stack--slide`, `.yaomri-header-stack--fade-slide`, `.cnvrt-header-stack--fade-slide`, `.is-hidden-after-scroll`, `.yaomri-header`, `.cnvrt-header`, `.yaomri-mega-panels`, `.mdrawer`
-- Data attributes: `[data-yaomri-header-group]`, `[data-cnvrt-header-group]`, plus header data attributes read from `sections/header.liquid` (`data-header-stack-*`, `data-cnvrt-header-stack-*`, `data-transparent-*`, `data-transparent-active`)
-- CSS custom props written: `--cnvrt-header-stack-transition-duration`, `--cnvrt-header-stack-transition-easing` (with `--yaomri-` aliases for compatibility)
+- Class selectors: `.cnvrt-header-stack`, `.cnvrt-header-stack`, `.cnvrt-header-stack--overlay`, `.cnvrt-header-stack--overlay`, `.cnvrt-header-stack--fade`, `.cnvrt-header-stack--fade`, `.cnvrt-header-stack--slide`, `.cnvrt-header-stack--slide`, `.cnvrt-header-stack--fade-slide`, `.cnvrt-header-stack--fade-slide`, `.is-hidden-after-scroll`, `.cnvrt-header`, `.cnvrt-header`, `.cnvrt-mega-panels`, `.cnvrt-drawer`
+- Data attributes: `[data-cnvrt-header-group]`, `[data-cnvrt-header-group]`, plus header data attributes read from `sections/header.liquid` (`data-header-stack-*`, `data-cnvrt-header-stack-*`, `data-transparent-*`, `data-transparent-active`)
+- CSS custom props written: `--cnvrt-header-stack-transition-duration`, `--cnvrt-header-stack-transition-easing` (with `--cnvrt-` aliases for compatibility)
 - Events/targets: `scroll`, `resize`, `click`, `touchstart`, `keyup`, `shopify:section:*`, `DOMContentLoaded`
 - Risk if rename: **critical** unless alias layer exists, because it owns the shared stack show/hide behavior and header transparency state.
 
 ### 2) `assets/mega-menu.js`
 
-- Class selectors: `.yaomri-header`, `.yaomri-mega__item.is-open`, `.yaomri-mega__item`, `[data-mega-panels]`, `.is-open`, `[data-mega-parent]`, `[data-mega-panel]`
+- Class selectors: `.cnvrt-header`, `.cnvrt-mega__item.is-open`, `.cnvrt-mega__item`, `[data-mega-panels]`, `.is-open`, `[data-mega-parent]`, `[data-mega-panel]`
 - Data attributes: `[data-mega]`, `[data-mega-panels]`, `[data-mega]`, `[data-mega-close]`, `[data-dropdown-trigger]`, `[data-mega-trigger]`, `[data-dropdown]`, `[data-mega-link]`, `[data-panel-width]`, `[data-close-delay]`
-- CSS vars written: `--ym-panel-width`, `--ym-content-padding`, `--ym-panel-top`
+- CSS vars written: `--cnvrt-mega-panel-width`, `--cnvrt-mega-content-padding`, `--cnvrt-mega-panel-top`
 - Event targets: `mouseenter`, `mouseleave`, `focusin`, `focusout`, `keydown`, `resize`, `scroll`, click handlers
 - Risk if rename: **high**, because panel open state and ARIA state updates are selector-driven.
 
 ### 3) `assets/mobile-drawer.js`
 
-- Class selectors: `.mdrawer`, `.mdrawer__panel`, `.is-active`, `.is-root`, `.is-drill`, etc.
-- Data attributes: `[data-mdrawer]`, `[data-mdrawer-trigger]`, `[data-mdrawer-close]`, `[data-mdrawer-drill]`, `[data-mdrawer-view]`, `[data-mdrawer-back]`, `[data-mdrawer-title]`, `[data-mdrawer-header]`, `[data-mdrawer-view="root"]`, `[data-target]`, `[data-title]`
+- Class selectors: `.cnvrt-drawer`, `.cnvrt-drawer__panel`, `.is-active`, `.is-root`, `.is-drill`, etc.
+- Data attributes: `[data-cnvrt-drawer]`, `[data-cnvrt-drawer-trigger]`, `[data-cnvrt-drawer-close]`, `[data-cnvrt-drawer-drill]`, `[data-cnvrt-drawer-view]`, `[data-cnvrt-drawer-back]`, `[data-cnvrt-drawer-title]`, `[data-cnvrt-drawer-header]`, `[data-cnvrt-drawer-view="root"]`, `[data-target]`, `[data-title]`
 - CSS vars written: none
 - Event targets: click on triggers/buttons, keydown (`Escape`, `Tab`), load-time init from DOM queries
 - Risk if rename: **high** for accessibility and focus restoration paths.
@@ -117,9 +117,9 @@ Notes:
 - Event targets: click on prev/next buttons
 - Risk if rename: **medium** (isolated but required for navigation behavior).
 
-### 6) `assets/yaomri-cart.js`
+### 6) `assets/cnvrt-cart.js`
 
-- Class selectors: `.yaomri-cart`
+- Class selectors: `.cnvrt-cart`
 - Data attributes: `[data-cart-subtotal]`, `[data-line-item]`, `[data-line-price]`, `[data-line-compare-price]`, `[data-unit-price]`, `[data-quantity-input]`
 - CSS vars written: none
 - Event targets: quantity input/input change events
@@ -131,34 +131,34 @@ Data attributes and class selectors are currently tightly coupled per component.
 
 ## D. CSS variable audit (prefixed)
 
-### `--yh-*` (Header token system)
+### `--cnvrt-header-*` (Header token system)
 - Controls: header sizing/colors, logo sizing, icon sizing, nav spacing, cart chip sizing, country selector tokens.
 - Scope: **local to header root**, but set inline on header element by settings.
 - Rename now: **not yet** (highly coupled to header JS/CSS and settings docs).
 - Migration pattern: dual-read/dual-write alias during migration.
 
-### `--ysh-*` (Single Image Hero)
+### `--cnvrt-single-hero-*` (Single Image Hero)
 - Controls: stage/overlay/pin/content typography/spacing/size/position.
 - Scope: **component-local** (hero block).
 - Rename now: medium, good candidate for section migration once JS coupling absent (no JS currently uses these vars).
 
-### `--ym-*` (Mega Menu)
+### `--cnvrt-mega-*` (Mega Menu)
 - Controls: panel width, shadows, paddings, typography, link/label sizing, dropdown geometry.
 - Scope: **component-local**, plus panel runtime updates in JS.
 - Rename now: deferred until JS alias plan ready.
 
-### `--yab-*` (Announcement)
+### `--cnvrt-announcement-*` (Announcement)
 - Controls: announcement section spacing/typography/colours/height and animation speed.
 - Scope: **component-local**.
 - Rename now: safe-ish and can be migrated early with CSS/markup alignment.
 
-### `--cc-*` (Collection Cards)
+### `--cnvrt-collection-*` (Collection Cards)
 - Controls: section layout, typography, spacing, card visuals, badge values.
 - Scope: **component-local**, plus CSS-first.
 - Rename now: good candidate for early migration; JS is generic enough if selectors are aliased.
 
-### `--mdrawer-*`
-- Controls: drawer width (`--mdrawer-max-width`) and drawer-specific visuals in CSS.
+### `--cnvrt-drawer-*`
+- Controls: drawer width (`--cnvrt-drawer-max-width`) and drawer-specific visuals in CSS.
 - Scope: **component-local**, but a11y flow is sensitive.
 - Rename now: deferred until drawer JS/markup aliases are in place.
 
@@ -169,7 +169,7 @@ Data attributes and class selectors are currently tightly coupled per component.
 
 ## E. Schema/settings risk audit
 
-- No major setting IDs in `config/settings_schema.json` currently use the brand prefixes (`yaomri-`, `ysh-`, etc.) as identifiers.
+- No major setting IDs in `config/settings_schema.json` currently use the brand prefixes (`cnvrt-`, `ysh-`, etc.) as identifiers.
 - Header-stack settings introduced for migration work:
   - `header_stack_scroll_behavior`
   - `header_stack_scroll_threshold`
@@ -212,16 +212,16 @@ Data attributes and class selectors are currently tightly coupled per component.
 Preferred: **section-by-section with compatibility aliases**.
 
 1. Create alias layer per component
-   - CSS dual selectors: `.cnvrt-* , .yaomri-*`
-   - Data attr compatibility (where selector coupling exists): retain `data-yaomri-*` and optionally add `data-cnvrt-*`
+   - CSS dual selectors: `.cnvrt-* , .cnvrt-*`
+   - Data attr compatibility (where selector coupling exists): retain `data-cnvrt-*` and optionally add `data-cnvrt-*`
    - JS selector queries should accept old and new forms.
 
 2. Migrate in this order (low risk -> high risk):
    - Announcement bar (`yab-*`)
    - Collection Cards (`cc-*`)
    - Single Image Hero (`ysh-*`)
-   - Header/Mega interaction (`yaomri-*`, `yh-*`, `ym-*`)
-   - Mobile drawer (`mdrawer-*`)
+   - Header/Mega interaction (`cnvrt-*`, `yh-*`, `ym-*`)
+   - Mobile drawer (`cnvrt-drawer-*`)
    - Cart
    - Docs + registry alignment
 
@@ -241,7 +241,7 @@ Preferred: **section-by-section with compatibility aliases**.
 
 Announcement bar now renders CNVRT namespace classes in markup and keeps compatibility fallbacks for one release:
 - markup primary: `cnvrt-announcement*`
-- fallback aliases retained: CSS/JS support for `yaomri-announcement*` selectors and `--yab-*` variables
+- fallback aliases retained: CSS/JS support for `cnvrt-announcement*` selectors and `--cnvrt-announcement-*` variables
 - new variable namespace: `--cnvrt-announcement-*`
 
 ### Phase 2 — Collection Cards
@@ -249,7 +249,7 @@ Announcement bar now renders CNVRT namespace classes in markup and keeps compati
 - Risk: medium
 - Status: Completed (compatibility alias phase + legacy markup cleanup phase)
 - QA: arrow interactions, placeholders, responsive layout, links
-- Compatibility note: Collection Cards markup now emits CNVRT classes as primary; legacy CSS/JS/data support and `--cc-*` variables remain as aliases for one release.
+- Compatibility note: Collection Cards markup now emits CNVRT classes as primary; legacy CSS/JS/data support and `--cnvrt-collection-*` variables remain as aliases for one release.
 - Suggested commit: `feat: migrate collection cards class namespace with compatibility selectors`
 
 ### Phase 3 — Single Image Hero
@@ -257,15 +257,15 @@ Announcement bar now renders CNVRT namespace classes in markup and keeps compati
 - Risk: medium
 - Status: Completed (compatibility alias phase + legacy markup cleanup phase)
 - QA: typography, layout modes, button/pin behavior, mobile overrides
-- Compatibility note: `sections/single-image-hero.liquid` now emits CNVRT single-hero classes as primary in markup; legacy CSS selector aliases and `--ysh-*` variable fallbacks remain as compatibility for one release.
+- Compatibility note: `sections/single-image-hero.liquid` now emits CNVRT single-hero classes as primary in markup; legacy CSS selector aliases and `--cnvrt-single-hero-*` variable fallbacks remain as compatibility for one release.
 - Suggested commit: `feat: migrate single-image-hero classes and css vars to cnvrt namespace`
 
 ### Phase 4 — Header Core
-- Files: `sections/header.liquid`, `assets/yaomri-header.css`, `assets/yaomri-header-state.js`
+- Files: `sections/header.liquid`, `assets/cnvrt-header.css`, `assets/cnvrt-header-state.js`
 - Risk: high
 - QA: stack transitions, transparent/solid states, country selector visuals, desktop/mobile header breakpoints
 - Status: Completed (compatibility alias phase)
-- Compatibility note: legacy `yaomri-header*`/`yaomri-header-stack` classes and `--yh-*`/`--yaomri-header-stack-*` variables remain as aliases while `cnvrt-header*` classes and `--cnvrt-header-*` variables are now used as primary.
+- Compatibility note: legacy `cnvrt-header*`/`cnvrt-header-stack` classes and `--cnvrt-header-*`/`--cnvrt-header-stack-*` variables remain as aliases while `cnvrt-header*` classes and `--cnvrt-header-*` variables are now used as primary.
 - Suggested commit: `feat: migrate header stack classes and data hooks behind compatibility layer`
 
 ### Phase 5 — Mega Menu
@@ -273,7 +273,7 @@ Announcement bar now renders CNVRT namespace classes in markup and keeps compati
 - Risk: high
 - QA: desktop open/close, panel geometry, keyboard close, close delay behavior
 - Status: Completed (compatibility alias phase)
-- Compatibility note: legacy `yaomri-mega*` classes and `--ym-*` variables remain as aliases while `cnvrt-mega*` classes and `--cnvrt-mega-*` variables are now used as primary.
+- Compatibility note: legacy `cnvrt-mega*` classes and `--cnvrt-mega-*` variables remain as aliases while `cnvrt-mega*` classes and `--cnvrt-mega-*` variables are now used as primary.
 - Suggested commit: `feat: migrate mega menu namespace with script compatibility fallbacks`
 
 ### Phase 6 — Mobile Drawer
@@ -281,15 +281,15 @@ Announcement bar now renders CNVRT namespace classes in markup and keeps compati
 - Risk: high (a11y/focus)
 - QA: aria-expanded, open/close, Escape, focus restore, drill nav
 - Status: Completed (compatibility alias phase)
-- Compatibility note: legacy `mdrawer*` classes/data attributes and `--mdrawer-*` variables remain as aliases while `cnvrt-drawer*` classes/data attributes are active as primary.
+- Compatibility note: legacy `cnvrt-drawer*` classes/data attributes and `--cnvrt-drawer-*` variables remain as aliases while `cnvrt-drawer*` classes/data attributes are active as primary.
 - Suggested commit: `feat: migrate mobile drawer selectors with accessibility-safe compatibility layer`
 
 ### Phase 7 — Cart
-- Files: `sections/cart.liquid`, `assets/yaomri-cart.css`, `assets/yaomri-cart.js`
+- Files: `sections/cart.liquid`, `assets/cnvrt-cart.css`, `assets/cnvrt-cart.js`
 - Risk: low-medium
 - QA: quantity updates, totals, accessibility semantics
 - Status: Completed (compatibility alias phase)
-- Compatibility note: legacy `yaomri-cart*` classes remain as aliases while `cnvrt-cart*` classes are active as primary.
+- Compatibility note: legacy `cnvrt-cart*` classes remain as aliases while `cnvrt-cart*` classes are active as primary.
 - Suggested commit: `refactor: align cart class namespace for CNVRT system`
 
 ### Phase 8 — Docs + Registry cleanup
@@ -302,25 +302,25 @@ Announcement bar now renders CNVRT namespace classes in markup and keeps compati
 ## I. Compatibility alias strategy
 
 - Add aliases per component and keep both old/new names until cutover complete.
-- Do not rename `data-yaomri-header-group` immediately; it is the stack coordination anchor.
+- Do not rename `data-cnvrt-header-group` immediately; it is the stack coordination anchor.
 - Prefer compatibility CSS:
-  - `.cnvrt-* {}` + `.yaomri-* {}`
+  - `.cnvrt-* {}` + `.cnvrt-* {}`
   - shared variable bridge patterns (new token resolves to old token).
 - In JS, query for old/new selectors in the same expression.
 
 ### Current completed state (post Phase 8)
 
 - Announcement namespace migration is complete and stable.
-- Announcement legacy markup aliases have been removed (Phase 3 legacy cleanup), with CSS/JS/`--yab-*` fallbacks retained for one release.
-- Collection Cards namespace migration is now complete; legacy `cc-*` markup aliases are removed (Phase 4 legacy cleanup) while CSS/JS/data/`--cc-*` fallbacks remain for one release.
-- Single Image Hero namespace migration is complete and legacy markup aliases are removed (Phase 5 legacy cleanup); CSS selector aliases and `--ysh-*` variable fallbacks remain for one release.
+- Announcement legacy markup aliases have been removed (Phase 3 legacy cleanup), with CSS/JS/`--cnvrt-announcement-*` fallbacks retained for one release.
+- Collection Cards namespace migration is now complete; legacy `cc-*` markup aliases are removed (Phase 4 legacy cleanup) while CSS/JS/data/`--cnvrt-collection-*` fallbacks remain for one release.
+- Single Image Hero namespace migration is complete and legacy markup aliases are removed (Phase 5 legacy cleanup); CSS selector aliases and `--cnvrt-single-hero-*` variable fallbacks remain for one release.
 - Header migration is complete with compatibility aliases.
 - Mega menu migration is complete with compatibility aliases.
 - Mobile drawer migration is complete with compatibility aliases.
 - Cart migration is complete with compatibility aliases.
 - Footer alias migration is complete with compatibility aliases.
 - Three Card Hero alias migration is complete with compatibility aliases, and the section is currently dormant (not referenced in `templates/` or `config/settings_data.json`) but remains addable via its section preset.
-- Deferred for later cleanup: `icon-yaomri-*` snippet naming and other non-component utility/icon namespace refactors.
+- Deferred for later cleanup: `icon-cnvrt-*` snippet naming and other non-component utility/icon namespace refactors.
 
 ## J. QA checklist for migration phase validation
 
@@ -333,10 +333,10 @@ Announcement bar now renders CNVRT namespace classes in markup and keeps compati
 ## K. What not to rename yet
 
 - Do not rename section/theme setting IDs.
-- Do not migrate `data-yaomri-header-group` without a compatibility period.
+- Do not migrate `data-cnvrt-header-group` without a compatibility period.
 - Do not rename `--page-*` global tokens.
-- Do not rename entire `yaomri-*` stack before mega + drawer + header + announcement migrations are complete and QA-verified.
+- Do not rename entire `cnvrt-*` stack before mega + drawer + header + announcement migrations are complete and QA-verified.
 
 ## L. Suggested next Codex prompt
 
-"Run post-migration cleanup planning for eventual alias removal (`yaomri-*`, `y*` vars, `mdrawer-*`, `cc-*`) after QA sign-off, while preserving settings IDs and stable data attributes."
+"Run post-migration cleanup planning for eventual alias removal (`cnvrt-*`, `y*` vars, `cnvrt-drawer-*`, `cc-*`) after QA sign-off, while preserving settings IDs and stable data attributes."

@@ -1,8 +1,8 @@
 .cnvrt-three-hero {
   width: 100%;
-  margin-top: var(--cnvrt-three-hero-margin-top-desktop, var(--yth-margin-top-desktop, 0));
-  margin-bottom: var(--cnvrt-three-hero-margin-bottom-desktop, var(--yth-margin-bottom-desktop, 0));
-  background: var(--cnvrt-three-hero-section-bg, var(--yth-section-bg, var(--color-background)));
+  margin-top: var(--cnvrt-three-hero-margin-top-desktop, 0);
+  margin-bottom: var(--cnvrt-three-hero-margin-bottom-desktop, 0);
+  background: var(--cnvrt-three-hero-section-bg, var(--color-background));
 }
 
 .cnvrt-three-hero * {
@@ -11,13 +11,13 @@
 
 .cnvrt-three-hero__frame {
   width: 100%;
-  max-width: var(--cnvrt-three-hero-section-width, var(--yth-section-width, var(--page-width)));
+  max-width: var(--cnvrt-three-hero-section-width, var(--page-width));
   margin-inline: auto;
   padding:
-    var(--cnvrt-three-hero-padding-top-desktop, var(--yth-padding-top-desktop, 0))
-    var(--cnvrt-three-hero-padding-right-desktop, var(--yth-padding-right-desktop, 0))
-    var(--cnvrt-three-hero-padding-bottom-desktop, var(--yth-padding-bottom-desktop, 0))
-    var(--cnvrt-three-hero-padding-left-desktop, var(--yth-padding-left-desktop, 0));
+    var(--cnvrt-three-hero-padding-top-desktop, 0)
+    var(--cnvrt-three-hero-padding-right-desktop, 0)
+    var(--cnvrt-three-hero-padding-bottom-desktop, 0)
+    var(--cnvrt-three-hero-padding-left-desktop, 0);
 }
 
 .cnvrt-three-hero--width-full .cnvrt-three-hero__frame {
@@ -40,7 +40,7 @@
 
 .cnvrt-three-hero__card {
   position: relative;
-  min-height: var(--cnvrt-three-hero-height-desktop, var(--yth-height-desktop, 680px));
+  min-height: var(--cnvrt-three-hero-height-desktop, 680px);
   overflow: hidden;
   background: var(--color-sand, #f6f4ef);
   color: #fff;
@@ -67,7 +67,7 @@
   height: 100%;
   display: block;
   object-fit: cover;
-  object-position: var(--cnvrt-three-hero-image-position, var(--yth-image-position, center center));
+  object-position: var(--cnvrt-three-hero-image-position, center center);
 }
 
 .cnvrt-three-hero__mobile-image {
@@ -77,8 +77,8 @@
 .cnvrt-three-hero__overlay {
   position: absolute;
   inset: 0;
-  background: var(--cnvrt-three-hero-overlay-color, var(--yth-overlay-color, #000));
-  opacity: var(--cnvrt-three-hero-overlay-opacity, var(--yth-overlay-opacity, 0));
+  background: var(--cnvrt-three-hero-overlay-color, #000);
+  opacity: var(--cnvrt-three-hero-overlay-opacity, 0);
   pointer-events: none;
 }
 
@@ -87,7 +87,7 @@
   z-index: 1;
   display: grid;
   align-content: end;
-  min-height: var(--cnvrt-three-hero-height-desktop, var(--yth-height-desktop, 680px));
+  min-height: var(--cnvrt-three-hero-height-desktop, 680px);
   padding: clamp(1rem, 2.2vw, 2rem);
   color: inherit;
 }
@@ -173,16 +173,16 @@
 
 @media (max-width: 749px) {
   .cnvrt-three-hero {
-    margin-top: var(--cnvrt-three-hero-margin-top-mobile, var(--yth-margin-top-mobile, 0));
-    margin-bottom: var(--cnvrt-three-hero-margin-bottom-mobile, var(--yth-margin-bottom-mobile, 0));
+    margin-top: var(--cnvrt-three-hero-margin-top-mobile, 0);
+    margin-bottom: var(--cnvrt-three-hero-margin-bottom-mobile, 0);
   }
 
   .cnvrt-three-hero__frame {
     padding:
-      var(--cnvrt-three-hero-padding-top-mobile, var(--yth-padding-top-mobile, 0))
-      var(--cnvrt-three-hero-padding-right-mobile, var(--yth-padding-right-mobile, 0))
-      var(--cnvrt-three-hero-padding-bottom-mobile, var(--yth-padding-bottom-mobile, 0))
-      var(--cnvrt-three-hero-padding-left-mobile, var(--yth-padding-left-mobile, 0));
+      var(--cnvrt-three-hero-padding-top-mobile, 0)
+      var(--cnvrt-three-hero-padding-right-mobile, 0)
+      var(--cnvrt-three-hero-padding-bottom-mobile, 0)
+      var(--cnvrt-three-hero-padding-left-mobile, 0);
   }
 
   .cnvrt-three-hero__cards {
@@ -191,7 +191,7 @@
 
   .cnvrt-three-hero__card,
   .cnvrt-three-hero__content {
-    min-height: var(--cnvrt-three-hero-height-mobile, var(--yth-height-mobile, 560px));
+    min-height: var(--cnvrt-three-hero-height-mobile, 560px);
   }
 
   .cnvrt-three-hero__image--has-mobile {
@@ -213,10 +213,10 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .cnvrt-three-hero__content {
-    animation: yaomri-three-hero-rise 520ms ease both;
+    animation: cnvrt-three-hero-rise 520ms ease both;
   }
 
-  @keyframes yaomri-three-hero-rise {
+  @keyframes cnvrt-three-hero-rise {
     from {
       opacity: 0;
       transform: translateY(10px);

@@ -1,26 +1,26 @@
 .cnvrt-announcement {
   width: 100%;
-  background: var(--cnvrt-announcement-bg, var(--yab-bg, #f6f4ef));
-  color: var(--cnvrt-announcement-text, var(--yab-text, #111));
+  background: var(--cnvrt-announcement-bg, #f6f4ef);
+  color: var(--cnvrt-announcement-text, #111);
 }
 
 .cnvrt-announcement--with-border {
-  border-bottom: 1px solid var(--cnvrt-announcement-border, var(--yab-border, #e8e8e8));
+  border-bottom: 1px solid var(--cnvrt-announcement-border, #e8e8e8);
 }
 
 .cnvrt-announcement__inner {
   width: 100%;
-  min-height: var(--cnvrt-announcement-height-desktop, var(--yab-height-desktop, 40px));
-  padding: var(--cnvrt-announcement-pad-block-desktop, var(--yab-pad-block-desktop, 0))
-    var(--cnvrt-announcement-pad-inline-desktop, var(--yab-pad-inline-desktop, 16px));
+  min-height: var(--cnvrt-announcement-height-desktop, 40px);
+  padding: var(--cnvrt-announcement-pad-block-desktop, 0)
+    var(--cnvrt-announcement-pad-inline-desktop, 16px);
   margin-inline: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--cnvrt-announcement-font-size-desktop, var(--yab-font-size-desktop, 12px));
-  font-weight: var(--cnvrt-announcement-font-weight, var(--yab-font-weight, 600));
-  letter-spacing: var(--cnvrt-announcement-letter-spacing, var(--yab-letter-spacing, 0.02em));
-  text-transform: var(--cnvrt-announcement-text-transform, var(--yab-text-transform, uppercase));
+  font-size: var(--cnvrt-announcement-font-size-desktop, 12px);
+  font-weight: var(--cnvrt-announcement-font-weight, 600);
+  letter-spacing: var(--cnvrt-announcement-letter-spacing, 0.02em);
+  text-transform: var(--cnvrt-announcement-text-transform, uppercase);
   line-height: 1.2;
   box-sizing: border-box;
   overflow: hidden;
@@ -32,8 +32,8 @@
 }
 
 .cnvrt-announcement--width-custom .cnvrt-announcement__inner {
-  width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--cnvrt-announcement-custom-width, var(--yab-custom-width, 1200px)));
-  max-width: var(--cnvrt-announcement-custom-width, var(--yab-custom-width, 1200px));
+  width: min(calc(100% - (var(--page-inset, 20px) * 2)), var(--cnvrt-announcement-custom-width, 1200px));
+  max-width: var(--cnvrt-announcement-custom-width, 1200px);
 }
 
 .cnvrt-announcement--width-full .cnvrt-announcement__inner {
@@ -82,7 +82,7 @@
 .cnvrt-announcement__slides {
   position: relative;
   width: 100%;
-  min-height: calc(var(--cnvrt-announcement-height-desktop, var(--yab-height-desktop, 40px)) - (var(--cnvrt-announcement-pad-block-desktop, var(--yab-pad-block-desktop, 0)) * 2));
+  min-height: calc(var(--cnvrt-announcement-height-desktop, 40px) - (var(--cnvrt-announcement-pad-block-desktop, 0) * 2));
   display: grid;
   align-items: center;
 }
@@ -140,7 +140,7 @@
   right: 0;
 }
 
-.cnvrt-announcement .icon-yaomri {
+.cnvrt-announcement .cnvrt-icon {
   width: 16px;
   height: 16px;
 }
@@ -175,14 +175,14 @@
 .cnvrt-announcement__marquee-track {
   display: flex;
   width: max-content;
-  animation: cnvrt-announcement-marquee var(--cnvrt-announcement-marquee-duration, var(--yab-marquee-duration, 28s)) linear infinite;
+  animation: cnvrt-announcement-marquee var(--cnvrt-announcement-marquee-duration, 28s) linear infinite;
 }
 
 .cnvrt-announcement__marquee-group {
   display: flex;
   align-items: center;
-  gap: var(--cnvrt-announcement-item-gap, var(--yab-item-gap, 24px));
-  padding-inline-end: var(--cnvrt-announcement-item-gap, var(--yab-item-gap, 24px));
+  gap: var(--cnvrt-announcement-item-gap, 24px);
+  padding-inline-end: var(--cnvrt-announcement-item-gap, 24px);
 }
 
 .cnvrt-announcement--marquee-pause .cnvrt-announcement__marquee:hover .cnvrt-announcement__marquee-track,
@@ -201,10 +201,10 @@
 
 @media (max-width: 989px) {
   .cnvrt-announcement__inner {
-    min-height: var(--cnvrt-announcement-height-mobile, var(--yab-height-mobile, 36px));
-    padding: var(--cnvrt-announcement-pad-block-mobile, var(--yab-pad-block-mobile, 0))
-      var(--cnvrt-announcement-pad-inline-mobile, var(--yab-pad-inline-mobile, 12px));
-    font-size: var(--cnvrt-announcement-font-size-mobile, var(--yab-font-size-mobile, 11px));
+    min-height: var(--cnvrt-announcement-height-mobile, 36px);
+    padding: var(--cnvrt-announcement-pad-block-mobile, 0)
+      var(--cnvrt-announcement-pad-inline-mobile, 12px);
+    font-size: var(--cnvrt-announcement-font-size-mobile, 11px);
   }
 
   .cnvrt-announcement__item--hide-mobile {

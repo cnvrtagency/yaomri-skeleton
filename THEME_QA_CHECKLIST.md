@@ -1,4 +1,4 @@
-# Ya Omri Theme QA Checklist
+# CNVRT Theme QA Checklist
 
 Use this before publishing and after any architecture-level change. Passing automated checks is required but not enough.
 
@@ -143,7 +143,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Marquee pause on hover works when enabled.
 - Marquee respects `prefers-reduced-motion`.
 - Announcement runtime markup/CSS/JS selectors are CNVRT-first.
-- Announcement `--yab-*` variable fallbacks remain intentionally as compatibility aliases.
+- Announcement `--cnvrt-announcement-*` variable fallbacks remain intentionally as compatibility aliases.
 - Announcement links are keyboard accessible.
 - Announcement control buttons expose clear accessible names.
 - Announcement item with no link renders plain text.
@@ -159,7 +159,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 
 ## Mega Menu
 
-- Mega runtime classes/selectors are CNVRT (`cnvrt-mega*`); `--ym-*` variable fallbacks remain as compatibility aliases.
+- Mega runtime classes/selectors are CNVRT (`cnvrt-mega*`); `--cnvrt-mega-*` variable fallbacks remain as compatibility aliases.
 - Panel width `400px` visibly changes the white mega panel box.
 - Panel width `700px` visibly narrows the white mega panel box.
 - Panel width `1200px` visibly widens the white mega panel box.
@@ -244,7 +244,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - `templates/index.json` uses `single-image-hero`, not the old combined `hero` section.
 - Single Image Hero appears in the theme editor.
 - 3-Card Hero appears in the theme editor.
-- 3-Card Hero runtime classes/selectors are CNVRT-first (`cnvrt-three-hero*`); `--yth-*` variable fallbacks remain compatibility aliases.
+- 3-Card Hero runtime classes/selectors are CNVRT-first (`cnvrt-three-hero*`); `--cnvrt-three-hero-*` variable fallbacks remain compatibility aliases.
 - Single Image Hero renders on desktop and mobile.
 - Single Image Hero mobile image overrides desktop image when provided.
 - Single Image Hero buttons render only when labels and links are set.
@@ -260,7 +260,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Single Image Hero mobile content vertical position overrides desktop on mobile.
 - Single Image Hero desktop/mobile text alignment changes text/buttons inside the content block.
 - Single Image Hero runtime markup/CSS selectors are CNVRT-first (`cnvrt-single-hero*`).
-- Single Image Hero `--ysh-*` variable fallbacks remain compatibility aliases.
+- Single Image Hero `--cnvrt-single-hero-*` variable fallbacks remain compatibility aliases.
 - Single Image Hero desktop text alignment does not change content-area placement.
 - Single Image Hero mobile text alignment does not change content-area placement.
 - Single Image Hero desktop horizontal position remains effective when text alignment changes.
@@ -307,7 +307,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 ## Collection Cards
 
 - Collection Cards section appears in Theme Editor.
-- Collection Cards runtime classes/selectors are CNVRT-first; `--cc-*` variable fallbacks remain compatibility aliases.
+- Collection Cards runtime classes/selectors are CNVRT-first; `--cnvrt-collection-*` variable fallbacks remain compatibility aliases.
 - Heading and optional heading subtitle render correctly in the section header row.
 - Heading/subtitle/arrows align on one clean row on desktop.
 - Mobile heading layout stacks cleanly and arrows do not crowd heading text.
@@ -374,7 +374,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Current status: default Skeleton unless changed.
 - Product page must be audited before launch.
 - Product media, variant selection, quantity, add to cart, price, and selling-plan display must work.
-- No visual mismatch with Ya Omri header/home styling.
+- No visual mismatch with CNVRT header/home styling.
 
 ### Collection
 
@@ -395,7 +395,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 
 - Footer menu renders selected links.
 - Payment icons render only when enabled.
-- Footer is visually aligned with Ya Omri brand.
+- Footer is visually aligned with CNVRT brand.
 - Footer is responsive.
 - Footer does not rely on untranslated labels in the merchant editor.
 - Footer does not duplicate mobile drawer social settings unless documented.

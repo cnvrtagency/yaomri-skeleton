@@ -6,7 +6,7 @@
   if drawer_title != blank
     assign has_drawer_title = true
   endif
-  assign search_placeholder = section.settings.mobile_drawer_search_placeholder | default: 'Search Ya Omri'
+  assign search_placeholder = section.settings.mobile_drawer_search_placeholder | default: 'Search CNVRT'
 -%}
 
 <div
@@ -25,13 +25,13 @@
   <aside class="cnvrt-drawer__panel" role="dialog" aria-modal="true"{% if has_drawer_title %} aria-labelledby="MobileDrawerTitle"{% else %} aria-label="Mobile menu"{% endif %} tabindex="-1">
     <header class="cnvrt-drawer__header is-root{% unless has_drawer_title %} cnvrt-drawer__header--no-title{% endunless %}" data-cnvrt-drawer-header>
       <button class="cnvrt-drawer__icon-btn cnvrt-drawer__back" type="button" data-cnvrt-drawer-back hidden aria-label="Back">
-        {% render 'icon-yaomri-chevron-left' %}
+        {% render 'icon-cnvrt-chevron-left' %}
       </button>
       {%- if has_drawer_title -%}
         <h2 id="MobileDrawerTitle" class="cnvrt-drawer__title" data-cnvrt-drawer-title>{{ drawer_title }}</h2>
       {%- endif -%}
       <button class="cnvrt-drawer__icon-btn cnvrt-drawer__close" type="button" data-cnvrt-drawer-close aria-label="Close menu">
-        {% render 'icon-yaomri-close' %}
+        {% render 'icon-cnvrt-close' %}
       </button>
     </header>
 
@@ -40,7 +40,7 @@
         {%- if section.settings.show_mobile_drawer_search -%}
           <form class="cnvrt-drawer__search" action="{{ routes.search_url }}" method="get" role="search">
             <label class="visually-hidden" for="DrawerSearchInput">Search</label>
-            <span class="cnvrt-drawer__search-icon" aria-hidden="true">{% render 'icon-yaomri-search' %}</span>
+            <span class="cnvrt-drawer__search-icon" aria-hidden="true">{% render 'icon-cnvrt-search' %}</span>
             <input id="DrawerSearchInput" type="search" name="q" placeholder="{{ search_placeholder | escape }}" autocomplete="off">
             <input type="hidden" name="options[prefix]" value="last">
           </form>
@@ -63,7 +63,7 @@
                     data-cnvrt-title="{{ link.title | escape }}"
                   >
                     <span>{{ link.title }}</span>
-                    <span class="cnvrt-drawer__chevron" aria-hidden="true">{% render 'icon-yaomri-chevron-right' %}</span>
+                    <span class="cnvrt-drawer__chevron" aria-hidden="true">{% render 'icon-cnvrt-chevron-right' %}</span>
                   </button>
                 {%- else -%}
                   <a class="cnvrt-drawer__nav-item" href="{{ link.url }}">{{ link.title }}</a>
@@ -93,9 +93,9 @@
                     {%- if footer_label != blank and footer_link != blank -%}
                     <a class="cnvrt-drawer__footer-item" href="{{ footer_link }}" {% if block.settings.open_new_window %}target="_blank" rel="noopener"{% endif %} {{ block.shopify_attributes }}>
                       {%- if footer_icon == 'account' and shop.customer_accounts_enabled -%}
-                        <span class="cnvrt-drawer__footer-icon" aria-hidden="true">{% render 'icon-yaomri-account' %}</span>
+                        <span class="cnvrt-drawer__footer-icon" aria-hidden="true">{% render 'icon-cnvrt-account' %}</span>
                       {%- elsif footer_icon == 'heart' -%}
-                        <span class="cnvrt-drawer__footer-icon" aria-hidden="true">{% render 'icon-yaomri-heart' %}</span>
+                        <span class="cnvrt-drawer__footer-icon" aria-hidden="true">{% render 'icon-cnvrt-heart' %}</span>
                       {%- endif -%}
                       <span>{{ footer_label }}</span>
                     </a>

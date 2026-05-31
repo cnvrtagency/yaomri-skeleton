@@ -6,7 +6,7 @@
 .cnvrt-mega__list {
   display: flex;
   align-items: center;
-  gap: var(--yh-nav-gap, 24px);
+  gap: var(--cnvrt-header-nav-gap, 24px);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -21,7 +21,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  color: var(--cnvrt-mega-link-color, var(--ym-link-color, inherit));
+  color: var(--cnvrt-mega-link-color, inherit);
 }
 
 .cnvrt-mega__label {
@@ -31,7 +31,7 @@
   min-height: 1.1rem;
   padding: 0.12rem 0.38rem;
   border: 1px solid currentColor;
-  color: var(--cnvrt-mega-label-color, var(--ym-label-color, currentColor));
+  color: var(--cnvrt-mega-label-color, currentColor);
   font-size: 0.56rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -43,7 +43,7 @@
   position: absolute;
   z-index: 70;
   top: calc(100% + 0.9rem);
-  width: var(--cnvrt-mega-dropdown-width, var(--ym-dropdown-width, 260px));
+  width: var(--cnvrt-mega-dropdown-width, 260px);
   min-width: 180px;
   max-width: min(520px, 90vw);
   box-sizing: border-box;
@@ -107,7 +107,7 @@
 
 .cnvrt-mega-panels {
   position: fixed;
-  inset: var(--cnvrt-mega-panel-top, var(--ym-panel-top, 0px)) 0 auto 0;
+  inset: var(--cnvrt-mega-panel-top, 0px) 0 auto 0;
   z-index: 59;
   pointer-events: none;
   background: transparent;
@@ -133,21 +133,21 @@
 .cnvrt-mega-panel {
   position: relative;
   z-index: 1;
-  width: min(calc(100vw - (var(--page-inset, 20px) * 2)), var(--cnvrt-mega-panel-width, var(--ym-panel-width, 1200px)));
+  width: min(calc(100vw - (var(--page-inset, 20px) * 2)), var(--cnvrt-mega-panel-width, 1200px));
   box-sizing: border-box;
   margin-inline: auto;
-  border: 1px solid var(--cnvrt-mega-panel-border, var(--ym-panel-border, var(--color-border)));
-  background: var(--cnvrt-mega-panel-bg, var(--ym-panel-bg, var(--color-background)));
-  color: var(--cnvrt-mega-panel-text, var(--ym-panel-text, var(--color-foreground)));
-  box-shadow: var(--cnvrt-mega-panel-shadow, var(--ym-panel-shadow, 0 18px 34px rgba(10, 10, 10, 0.08)));
+  border: 1px solid var(--cnvrt-mega-panel-border, var(--color-border));
+  background: var(--cnvrt-mega-panel-bg, var(--color-background));
+  color: var(--cnvrt-mega-panel-text, var(--color-foreground));
+  box-shadow: var(--cnvrt-mega-panel-shadow, 0 18px 34px rgba(10, 10, 10, 0.08));
 }
 
 .cnvrt-mega-panel__inner {
   width: 100%;
   box-sizing: border-box;
-  padding: var(--cnvrt-mega-panel-padding-y, var(--ym-panel-padding-y, 1.5rem))
-    max(1rem, var(--cnvrt-mega-content-padding, var(--ym-content-padding, 24px)))
-    var(--cnvrt-mega-panel-padding-bottom, var(--ym-panel-padding-bottom, 2rem));
+  padding: var(--cnvrt-mega-panel-padding-y, 1.5rem)
+    max(1rem, var(--cnvrt-mega-content-padding, 24px))
+    var(--cnvrt-mega-panel-padding-bottom, 2rem);
 }
 
 .cnvrt-mega-panels--style-compact {
@@ -155,10 +155,6 @@
   --cnvrt-mega-panel-gap-x: 0.9rem;
   --cnvrt-mega-panel-padding-y: 1rem;
   --cnvrt-mega-panel-padding-bottom: 1.25rem;
-  --ym-panel-gap-y: var(--cnvrt-mega-panel-gap-y);
-  --ym-panel-gap-x: var(--cnvrt-mega-panel-gap-x);
-  --ym-panel-padding-y: var(--cnvrt-mega-panel-padding-y);
-  --ym-panel-padding-bottom: var(--cnvrt-mega-panel-padding-bottom);
 }
 
 .cnvrt-mega-panels--style-editorial {
@@ -166,10 +162,6 @@
   --cnvrt-mega-panel-gap-x: 1.5rem;
   --cnvrt-mega-panel-padding-y: 1.85rem;
   --cnvrt-mega-panel-padding-bottom: 2.4rem;
-  --ym-panel-gap-y: var(--cnvrt-mega-panel-gap-y);
-  --ym-panel-gap-x: var(--cnvrt-mega-panel-gap-x);
-  --ym-panel-padding-y: var(--cnvrt-mega-panel-padding-y);
-  --ym-panel-padding-bottom: var(--cnvrt-mega-panel-padding-bottom);
 }
 
 .cnvrt-mega-panel a {
@@ -180,7 +172,7 @@
 .cnvrt-mega-panel__grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: var(--cnvrt-mega-panel-gap-y, var(--ym-panel-gap-y, 1.25rem)) var(--cnvrt-mega-panel-gap-x, var(--ym-panel-gap-x, 1.25rem));
+  gap: var(--cnvrt-mega-panel-gap-y, 1.25rem) var(--cnvrt-mega-panel-gap-x, 1.25rem);
   align-items: start;
 }
 
@@ -194,7 +186,7 @@
 
 .cnvrt-mega-panel__column {
   min-width: 0;
-  grid-column: span var(--cnvrt-mega-column-span, var(--ym-column-span, 3));
+  grid-column: span var(--cnvrt-mega-column-span, 3);
 }
 
 .cnvrt-mega-panel__heading-link {
@@ -228,12 +220,12 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--cnvrt-mega-column-gap, var(--ym-column-gap, 10px));
+  gap: var(--cnvrt-mega-column-gap, 10px);
 }
 
 .cnvrt-mega-panel__links a {
   color: inherit;
-  font-size: var(--cnvrt-mega-column-size, var(--ym-column-size, 13px));
+  font-size: var(--cnvrt-mega-column-size, 13px);
   font-style: normal;
   font-weight: 500;
   line-height: 1.25;
@@ -304,13 +296,11 @@
 
 @media (max-width: 1360px) {
   .cnvrt-mega-panel__inner {
-    padding-inline: max(1rem, calc(var(--cnvrt-mega-content-padding, var(--ym-content-padding, 24px)) - 6px));
+    padding-inline: max(1rem, calc(var(--cnvrt-mega-content-padding, 24px) - 6px));
   }
 
   .cnvrt-mega-panel__grid {
     --cnvrt-mega-panel-gap-y: 1rem;
     --cnvrt-mega-panel-gap-x: 1rem;
-    --ym-panel-gap-y: var(--cnvrt-mega-panel-gap-y);
-    --ym-panel-gap-x: var(--cnvrt-mega-panel-gap-x);
   }
 }

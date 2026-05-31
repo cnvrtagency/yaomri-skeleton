@@ -25,7 +25,7 @@
     data-mega-parent="{{ parent_id | escape }}"
     style="
       --cnvrt-mega-panel-width: {{ panel_width_value }}px;
-      --ym-panel-width: {{ panel_width_value }}px;
+      --cnvrt-mega-panel-width: {{ panel_width_value }}px;
     "
     hidden
     {{ parent_block.shopify_attributes }}
@@ -79,10 +79,6 @@
                 --cnvrt-mega-column-span: {{ column_span }};
                 --cnvrt-mega-column-size: {{ block.settings.font_size | default: 13 }}px;
                 --cnvrt-mega-column-gap: {{ block.settings.space_between | default: 10 }}px;
-                --ym-column-percent: var(--cnvrt-mega-column-percent);
-                --ym-column-span: var(--cnvrt-mega-column-span);
-                --ym-column-size: var(--cnvrt-mega-column-size);
-                --ym-column-gap: var(--cnvrt-mega-column-gap);
               "
               {{ block.shopify_attributes }}
             >
@@ -140,8 +136,6 @@
               style="
                 --cnvrt-mega-column-percent: {{ tile_width_number }};
                 --cnvrt-mega-column-span: {{ tile_column_span }};
-                --ym-column-percent: var(--cnvrt-mega-column-percent);
-                --ym-column-span: var(--cnvrt-mega-column-span);
               "
               {{ block.shopify_attributes }}
             >

@@ -1,6 +1,6 @@
-# Ya Omri 7-Day Launch Build Plan
+# CNVRT 7-Day Launch Build Plan
 
-Goal: get a clean, launchable Skeleton-based Ya Omri theme live in one week without adding avoidable complexity.
+Goal: get a clean, launchable Skeleton-based CNVRT theme live in one week without adding avoidable complexity.
 
 Do not build speculative storefront features before the launch-critical surfaces are stable.
 
@@ -17,7 +17,7 @@ Do not build speculative storefront features before the launch-critical surfaces
 | Homepage | Half-built | Hello World has been replaced with a block-based Single Image Hero; 3-Card Hero is available, but remaining homepage sections are still needed. |
 | Product page | Not started | Still default Skeleton unless separately changed. |
 | Collection page | Not started | Still default Skeleton unless separately changed. |
-| Search | Half-built | Basic search exists; no Ya Omri QA pass. |
+| Search | Half-built | Basic search exists; no CNVRT QA pass. |
 | Footer | Half-built | Skeleton default, not brand-ready. |
 | Theme editor UX | Needs cleanup | Labels, duplicate/stale settings, and merchant workflow need tightening. |
 | Responsive QA | In progress | Responsive width/inset system now documented (`THEME_RESPONSIVE_SYSTEM.md`); launch pass still required by viewport matrix. |
@@ -149,7 +149,7 @@ Tasks:
 - Ensure media, title, price, variants, quantity, add-to-cart, and basic product info work.
 - Audit current collection template.
 - Ensure product grid, product cards, pagination, and empty states work.
-- Use global tokens and Ya Omri visual language.
+- Use global tokens and CNVRT visual language.
 
 Success looks like:
 - A customer can browse a collection, open a product, choose a variant, add to cart, and checkout.
@@ -168,7 +168,7 @@ Objective:
 
 Tasks:
 - Keep responsive layout contract centralized (`--page-width` + global `site_inset`) and avoid per-section hidden side padding hacks.
-- Replace default footer presentation with Ya Omri styling.
+- Replace default footer presentation with CNVRT styling.
 - Rename footer labels away from translation keys if needed.
 - Audit search template and search routes from header/mobile drawer.
 - Finish responsive QA across all target widths.
@@ -338,7 +338,7 @@ Do not get distracted by:
 ### 1. Settings And Header Cleanup
 
 Objective:
-- Remove stale/unsupported header settings and align the schema with `YAOMRI_BUILD_SPEC.md`.
+- Remove stale/unsupported header settings and align the schema with `CNVRT_BUILD_SPEC.md`.
 
 Why it comes now:
 - Every future feature depends on stable setting ownership.
@@ -357,7 +357,7 @@ Likely files affected:
 - `config/settings_schema.json`
 - `sections/header.liquid`
 - `sections/header-group.json`
-- `assets/yaomri-header.css`
+- `assets/cnvrt-header.css`
 - `THEME_SETTINGS_REGISTRY.md`
 
 Risk level:
@@ -439,8 +439,8 @@ What not to get distracted by:
 
 Likely files affected:
 - `sections/cart.liquid`
-- `assets/yaomri-cart.css`
-- `assets/yaomri-cart.js`
+- `assets/cnvrt-cart.css`
+- `assets/cnvrt-cart.js`
 - Possible new cart drawer section/snippets/assets.
 
 Risk level:
