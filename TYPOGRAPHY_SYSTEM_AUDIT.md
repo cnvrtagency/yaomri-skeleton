@@ -23,6 +23,10 @@ The typography ownership model is now corrected:
 - `Single Image Hero` remains a special block-driven typography system and keeps local block typography controls.
 - `Announcement bar` remains independent from Section headings and keeps local utility typography controls.
 
+6. Product cards
+- Product-card text typography is now global under Theme settings > Product cards (vendor/title/price/sizes/button), not per-section.
+- Product-card typography tokens are emitted as `--cnvrt-product-card-*` variables and consumed in `assets/component-product-card.css`.
+
 ## Implementation update (2026-05-31)
 
 The theme now uses a global CNVRT typography contract instead of only `type_primary_font`:
@@ -113,6 +117,7 @@ This audit recommends a standardized, granular system without reducing control.
 
 Update note (May 31, 2026):
 - Reusable section-heading styling is active in Theme settings > Section headings (`section_heading_*`) and shared `.cnvrt-section-heading*` CSS.
+- Section headings labels now describe “Description” copy (supporting text under section titles) while keeping existing `section_heading_text_*` IDs for compatibility.
 - `Featured collection` and `Collection cards` consume global section-heading styling and keep heading content fields local.
 - Header/nav/menu typography is explicitly routed to Theme settings > Header and no longer reads global eyebrow/section-heading tokens.
 - Single Image Hero Paragraph weight options now include Light (300) and Extra bold (800).

@@ -4,7 +4,7 @@
     assign resolved_lazy_load = lazy_load | default: true, allow_false: true
     assign resolved_show_vendor = show_vendor | default: settings.product_card_show_vendor, allow_false: true
     assign resolved_show_sizes = show_sizes | default: settings.product_card_show_sizes, allow_false: true
-    assign show_wishlist = settings.product_card_show_wishlist | default: true
+    assign resolved_show_wishlist = show_wishlist | default: settings.product_card_show_wishlist, allow_false: true
     assign image_hover_setting = settings.product_card_image_hover | default: 'second_image'
     assign image_ratio = settings.product_card_image_ratio | default: 'portrait'
     assign action_layout = settings.product_card_action_layout | default: 'below_info'
@@ -141,7 +141,7 @@
         <span class="cnvrt-product-card__badge">Sale</span>
       {%- endif -%}
 
-      {%- if show_wishlist -%}
+      {%- if resolved_show_wishlist -%}
         <button class="cnvrt-product-card__wishlist" type="button" aria-label="Add to wishlist" data-cnvrt-product-card-wishlist>
           ♡
         </button>

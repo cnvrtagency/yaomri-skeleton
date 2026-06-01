@@ -57,7 +57,8 @@ Use this before publishing and after any architecture-level change. Passing auto
 
 ### Product cards
 
-- Theme settings > Product cards group is present with exactly 9 settings.
+- Theme settings > Product cards group includes behaviour controls and global typography controls.
+- Product card typography settings visibly affect vendor/title/price/sizes/button text.
 - Snippet render API works: `{% render 'product-card', product: product %}`.
 - Card runtime hooks are CNVRT-only (`.cnvrt-product-card*`, `data-cnvrt-product-card*`).
 - Product image links to product page and card is not fully wrapped in a single link.
@@ -141,6 +142,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Header content width: site, full, and custom modes.
 - Custom header width only affects custom mode.
 - Desktop and mobile header heights visibly change their respective headers.
+- Desktop navigation text size and mobile navigation text size apply independently.
 - Sticky header works and does not cover content unexpectedly.
 - Transparent header mode Off keeps normal header behavior.
 - Transparent header mode Homepage only applies on the homepage (`request.page_type = index`) only.
@@ -185,6 +187,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - When `Show currency code` is enabled, currency uses Shopify localization data and does not render a broken trailing slash when currency data is unavailable.
 - Selector country list comes from Shopify `localization.available_countries`; the theme does not hardcode or limit the list.
 - Country selector style, height, and optional colours do not break header actions.
+- Country selector text colour setting applies in normal/solid state and transparent state still follows transparent header colour.
 - Transparent header mobile layout remains stable (menu, logo, search/wishlist/cart) and readable.
 - In transparent header mode, the country selector returns to solid-state contrast tokens once `.is-scrolled` is active.
 - Desktop action order is country selector, search, account, wishlist, cart.

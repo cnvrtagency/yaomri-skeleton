@@ -208,7 +208,7 @@ html.cnvrt-drawer-open body {
   background: transparent;
   color: inherit;
   text-align: left;
-  font-size: 0.82rem;
+  font-size: var(--cnvrt-header-nav-size-mobile, 13px);
   font-style: italic;
   font-weight: 800;
   letter-spacing: 0.03em;

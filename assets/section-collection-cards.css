@@ -40,46 +40,28 @@
 
 .cnvrt-collection-cards__head {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: var(--cnvrt-section-heading-margin-bottom-mobile, 18px);
 }
 
 .cnvrt-collection-cards__heading-group {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
+  display: grid;
+  gap: 0;
   min-width: 0;
-  flex-wrap: wrap;
+}
+
+.cnvrt-collection-cards__eyebrow {
+  opacity: 0.88;
 }
 
 .cnvrt-collection-cards__title {
-  margin: 0;
-  font-family: var(--cnvrt-font-heading-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
-  font-size: var(--cnvrt-section-heading-size-mobile, 24px);
-  line-height: var(--cnvrt-section-heading-line-height-mobile, var(--cnvrt-heading-line-height, 1.1));
-  text-transform: var(--cnvrt-section-heading-transform, uppercase);
-  font-style: var(--cnvrt-font-heading-style, italic);
-  font-weight: var(--cnvrt-section-heading-weight, var(--cnvrt-heading-weight, 700));
-  letter-spacing: var(--cnvrt-section-heading-letter-spacing, 0);
   color: var(--cnvrt-section-heading-colour, var(--color-foreground));
-  max-width: var(--cnvrt-section-heading-max-width, 760px);
-  white-space: normal;
 }
 
 .cnvrt-collection-cards__subtitle {
-  margin: 0;
-  font-family: var(--cnvrt-font-body-family, var(--font-primary--family));
-  font-size: var(--cnvrt-section-text-size-mobile, 14px);
-  line-height: var(--cnvrt-section-text-line-height-mobile, var(--cnvrt-body-line-height, 1.45));
-  font-style: normal;
-  font-weight: var(--cnvrt-section-text-weight, var(--cnvrt-body-weight, 400));
-  letter-spacing: var(--cnvrt-section-text-letter-spacing, 0);
-  text-transform: none;
   color: var(--cnvrt-section-text-colour, rgb(115 115 115));
-  max-width: var(--cnvrt-section-text-max-width, 680px);
-  white-space: normal;
 }
 
 .cnvrt-collection-cards__nav {
@@ -139,14 +121,8 @@
 }
 
 @media (min-width: 768px) {
-  .cnvrt-collection-cards__title {
-    font-size: var(--cnvrt-section-heading-size-desktop, 32px);
-    line-height: var(--cnvrt-section-heading-line-height-desktop, var(--cnvrt-heading-line-height, 1.05));
-  }
-
-  .cnvrt-collection-cards__subtitle {
-    font-size: var(--cnvrt-section-text-size-desktop, 15px);
-    line-height: var(--cnvrt-section-text-line-height-desktop, var(--cnvrt-body-line-height, 1.5));
+  .cnvrt-collection-cards__head {
+    margin-bottom: var(--cnvrt-section-heading-margin-bottom-desktop, 24px);
   }
 
   .cnvrt-collection-cards__track {
@@ -313,65 +289,16 @@
       var(--cnvrt-collection-cards-padding-left-mobile, var(--cnvrt-collection-padding-left-mobile, 0));
   }
 
-  .cnvrt-collection-cards__head {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
-    column-gap: 0.75rem;
-    row-gap: 0.3rem;
-    margin-bottom: 1rem;
-  }
-
-  .cnvrt-collection-cards__heading-group {
-    display: block;
-    min-width: 0;
-  }
-
-  .cnvrt-collection-cards__title {
-    display: block;
-    line-height: 1.1;
-    max-width: 100%;
-    white-space: normal;
-  }
-
-  .cnvrt-collection-cards__subtitle {
-    display: block;
-    margin-top: 0.35rem;
-    white-space: normal;
-  }
-
-  .cnvrt-collection-cards__nav {
-    justify-self: end;
-    align-self: start;
-  }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 749px) {
   .cnvrt-collection-cards__head {
-    align-items: start;
-    column-gap: 0.6rem;
-    row-gap: 0.45rem;
-  }
-
-  .cnvrt-collection-cards__heading-group {
-    line-height: 1.08;
-  }
-
-  .cnvrt-collection-cards__subtitle {
-    margin-top: 0.25rem;
-  }
-
-  .cnvrt-collection-cards__nav {
-    justify-self: end;
-    align-self: end;
-    justify-content: flex-end;
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 
 @media (max-width: 390px) {
-  .cnvrt-collection-cards__subtitle {
-    margin-top: 0.2rem;
-  }
 
   .cnvrt-collection-cards__button {
     width: 2rem;
@@ -385,15 +312,6 @@
 }
 
 @media (max-width: 360px) {
-  .cnvrt-collection-cards__heading-group {
-    min-width: 0;
-  }
-
-  .cnvrt-collection-cards__title,
-  .cnvrt-collection-cards__subtitle {
-    white-space: normal;
-  }
-
   .cnvrt-collection-cards__button {
     width: 1.9rem;
     height: 1.9rem;

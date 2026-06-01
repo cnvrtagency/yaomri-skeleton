@@ -67,6 +67,7 @@
   assign desktop_icon_gap = settings.desktop_icon_gap | default: 0
   assign mobile_icon_gap = settings.mobile_icon_gap | default: 0
   assign nav_text_size = settings.nav_text_size | default: 12
+  assign header_nav_size_mobile = settings.header_nav_size_mobile | default: 13
   assign nav_text_weight = settings.nav_text_weight | default: '800'
   assign nav_letter_spacing = settings.nav_letter_spacing | default: 1 | divided_by: 100.0
   assign nav_text_transform = settings.nav_text_transform | default: 'uppercase'
@@ -85,9 +86,13 @@
   if country_selector_border == blank
     assign country_selector_border = 'var(--color-border)'
   endif
-  assign country_selector_text = settings.country_selector_text
-  if country_selector_text == blank
-    assign country_selector_text = 'currentColor'
+  assign country_selector_text_normal = settings.country_selector_text
+  if country_selector_text_normal == blank
+    assign country_selector_text_normal = 'currentColor'
+  endif
+  assign country_selector_text_solid = settings.country_selector_text
+  if country_selector_text_solid == blank
+    assign country_selector_text_solid = 'var(--cnvrt-header-solid-after-scroll-text)'
   endif
   assign country_selector_height = settings.country_selector_height | default: 48
   assign transparent_header_mode = settings.transparent_header_mode | default: 'homepage'
@@ -239,6 +244,7 @@
     --cnvrt-header-desktop-icon-gap: {{ desktop_icon_gap }}px;
     --cnvrt-header-mobile-icon-gap: {{ mobile_icon_gap }}px;
     --cnvrt-header-nav-size: {{ nav_text_size }}px;
+    --cnvrt-header-nav-size-mobile: {{ header_nav_size_mobile }}px;
     --cnvrt-header-nav-weight: {{ nav_text_weight }};
     --cnvrt-header-nav-letter-spacing: {{ nav_letter_spacing }}em;
     --cnvrt-header-nav-transform: {{ nav_text_transform }};
@@ -251,9 +257,9 @@
     --cnvrt-header-cart-count-offset-y: {{ cart_count_offset_y }}px;
     --cnvrt-header-country-bg-normal: {{ country_selector_background }};
     --cnvrt-header-country-border-normal: {{ country_selector_border }};
-    --cnvrt-header-country-text-normal: {{ country_selector_text }};
+    --cnvrt-header-country-text-normal: {{ country_selector_text_normal }};
     --cnvrt-header-country-border-solid: var(--cnvrt-header-solid-after-scroll-text, #111111);
-    --cnvrt-header-country-text-solid: var(--cnvrt-header-solid-after-scroll-text);
+    --cnvrt-header-country-text-solid: {{ country_selector_text_solid }};
     --cnvrt-header-country-height: {{ country_selector_height }}px;
     --cnvrt-header-transparent-text: {{ transparent_header_resolved_text }};
     --cnvrt-header-transparent-bg-opacity: {{ transparent_header_bg_opacity }};

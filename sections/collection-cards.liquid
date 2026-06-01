@@ -113,6 +113,9 @@
   <div class="cnvrt-collection-cards__inner">
     <div class="cnvrt-collection-cards__head cnvrt-section-heading cnvrt-section-heading--align-{{ settings.section_heading_alignment | default: 'left' }}">
       <div class="cnvrt-collection-cards__heading-group cnvrt-section-heading__content">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="cnvrt-collection-cards__eyebrow cnvrt-section-heading__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
         <h2 class="cnvrt-collection-cards__title cnvrt-section-heading__title">{{ section.settings.heading }}</h2>
         {%- if section.settings.heading_subtitle != blank -%}
           <p class="cnvrt-collection-cards__subtitle cnvrt-section-heading__text">{{ section.settings.heading_subtitle }}</p>
@@ -298,6 +301,7 @@
   "name": "Collection cards",
   "settings": [
     { "type": "header", "content": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shop by collection" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Shop by collection" },
     { "type": "text", "id": "heading_subtitle", "label": "Heading subtitle", "default": "Curated edits" },
 

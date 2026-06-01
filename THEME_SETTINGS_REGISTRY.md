@@ -39,6 +39,7 @@ Status values:
 - Typography ownership is now corrected:
   - Global base typography stays in Theme settings > Typography.
   - Header/menu/nav typography stays in Theme settings > Header and no longer consumes global eyebrow tokens.
+  - Header now has separate desktop and mobile navigation text size controls (`nav_text_size`, `header_nav_size_mobile`).
   - Reusable section-heading styling is centralized in Theme settings > Section headings (`section_heading_*`).
   - `Featured collection` and `Collection cards` now keep section-heading content only and consume global section-heading style tokens.
   - `Announcement bar` remains independent and keeps utility-level local typography controls.
@@ -59,9 +60,26 @@ Settings added (scope-locked):
 7. `product_card_action_layout` (`select`, `below_info` / `image_hover` / `hidden`, default `below_info`)
 8. `product_card_show_wishlist` (`checkbox`, default `true`)
 9. `product_card_text_alignment` (`select`, `left` / `center`, default `left`)
+10. `product_card_vendor_size` (`range`, default `11`)
+11. `product_card_vendor_weight` (`select`, default `500`)
+12. `product_card_vendor_letter_spacing` (`range`, default `1`)
+13. `product_card_vendor_transform` (`select`, default `uppercase`)
+14. `product_card_title_size` (`range`, default `14`)
+15. `product_card_title_weight` (`select`, default `700`)
+16. `product_card_title_line_height` (`range`, default `125`)
+17. `product_card_title_letter_spacing` (`range`, default `1`)
+18. `product_card_title_transform` (`select`, default `uppercase`)
+19. `product_card_price_size` (`range`, default `13`)
+20. `product_card_price_weight` (`select`, default `600`)
+21. `product_card_sizes_size` (`range`, default `11`)
+22. `product_card_sizes_weight` (`select`, default `500`)
+23. `product_card_button_size` (`range`, default `12`)
+24. `product_card_button_weight` (`select`, default `700`)
+25. `product_card_button_letter_spacing` (`range`, default `8`)
+26. `product_card_button_transform` (`select`, default `uppercase`)
 
 Notes:
-- No additional product-card settings were introduced.
+- Product card typography is now globally controlled in Theme settings > Product cards.
 - No Shopify setting IDs were renamed.
 - Product-card wishlist is a placeholder button only in v1 (no storage/account/app integration).
 
@@ -95,14 +113,14 @@ Settings added:
 21. `padding_bottom_desktop`
 22. `padding_top_mobile`
 23. `padding_bottom_mobile`
-24. `header_alignment`
-25. `background_colour`
-26. `text_colour`
-27. `show_top_border`
-28. `border_colour`
+24. `background_colour`
+25. `text_colour`
+26. `show_top_border`
+27. `border_colour`
 
 Notes:
 - Section intentionally reuses global Theme settings > Product cards and does not add product-card override settings.
+- Section heading alignment comes from global Theme settings > Section headings (`section_heading_alignment`).
 - Section is scope-limited to one selected collection display only (no filters/sorting/recommendations).
 
 ## Global Theme Settings
@@ -127,11 +145,12 @@ Notes:
 | desktop_header_height | Desktop header height | Theme settings > Header | range | 82 | Header | Desktop header minimum height | `sections/header.liquid`, `assets/cnvrt-header.css` | `--cnvrt-header-desktop-height` | keep | Desktop header height | Controls the desktop header height. | Correct owner. |
 | mobile_header_height | Mobile header height | Theme settings > Header | range | 74 | Header | Mobile header minimum height | `sections/header.liquid`, `assets/cnvrt-header.css` | `--cnvrt-header-mobile-height` | keep | Mobile header height | Controls the mobile header height. | Correct owner. |
 | nav_text_size | Desktop navigation text size | Theme settings > Header | range | 12 | Header | Desktop nav text size | `sections/header.liquid`, `assets/cnvrt-header.css` | `--cnvrt-header-nav-size` | keep | Desktop navigation text size | Controls top-level desktop navigation text size. | Renamed for clarity. |
+| header_nav_size_mobile | Mobile navigation text size | Theme settings > Header | range | 13 | Header | Mobile navigation text size | `sections/header.liquid`, `snippets/css-variables.liquid`, `assets/cnvrt-header.css`, `assets/mobile-drawer.css` | `--cnvrt-header-nav-size-mobile` | keep | Mobile navigation text size | Controls mobile drawer navigation text and the mobile header country selector text size. | Keeps header/menu typography in Header settings. |
 | nav_gap | Desktop navigation spacing | Theme settings > Header | range | 24 | Header | Desktop nav item spacing | `sections/header.liquid`, `assets/cnvrt-header.css`, `assets/mega-menu.css` | `--cnvrt-header-nav-gap` | keep | Desktop navigation spacing | Controls spacing between top-level desktop navigation items. | Renamed for clarity. |
 | header_background | Header background | Theme settings > Header | color | `#ffffff` | Header | Header background | `sections/header.liquid`, `assets/cnvrt-header.css` | `--cnvrt-header-bg` | keep | Header background | Controls the header background colour. | Correct owner. |
 | header_foreground | Header text/icon colour | Theme settings > Header | color | `#111111` | Header | Header text and icon colour | `sections/header.liquid`, `assets/cnvrt-header.css` | `--cnvrt-header-fg` | keep | Header text and icon colour | Controls text and icon colour in the header. | Correct owner. |
 | header_border | Header border colour | Theme settings > Header | color | `#e8e8e8` | Header | Header bottom border | `sections/header.liquid`, `assets/cnvrt-header.css` | `--cnvrt-header-border` | keep | Header border colour | Controls the header border colour. | Correct owner. |
-| show_bottom_border | Show header bottom border | Theme settings > Header | checkbox | true | Header | Header border visibility | `sections/header.liquid`, `assets/cnvrt-header.css` | class modifier | keep | Show header bottom border | Shows a line under the header. | Renamed for clarity. |
+| show_bottom_border | Show header bottom border | Theme settings > Header | checkbox | false | Header | Header border visibility | `sections/header.liquid`, `assets/cnvrt-header.css` | class modifier | keep | Show header bottom border | Shows a line under the header. | Default is off. |
 | header_shadow | Header shadow | Theme settings > Header | select | none | Header | Header shadow preset | `sections/header.liquid`, `assets/cnvrt-header.css` | `--cnvrt-header-shadow` | keep | Header shadow | Controls the header shadow. | Good. |
 | header_shadow_opacity | Shadow opacity | Theme settings > Header | range | 10 | Header | Custom shadow opacity | `sections/header.liquid` | `--cnvrt-header-shadow` generated | defer | Custom shadow opacity | Used only when Header shadow is Custom. | Too technical; keep only if conditional visibility is available. |
 | header_shadow_offset_y | Shadow vertical offset | Theme settings > Header | range | 8 | Header | Custom shadow Y offset | `sections/header.liquid` | `--cnvrt-header-shadow` generated | defer | Custom shadow distance | Used only when Header shadow is Custom. | Technical but acceptable if grouped under custom shadow. |
@@ -171,7 +190,7 @@ Notes:
 | country_selector_show_currency | Show currency code | Theme settings > Header | checkbox | false | Header | Optional currency code visibility | `sections/header.liquid` | none | keep | Show currency code | Adds the Shopify country currency code to the selector label. | Default false to keep the header compact. Currency is sourced from Shopify localization and omitted when unavailable. |
 | country_selector_background | Country selector background | Theme settings > Header | color | blank | Header | Selector background override | `sections/header.liquid`, `assets/cnvrt-header.css` | `--cnvrt-header-country-bg` | keep | Country selector background | Optional override. Leave blank to inherit the global page background. | Local override only. |
 | country_selector_border | Country selector border | Theme settings > Header | color | blank | Header | Selector border override | `sections/header.liquid`, `assets/cnvrt-header.css` | `--cnvrt-header-country-border` | keep | Country selector border | Optional override. Leave blank to inherit the global border colour. | Local override only. |
-| country_selector_text | Country selector text colour | Theme settings > Header | color | blank | Header | Selector text override | `sections/header.liquid`, `assets/cnvrt-header.css` | `--cnvrt-header-country-text` | keep | Country selector text colour | Optional override. Leave blank to inherit the header text colour. | Local override only. |
+| country_selector_text | Country selector text colour | Theme settings > Header | color | blank | Header | Selector text override | `sections/header.liquid`, `assets/cnvrt-header.css` | `--cnvrt-header-country-text-normal`, `--cnvrt-header-country-text-solid` | keep | Country selector text colour | Optional override. Leave blank to inherit solid header text after scroll. Transparent state still follows transparent header text. | Local override with transparent-state guardrail. |
 | country_selector_height | Country selector height | Theme settings > Header | range | 48 | Header | Selector height | `sections/header.liquid`, `assets/cnvrt-header.css` | `--cnvrt-header-country-height` | keep | Country selector height | Controls the country selector height in the header. | Replaces region chip height. |
 | background_color | Page background | Theme settings > Colours | color | `#FFFFFF` | Colours | Global page background | `snippets/css-variables.liquid`, `assets/critical.css` | `--color-background` | keep | Page background | Controls the default page background. | Correct owner. |
 | foreground_color | Text colour | Theme settings > Colours | color | `#1a1a1a` | Colours | Global text colour | `snippets/css-variables.liquid`, `assets/critical.css` | `--color-foreground` | keep | Text colour | Controls the default text colour. | Correct owner. |
@@ -480,8 +499,8 @@ Reusable section-heading styling is active and global.
 | section_heading_size_desktop | Heading size desktop | Theme settings > Section headings | range | 32 | Section headings | Heading size on desktop | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-heading-size-desktop` | keep | Heading size desktop | Default section title size used by standard section headings on desktop. | Section headings render as `h2` in section markup. |
 | section_heading_size_mobile | Heading size mobile | Theme settings > Section headings | range | 24 | Section headings | Heading size on mobile | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-heading-size-mobile` | keep | Heading size mobile | Default section title size used by standard section headings on mobile. | |
 | section_heading_weight | Heading weight | Theme settings > Section headings | select | 700 | Section headings | Heading weight | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-heading-weight` | keep | Heading weight | Default section title weight for standard section headings. | |
-| section_heading_text_size_desktop | Text size desktop | Theme settings > Section headings | range | 15 | Section headings | Optional heading text size on desktop | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-text-size-desktop` | keep | Text size desktop | Default supporting text size for section heading blocks on desktop. | |
-| section_heading_text_size_mobile | Text size mobile | Theme settings > Section headings | range | 14 | Section headings | Optional heading text size on mobile | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-text-size-mobile` | keep | Text size mobile | Default supporting text size for section heading blocks on mobile. | |
+| section_heading_text_size_desktop | Description size desktop | Theme settings > Section headings | range | 15 | Section headings | Optional heading description size on desktop | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-text-size-desktop` | keep | Description size desktop | Default supporting description size for section heading blocks on desktop. | |
+| section_heading_text_size_mobile | Description size mobile | Theme settings > Section headings | range | 14 | Section headings | Optional heading description size on mobile | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-text-size-mobile` | keep | Description size mobile | Default supporting description size for section heading blocks on mobile. | |
 | section_heading_alignment | Section heading alignment | Theme settings > Section headings | select | left | Section headings | Default alignment for standard section heading blocks | `snippets/css-variables.liquid`, `assets/cnvrt-base.css`, section heading markup class modifiers | `--cnvrt-section-heading-alignment` | keep | Section heading alignment | Applies to standard section heading blocks globally. | Header/nav/menu alignment remains header-owned. |
 | section_heading_margin_bottom_desktop | Section heading margin bottom desktop | Theme settings > Section headings | range | 24 | Section headings | Spacing below heading stack on desktop | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-heading-margin-bottom-desktop` | keep | Section heading margin bottom desktop | Default spacing below section heading blocks on desktop. | |
 | section_heading_margin_bottom_mobile | Section heading margin bottom mobile | Theme settings > Section headings | range | 18 | Section headings | Spacing below heading stack on mobile | `snippets/css-variables.liquid`, `assets/cnvrt-base.css` | `--cnvrt-section-heading-margin-bottom-mobile` | keep | Section heading margin bottom mobile | Default spacing below section heading blocks on mobile. | |

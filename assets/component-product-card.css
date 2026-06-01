@@ -128,21 +128,21 @@
   margin: 0;
   color: color-mix(in srgb, var(--color-foreground) 64%, #fff 36%);
   font-family: var(--cnvrt-font-body-family, var(--font-primary--family));
-  font-size: 0.66rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: var(--cnvrt-product-card-vendor-size, 11px);
+  font-weight: var(--cnvrt-product-card-vendor-weight, 500);
+  letter-spacing: var(--cnvrt-product-card-vendor-letter-spacing, 0.01em);
+  text-transform: var(--cnvrt-product-card-vendor-transform, uppercase);
 }
 
 .cnvrt-product-card__title {
   margin: 0;
   font-family: var(--cnvrt-font-heading-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
   font-style: var(--cnvrt-font-heading-style, normal);
-  font-size: 0.86rem;
-  font-weight: var(--cnvrt-heading-weight, 700);
-  letter-spacing: 0.06em;
-  line-height: 1.25;
-  text-transform: uppercase;
+  font-size: var(--cnvrt-product-card-title-size, 14px);
+  font-weight: var(--cnvrt-product-card-title-weight, var(--cnvrt-heading-weight, 700));
+  letter-spacing: var(--cnvrt-product-card-title-letter-spacing, 0.01em);
+  line-height: var(--cnvrt-product-card-title-line-height, 1.25);
+  text-transform: var(--cnvrt-product-card-title-transform, uppercase);
 }
 
 .cnvrt-product-card__title a {
@@ -160,18 +160,18 @@
   align-items: baseline;
   gap: 0.45rem;
   font-family: var(--cnvrt-font-body-family, var(--font-primary--family));
-  font-size: 0.8rem;
+  font-size: var(--cnvrt-product-card-price-size, 13px);
   line-height: 1.25;
 }
 
 .cnvrt-product-card__price-current {
-  font-weight: 600;
+  font-weight: var(--cnvrt-product-card-price-weight, 600);
 }
 
 .cnvrt-product-card__price-compare {
   text-decoration: line-through;
   color: color-mix(in srgb, var(--color-foreground) 60%, #fff 40%);
-  font-size: 0.74rem;
+  font-size: 0.9em;
 }
 
 .cnvrt-product-card__sizes {
@@ -182,8 +182,8 @@
 }
 
 .cnvrt-product-card__size {
-  font-size: 0.66rem;
-  font-weight: 500;
+  font-size: var(--cnvrt-product-card-sizes-size, 11px);
+  font-weight: var(--cnvrt-product-card-sizes-weight, 500);
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -209,12 +209,12 @@
   padding: 0.55rem 0.85rem;
   font-family: var(--cnvrt-font-button-family, var(--cnvrt-font-body-family, var(--font-primary--family)));
   font-style: var(--cnvrt-font-button-style, normal);
-  font-size: 0.72rem;
-  font-weight: var(--cnvrt-button-weight, 700);
-  letter-spacing: var(--cnvrt-button-letter-spacing, 0.08em);
+  font-size: var(--cnvrt-product-card-button-size, 12px);
+  font-weight: var(--cnvrt-product-card-button-weight, var(--cnvrt-button-weight, 700));
+  letter-spacing: var(--cnvrt-product-card-button-letter-spacing, var(--cnvrt-button-letter-spacing, 0.08em));
   line-height: 1;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: var(--cnvrt-product-card-button-transform, uppercase);
 }
 
 .cnvrt-product-card__button:hover {

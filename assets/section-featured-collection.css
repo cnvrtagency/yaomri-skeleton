@@ -44,7 +44,7 @@
 
 .cnvrt-featured-collection__heading-group {
   display: grid;
-  gap: 0.45rem;
+  gap: 0;
   min-width: 0;
 }
 

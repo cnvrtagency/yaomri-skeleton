@@ -27,6 +27,7 @@ Naming migration status:
 - CNVRT runtime classes/selectors are active across Announcement, Collection Cards, Single Image Hero, Header/Header Stack, Mega Menu, Mobile Drawer, Cart, Footer, and 3-Card Hero.
 - Legacy class aliases have been removed from active markup/CSS/JS selectors.
 - Deferred scope remains: icon namespace migration and legacy CSS variable fallback retirement.
+- Theme Editor settings QA pass is complete for key pain points: Header group ordering/shadow placement, mobile nav size, country selector text routing, Section headings description labels, Featured Collection alignment ownership, and Product cards global typography controls.
 
 ## Day 1: Settings And Navigation Control Layer
 
