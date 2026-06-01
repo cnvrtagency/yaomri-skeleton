@@ -120,7 +120,7 @@ Tasks:
 - Done: make Single Image Hero content block-based with separate Eyebrow, Heading, Paragraph, buttons, custom markup, and image pins.
 - Done: integrate Announcement Bar into the Header section with Static/Carousel/Marquee modes (single header system ownership).
 - Done: section heading architecture is now centralized in Theme settings > Section headings (`section_heading_*`) and consumed by active standard sections.
-- Done: local section-heading style controls were removed from `Featured collection` and `Collection cards`; these sections now keep content-only heading fields.
+- Done: local section-heading style controls were removed from `Featured collection` and `Collection cards`; shared heading structure is standardized to eyebrow + heading with global spacing ownership.
 - Done: add `Collection cards` section with Grid/Carousel modes and a simplified premium heading row.
 - Add core launch sections in this order:
   1. Brand strip.

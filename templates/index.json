@@ -281,7 +281,6 @@
       "name": "Collection cards",
       "settings": {
         "heading": "Shop by style",
-        "heading_subtitle": "Curated edits",
         "show_arrows": true,
         "layout_mode": "carousel",
         "section_width": "site",

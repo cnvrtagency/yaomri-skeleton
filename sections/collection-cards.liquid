@@ -131,10 +131,6 @@
         {%- endif -%}
       </div>
     </div>
-    {%- if section.settings.heading_subtitle != blank -%}
-      <p class="cnvrt-collection-cards__supporting-text">{{ section.settings.heading_subtitle }}</p>
-    {%- endif -%}
-
     {%- assign valid_cards = 0 -%}
     {%- for block in section.blocks -%}
       {%- assign coll = collections[block.settings.collection] -%}
@@ -305,8 +301,6 @@
     { "type": "header", "content": "Content" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shop by collection" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Shop by collection" },
-    { "type": "text", "id": "heading_subtitle", "label": "Supporting text", "default": "Curated edits", "info": "Optional supporting copy shown below the shared section heading block." },
-
     { "type": "header", "content": "Layout" },
     {
       "type": "select",

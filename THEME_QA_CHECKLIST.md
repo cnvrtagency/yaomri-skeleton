@@ -48,7 +48,7 @@ Use this before publishing and after any architecture-level change. Passing auto
   - Heading desktop/mobile size, weight, line-height, letter-spacing, transform, colour, and max-width.
   - Alignment and heading-block bottom spacing.
 - Featured Collection and Collection Cards section headings consume global Section headings styling with shared eyebrow + `h2` title structure.
-- Any optional supporting copy is section content outside the shared heading block.
+- Collection Cards does not render subtitle/supporting text under the shared heading block.
 - Collection Cards card title/meta typography controls remain unchanged and still apply independently.
 - Announcement bar typography controls remain stable after standardization:
   - Text weight options (`300` to `800`) apply correctly.
@@ -394,7 +394,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Collection Cards section appears in Theme Editor.
 - Collection Cards runtime classes/selectors are CNVRT-first; `--cnvrt-collection-*` variable fallbacks remain compatibility aliases.
 - Heading and optional eyebrow render correctly in the section header row.
-- Supporting text, when used, renders below the shared heading block as section content.
+- No section subtitle/supporting text renders in the shared Collection Cards heading area.
 - Mobile heading layout stacks cleanly and arrows do not crowd heading text.
 - Section width modes (Full/Site/Custom) visibly change the shared heading/cards container width.
 - Site width mode in Collection Cards resolves to `var(--page-width)` and does not silently fall back to full width.

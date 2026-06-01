@@ -668,22 +668,24 @@
       {
         "type": "range",
         "id": "section_heading_margin_bottom_desktop",
-        "label": "Section heading margin bottom desktop",
+        "label": "Space below section heading - desktop",
+        "info": "Controls the space between the section heading block and the section content.",
         "min": 0,
-        "max": 120,
+        "max": 80,
         "step": 2,
         "unit": "px",
-        "default": 24
+        "default": 6
       },
       {
         "type": "range",
         "id": "section_heading_margin_bottom_mobile",
-        "label": "Section heading margin bottom mobile",
+        "label": "Space below section heading - mobile",
+        "info": "Controls the space between the section heading block and the section content on mobile.",
         "min": 0,
-        "max": 120,
+        "max": 60,
         "step": 2,
         "unit": "px",
-        "default": 18
+        "default": 6
       }
     ]
   },
