@@ -56,7 +56,7 @@
         "mobile_padding_inline": 12,
         "font_size_desktop": 12,
         "font_size_mobile": 11,
-        "font_weight": 600,
+        "font_weight": "600",
         "letter_spacing": 2,
         "text_transform": "uppercase",
         "item_gap": 24,
