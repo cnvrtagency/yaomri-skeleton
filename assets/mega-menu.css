@@ -24,6 +24,14 @@
   color: var(--cnvrt-mega-link-color, inherit);
 }
 
+.cnvrt-header .cnvrt-mega__top-link--highlight {
+  color: var(--cnvrt-mega-link-color, inherit);
+}
+
+.cnvrt-header--transparent-active:not(.is-scrolled) .cnvrt-mega__top-link--highlight {
+  color: var(--cnvrt-mega-link-color, currentColor);
+}
+
 .cnvrt-mega__label {
   display: inline-flex;
   align-items: center;

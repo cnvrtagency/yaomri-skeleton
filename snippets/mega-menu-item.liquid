@@ -6,9 +6,11 @@
     assign item_target = '_blank'
   endif
 
+  assign is_highlighted = false
   assign item_style = ''
   if block.settings.highlight_item and block.settings.highlight_color != blank
-    assign item_style = '--cnvrt-mega-link-color:' | append: block.settings.highlight_color | append: '; --cnvrt-mega-link-color:' | append: block.settings.highlight_color | append: ';'
+    assign is_highlighted = true
+    assign item_style = '--cnvrt-mega-link-color:' | append: block.settings.highlight_color | append: ';'
   endif
 
   assign item_label = block.settings.label_text
@@ -16,12 +18,12 @@
 
 {%- if block.type == 'base_item' -%}
   <li
-    class="cnvrt-mega__item cnvrt-mega__item--link"
+    class="cnvrt-mega__item cnvrt-mega__item--link{% if is_highlighted %} is-highlighted{% endif %}"
     style="{{ item_style }}"
     {{ block.shopify_attributes }}
   >
     <a
-      class="cnvrt-header__nav-link cnvrt-mega__top-link"
+      class="cnvrt-header__nav-link cnvrt-mega__top-link{% if is_highlighted %} cnvrt-mega__top-link--highlight{% endif %}"
       href="{{ item_url }}"
       {% if item_target == '_blank' %}target="_blank" rel="noopener"{% endif %}
       data-mega-link
@@ -30,7 +32,7 @@
       {%- if item_label != blank -%}
         <span
           class="cnvrt-mega__label"
-          style="--cnvrt-mega-label-color: {{ block.settings.label_color }}; --cnvrt-mega-label-color: {{ block.settings.label_color }};"
+          style="--cnvrt-mega-label-color: {{ block.settings.label_color }};"
         >
           {{ item_label }}
         </span>
@@ -40,7 +42,7 @@
 {%- elsif block.type == 'dropdown_item' -%}
   {%- liquid
     assign dropdown_width = block.settings.dropdown_width | default: 260
-    assign dropdown_style = item_style | append: '--cnvrt-mega-dropdown-width:' | append: dropdown_width | append: 'px; --cnvrt-mega-dropdown-width:' | append: dropdown_width | append: 'px;'
+    assign dropdown_style = item_style | append: '--cnvrt-mega-dropdown-width:' | append: dropdown_width | append: 'px;'
     assign dropdown_menu = blank
     assign dropdown_panel_id = 'cnvrt-mega-dropdown-' | append: block.id
     if block.settings.menu != blank
@@ -51,13 +53,13 @@
     endif
   -%}
   <li
-    class="cnvrt-mega__item cnvrt-mega__item--dropdown cnvrt-mega__item--{{ block.settings.dropdown_position | default: 'start' }}"
+    class="cnvrt-mega__item cnvrt-mega__item--dropdown cnvrt-mega__item--{{ block.settings.dropdown_position | default: 'start' }}{% if is_highlighted %} is-highlighted{% endif %}"
     style="{{ dropdown_style }}"
     data-dropdown
     {{ block.shopify_attributes }}
   >
     <a
-      class="cnvrt-header__nav-link cnvrt-mega__top-link"
+      class="cnvrt-header__nav-link cnvrt-mega__top-link{% if is_highlighted %} cnvrt-mega__top-link--highlight{% endif %}"
       href="{{ item_url }}"
       {% if item_target == '_blank' %}target="_blank" rel="noopener"{% endif %}
       data-dropdown-trigger
@@ -71,7 +73,7 @@
       {%- if item_label != blank -%}
         <span
           class="cnvrt-mega__label"
-          style="--cnvrt-mega-label-color: {{ block.settings.label_color }}; --cnvrt-mega-label-color: {{ block.settings.label_color }};"
+          style="--cnvrt-mega-label-color: {{ block.settings.label_color }};"
         >
           {{ item_label }}
         </span>
@@ -99,13 +101,13 @@
     assign mega_panel_id = 'cnvrt-mega-panel-' | append: mega_id
   -%}
   <li
-    class="cnvrt-mega__item cnvrt-mega__item--mega"
+    class="cnvrt-mega__item cnvrt-mega__item--mega{% if is_highlighted %} is-highlighted{% endif %}"
     style="{{ item_style }}"
     data-mega-item
     {{ block.shopify_attributes }}
   >
     <a
-      class="cnvrt-header__nav-link cnvrt-mega__top-link"
+      class="cnvrt-header__nav-link cnvrt-mega__top-link{% if is_highlighted %} cnvrt-mega__top-link--highlight{% endif %}"
       href="{{ item_url }}"
       {% if item_target == '_blank' %}target="_blank" rel="noopener"{% endif %}
       data-mega-trigger
@@ -119,7 +121,7 @@
       {%- if item_label != blank -%}
         <span
           class="cnvrt-mega__label"
-          style="--cnvrt-mega-label-color: {{ block.settings.label_color }}; --cnvrt-mega-label-color: {{ block.settings.label_color }};"
+          style="--cnvrt-mega-label-color: {{ block.settings.label_color }};"
         >
           {{ item_label }}
         </span>
