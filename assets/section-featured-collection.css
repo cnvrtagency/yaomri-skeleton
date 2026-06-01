@@ -39,6 +39,7 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
+  margin: 0;
 }
 
 .cnvrt-featured-collection__heading-group {
@@ -100,6 +101,7 @@
 
 .cnvrt-featured-collection__carousel {
   position: relative;
+  margin-top: 0;
 }
 
 .cnvrt-featured-collection__arrow {
@@ -131,6 +133,7 @@
   display: grid;
   grid-template-columns: repeat(var(--cnvrt-featured-collection-columns-mobile, 2), minmax(0, 1fr));
   gap: var(--cnvrt-featured-collection-gap-mobile, 12px);
+  margin-top: 0;
   align-items: stretch;
 }
 
@@ -138,6 +141,7 @@
   display: flex;
   align-items: stretch;
   gap: var(--cnvrt-featured-collection-gap-mobile, 12px);
+  margin-top: 0;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
@@ -176,10 +180,6 @@
 
 .cnvrt-featured-collection__arrow--next {
   right: 0;
-}
-
-.cnvrt-featured-collection--layout-carousel.cnvrt-featured-collection--arrows .cnvrt-featured-collection__carousel {
-  padding-inline: clamp(2.5rem, 4vw, 3.2rem);
 }
 
 .cnvrt-featured-collection__empty {
@@ -254,12 +254,14 @@
     flex-direction: column;
   }
 
-  .cnvrt-featured-collection--layout-carousel.cnvrt-featured-collection--arrows .cnvrt-featured-collection__carousel {
-    padding-inline: 0;
+  .cnvrt-featured-collection__arrow {
+    width: 2rem;
+    height: 2rem;
   }
 
-  .cnvrt-featured-collection__arrow {
-    display: none;
+  .cnvrt-featured-collection__arrow .cnvrt-icon {
+    width: 0.9rem;
+    height: 0.9rem;
   }
 }
 

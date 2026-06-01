@@ -43,6 +43,7 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
+  margin: 0;
 }
 
 .cnvrt-collection-cards__heading-group {
@@ -61,10 +62,7 @@
 
 .cnvrt-collection-cards__carousel {
   position: relative;
-}
-
-.cnvrt-collection-cards__carousel--arrows {
-  padding-inline: clamp(2.5rem, 4vw, 3.2rem);
+  margin-top: 0;
 }
 
 .cnvrt-collection-cards__button {
@@ -109,6 +107,7 @@
   width: 100%;
   max-width: 100%;
   gap: var(--cnvrt-collection-cards-gap-mobile, var(--cnvrt-collection-gap-mobile, 12px));
+  margin-top: 0;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
@@ -281,15 +280,6 @@
 .cnvrt-collection-card__badge--bottom-right { bottom: 0.75rem; right: 0.75rem; }
 
 @media (max-width: 989px) {
-  .cnvrt-collection-cards__carousel--arrows {
-    padding-inline: 0;
-  }
-
-  .cnvrt-collection-cards__button--prev,
-  .cnvrt-collection-cards__button--next {
-    display: none;
-  }
-
   .cnvrt-collection-cards {
     margin-top: var(--cnvrt-collection-cards-margin-top-mobile, var(--cnvrt-collection-margin-top-mobile, 0));
     margin-bottom: var(--cnvrt-collection-cards-margin-bottom-mobile, var(--cnvrt-collection-margin-bottom-mobile, 0));
@@ -311,24 +301,28 @@
 
 @media (max-width: 390px) {
 
-  .cnvrt-collection-cards__button {
+  .cnvrt-collection-cards__button--prev,
+  .cnvrt-collection-cards__button--next {
     width: 2rem;
     height: 2rem;
   }
 
-  .cnvrt-collection-cards__button .cnvrt-icon {
+  .cnvrt-collection-cards__button--prev .cnvrt-icon,
+  .cnvrt-collection-cards__button--next .cnvrt-icon {
     width: 0.9rem;
     height: 0.9rem;
   }
 }
 
 @media (max-width: 360px) {
-  .cnvrt-collection-cards__button {
+  .cnvrt-collection-cards__button--prev,
+  .cnvrt-collection-cards__button--next {
     width: 1.9rem;
     height: 1.9rem;
   }
 
-  .cnvrt-collection-cards__button .cnvrt-icon {
+  .cnvrt-collection-cards__button--prev .cnvrt-icon,
+  .cnvrt-collection-cards__button--next .cnvrt-icon {
     width: 0.85rem;
     height: 0.85rem;
   }
