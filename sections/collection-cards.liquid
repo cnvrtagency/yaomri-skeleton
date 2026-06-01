@@ -120,16 +120,6 @@
           <h2 class="cnvrt-collection-cards__title cnvrt-section-heading__title">{{ section.settings.heading }}</h2>
         {%- endif -%}
       </div>
-      <div class="cnvrt-collection-cards__nav cnvrt-section-heading__actions{% unless layout_mode == 'carousel' and show_arrows %} is-hidden{% endunless %}">
-        {%- if layout_mode == 'carousel' and show_arrows -%}
-          <button type="button" class="cnvrt-collection-cards__button" data-cnvrt-prev aria-label="Previous collection cards">
-            {% render 'icon-cnvrt-chevron-left' %}
-          </button>
-          <button type="button" class="cnvrt-collection-cards__button" data-cnvrt-next aria-label="Next collection cards">
-            {% render 'icon-cnvrt-chevron-right' %}
-          </button>
-        {%- endif -%}
-      </div>
     </div>
     {%- assign valid_cards = 0 -%}
     {%- for block in section.blocks -%}
@@ -145,6 +135,14 @@
     {%- endfor -%}
 
     {%- if valid_cards > 0 or request.design_mode -%}
+      {%- if layout_mode == 'carousel' -%}
+        <div class="cnvrt-collection-cards__carousel{% if show_arrows %} cnvrt-collection-cards__carousel--arrows{% endif %}">
+          {%- if show_arrows -%}
+            <button type="button" class="cnvrt-collection-cards__button cnvrt-collection-cards__button--prev" data-cnvrt-prev aria-label="Previous collection cards">
+              {% render 'icon-cnvrt-chevron-left' %}
+            </button>
+          {%- endif -%}
+      {%- endif -%}
       <div
         class="cnvrt-collection-cards__track{% if layout_mode == 'grid' %} cnvrt-collection-cards__track--grid{% endif %}"
         data-cnvrt-track
@@ -290,6 +288,14 @@
           {%- endfor -%}
         {%- endif -%}
       </div>
+      {%- if layout_mode == 'carousel' -%}
+        {%- if show_arrows -%}
+          <button type="button" class="cnvrt-collection-cards__button cnvrt-collection-cards__button--next" data-cnvrt-next aria-label="Next collection cards">
+            {% render 'icon-cnvrt-chevron-right' %}
+          </button>
+        {%- endif -%}
+        </div>
+      {%- endif -%}
     {%- endif -%}
   </div>
 </section>

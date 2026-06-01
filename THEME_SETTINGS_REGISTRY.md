@@ -69,17 +69,19 @@ Settings added (scope-locked):
 16. `product_card_title_line_height` (`range`, default `125`)
 17. `product_card_title_letter_spacing` (`range`, default `1`)
 18. `product_card_title_transform` (`select`, default `uppercase`)
-19. `product_card_price_size` (`range`, default `13`)
-20. `product_card_price_weight` (`select`, default `600`)
-21. `product_card_sizes_size` (`range`, default `11`)
-22. `product_card_sizes_weight` (`select`, default `500`)
-23. `product_card_button_size` (`range`, default `12`)
-24. `product_card_button_weight` (`select`, default `700`)
-25. `product_card_button_letter_spacing` (`range`, default `8`)
-26. `product_card_button_transform` (`select`, default `uppercase`)
+19. `product_card_title_line_limit` (`select`, default `2`)
+20. `product_card_price_size` (`range`, default `13`)
+21. `product_card_price_weight` (`select`, default `600`)
+22. `product_card_sizes_size` (`range`, default `11`)
+23. `product_card_sizes_weight` (`select`, default `500`)
+24. `product_card_button_size` (`range`, default `12`)
+25. `product_card_button_weight` (`select`, default `700`)
+26. `product_card_button_letter_spacing` (`range`, default `8`)
+27. `product_card_button_transform` (`select`, default `uppercase`)
 
 Notes:
 - Product card typography is now globally controlled in Theme settings > Product cards.
+- Product title truncation is global via `product_card_title_line_limit` (`none`, `1`, `2`).
 - No Shopify setting IDs were renamed.
 - Product-card wishlist is a placeholder button only in v1 (no storage/account/app integration).
 

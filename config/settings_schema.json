@@ -1677,6 +1677,27 @@
         ]
       },
       {
+        "type": "select",
+        "id": "product_card_title_line_limit",
+        "label": "Product title line limit",
+        "info": "Controls how many lines product titles can use on product cards.",
+        "default": "2",
+        "options": [
+          {
+            "value": "none",
+            "label": "No limit"
+          },
+          {
+            "value": "1",
+            "label": "1 line"
+          },
+          {
+            "value": "2",
+            "label": "2 lines"
+          }
+        ]
+      },
+      {
         "type": "range",
         "id": "product_card_price_size",
         "label": "Price size",

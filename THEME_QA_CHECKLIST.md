@@ -74,6 +74,9 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Wishlist button has `type="button"` and label `Add to wishlist`.
 - Vendor visibility follows `product_card_show_vendor` and hides when vendor is blank.
 - Title is always shown and links to product page.
+- `product_card_title_line_limit = none` allows natural title wrapping.
+- `product_card_title_line_limit = 1` clamps title to one line.
+- `product_card_title_line_limit = 2` clamps title to two lines.
 - Price is always shown and compare-at is struck through on sale.
 - Sizes row only renders when `product_card_show_sizes` is enabled and option name matches case-insensitively.
 - Size availability row strikes through values where all variants for that size are unavailable.
@@ -85,6 +88,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Sold-out products show disabled `Sold out` button.
 - Focus-visible states are visible for wishlist, title link, and action button.
 - Reduced motion keeps product-card transitions minimal.
+- Product cards remain equal-height within each Featured Collection grid/carousel row.
 
 ### Featured collection section
 
@@ -93,6 +97,7 @@ Use this before publishing and after any architecture-level change. Passing auto
 - Grid layout renders product cards in configured desktop/tablet/mobile columns.
 - Carousel layout renders product cards in horizontal scroll-snap track.
 - Carousel arrows render only when enabled and scroll approximately one page.
+- Carousel arrows sit on the left/right sides of the carousel viewport, not in the section heading row.
 - Carousel remains swipeable/scrollable without JS.
 - Section uses `{% render 'product-card', product: product, section_id: section.id %}` for real products.
 - Section does not duplicate product-card business logic markup.

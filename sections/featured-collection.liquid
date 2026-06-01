@@ -29,6 +29,9 @@
   assign root_classes = 'cnvrt-featured-collection full-width'
   assign root_classes = root_classes | append: ' cnvrt-featured-collection--layout-' | append: layout_mode
   assign root_classes = root_classes | append: ' cnvrt-featured-collection--width-' | append: section_width
+  if layout_mode == 'carousel' and section.settings.show_arrows
+    assign root_classes = root_classes | append: ' cnvrt-featured-collection--arrows'
+  endif
   if section.settings.show_top_border
     assign root_classes = root_classes | append: ' cnvrt-featured-collection--border-top'
   endif
@@ -75,26 +78,6 @@
               {{ section.settings.cta_label }}
             </a>
           {%- endif -%}
-          {%- if layout_mode == 'carousel' and section.settings.show_arrows -%}
-            <div class="cnvrt-featured-collection__nav">
-              <button
-                class="cnvrt-featured-collection__arrow"
-                type="button"
-                data-cnvrt-featured-collection-prev
-                aria-label="Previous products"
-              >
-                {% render 'icon-cnvrt-chevron-left' %}
-              </button>
-              <button
-                class="cnvrt-featured-collection__arrow"
-                type="button"
-                data-cnvrt-featured-collection-next
-                aria-label="Next products"
-              >
-                {% render 'icon-cnvrt-chevron-right' %}
-              </button>
-            </div>
-          {%- endif -%}
         </div>
       </header>
       {%- if section.settings.text != blank -%}
@@ -111,12 +94,34 @@
             {%- endfor -%}
           </div>
         {%- else -%}
-          <div class="cnvrt-featured-collection__track" data-cnvrt-featured-collection-track>
-            {%- for product in featured_collection.products limit: products_to_show -%}
-              <div class="cnvrt-featured-collection__item">
-                {% render 'product-card', product: product, section_id: section.id %}
-              </div>
-            {%- endfor -%}
+          <div class="cnvrt-featured-collection__carousel">
+            {%- if section.settings.show_arrows -%}
+              <button
+                class="cnvrt-featured-collection__arrow cnvrt-featured-collection__arrow--prev"
+                type="button"
+                data-cnvrt-featured-collection-prev
+                aria-label="Previous products"
+              >
+                {% render 'icon-cnvrt-chevron-left' %}
+              </button>
+            {%- endif -%}
+            <div class="cnvrt-featured-collection__track" data-cnvrt-featured-collection-track>
+              {%- for product in featured_collection.products limit: products_to_show -%}
+                <div class="cnvrt-featured-collection__item">
+                  {% render 'product-card', product: product, section_id: section.id %}
+                </div>
+              {%- endfor -%}
+            </div>
+            {%- if section.settings.show_arrows -%}
+              <button
+                class="cnvrt-featured-collection__arrow cnvrt-featured-collection__arrow--next"
+                type="button"
+                data-cnvrt-featured-collection-next
+                aria-label="Next products"
+              >
+                {% render 'icon-cnvrt-chevron-right' %}
+              </button>
+            {%- endif -%}
           </div>
         {%- endif -%}
       {%- elsif request.design_mode -%}

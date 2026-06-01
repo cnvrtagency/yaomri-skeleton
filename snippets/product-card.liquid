@@ -9,6 +9,7 @@
     assign image_ratio = settings.product_card_image_ratio | default: 'portrait'
     assign action_layout = settings.product_card_action_layout | default: 'below_info'
     assign text_alignment = settings.product_card_text_alignment | default: 'left'
+    assign title_line_limit = settings.product_card_title_line_limit | default: '2'
     assign enable_hover_zoom = settings.product_card_enable_hover_zoom | default: false
     assign featured_image = card_product.featured_image
     assign secondary_image = blank
@@ -44,6 +45,15 @@
     else
       assign card_classes = card_classes | append: ' cnvrt-product-card--align-left'
     endif
+
+    case title_line_limit
+      when 'none'
+        assign card_classes = card_classes | append: ' cnvrt-product-card--title-lines-none'
+      when '1'
+        assign card_classes = card_classes | append: ' cnvrt-product-card--title-lines-1'
+      else
+        assign card_classes = card_classes | append: ' cnvrt-product-card--title-lines-2'
+    endcase
 
     if secondary_image != blank
       assign card_classes = card_classes | append: ' cnvrt-product-card--hover-second-image'

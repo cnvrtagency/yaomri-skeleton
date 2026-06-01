@@ -10,6 +10,7 @@ The theme is small-to-medium in footprint and mostly follows a clean section-dri
 - `shopify theme check` → **57 files inspected, no offenses**.
 - No orphaned `asset_url` references or syntax errors found.
 - No theme-check warnings for dead or duplicate assets.
+- Carousel arrow side-placement in Featured Collection and Collection Cards is handled with existing section JS hooks and CSS/layout changes only (no new runtime dependency).
 - Potential cleanup is mostly: avoid shipping assets for unused sections, tighten image loading strategy in non-critical sections, and consider CSS/JS deferment for non-critical features.
 
 ## Asset inventory summary
