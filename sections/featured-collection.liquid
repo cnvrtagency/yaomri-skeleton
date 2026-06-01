@@ -68,9 +68,6 @@
           {%- if section.settings.heading != blank -%}
             <h2 class="cnvrt-featured-collection__heading cnvrt-section-heading__title">{{ section.settings.heading }}</h2>
           {%- endif -%}
-          {%- if section.settings.text != blank -%}
-            <div class="cnvrt-featured-collection__text cnvrt-section-heading__text rte">{{ section.settings.text }}</div>
-          {%- endif -%}
         </div>
         <div class="cnvrt-featured-collection__actions cnvrt-section-heading__actions">
           {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
@@ -100,6 +97,9 @@
           {%- endif -%}
         </div>
       </header>
+      {%- if section.settings.text != blank -%}
+        <div class="cnvrt-featured-collection__intro rte">{{ section.settings.text }}</div>
+      {%- endif -%}
 
       {%- if has_products -%}
         {%- if layout_mode == 'grid' -%}

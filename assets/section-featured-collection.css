@@ -39,7 +39,6 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: var(--cnvrt-section-heading-margin-bottom-mobile, 18px);
 }
 
 .cnvrt-featured-collection__heading-group {
@@ -56,16 +55,19 @@
   color: var(--cnvrt-section-heading-colour, var(--cnvrt-featured-collection-text, var(--color-foreground)));
 }
 
-.cnvrt-featured-collection__text {
-  color: var(--cnvrt-section-text-colour, var(--cnvrt-featured-collection-text, var(--color-foreground)));
+.cnvrt-featured-collection__intro {
+  margin: 0 0 1rem;
+  max-width: 72ch;
+  color: var(--cnvrt-featured-collection-text, var(--color-foreground));
+  font-family: var(--cnvrt-font-body-family, var(--font-primary--family));
+  font-size: var(--cnvrt-body-size-mobile, 15px);
+  font-style: var(--cnvrt-font-body-style, normal);
+  font-weight: var(--cnvrt-body-weight, 400);
+  line-height: var(--cnvrt-body-line-height, 1.6);
 }
 
-.cnvrt-featured-collection__text p {
+.cnvrt-featured-collection__intro p {
   margin: 0;
-  font-weight: inherit;
-  line-height: inherit;
-  letter-spacing: inherit;
-  color: inherit;
 }
 
 .cnvrt-featured-collection__actions {
@@ -177,8 +179,9 @@
 }
 
 @media (min-width: 750px) {
-  .cnvrt-featured-collection__header {
-    margin-bottom: var(--cnvrt-section-heading-margin-bottom-desktop, 24px);
+  .cnvrt-featured-collection__intro {
+    margin-bottom: 1.25rem;
+    font-size: var(--cnvrt-body-size-desktop, 16px);
   }
 
   .cnvrt-featured-collection__grid {

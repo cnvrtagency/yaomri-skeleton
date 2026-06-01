@@ -27,8 +27,8 @@ Current state:
 16. Global typography system is now implemented with CNVRT font families/tokens, and Single Image Hero paragraph weight applies correctly to rich text paragraph tags; visual differences still depend on selected font support for specific weights.
 17. Reusable CNVRT product card foundation is now available as a snippet + component stylesheet with global Product cards settings.
 18. A dedicated `Featured collection` section now consumes the reusable product-card snippet for real products and provides grid/carousel container behavior without duplicating product-card logic.
-19. Typography ownership is now corrected: global base typography in Theme settings > Typography, header/nav/menu typography in Theme settings > Header, and reusable section-heading styling in Theme settings > Section headings; Featured Collection and Collection Cards now use global section-heading styles with section-level content only.
-20. Theme Editor QA/fix pass is integrated: Header settings are regrouped (shadow in visual style), mobile nav size is added, country-selector text routing is state-safe, Section headings description labels are clearer, Featured Collection no longer exposes a conflicting local heading alignment, and Product cards now include global typography controls.
+19. Typography ownership is now corrected: global base typography in Theme settings > Typography, header/nav/menu typography in Theme settings > Header, and reusable section-heading styling in Theme settings > Section headings; Featured Collection and Collection Cards now use a shared eyebrow + `h2` heading structure.
+20. Shared Section headings now control eyebrow/title styling only. Supporting copy is section-local content rendered outside the shared heading block.
 
 ## B. Critical launch blockers
 

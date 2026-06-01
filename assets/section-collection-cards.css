@@ -43,7 +43,6 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: var(--cnvrt-section-heading-margin-bottom-mobile, 18px);
 }
 
 .cnvrt-collection-cards__heading-group {
@@ -60,8 +59,15 @@
   color: var(--cnvrt-section-heading-colour, var(--color-foreground));
 }
 
-.cnvrt-collection-cards__subtitle {
-  color: var(--cnvrt-section-text-colour, rgb(115 115 115));
+.cnvrt-collection-cards__supporting-text {
+  margin: 0 0 1rem;
+  max-width: 72ch;
+  color: var(--color-muted, rgb(115 115 115));
+  font-family: var(--cnvrt-font-body-family, var(--font-primary--family));
+  font-size: var(--cnvrt-body-size-mobile, 15px);
+  font-style: var(--cnvrt-font-body-style, normal);
+  font-weight: var(--cnvrt-body-weight, 400);
+  line-height: var(--cnvrt-body-line-height, 1.6);
 }
 
 .cnvrt-collection-cards__nav {
@@ -121,8 +127,9 @@
 }
 
 @media (min-width: 768px) {
-  .cnvrt-collection-cards__head {
-    margin-bottom: var(--cnvrt-section-heading-margin-bottom-desktop, 24px);
+  .cnvrt-collection-cards__supporting-text {
+    margin-bottom: 1.25rem;
+    font-size: var(--cnvrt-body-size-desktop, 16px);
   }
 
   .cnvrt-collection-cards__track {

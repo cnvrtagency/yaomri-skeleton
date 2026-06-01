@@ -116,9 +116,8 @@
         {%- if section.settings.eyebrow != blank -%}
           <p class="cnvrt-collection-cards__eyebrow cnvrt-section-heading__eyebrow">{{ section.settings.eyebrow }}</p>
         {%- endif -%}
-        <h2 class="cnvrt-collection-cards__title cnvrt-section-heading__title">{{ section.settings.heading }}</h2>
-        {%- if section.settings.heading_subtitle != blank -%}
-          <p class="cnvrt-collection-cards__subtitle cnvrt-section-heading__text">{{ section.settings.heading_subtitle }}</p>
+        {%- if section.settings.heading != blank -%}
+          <h2 class="cnvrt-collection-cards__title cnvrt-section-heading__title">{{ section.settings.heading }}</h2>
         {%- endif -%}
       </div>
       <div class="cnvrt-collection-cards__nav cnvrt-section-heading__actions{% unless layout_mode == 'carousel' and show_arrows %} is-hidden{% endunless %}">
@@ -132,6 +131,9 @@
         {%- endif -%}
       </div>
     </div>
+    {%- if section.settings.heading_subtitle != blank -%}
+      <p class="cnvrt-collection-cards__supporting-text">{{ section.settings.heading_subtitle }}</p>
+    {%- endif -%}
 
     {%- assign valid_cards = 0 -%}
     {%- for block in section.blocks -%}
@@ -303,7 +305,7 @@
     { "type": "header", "content": "Content" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shop by collection" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Shop by collection" },
-    { "type": "text", "id": "heading_subtitle", "label": "Heading subtitle", "default": "Curated edits" },
+    { "type": "text", "id": "heading_subtitle", "label": "Supporting text", "default": "Curated edits", "info": "Optional supporting copy shown below the shared section heading block." },
 
     { "type": "header", "content": "Layout" },
     {

@@ -12,8 +12,9 @@ The typography ownership model is now corrected:
 - Header nav is decoupled from global eyebrow/section-heading typography tokens.
 
 3. Theme settings > Section headings
-- Owns reusable eyebrow/title/text section-heading styling for standard section headers.
+- Owns reusable eyebrow/title section-heading styling for standard section headers.
 - Emits global `--cnvrt-section-*` variables.
+- `section_heading_margin_bottom_desktop/mobile` control spacing below the whole shared heading wrapper, not subtitle/body text spacing.
 
 4. Section settings
 - Standard sections (`Featured collection`, `Collection cards`) keep content fields only for heading stack content.
@@ -117,7 +118,7 @@ This audit recommends a standardized, granular system without reducing control.
 
 Update note (May 31, 2026):
 - Reusable section-heading styling is active in Theme settings > Section headings (`section_heading_*`) and shared `.cnvrt-section-heading*` CSS.
-- Section headings labels now describe “Description” copy (supporting text under section titles) while keeping existing `section_heading_text_*` IDs for compatibility.
+- Shared section-heading description styling has been removed; optional supporting copy remains section-local content outside the shared heading block.
 - `Featured collection` and `Collection cards` consume global section-heading styling and keep heading content fields local.
 - Header/nav/menu typography is explicitly routed to Theme settings > Header and no longer reads global eyebrow/section-heading tokens.
 - Single Image Hero Paragraph weight options now include Light (300) and Extra bold (800).
